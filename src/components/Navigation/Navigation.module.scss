@@ -1,0 +1,19 @@
+.navigation {
+  width: 30%;
+  display: flex;
+  background: coral;
+  flex-direction: column;
+}
+
+.navigation a {
+  display: block;
+  padding: 5px;
+  background: chartreuse;
+  color: brown;
+  text-decoration: none;
+}
+
+.navigation a:hover {
+  background: coral;
+  color: chartreuse;
+}
