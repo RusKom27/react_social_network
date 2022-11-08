@@ -2,7 +2,7 @@ import styles from "./Settings.module.scss"
 
 function Settings() {
     return (
-        <section className={styles.container}>
+        <div className={styles.container}>
             <div>
                 Content
             </div>
@@ -36,7 +36,7 @@ function Settings() {
             <div>
                 Content
             </div>
-        </section>
+        </div>
     )
 }
 

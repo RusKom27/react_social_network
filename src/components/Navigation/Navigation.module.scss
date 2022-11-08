@@ -5,15 +5,21 @@
   flex-direction: column;
 }
 
+.navigation div {
+  border-radius: 5px;
+  margin-inline: 8px;
+  overflow: clip;
+}
+
 .navigation a {
+  font-size: 1.1rem;
   display: block;
   padding: 5px;
-  background: chartreuse;
-  color: brown;
+  background: rgba(255,255,255, 0.25);
+  color: white;
   text-decoration: none;
 }
 
 .navigation a:hover {
-  background: coral;
-  color: chartreuse;
+  background: rgba(255,255,255, 0);;
 }

@@ -4,9 +4,11 @@ import {NavLink} from "react-router-dom";
 function Navigation() {
     return (
         <nav className={styles.navigation}>
-            <NavLink to="/profile">Profile</NavLink>
-            <NavLink to="#">Messages</NavLink>
-            <NavLink to="/settings">Settings</NavLink>
+            <div>
+                <NavLink to="/profile">Profile</NavLink>
+                <NavLink to="/messages">Messages</NavLink>
+                <NavLink to="/settings">Settings</NavLink>
+            </div>
         </nav>
     )
 }
