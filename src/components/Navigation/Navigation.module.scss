@@ -1,25 +1,30 @@
-.navigation {
-  width: 30%;
-  display: flex;
-  background: coral;
-  flex-direction: column;
-}
+@import "src/index";
 
-.navigation div {
-  border-radius: 5px;
-  margin-inline: 8px;
-  overflow: clip;
+.navigation {
+  min-width: 25%;
+  display: flex;
+  background: $color1;
+  flex-direction: column;
 }
 
 .navigation a {
   font-size: 1.1rem;
+  height: 1.5rem;
   display: block;
   padding: 5px;
-  background: rgba(255,255,255, 0.25);
-  color: white;
+  margin-inline: 8px;
+  background: $color4;
+  color: $color0;
   text-decoration: none;
 }
 
+.active {
+  font-weight: 700;
+  background: $color5!important;
+  border: $color4 solid 1px;
+  box-shadow: 10px 0 0 $color4;
+}
+
 .navigation a:hover {
-  background: rgba(255,255,255, 0);;
+  background: $color5;
 }

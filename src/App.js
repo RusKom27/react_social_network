@@ -1,8 +1,9 @@
-import {Layout} from "./Layout/Layout";
-import {Settings} from "./components/Settings/Settings";
-import {Profile} from "./components/Profile/Profile";
+import {Layout} from "./layout/Layout";
+import "./App.scss"
+import {Settings} from "./pages/Settings/Settings";
+import {Profile} from "./pages/Profile/Profile";
 import {Route, BrowserRouter as Router, Routes} from "react-router-dom";
-import {Messages} from "./components/Messages/Messages";
+import {Messages} from "./pages/Messages/Messages";
 
 function App() {
     return (

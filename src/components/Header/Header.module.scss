@@ -1,15 +1,17 @@
+@import "src/index";
+
 .header {
   height: 15%;
   display: flex;
   justify-content: space-between;
-  background: coral;
+  background: $color1;
   padding: 0 20px;
   z-index: 90;
 }
 
 .header div {
   padding: 5px;
-  color: white;
+  color: $color0;
 }
 
 .logo {

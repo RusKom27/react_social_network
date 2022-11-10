@@ -1,3 +1,5 @@
+@import "src/index";
+
 .wrapper {
   max-width: 70%;
   margin: auto;
@@ -7,7 +9,7 @@
 }
 
 .wrapper main {
-  background-color: bisque;
+  background-color: $color2;
   min-height: 90vh;
   display: flex;
   justify-content: space-between;
