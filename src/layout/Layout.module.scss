@@ -5,12 +5,11 @@
   margin: auto;
   border-bottom-right-radius: 50px;
   border-bottom-left-radius: 50px;
-
 }
 
 .wrapper main {
   background-color: $color2;
-  min-height: 90vh;
+  min-height: 100vh - $header-height;
   display: flex;
   justify-content: space-between;
 }

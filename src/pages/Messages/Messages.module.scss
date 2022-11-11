@@ -1,14 +1,11 @@
+@import "src/index";
+
 .container {
   display: flex;
   width: 100%;
+  height: 89vh;
   padding: 20px;
+  overflow: hidden;
 }
 
-.dialogs_list {
-  flex: 3;
-}
-
-.current_dialog {
-  flex: 9
-}
 

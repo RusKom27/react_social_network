@@ -1,0 +1,19 @@
+@import "src/index";
+
+.item {
+  padding: 16px 4px;
+  border-bottom: $color1 solid 1px;
+}
+
+.item:hover {
+  background-color: $color4;
+  cursor: pointer;
+}
+
+.username {
+  font-weight: 700;
+}
+
+.message_text {
+  color: dimgray;
+}

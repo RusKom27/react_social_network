@@ -1,0 +1,11 @@
+@import "src/index";
+
+.current_dialog {
+  display: flex;
+  height: 100%;
+  overflow-y: scroll;
+  border-left: $color1 solid 1px;
+  border-right: $color1 solid 1px;
+  flex-direction: column-reverse;
+  flex: 9
+}

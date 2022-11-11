@@ -1,0 +1,31 @@
+@import "src/index";
+
+.message {
+  display: flex;
+  flex-direction: column;
+  padding: 8px 16px;
+  max-width: 60%;
+  margin-block: 8px;
+  box-shadow: 4px 4px 2px $color4;
+}
+
+.message img {
+  width: 100%;
+}
+
+.from_user {
+  align-self: end;
+}
+
+.from_other {
+  align-self: start;
+}
+
+.from_user {
+  background-color: $color0;
+}
+
+.from_other {
+  background-color: $color3;
+  color: $color0;
+}
