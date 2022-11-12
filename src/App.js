@@ -1,18 +1,19 @@
-import {Layout} from "./layout/Layout";
-import "./App.scss"
-import {Settings} from "./pages/Settings/Settings";
-import {Profile} from "./pages/Profile/Profile";
-import {Route, BrowserRouter as Router, Routes} from "react-router-dom";
-import {Messages} from "./pages/Messages/Messages";
+import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 
-function App() {
+import "./App.scss"
+
+import {Layout} from "./layout/Layout";
+import {Messages, Profile, Settings} from "./pages";
+
+function App(props) {
+
     return (
         <Router>
             <Layout>
                 <Routes>
-                    <Route path={"/settings"} element={<Settings />}/>
-                    <Route path={"/profile"} element={<Profile />}/>
-                    <Route path={"/messages"} element={<Messages />}/>
+                    <Route path={"/settings/*"} element={<Settings/>}/>
+                    <Route path={"/profile/*"} element={<Profile profile={props.state.profile}/>}/>
+                    <Route path={"/messages/*"} element={<Messages dialogs={props.state.dialogs}/>}/>
                 </Routes>
             </Layout>
         </Router>

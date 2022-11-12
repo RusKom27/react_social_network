@@ -1,0 +1,38 @@
+@import "src/index";
+
+.input_block {
+  background-color: $color1;
+  padding:16px;
+  display: flex;
+  height: 32px;
+}
+
+.input_block input[type="text"] {
+  margin-right: 8px;
+  font-size: 16px;
+  flex: 10;
+  background-color: $color0;
+  color: $color1;
+}
+
+.input_block input[type="text"]:focus {
+  outline: none;
+}
+
+.input_block input[type="submit"] {
+  background-color: $color1;
+  font-size: 18px;
+  color: $color2;
+  flex: 1;
+}
+
+.input_block input[type="submit"]:hover {
+  cursor: pointer;
+  background-color: $color2;
+  border: $color1 2px solid;
+  color: $color1;
+}
+
+.input_block input[type="submit"]:active {
+  background-color: $color4;
+}

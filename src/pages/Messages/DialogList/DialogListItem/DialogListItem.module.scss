@@ -5,6 +5,19 @@
   border-bottom: $color1 solid 1px;
 }
 
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+a:active {
+  color: inherit;
+}
+
+.active {
+  background: $color1;
+}
+
 .item:hover {
   background-color: $color4;
   cursor: pointer;

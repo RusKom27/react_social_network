@@ -1,15 +1,18 @@
 import styles from "./Profile.module.scss"
 import image_placeholder from "../../images/image-placeholder1.png"
 import user_image from "../../images/user_image.jpg"
+import {PostsList} from "./PostsList/PostsList";
+import {createRef} from "react";
 
 
-function Profile() {
-
-    const handleSubmit = event => {
+function Profile(props) {
+    const text_area = createRef();
+    const addPostHandle = event => {
         event.preventDefault()
-        console.log(event.target.post_text.value)
-        event.target.post_text.value = ''
-        event.target.post_text.focus()
+        const post_message = text_area.current.value
+        props.profile.addPost(post_message)
+        text_area.current.value = ''
+        text_area.current.focus()
     }
 
     return (
@@ -28,47 +31,13 @@ function Profile() {
             </div>
             <div className={styles.post_creating_form}>
                 <hr/>
-                <form onSubmit={handleSubmit}>
-                    <textarea name={"post_text"}/>
-                    <input type={"submit"} value={"Send"}/>
-
-                </form>
-            </div>
-            <div>
-                <h2>Posts</h2>
-                <hr/>
-                <div className={styles.posts_list}>
-                    <div className={styles.post}>
-                        <div className={styles.content_author}>
-                            Author Nick
-                        </div>
-                        <div className={styles.content_image}>
-                            <img src={image_placeholder} alt=""/>
-                        </div>
-                        <div>
-                            Post description post description  post description  post description  post description  post description  post description
-                        </div>
-                        <div>
-                            Likes: 12 Dislikes: 1
-                        </div>
-                        <hr/>
-                    </div>
-                    <div className={styles.post}>
-                        <div className={styles.content_author}>
-                            Author Nick
-                        </div>
-                        <div>
-                            Post description post description  post description  post description  post description  post description  post description
-                        </div>
-                        <div>
-                            Likes: 1 Dislikes: 12
-                        </div>
-                        <hr/>
-                    </div>
-
+                <div>
+                    <textarea ref={text_area} name={"post_text"}/>
+                    <input onClick={addPostHandle} type={"submit"} value={"Send"}/>
                 </div>
-            </div>
 
+            </div>
+            <PostsList posts={props.profile.posts}/>
         </div>
     )
 }

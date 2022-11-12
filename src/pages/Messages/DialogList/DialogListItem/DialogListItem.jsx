@@ -1,16 +1,21 @@
 import styles from "./DialogListItem.module.scss"
-import image_placeholder from "../../../../images/image-placeholder1.png";
+import {NavLink} from "react-router-dom";
 
-function DialogListItem() {
+function DialogListItem(props) {
+    const activeClassName = ({isActive}) => isActive ? styles.active : undefined
+
     return (
-        <div className={styles.item}>
-            <div className={styles.username}>
-                User Name
+        <NavLink className={activeClassName} to={`dialog/${props.id}`}>
+            <div className={styles.item}>
+                <div className={styles.username}>
+                    {props.username}
+                </div>
+                <div className={styles.message_text}>
+                    {props.message}
+                </div>
             </div>
-            <div className={styles.message_text}>
-                message
-            </div>
-        </div>
+        </NavLink>
+
     )
 }
 

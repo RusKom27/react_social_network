@@ -43,7 +43,7 @@
   padding: 12px 24px;
 }
 
-.post_creating_form form {
+.post_creating_form div {
   align-items: center;
   width: 100%;
   display: flex;
@@ -75,30 +75,4 @@
 
 .post_creating_form input[type="submit"]:active {
   background-color: $color4;
-}
-
-.posts_list {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.post {
-  padding: 8px 16px;
-}
-
-.post .content_author {
-  font-size: 18px;
-  font-weight: 700;
-}
-
-.post .content_image {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  padding: 8px;
-}
-
-.post .content_image img {
-  max-width: 100%;
 }

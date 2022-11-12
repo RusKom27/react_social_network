@@ -1,5 +1,5 @@
-import {Header} from "../components/Header/Header";
-import {Navigation} from "../components/Navigation/Navigation";
+import {Header, Navigation} from "../components";
+
 import styles from "./Layout.module.scss"
 
 function Layout({children}) {
