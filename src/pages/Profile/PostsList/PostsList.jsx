@@ -1,3 +1,4 @@
+import React from "react"
 import styles from "./PostsList.module.scss"
 import {Post} from "./Post/Post";
 

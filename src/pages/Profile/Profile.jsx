@@ -1,3 +1,4 @@
+import React from "react"
 import styles from "./Profile.module.scss"
 import image_placeholder from "../../images/image-placeholder1.png"
 import user_image from "../../images/user_image.jpg"

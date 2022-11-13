@@ -7,13 +7,34 @@ const addPost = (post_message) => {
         likes: 0,
         dislikes: 0,
     })
-    console.log(state.profile.posts)
+}
+const addMessage = (message_text, id) => {
+    state.dialogs[id].messages.push({
+        id: state.dialogs[id].messages.length,
+        username: "User1",
+        text: message_text,
+    })
 }
 
 export let state = {
+    addMessage: addMessage,
     dialogs: [
-        {id: 0, username: "User1", messages: ["Hi", "hello", "world"]},
-        {id: 1, username: "User2", messages: ["World", "hi"]},
+        {id: 0, messages: [
+            {id: 0, username: "User1", text: "Hi"},
+            {id: 1, username: "User1", text: "World"},
+            {id: 2, username: "User2", text: "hi"},
+        ]},
+        {id: 1, messages: [
+            {id: 0, username: "User3", text: "Hellow"},
+            {id: 1, username: "User1", text: "ABOBUS"},
+            {id: 2, username: "User3", text: "..."},
+            {id: 3, username: "User1", text: "..."},
+        ]},
+        {id: 2, messages: [
+            {id: 0, username: "User1", text: "Hi"},
+            {id: 1, username: "User4", text: "Worldus"},
+            {id: 2, username: "User1", text: "ASFDFSADFSAS"},
+        ]},
     ],
     profile: {
         posts: [

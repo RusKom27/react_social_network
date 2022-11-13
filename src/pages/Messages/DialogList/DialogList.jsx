@@ -1,3 +1,4 @@
+import React from "react"
 import styles from "./DialogList.module.scss"
 import {DialogListItem} from "./DialogListItem/DialogListItem";
 
@@ -7,7 +8,6 @@ function DialogList(props) {
         (dialog, i) => <DialogListItem
             key={i}
             id={dialog.id}
-            username={dialog.username}
             message={dialog.messages.at(-1)}
         />
     )

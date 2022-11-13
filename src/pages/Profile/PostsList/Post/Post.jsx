@@ -1,3 +1,4 @@
+import React from "react"
 import styles from "./Post.module.scss"
 import image_placeholder from "../../../../images/image-placeholder1.png"
 
