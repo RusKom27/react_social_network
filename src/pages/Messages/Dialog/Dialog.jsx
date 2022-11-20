@@ -13,7 +13,7 @@ function Dialog(props) {
 
     let messages = ""
     if (props.dialogs) {
-        const messages_list = props.dialogs.find(dialog => {
+        const messages_list = props.dialogs.messages.find(dialog => {
             return "" + dialog.id === id
         }).messages
         messages = messages_list.map(message => <Message key={message.id} username={message.username}
@@ -25,7 +25,13 @@ function Dialog(props) {
             <div ref={message_list} className={styles.message_list}>
                 {messages}
             </div>
-            {props.addMessage !== null ? <MessageInput addMessage={props.addMessage} id={id}/> : null}
+            {props.dialogs !== null ?
+                <MessageInput addMessage={props.dialogs.addMessage}
+                              updateMessageInput={props.dialogs.updateMessageInput}
+                              messageInputValue={props.dialogs.messageInputValue}
+                              id={id}/>
+                : null
+            }
         </div>
     )
 }

@@ -3,7 +3,7 @@
 .container {
   display: flex;
   width: 100%;
-  align-items: start;
+  align-items: flex-start;
   flex-wrap: wrap;
   padding: 20px;
   gap: 20px;
@@ -15,4 +15,5 @@
   height: 200px;
   text-align: center;
   background: $color1;
+  color: $color2;
 }

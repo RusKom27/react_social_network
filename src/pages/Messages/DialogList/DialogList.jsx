@@ -4,7 +4,7 @@ import {DialogListItem} from "./DialogListItem/DialogListItem";
 
 function DialogList(props) {
 
-    const dialogs = props.dialogs.map(
+    const dialogs = props.dialogs.messages.map(
         (dialog, i) => <DialogListItem
             key={i}
             id={dialog.id}

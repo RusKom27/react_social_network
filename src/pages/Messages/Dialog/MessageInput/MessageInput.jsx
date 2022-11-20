@@ -6,15 +6,15 @@ function MessageInput(props) {
     const text_area = createRef();
     const addMessageHandle = event => {
         event.preventDefault()
-        const message_text = text_area.current.value
-        props.addMessage(message_text, props.id)
-        text_area.current.value = ''
+        props.addMessage(props.id)
         text_area.current.focus()
     }
-
     return (
         <div className={styles.input_block}>
-            <input ref={text_area} type="text" />
+            <input onChange={event => props.updateMessageInput(event.target.value)}
+                   type="text"
+                   ref={text_area}
+                   value={props.messageInputValue} />
             <input onClick={addMessageHandle} type="submit" value={"Send"}/>
         </div>
 

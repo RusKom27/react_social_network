@@ -15,8 +15,8 @@ function App(props) {
                         <Route path={"settings"} element={<Settings/>}/>
                         <Route path={"profile"} element={<Profile profile={props.state.profile}/>}/>
                         <Route path={"messages"} element={<Messages dialogs={props.state.dialogs}/>}>
-                            <Route path={":id"} element={<Dialog dialogs={props.state.dialogs} addMessage={props.state.addMessage}/>}/>
-                            <Route path={""} element={<Dialog dialogs={null} addMessage={null}/>}/>
+                            <Route path={":id"} element={<Dialog dialogs={props.state.dialogs}/>}/>
+                            <Route path={""} element={<Dialog dialogs={null}/>}/>
                         </Route>
                     </Route>
                 </Routes>

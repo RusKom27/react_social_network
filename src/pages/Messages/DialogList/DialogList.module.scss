@@ -2,6 +2,8 @@
 
 .dialogs_list {
   flex: 3;
+  min-width: 100px;
+  overflow-x: clip;
   gap: 8px;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
