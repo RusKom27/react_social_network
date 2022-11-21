@@ -6,7 +6,7 @@ import {Outlet} from "react-router-dom";
 function Messages(props) {
     return (
         <div className={styles.container}>
-            <DialogList dialogs={props.dialogs}/>
+            <DialogList messages={props.messages}/>
             <Outlet />
             {/*<Dialog messages={props.dialogs.messages}/>*/}
         </div>

@@ -14,8 +14,10 @@ a:active {
   color: inherit;
 }
 
-.active {
-  background: $color1;
+.active .item{
+  border-left: $color3 8px solid;
+  background: $color4;
+  color: $color1;
 }
 
 .item:hover {
@@ -23,10 +25,18 @@ a:active {
   cursor: pointer;
 }
 
-.username {
+.member {
+  font-size: 18px;
   font-weight: 700;
 }
 
+
+.username {
+  font-size: 14px;
+  color: dimgray;
+}
+
 .message_text {
+  font-size: 12px;
   color: dimgray;
 }

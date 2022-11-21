@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
 import './index.scss';
 
-import {state, subscribe} from "./redux/state";
+import {store} from "./redux/state";
 import App from './App';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -11,12 +11,14 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 const renderEntireTree = (state) => {
     root.render(
         <React.StrictMode>
-            <App state={state}/>
+            <App state={state}
+                 dispatch={store.dispatch.bind(store)}
+            />
         </React.StrictMode>
     );
 }
-renderEntireTree(state)
+renderEntireTree(store.getState())
 
-subscribe(renderEntireTree)
+store.subscribe(renderEntireTree)
 
 reportWebVitals();

@@ -4,17 +4,18 @@ import {DialogListItem} from "./DialogListItem/DialogListItem";
 
 function DialogList(props) {
 
-    const dialogs = props.dialogs.messages.map(
+    const dialogsList = props.messages.dialogs.map(
         (dialog, i) => <DialogListItem
             key={i}
             id={dialog.id}
+            member={dialog.member}
             message={dialog.messages.at(-1)}
         />
     )
 
     return (
         <div className={styles.dialogs_list}>
-            {dialogs}
+            {dialogsList}
         </div>
     )
 }

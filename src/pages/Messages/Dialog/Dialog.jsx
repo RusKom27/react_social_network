@@ -12,25 +12,23 @@ function Dialog(props) {
     })
 
     let messages = ""
-    if (props.dialogs) {
-        const messages_list = props.dialogs.messages.find(dialog => {
+    if (props.messages) {
+        const messages_list = props.messages.dialogs.find(dialog => {
             return "" + dialog.id === id
         }).messages
         messages = messages_list.map(message => <Message key={message.id} username={message.username}
                                                          text={message.text}/>)
     }
-
     return (
         <div className={styles.current_dialog}>
             <div ref={message_list} className={styles.message_list}>
                 {messages}
             </div>
-            {props.dialogs !== null ?
-                <MessageInput addMessage={props.dialogs.addMessage}
-                              updateMessageInput={props.dialogs.updateMessageInput}
-                              messageInputValue={props.dialogs.messageInputValue}
+            {props.messages !== null ?
+                <MessageInput dispatch={props.dispatch}
+                              messageInputValue={props.messages.messageInputValue}
                               id={id}/>
-                : null
+                : ""
             }
         </div>
     )

@@ -7,7 +7,11 @@ function DialogListItem(props) {
 
     return (
         <NavLink className={activeClassName} to={`${props.id}`}>
+
             <div className={styles.item}>
+                <div className={styles.member}>
+                    {props.member}
+                </div>
                 <div className={styles.username}>
                     {props.message.username}
                 </div>

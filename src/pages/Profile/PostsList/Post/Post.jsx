@@ -21,7 +21,6 @@ function Post(props) {
             </div>
             <hr/>
         </div>
-
     )
 }
 

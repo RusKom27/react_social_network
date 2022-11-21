@@ -1,6 +1,7 @@
 @import "src/index";
 
 .container {
+  word-wrap: break-word;
   padding: 20px;
 }
 
@@ -43,7 +44,7 @@
   padding: 12px 24px;
 }
 
-.post_creating_form div {
+.post_creating_form form {
   align-items: center;
   width: 100%;
   display: flex;

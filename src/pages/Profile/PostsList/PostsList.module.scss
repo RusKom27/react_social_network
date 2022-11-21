@@ -5,23 +5,3 @@
   flex-direction: column;
   gap: 16px;
 }
-
-.post {
-  padding: 8px 16px;
-}
-
-.post .content_author {
-  font-size: 18px;
-  font-weight: 700;
-}
-
-.post .content_image {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  padding: 8px;
-}
-
-.post .content_image img {
-  max-width: 100%;
-}
