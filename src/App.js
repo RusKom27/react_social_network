@@ -6,7 +6,6 @@ import "./App.scss"
 import {Layout} from "./layout/Layout";
 import {Messages, Profile, Settings} from "./pages";
 import {Dialog} from "./pages/Messages/Dialog/Dialog";
-import {store} from "./redux/state";
 
 function App(props) {
     return (<Router>

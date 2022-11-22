@@ -3,14 +3,14 @@ import styles from "./Profile.module.scss"
 import image_placeholder from "../../images/image-placeholder1.png"
 import user_image from "../../images/user_image.jpg"
 import {PostsList} from "./PostsList/PostsList";
-import {ACTION} from "../../redux/state";
+import {ACTION} from "../../redux/actions";
 
 
 function Profile(props) {
     const text_area = createRef();
     const addPostHandle = event => {
         event.preventDefault()
-        props.dispatch({type: ACTION.ADD_POST})
+        props.dispatch(ACTION.ADD_POST())
         text_area.current.focus()
     }
 
@@ -35,11 +35,7 @@ function Profile(props) {
                     <hr/>
                     <form>
                     <textarea
-                        onChange={event => props.dispatch({
-                                type: ACTION.UPDATE_POST_INPUT,
-                                post_text: event.target.value
-                            }
-                        )}
+                        onChange={event => props.dispatch(ACTION.UPDATE_POST_INPUT(event.target.value))}
                         ref={text_area}
                         name={"post_text"}
                         value={props.profile.postInput}

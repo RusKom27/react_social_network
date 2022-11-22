@@ -1,11 +1,4 @@
-
-const ACTION = {
-    NONE: -1,
-    UPDATE_MESSAGE_INPUT: 0,
-    ADD_MESSAGE: 1,
-    UPDATE_POST_INPUT: 2,
-    ADD_POST: 3
-}
+import {messageReducer, profileReducer} from "./reducers";
 
 let store = {
     _callSubscriber() {
@@ -62,42 +55,10 @@ let store = {
     },
 
     dispatch(action) {
-        switch (action.type) {
-            case ACTION.UPDATE_MESSAGE_INPUT:
-                this._state.messages.messageInputValue = action.message_text
-                this._callSubscriber(this._state)
-                break
-
-            case ACTION.ADD_MESSAGE:
-                if (this._state.messages.messageInputValue !== '')
-                    this._state.messages.dialogs[action.dialog_id].messages.push({
-                        id: this._state.messages.dialogs[action.dialog_id].messages.length,
-                        username: "User1",
-                        text: this._state.messages.messageInputValue,
-                    })
-                this._state.messages.messageInputValue = ''
-                this._callSubscriber(this._state)
-                break
-
-            case ACTION.UPDATE_POST_INPUT:
-                this._state.profile.postInput = action.post_text
-                this._callSubscriber(this._state)
-                break
-
-            case ACTION.ADD_POST:
-                this._state.profile.posts.push({
-                    id: this._state.profile.posts.length - 1,
-                    username: "User1",
-                    text: this._state.profile.postInput,
-                    likes: 0,
-                    dislikes: 0,
-                })
-                this._state.profile.postInput = ''
-                this._callSubscriber(this._state)
-                break
-
-        }
+        this._state.messages = messageReducer(this._state.messages, action)
+        this._state.profile = profileReducer(this._state.profile, action)
+        this._callSubscriber(this._state)
     },
 }
 
-export {store, ACTION}
+export {store}
