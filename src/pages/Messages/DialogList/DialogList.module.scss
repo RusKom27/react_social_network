@@ -3,6 +3,8 @@
 .dialogs_list {
   flex: 3;
   min-width: 100px;
+  max-width: 200px;
+  border-right: $color1 1px solid;
   overflow-x: clip;
   gap: 8px;
   overflow-y: auto;

@@ -4,7 +4,7 @@ import {Post} from "./Post/Post";
 import {PostsList} from "./PostsList";
 
 
-function ContainerPostsList({store}) {
+function PostsListContainer({store}) {
     const state = store.getState()
 
     const posts = state.profile.posts
@@ -12,4 +12,4 @@ function ContainerPostsList({store}) {
     return <PostsList posts={posts} />
 }
 
-export {ContainerPostsList}
+export {PostsListContainer}

@@ -1,6 +1,6 @@
 import {MessageList} from "./MessageList";
 
-function ContainerMessageList({store, dialog_id}) {
+function MessageListContainer({store, dialog_id}) {
     let state = store.getState()
     const messages = () => {
         if (state.messages)
@@ -11,4 +11,4 @@ function ContainerMessageList({store, dialog_id}) {
     )
 }
 
-export {ContainerMessageList}
+export {MessageListContainer}

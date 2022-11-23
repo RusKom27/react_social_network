@@ -2,7 +2,7 @@ import React from "react"
 import {ACTION} from "../../../../redux/actions";
 import {MessageInput} from "./MessageInput";
 
-function ContainerMessageInput({store, dialog_id}) {
+function MessageInputContainer({store, dialog_id}) {
     const state = store.getState()
     const messageInputValue = state.messages.messageInputValue
     const addMessage = () => {
@@ -20,4 +20,4 @@ function ContainerMessageInput({store, dialog_id}) {
     />
 }
 
-export {ContainerMessageInput}
+export {MessageInputContainer}
