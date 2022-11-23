@@ -7,25 +7,20 @@ import {Layout} from "./layout/Layout";
 import {Messages, Profile, Settings} from "./pages";
 import {Dialog} from "./pages/Messages/Dialog/Dialog";
 
-function App(props) {
+function App({store}) {
     return (<Router>
         <Routes>
             <Route path={"/"} element={<Layout/>}>
                 <Route path={"settings"} element={<Settings
                 />}/>
                 <Route path={"profile"} element={<Profile
-                    profile={props.state.profile}
-                    dispatch={props.dispatch}
+                    store={store}
                 />}/>
                 <Route path={"messages"} element={<Messages
-                    messages={props.state.messages}
+                    store={store}
                 />}>
-                    <Route path={":id"} element={<Dialog
-                        messages={props.state.messages}
-                        dispatch={props.dispatch}
-                    />}/>
-                    <Route path={""} element={<Dialog
-                        messages={null}
+                    <Route path={":dialog_id"} element={<Dialog
+                        store={store}
                     />}/>
                 </Route>
             </Route>

@@ -1,0 +1,9 @@
+@import "src/index";
+
+.message_list {
+  flex: 10;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  height: 100%;
+}

@@ -4,13 +4,14 @@ import image_placeholder from "../../images/image-placeholder1.png"
 import user_image from "../../images/user_image.jpg"
 import {PostsList} from "./PostsList/PostsList";
 import {ACTION} from "../../redux/actions";
+import {ContainerPostsList} from "./PostsList/ContainerPostsList";
 
 
-function Profile(props) {
+function Profile({store}) {
     const text_area = createRef();
     const addPostHandle = event => {
         event.preventDefault()
-        props.dispatch(ACTION.ADD_POST())
+        store.dispatch(ACTION.ADD_POST())
         text_area.current.focus()
     }
 
@@ -44,7 +45,7 @@ function Profile(props) {
                     </form>
 
                 </div>
-                <PostsList posts={props.profile.posts}/>
+                <ContainerPostsList store={store}/>
             </div>
         </div>
 

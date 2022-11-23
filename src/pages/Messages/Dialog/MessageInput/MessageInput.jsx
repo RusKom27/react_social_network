@@ -1,21 +1,20 @@
 import React from "react"
 import styles from "./MessageInput.module.scss"
 import {createRef} from "react";
-import {ACTION} from "../../../../redux/actions";
 
-function MessageInput(props) {
+function MessageInput({addMessage, updateMessageInput, messageInputValue}) {
     const text_area = createRef();
     const addMessageHandle = event => {
         event.preventDefault()
-        props.dispatch(ACTION.ADD_MESSAGE(props.id))
+        addMessage()
         text_area.current.focus()
     }
     return (
         <form className={styles.input_block}>
-            <input onChange={event => props.dispatch(ACTION.UPDATE_MESSAGE_INPUT(event.target.value))}
+            <input onChange={event => updateMessageInput(event.target.value)}
                    type="text"
                    ref={text_area}
-                   value={props.messageInputValue} />
+                   value={messageInputValue} />
             <input onClick={addMessageHandle}
                    name={"messageInput"}
                    type="submit"

@@ -1,18 +1,18 @@
 const ACTION = {
     NONE: () =>
-        ({type: -1}),
+        ({type: 'NONE'}),
 
     UPDATE_MESSAGE_INPUT: (message_text='') =>
-        ({type: 0, message_text}),
+        ({type: 'UPDATE_MESSAGE_INPUT', message_text}),
 
     ADD_MESSAGE: (dialog_id='') =>
-        ({type: 1, dialog_id}),
+        ({type: 'ADD_MESSAGE', dialog_id}),
 
     UPDATE_POST_INPUT: (post_text='') =>
-        ({type: 2, post_text}),
+        ({type: 'UPDATE_POST_INPUT', post_text}),
 
     ADD_POST: () =>
-        ({type: 3})
+        ({type: 'ADD_POST'})
 }
 
 export {ACTION}

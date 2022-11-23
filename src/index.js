@@ -8,17 +8,15 @@ import App from './App';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
-const renderEntireTree = (state) => {
+const renderEntireTree = (store) => {
     root.render(
         <React.StrictMode>
-            <App state={state}
-                 dispatch={store.dispatch.bind(store)}
-            />
+            <App store={store} />
         </React.StrictMode>
     );
 }
-renderEntireTree(store.getState())
+renderEntireTree(store)
 
-store.subscribe(() => renderEntireTree(store.getState()))
+store.subscribe(() => renderEntireTree(store))
 
 reportWebVitals();

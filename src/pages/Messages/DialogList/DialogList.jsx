@@ -2,9 +2,9 @@ import React from "react"
 import styles from "./DialogList.module.scss"
 import {DialogListItem} from "./DialogListItem/DialogListItem";
 
-function DialogList(props) {
+function DialogList({messages}) {
 
-    const dialogsList = props.messages.dialogs.map(
+    const dialogsList = messages.dialogs.map(
         (dialog, i) => <DialogListItem
             key={i}
             id={dialog.id}
