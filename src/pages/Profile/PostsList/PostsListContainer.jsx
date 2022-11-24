@@ -1,15 +1,14 @@
 import React from "react"
-import styles from "./PostsList.module.scss"
-import {Post} from "./Post/Post";
 import {PostsList} from "./PostsList";
+import {connect} from "react-redux";
 
+const mapStateToProps = state => ({
+    posts: state.profile.posts
+})
 
-function PostsListContainer({store}) {
-    const state = store.getState()
+const mapDispatchToProps = dispatch => ({
+})
 
-    const posts = state.profile.posts
-
-    return <PostsList posts={posts} />
-}
+const PostsListContainer = connect(mapStateToProps, mapDispatchToProps)(PostsList)
 
 export {PostsListContainer}

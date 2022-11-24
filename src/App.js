@@ -11,17 +11,10 @@ function App({store}) {
     return (<Router>
         <Routes>
             <Route path={"/"} element={<Layout/>}>
-                <Route path={"settings"} element={<Settings
-                />}/>
-                <Route path={"profile"} element={<Profile
-                    store={store}
-                />}/>
-                <Route path={"messages"} element={<Messages
-                    store={store}
-                />}>
-                    <Route path={":dialog_id"} element={<Dialog
-                        store={store}
-                    />}/>
+                <Route path={"settings"} element={<Settings/>}/>
+                <Route path={"profile"} element={<Profile/>}/>
+                <Route path={"messages"} element={<Messages/>}>
+                    <Route path={":dialog_id"} element={<Dialog/>}/>
                 </Route>
             </Route>
         </Routes>

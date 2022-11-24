@@ -11,17 +11,24 @@ const initialState = {
 const profileReducer = (state=initialState, action) => {
     switch (action.type) {
         case ACTION.UPDATE_POST_INPUT().type:
+            state = {...state}
             state.postInputText = action.post_text
             break
         case ACTION.ADD_POST().type:
-            state.posts.push({
-                id: state.posts.length - 1,
-                username: "User1",
-                text: state.postInputText,
-                likes: 0,
-                dislikes: 0,
-            })
-            state.postInputText = ''
+            state = {
+                ...state,
+                posts: [...state.posts]
+            }
+            if (state.postInputText) {
+                state.posts.push({
+                    id: state.posts.length - 1,
+                    username: "User1",
+                    text: state.postInputText,
+                    likes: 0,
+                    dislikes: 0,
+                })
+                state.postInputText = ''
+            }
             break
         default:
             break

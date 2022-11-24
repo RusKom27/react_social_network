@@ -1,14 +1,12 @@
 import {MessageList} from "./MessageList";
+import {connect} from "react-redux";
 
-function MessageListContainer({store, dialog_id}) {
-    let state = store.getState()
-    const messages = () => {
-        if (state.messages)
-            return state.messages.dialogs.find(dialog => "" + dialog.id === dialog_id).messages
-    }
-    return (
-        <MessageList messages={messages()}/>
-    )
-}
+const mapStateToProps = (state, {dialog_id}) => ({
+    messages: state.messages ? state.messages.dialogs.find(dialog => "" + dialog.id === dialog_id).messages : []
+})
+
+const mapDispatchToProps = dispatch => ({})
+
+const MessageListContainer = connect(mapStateToProps, mapDispatchToProps)(MessageList)
 
 export {MessageListContainer}

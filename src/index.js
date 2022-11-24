@@ -5,18 +5,16 @@ import './index.scss';
 
 import {store} from "./redux/redux-store";
 import App from './App';
+import {Provider} from "react-redux";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
-const renderEntireTree = (store) => {
-    root.render(
-        <React.StrictMode>
-            <App store={store} />
-        </React.StrictMode>
-    );
-}
-renderEntireTree(store)
-
-store.subscribe(() => renderEntireTree(store))
+root.render(
+    <React.StrictMode>
+        <Provider store={store}>
+            <App/>
+        </Provider>
+    </React.StrictMode>
+);
 
 reportWebVitals();

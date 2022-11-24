@@ -1,23 +1,22 @@
 import React from "react"
 import {ACTION} from "../../../../redux/actions";
 import {MessageInput} from "./MessageInput";
+import {connect} from "react-redux";
 
-function MessageInputContainer({store, dialog_id}) {
-    const state = store.getState()
-    const messageInputValue = state.messages.messageInputValue
-    const addMessage = () => {
-        store.dispatch(ACTION.ADD_MESSAGE(dialog_id))
+const mapStateToProps = (state) => ({
+    messageInputValue: state.messages.messageInputValue
+})
+
+const mapDispatchToProps = (dispatch, {dialog_id}) => ({
+    addMessage: () => {
+        dispatch(ACTION.ADD_MESSAGE(dialog_id))
+    },
+
+    updateMessageInput: text => {
+        dispatch(ACTION.UPDATE_MESSAGE_INPUT(text))
     }
+})
 
-    const updateMessageInput = text => {
-        store.dispatch(ACTION.UPDATE_MESSAGE_INPUT(text))
-    }
-
-    return <MessageInput
-        addMessage={addMessage}
-        updateMessageInput={updateMessageInput}
-        messageInputValue={messageInputValue}
-    />
-}
+const MessageInputContainer = connect(mapStateToProps, mapDispatchToProps)(MessageInput)
 
 export {MessageInputContainer}

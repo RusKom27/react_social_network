@@ -6,7 +6,7 @@ import {PostsListContainer} from "./PostsList/PostsListContainer";
 import {PostCreationInputContainer} from "./PostCreationInput/PostCreationInputContainer";
 
 
-function Profile({store}) {
+function Profile() {
     return (
         <div>
             <div className={styles.container}>
@@ -24,8 +24,8 @@ function Profile({store}) {
                     description description description description description description description description
                     description description description description description description description description
                 </div>
-                <PostCreationInputContainer store={store}/>
-                <PostsListContainer store={store}/>
+                <PostCreationInputContainer/>
+                <PostsListContainer/>
             </div>
         </div>
 

@@ -1,13 +1,18 @@
 import {ACTION} from "../../../redux/actions";
 import {PostCreationInput} from "./PostCreationInput";
+import {connect} from "react-redux";
 
-function PostCreationInputContainer({store}) {
-    const state = store.getState()
-    const postInputText = state.profile.postInputText
-    const addPost = () => store.dispatch(ACTION.ADD_POST())
-    const updatePostInput = text => store.dispatch(ACTION.UPDATE_POST_INPUT(text))
-
-    return <PostCreationInput addPost={addPost} updatePostInput={updatePostInput} postInputText={postInputText}/>
+const mapStateToProps = (state) => {
+    return {
+        postInputText: state.profile.postInputText
+    }
 }
+
+const mapDispatchToProps = dispatch => ({
+    addPost: () => dispatch(ACTION.ADD_POST()),
+    updatePostInput: text => dispatch(ACTION.UPDATE_POST_INPUT(text)),
+})
+
+const PostCreationInputContainer = connect(mapStateToProps, mapDispatchToProps)(PostCreationInput)
 
 export {PostCreationInputContainer}

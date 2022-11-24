@@ -3,12 +3,12 @@ import {useParams} from "react-router-dom";
 import {MessageInputContainer} from "./MessageInput/MessageInputContainer";
 import {MessageListContainer} from "./MessageList/MessageListContainer";
 
-function Dialog({store}) {
+function Dialog() {
     const {dialog_id} = useParams()
     return (
         <div className={styles.current_dialog}>
-            <MessageListContainer store={store} dialog_id={dialog_id}/>
-            {dialog_id ? <MessageInputContainer store={store} dialog_id={dialog_id}/> : ""}
+            <MessageListContainer dialog_id={dialog_id}/>
+            {dialog_id ? <MessageInputContainer dialog_id={dialog_id}/> : ""}
         </div>
     )
 }

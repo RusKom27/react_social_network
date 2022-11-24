@@ -2,21 +2,21 @@ import React from "react"
 import styles from "./DialogListItem.module.scss"
 import {NavLink} from "react-router-dom";
 
-function DialogListItem(props) {
+function DialogListItem({id, message, member}) {
     const activeClassName = ({isActive}) => isActive ? styles.active : undefined
 
     return (
-        <NavLink className={activeClassName} to={`${props.id}`}>
+        <NavLink className={activeClassName} to={`${id}`}>
 
             <div className={styles.item}>
                 <div className={styles.member}>
-                    {props.member}
+                    {member}
                 </div>
                 <div className={styles.username}>
-                    {props.message.username}
+                    {message.username}
                 </div>
                 <div className={styles.message_text}>
-                    {props.message.text}
+                    {message.text}
                 </div>
             </div>
         </NavLink>

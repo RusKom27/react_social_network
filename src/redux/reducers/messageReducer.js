@@ -36,16 +36,24 @@ const initialState = {
 const messageReducer = (state=initialState, action) => {
     switch (action.type) {
         case ACTION.UPDATE_MESSAGE_INPUT().type:
+            state = {...state}
             state.messageInputValue = action.message_text
             break
         case ACTION.ADD_MESSAGE().type:
-            if (state.messageInputValue !== '')
+            if (state.messageInputValue !== '') {
+                state = {
+                    ...state,
+                    dialogs: [...state.dialogs]
+                }
+                state.dialogs = [...state.dialogs]
+                state.dialogs[action.dialog_id].messages = [...state.dialogs[action.dialog_id].messages]
                 state.dialogs[action.dialog_id].messages.push({
                     id: state.dialogs[action.dialog_id].messages.length,
                     username: "User1",
                     text: state.messageInputValue,
                 })
-            state.messageInputValue = ''
+                state.messageInputValue = ''
+            }
             break
         default:
             break
