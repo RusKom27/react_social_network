@@ -8,33 +8,29 @@ const initialState = {
     ],
 }
 
-const profileReducer = (state=initialState, action) => {
+const profileReducer = (state = initialState, action) => {
     switch (action.type) {
         case ACTION.UPDATE_POST_INPUT().type:
-            state = {...state}
-            state.postInputText = action.post_text
-            break
+            return {...state, postInputText: action.post_text}
         case ACTION.ADD_POST().type:
-            state = {
+            if (!state.postInputText) return state
+            return {
                 ...state,
-                posts: [...state.posts]
+                posts: [
+                    ...state.posts,
+                    {
+                        id: state.posts.length - 1,
+                        username: "User1",
+                        text: state.postInputText,
+                        likes: 0,
+                        dislikes: 0,
+                    }
+                ],
+                postInputText: ''
             }
-            if (state.postInputText) {
-                state.posts.push({
-                    id: state.posts.length - 1,
-                    username: "User1",
-                    text: state.postInputText,
-                    likes: 0,
-                    dislikes: 0,
-                })
-                state.postInputText = ''
-            }
-            break
         default:
-            break
+            return state
     }
-
-    return state
 }
 
 export {profileReducer}
