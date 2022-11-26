@@ -11,7 +11,7 @@ function PostsList({posts}) {
         axios.get("http://localhost:3000").then(resp => console.log(resp.data))
     }
     const test_axios_deploy = () => {
-        axios.get("https://nodejs-postgresql-ruskom27.vercel.app").then(resp => console.log(resp.data))
+        axios.get("https://nodejs-pg-ruskom27.vercel.app").then(resp => console.log(resp.data))
     }
 
     return (
