@@ -12,7 +12,7 @@ function PostsList({posts}) {
     }
     const post_axios_local = () => {
         axios.post(
-            "http://localhost:3000/quotes",
+            "http://localhost:3000/profile",
             {
                 quote: "tessdfswedwt" + Date.now(),
                 author: "teeferdwest" + Date.now(),
@@ -20,11 +20,11 @@ function PostsList({posts}) {
         .then(data => console.log(data.data))
     }
     const get_axios_deploy = () => {
-        axios.get("https://nodejs-pg.vercel.app/quotes?page=8").then(resp => console.log(resp.data))
+        axios.get("https://social-network-server-rho.vercel.app").then(resp => console.log(resp.data))
     }
     const post_axios_deploy = () => {
         axios.post(
-            "https://nodejs-pg.vercel.app/quotes",
+            "https://social-network-server-rho.vercel.app/profile",
             {
                 quote: "tessdfswedwt" + Date.now(),
                 author: "teeferdwest" + Date.now()
