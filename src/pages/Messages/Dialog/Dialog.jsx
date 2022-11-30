@@ -8,7 +8,7 @@ function Dialog() {
     return (
         <div className={styles.current_dialog}>
             <MessageListContainer dialog_id={dialog_id}/>
-            {dialog_id ? <MessageInputContainer dialog_id={dialog_id}/> : ""}
+            {dialog_id && <MessageInputContainer dialog_id={dialog_id}/>}
         </div>
     )
 }

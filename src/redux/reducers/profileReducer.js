@@ -1,4 +1,4 @@
-import {ACTION} from "../actions";
+import {ACTION} from "../actionTypes";
 
 const initialState = {
     postInputText: '',
@@ -10,9 +10,10 @@ const initialState = {
 
 const profileReducer = (state = initialState, action) => {
     switch (action.type) {
-        case ACTION.UPDATE_POST_INPUT().type:
+        case ACTION.UPDATE_POST_INPUT:
             return {...state, postInputText: action.post_text}
-        case ACTION.ADD_POST().type:
+
+        case ACTION.ADD_POST:
             if (!state.postInputText) return state
             return {
                 ...state,

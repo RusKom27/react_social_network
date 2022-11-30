@@ -2,11 +2,11 @@ import React from "react"
 import styles from "./MessageInput.module.scss"
 import {createRef} from "react";
 
-function MessageInput({addMessage, updateMessageInput, messageInputValue}) {
+function MessageInput({addMessage, updateMessageInput, messageInputValue, dialog_id}) {
     const text_area = createRef();
     const addMessageHandle = event => {
         event.preventDefault()
-        addMessage()
+        addMessage(dialog_id)
         text_area.current.focus()
     }
     return (

@@ -4,13 +4,12 @@ import {Outlet} from "react-router-dom"
 
 import styles from "./Layout.module.scss"
 
-function Layout() {
+function Layout({isMenuTabOpened, toggleMenuTab}) {
     return (
         <div className={styles.wrapper}>
-            <Header/>
+            <Header isMenuTabOpened={isMenuTabOpened} toggleMenuTab={toggleMenuTab}/>
             <main>
-                <Navigation/>
-                {/*{children}*/}
+                <Navigation isMenuTabOpened={isMenuTabOpened}/>
                 <Outlet/>
             </main>
         </div>

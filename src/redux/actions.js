@@ -1,18 +1,33 @@
-const ACTION = {
-    NONE: () =>
-        ({type: 'NONE'}),
+import {ACTION} from "./actionTypes";
 
-    UPDATE_MESSAGE_INPUT: (message_text='') =>
-        ({type: 'UPDATE_MESSAGE_INPUT', message_text}),
+const updateMessageInput = (message_text) => ({
+    type: ACTION.UPDATE_MESSAGE_INPUT,
+    message_text
+})
 
-    ADD_MESSAGE: (dialog_id='') =>
-        ({type: 'ADD_MESSAGE', dialog_id}),
+const addMessage = (dialog_id) => ({
+    type: ACTION.ADD_MESSAGE,
+    dialog_id
+})
 
-    UPDATE_POST_INPUT: (post_text='') =>
-        ({type: 'UPDATE_POST_INPUT', post_text}),
+const updatePostInput = (post_text) => ({
+    type: ACTION.UPDATE_POST_INPUT,
+    post_text
+})
 
-    ADD_POST: () =>
-        ({type: 'ADD_POST'})
+const addPost = () => ({
+    type: ACTION.ADD_POST,
+})
+
+const toggleMenuTab = (flag=undefined) => ({
+    type: ACTION.TOGGLE_MENU_TAB,
+    flag: flag
+})
+
+export {
+    updateMessageInput,
+    addMessage,
+    updatePostInput,
+    addPost,
+    toggleMenuTab
 }
-
-export {ACTION}
