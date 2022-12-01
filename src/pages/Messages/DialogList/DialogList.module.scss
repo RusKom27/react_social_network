@@ -10,18 +10,12 @@
   overflow-y: auto;
 }
 
-.hidden {
-  display: block;
-}
-
 @media screen and (max-width: 900px){
-  .hidden {
-    display: none;
-  }
-
   .dialogs_list {
     position: absolute;
+    min-width: 100%;
     min-height: 100vh - $header-height;
+    border-right: 0;
     background-color: $color2;
   }
 }

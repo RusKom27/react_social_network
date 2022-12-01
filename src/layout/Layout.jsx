@@ -9,8 +9,8 @@ function Layout({isMenuTabOpened, toggleMenuTab}) {
         <div className={styles.wrapper}>
             <Header isMenuTabOpened={isMenuTabOpened} toggleMenuTab={toggleMenuTab}/>
             <main>
-                <Navigation isMenuTabOpened={isMenuTabOpened}/>
                 <Outlet/>
+                <Navigation isMenuTabOpened={isMenuTabOpened} toggleMenuTab={toggleMenuTab}/>
             </main>
         </div>
     )

@@ -1,12 +1,15 @@
-import React from "react"
 import styles from "./Messages.module.scss"
-import {Outlet} from "react-router-dom";
+import {Outlet, useParams} from "react-router-dom";
 import {DialogListContainer} from "./DialogList/DialogListContainer";
+import {useWindowDimensions} from "../../hooks/useWindowDimensions";
 
 function Messages() {
+    const {width} = useWindowDimensions()
+    const {dialog_id} = useParams()
+
     return (
         <div className={styles.container}>
-            <DialogListContainer/>
+            {(width > 900 || !dialog_id) && <DialogListContainer/>}
             <Outlet />
         </div>
     )

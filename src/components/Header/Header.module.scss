@@ -3,6 +3,9 @@
 .header {
   min-height: $header-height;
   display: flex;
+  position: fixed;
+  margin-top: -$header-height;
+  width: 77.4%;
   justify-content: space-between;
   background: $color1;
   padding: 0 20px;
@@ -40,6 +43,7 @@
   }
 
   .header {
+    width: 100%;
     font-size: 0;
   }
 }

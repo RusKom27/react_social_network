@@ -2,7 +2,7 @@ import React from "react"
 import styles from "./DialogList.module.scss"
 import {DialogListItem} from "./DialogListItem/DialogListItem";
 
-function DialogList({dialogs, isMenuTabOpened, toggleMenuTab}) {
+function DialogList({dialogs, toggleMenuTab}) {
 
     const dialogsList = dialogs.map(
         dialog => <DialogListItem
@@ -15,7 +15,7 @@ function DialogList({dialogs, isMenuTabOpened, toggleMenuTab}) {
     )
 
     return (
-        <div className={styles.dialogs_list + " " + (isMenuTabOpened ? styles.hidden : '')}>
+        <div className={styles.dialogs_list}>
             {dialogsList}
         </div>
     )

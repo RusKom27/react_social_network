@@ -6,21 +6,20 @@ import styles from "./Navigation.module.scss"
 import {NavLink} from "react-router-dom";
 
 
-function Navigation({isMenuTabOpened}) {
-    console.log(isMenuTabOpened)
+function Navigation({isMenuTabOpened, toggleMenuTab}) {
     const activeClassName = ({isActive}) => isActive ? styles.active : undefined
     return (
         <nav className={styles.navigation + " " + (isMenuTabOpened ? styles.hidden : '')}>
             <div>
-                <NavLink className={activeClassName} to="/profile">
+                <NavLink onClick={() => toggleMenuTab(true)} className={activeClassName} to="/profile">
                     <ProfileSVG/>
                     <div>Profile</div>
                 </NavLink>
-                <NavLink className={activeClassName} to="/messages">
+                <NavLink onClick={() => toggleMenuTab(true)} className={activeClassName} to="/messages">
                     <MessageSVG/>
                     <div>Messages</div>
                 </NavLink>
-                <NavLink className={activeClassName} to="/settings">
+                <NavLink onClick={() => toggleMenuTab(true)} className={activeClassName} to="/settings">
                     <SettingsSVG/>
                     <div>Settings</div>
                 </NavLink>
