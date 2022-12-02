@@ -24,10 +24,16 @@ const toggleMenuTab = (flag=undefined) => ({
     flag: flag
 })
 
+const setToken = (token) => ({
+    type: ACTION.SET_TOKEN,
+    token: token
+})
+
 export {
     updateMessageInput,
     addMessage,
     updatePostInput,
     addPost,
-    toggleMenuTab
+    toggleMenuTab,
+    setToken
 }
