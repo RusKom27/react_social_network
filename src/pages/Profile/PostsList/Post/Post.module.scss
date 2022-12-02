@@ -1,7 +1,29 @@
 @import "src/index";
 
 .post {
-  padding: 8px 16px;
+  display: flex;
+  flex-direction: row;
+  background-color: $color4;
+  padding: 8px 8px;
+  word-break: break-all;
+
+  > div:nth-child(1) {
+    img {
+      width: 72px;
+      border-radius: 100%;
+    }
+    padding: 8px;
+    flex: 1
+  }
+
+  > div:nth-child(2) {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-inline: 8px;
+    gap: 8px;
+    flex: 11;
+  }
 }
 
 .post .content_author {
@@ -18,4 +40,14 @@
 
 .post .content_image img {
   max-width: 100%;
+}
+
+.like_section {
+  display: flex;
+  flex-direction: row;
+
+  svg {
+    fill: $color1;
+    transform: scale(0.7);
+  }
 }

@@ -11,7 +11,6 @@ function PostCreationInput({addPost, updatePostInput, postInputText}) {
 
     return (
         <div className={styles.post_creating_form}>
-            <hr/>
             <form>
                 <textarea
                     onChange={event => updatePostInput(event.target.value)}

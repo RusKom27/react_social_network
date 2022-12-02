@@ -6,7 +6,7 @@
   padding: 8px 16px;
   max-width: 60%;
   margin-block: 8px;
-  box-shadow: 4px 4px 2px $color4;
+  box-shadow: 4px 4px 2px $color3;
 }
 
 .message img {
@@ -15,17 +15,12 @@
 
 .from_user {
   align-self: end;
+  background-color: $color2;
 }
 
 .from_other {
   align-self: start;
-}
-
-.from_user {
-  background-color: $color0;
-}
-
-.from_other {
-  background-color: $color3;
+  background-color: $color1;
+  box-shadow: 4px 4px 2px $color3;
   color: $color0;
 }

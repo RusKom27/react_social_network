@@ -1,25 +1,34 @@
 import React from "react"
 import styles from "./Post.module.scss"
 import image_placeholder from "../../../../images/image-placeholder1.png"
+import user_image from "../../../../images/user_image.jpg"
+import {ReactComponent as LikeEnabled} from "../../../../images/like_enabled.svg";
+import {ReactComponent as LikeDisabled} from "../../../../images/like_disabled.svg";
 
 
-function Post(props) {
+function Post({post}) {
     return (
         <div className={styles.post}>
-            <div className={styles.content_author}>
-                {props.post.username}
+            <div>
+                <img src={user_image} alt=""/>
             </div>
+            <div>
+                <div className={styles.content_author}>
+                    {post.username}
+                </div>
 
-            <div className={styles.content_image}>
-                {props.post.image ? <img src={image_placeholder} alt=""/> : ""}
+                {post.image &&
+                    <div className={styles.content_image}>
+                        <img src={image_placeholder} alt=""/>
+                    </div>
+                }
+                <div>
+                    {post.text}
+                </div>
+                <div className={styles.like_section}>
+                    <div>{false ? <LikeEnabled/> : <LikeDisabled/>}</div>Likes: {post.likes}
+                </div>
             </div>
-            <div>
-                {props.post.text}
-            </div>
-            <div>
-                Likes: {props.post.likes} Dislikes: {props.post.dislikes}
-            </div>
-            <hr/>
         </div>
     )
 }

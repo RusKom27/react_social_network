@@ -4,7 +4,6 @@
   min-width: 168px;
   height: 100vh - $header-height;
   position: fixed;
-  margin-left: -168px;
   display: flex;
   background: $color1;
   flex-direction: column;
@@ -73,7 +72,6 @@ svg {
 @media screen and (max-width: 900px){
   .navigation {
     min-width: 32px;
-    margin-left: 0;
   }
 
   .navigation div a {
