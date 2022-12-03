@@ -4,10 +4,14 @@ import {ReactComponent as ProfileSVG} from "../../images/profile.svg"
 import {ReactComponent as SettingsSVG} from "../../images/settings.svg"
 import styles from "./Navigation.module.scss"
 import {NavLink} from "react-router-dom";
+import {useSelector} from "react-redux";
+import {toggleMenuTab} from "../../redux/actions";
 
 
-function Navigation({isMenuTabOpened, toggleMenuTab}) {
+function Navigation() {
+    const isMenuTabOpened = useSelector(state => state.menu.isMenuTabOpened)
     const activeClassName = ({isActive}) => isActive ? styles.active : undefined
+
     return (
         <nav className={styles.navigation + " " + (isMenuTabOpened ? styles.hidden : '')}>
             <div>

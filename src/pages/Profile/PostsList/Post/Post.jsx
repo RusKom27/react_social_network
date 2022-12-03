@@ -2,8 +2,8 @@ import React from "react"
 import styles from "./Post.module.scss"
 import image_placeholder from "../../../../images/image-placeholder1.png"
 import user_image from "../../../../images/user_image.jpg"
-import {ReactComponent as LikeEnabled} from "../../../../images/like_enabled.svg";
-import {ReactComponent as LikeDisabled} from "../../../../images/like_disabled.svg";
+import {ReactComponent as LikeEnabled} from "../../../../images/heart-fill.svg";
+import {ReactComponent as LikeDisabled} from "../../../../images/heart.svg";
 
 
 function Post({post}) {

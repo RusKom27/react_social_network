@@ -1,3 +1,5 @@
+import Profile from "./Profile/Profile";
+
 export {Messages} from "./Messages/Messages"
-export {Profile} from "./Profile/Profile"
+export {Profile}
 export {Settings} from "./Settings/Settings"

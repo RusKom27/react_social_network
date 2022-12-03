@@ -5,15 +5,13 @@ import "./App.scss"
 
 import {Messages, Profile, Settings} from "./pages";
 import {Dialog} from "./pages/Messages/Dialog/Dialog";
-import {LayoutContainer} from "./layout/LayoutContainer";
-import ApiTokenHandler from "./packages/api/ApiTokenHandler";
+import {Layout} from "./layout/Layout";
 
 function App() {
     return (
         <Router>
-            <ApiTokenHandler/>
             <Routes>
-                <Route path={"/"} element={<LayoutContainer/>}>
+                <Route path={"/"} element={<Layout/>}>
                     <Route path={"settings"} element={<Settings/>}/>
                     <Route path={"profile"} element={<Profile/>}/>
                     <Route path={"messages"} element={<Messages/>}>

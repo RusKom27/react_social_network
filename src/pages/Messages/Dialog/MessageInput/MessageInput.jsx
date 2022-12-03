@@ -1,6 +1,7 @@
 import React from "react"
 import styles from "./MessageInput.module.scss"
 import {createRef} from "react";
+import {ReactComponent as SendSVG} from "../../../../images/send.svg";
 
 function MessageInput({addMessage, updateMessageInput, messageInputValue, dialog_id}) {
     const text_area = createRef();
@@ -15,10 +16,9 @@ function MessageInput({addMessage, updateMessageInput, messageInputValue, dialog
                    type="text"
                    ref={text_area}
                    value={messageInputValue} />
-            <input onClick={addMessageHandle}
+            <button onClick={addMessageHandle}
                    name={"messageInput"}
-                   type="submit"
-                   value={"Send"}/>
+                    type="submit">Send<SendSVG/></button>
         </form>
 
     )

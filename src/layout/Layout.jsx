@@ -1,19 +1,18 @@
 import React from "react"
 import {Header, Navigation} from "../components";
 import {Outlet} from "react-router-dom"
-
 import styles from "./Layout.module.scss"
+import {useSelector} from "react-redux";
 
-function Layout({isMenuTabOpened, toggleMenuTab}) {
+export const Layout = () => {
+    const token = useSelector(state => state.auth.token)
     return (
         <div className={styles.wrapper}>
-            <Header isMenuTabOpened={isMenuTabOpened} toggleMenuTab={toggleMenuTab}/>
+            <Header/>
             <main>
-                <Navigation isMenuTabOpened={isMenuTabOpened} toggleMenuTab={toggleMenuTab}/>
-                <Outlet/>
+                <Navigation/>
+                {token && <Outlet/>}
             </main>
         </div>
     )
 }
-
-export {Layout}

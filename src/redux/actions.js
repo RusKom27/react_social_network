@@ -1,39 +1,44 @@
 import {ACTION} from "./actionTypes";
 
-const updateMessageInput = (message_text) => ({
+export const updateMessageInput = (message_text) => ({
     type: ACTION.UPDATE_MESSAGE_INPUT,
     message_text
 })
 
-const addMessage = (dialog_id) => ({
+export const addMessage = (dialog_id) => ({
     type: ACTION.ADD_MESSAGE,
     dialog_id
 })
 
-const updatePostInput = (post_text) => ({
+export const updatePostInput = (post_text) => ({
     type: ACTION.UPDATE_POST_INPUT,
     post_text
 })
 
-const addPost = () => ({
+export const addPost = () => ({
     type: ACTION.ADD_POST,
 })
 
-const toggleMenuTab = (flag=undefined) => ({
+export const toggleMenuTab = (flag=undefined) => ({
     type: ACTION.TOGGLE_MENU_TAB,
-    flag: flag
+    flag
 })
 
-const setToken = (token) => ({
+export const setToken = (token) => ({
     type: ACTION.SET_TOKEN,
-    token: token
+    token
 })
 
-export {
-    updateMessageInput,
-    addMessage,
-    updatePostInput,
-    addPost,
-    toggleMenuTab,
-    setToken
-}
+export const loginUser = (user) => ({
+    type: ACTION.LOGIN_USER,
+    user
+})
+
+export const registerUser = (user) => ({
+    type: ACTION.REGISTER_USER,
+    user
+})
+
+export const logoutUser = () => ({
+    type: ACTION.LOGOUT_USER
+})
