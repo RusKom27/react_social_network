@@ -1,0 +1,26 @@
+import styles from "./Feed.module.scss"
+import {PostsList} from "../../components/PostsList/PostsList";
+import {connect} from "react-redux";
+import {getAllPosts} from "../../packages/api/rest/post";
+import {setFeedPosts} from "../../redux/actions";
+
+
+function Feed({setFeedPosts}) {
+    getAllPosts().then(posts => {
+        setFeedPosts(posts.data)
+    })
+
+    return (
+        <div className={styles.container}>
+            <PostsListContainer/>
+        </div>
+    )
+}
+
+const PostsListContainer = connect(
+    state => ({posts: state.feed.posts})
+)(PostsList)
+
+const mapStateToProps = (state) => ({})
+
+export default connect(mapStateToProps, {setFeedPosts})(Feed)

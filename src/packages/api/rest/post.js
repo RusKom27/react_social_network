@@ -1,5 +1,13 @@
 import {makeRequest} from "../makeRequest";
 
+export const getAllPosts = () => {
+    return makeRequest({
+        url: 'api/post',
+        headers: {authorization: false},
+        method: 'GET',
+    })
+}
+
 export const getPosts = () => {
     return makeRequest({
         url: 'api/post',

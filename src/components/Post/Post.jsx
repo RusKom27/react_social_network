@@ -1,13 +1,13 @@
 import React, {useEffect, useState} from "react"
 import styles from "./Post.module.scss"
-import image_placeholder from "../../../../images/image-placeholder1.png"
-import user_image from "../../../../images/user_image.jpg"
-import {ReactComponent as LikeEnabled} from "../../../../images/heart-fill.svg";
-import {ReactComponent as LikeDisabled} from "../../../../images/heart.svg";
-import {ReactComponent as ThreeDots} from "../../../../images/three-dots.svg";
+import image_placeholder from "../../images/image-placeholder1.png"
+import user_image from "../../images/user_image.jpg"
+import {ReactComponent as LikeEnabled} from "../../images/heart-fill.svg";
+import {ReactComponent as LikeDisabled} from "../../images/heart.svg";
+import {ReactComponent as ThreeDots} from "../../images/three-dots.svg";
 import {connect, useSelector} from "react-redux";
-import {likePost, removePost} from "../../../../packages/api/rest/post";
-import {updatePost, deletePost} from "../../../../redux/actions";
+import {likePost, removePost} from "../../packages/api/rest/post";
+import {updatePost, deletePost} from "../../redux/actions";
 
 
 function Post({post, updatePost, deletePost}) {
@@ -17,12 +17,13 @@ function Post({post, updatePost, deletePost}) {
 
     const like = () => {
         likePost(post.id).then(post => {
+            console.log(post.data)
             updatePost(post.data)
         })
     }
     const remove = () => {
-        removePost(post.id).then(post_id => {
-            deletePost(post_id)
+        removePost(post.id).then(result => {
+            deletePost(result.data._id)
         })
     }
     useEffect(() => {

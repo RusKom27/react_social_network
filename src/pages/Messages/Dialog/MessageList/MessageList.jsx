@@ -1,6 +1,6 @@
 import styles from "./MessageList.module.scss"
 import {createRef, useEffect} from "react";
-import {Message} from "./Message/Message";
+import {Message} from "../../../../components/Message/Message";
 
 function MessageList({messages}) {
     const message_list = createRef()

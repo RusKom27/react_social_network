@@ -1,11 +1,9 @@
 import React from "react"
 import styles from "./PostsList.module.scss"
-import Post from "./Post/Post";
-import {connect, useSelector} from "react-redux";
+import Post from "../Post/Post";
 
 
-function PostsList() {
-    const posts = useSelector(state => state.profile.posts)
+export const PostsList = ({posts}) => {
     let postComponents = posts.map((post) => <Post key={post.id} post={post}/>)
 
     return (
@@ -17,7 +15,3 @@ function PostsList() {
         </div>
     )
 }
-
-const mapStateToProps = state => ({})
-
-export default connect(mapStateToProps)(PostsList)

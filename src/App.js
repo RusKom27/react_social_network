@@ -3,7 +3,7 @@ import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 
 import "./App.scss"
 
-import {Messages, Profile, Settings} from "./pages";
+import {Feed, Messages, Profile, Settings} from "./pages";
 import {Dialog} from "./pages/Messages/Dialog/Dialog";
 import {Layout} from "./layout/Layout";
 import {useSelector} from "react-redux";
@@ -21,8 +21,9 @@ function App() {
                         <Route path={"login"} element={<Login/>}/>
                         <Route path={"register"} element={<Register/>}/>
                     </Route>}
-                    {token && <Route path={"settings"} element={<Settings/>}/>}
+                    {token && <Route path={"/"} element={<Feed/>}/>}
                     {token && <Route path={"profile"} element={<Profile/>}/>}
+                    {token && <Route path={"settings"} element={<Settings/>}/>}
                     {token && <Route path={"messages"} element={<Messages/>}>
                         <Route path={":dialog_id"} element={<Dialog/>}/>
                     </Route>}

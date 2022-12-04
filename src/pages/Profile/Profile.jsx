@@ -1,6 +1,6 @@
-import React, {useEffect} from "react"
+import React from "react"
 import styles from "./Profile.module.scss"
-import PostsList from "./PostsList/PostsList";
+import {PostsList} from "../../components/PostsList/PostsList";
 import PostCreationInput from "./PostCreationInput/PostCreationInput";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import {loginUser, setPosts} from "../../redux/actions";
@@ -21,7 +21,7 @@ const Profile = ({loginUser, setPosts, token}) => {
         <div className={styles.container}>
             <ProfileInfo/>
             <PostCreationInput/>
-            <PostsList/>
+            <PostsListContainer/>
         </div>
     )
 }
@@ -29,5 +29,10 @@ const Profile = ({loginUser, setPosts, token}) => {
 const mapStateToProps = (state) => ({
     token: state.auth.token
 })
+
+
+const PostsListContainer = connect(
+    state => ({posts: state.profile.posts})
+)(PostsList)
 
 export default connect(mapStateToProps, {loginUser, setPosts})(Profile)

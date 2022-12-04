@@ -10,8 +10,7 @@ export const Layout = () => {
     const token = useSelector(state => state.auth.token)
     config.token = token
     useEffect(() => {
-        if (token) navigate("/profile")
-        else navigate("/auth/login")
+        if (!token) navigate("/auth/login")
     }, [token])
 
     return (

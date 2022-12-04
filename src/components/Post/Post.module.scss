@@ -1,4 +1,4 @@
-@import "src/index";
+@import "../../index";
 
 .post {
   display: flex;
@@ -42,6 +42,7 @@
 
     &:hover {
       background: $color1;
+
 
       svg {
         fill: $color2

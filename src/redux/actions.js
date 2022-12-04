@@ -15,6 +15,11 @@ export const addPost = (post) => ({
     post,
 })
 
+export const setFeedPosts = (posts) => ({
+    type: ACTION.SET_FEED_POSTS,
+    posts,
+})
+
 export const setPosts = (posts) => ({
     type: ACTION.SET_POSTS,
     posts,

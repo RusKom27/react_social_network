@@ -1,0 +1,11 @@
+@import "src/index";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  word-wrap: break-word;
+  gap: 16px;
+  width: 100%;
+  overflow: hidden;
+}

@@ -4,22 +4,9 @@ const initialState = {
     posts: [],
 }
 
-const profileReducer = (state = initialState, action) => {
+const feedReducer = (state = initialState, action) => {
     switch (action.type) {
-        case ACTION.ADD_POST:
-            return {
-                ...state,
-                posts: [
-                    ...state.posts,
-                    {
-                        id: action.post._id,
-                        user: action.post.user,
-                        text: action.post.text,
-                        likes: action.post.likes,
-                    }
-                ]
-            }
-        case ACTION.SET_POSTS:
+        case ACTION.SET_FEED_POSTS:
             return {
                 ...state,
                 posts: action.posts.map(post => {
@@ -57,4 +44,4 @@ const profileReducer = (state = initialState, action) => {
     }
 }
 
-export {profileReducer}
+export {feedReducer}
