@@ -12,6 +12,7 @@
   background-color: $color0;
   min-height: 100vh - $header-height;
   display: flex;
+  overflow: clip;
   justify-content: space-between;
 
   > div {

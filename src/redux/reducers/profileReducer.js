@@ -45,7 +45,15 @@ const profileReducer = (state = initialState, action) => {
                         }
                     return post
                 })
-
+            }
+        case ACTION.DELETE_POST:
+            return {
+                ...state,
+                posts: state.posts.map(post => {
+                    if (action.post_id === post.id)
+                        return
+                    return post
+                })
             }
         default:
             return state

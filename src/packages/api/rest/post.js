@@ -26,3 +26,12 @@ export const likePost = (post_id) => {
         method: 'PUT',
     })
 }
+
+export const removePost = (post_id) => {
+    return makeRequest({
+        url: `api/post/${post_id}`,
+        headers: {authorization: true},
+        method: 'DELETE',
+    })
+}
+
