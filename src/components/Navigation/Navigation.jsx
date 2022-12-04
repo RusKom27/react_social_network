@@ -4,11 +4,11 @@ import {ReactComponent as ProfileSVG} from "../../images/profile.svg"
 import {ReactComponent as SettingsSVG} from "../../images/settings.svg"
 import styles from "./Navigation.module.scss"
 import {NavLink} from "react-router-dom";
-import {useSelector} from "react-redux";
+import {connect, useSelector} from "react-redux";
 import {toggleMenuTab} from "../../redux/actions";
 
 
-function Navigation() {
+function Navigation({toggleMenuTab}) {
     const isMenuTabOpened = useSelector(state => state.menu.isMenuTabOpened)
     const activeClassName = ({isActive}) => isActive ? styles.active : undefined
 
@@ -32,4 +32,6 @@ function Navigation() {
     )
 }
 
-export {Navigation}
+const mapStateToProps = () => ({})
+
+export default connect(mapStateToProps, {toggleMenuTab})(Navigation)

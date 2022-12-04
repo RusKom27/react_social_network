@@ -1,33 +1,51 @@
 import {ACTION} from "../actionTypes";
 
 const initialState = {
-    postInputText: '',
     posts: [
-        {id: 0, username: "User1", text: "First post text", likes: 13, dislikes: 3},
-        {id: 1, username: "User1", text: "Second post text", likes: 3, dislikes: 0},
     ],
 }
 
 const profileReducer = (state = initialState, action) => {
     switch (action.type) {
-        case ACTION.UPDATE_POST_INPUT:
-            return {...state, postInputText: action.post_text}
-
         case ACTION.ADD_POST:
-            if (!state.postInputText) return state
             return {
                 ...state,
                 posts: [
                     ...state.posts,
                     {
-                        id: state.posts.length - 1,
-                        username: "User1",
-                        text: state.postInputText,
-                        likes: 0,
-                        dislikes: 0,
+                        id: action.post._id,
+                        user: action.post.user,
+                        text: action.post.text,
+                        likes: action.post.likes,
                     }
-                ],
-                postInputText: ''
+                ]
+            }
+        case ACTION.SET_POSTS:
+            return {
+                ...state,
+                posts: action.posts.map(post => {
+                    return {
+                        id: post._id,
+                        user: post.user,
+                        text: post.text,
+                        likes: post.likes
+                    }
+                })
+            }
+        case ACTION.UPDATE_POST:
+            return {
+                ...state,
+                posts: state.posts.map(post => {
+                    if (action.post._id === post.id)
+                        post = {
+                            id: action.post._id,
+                            user: action.post.user,
+                            text: action.post.text,
+                            likes: action.post.likes
+                        }
+                    return post
+                })
+
             }
         default:
             return state

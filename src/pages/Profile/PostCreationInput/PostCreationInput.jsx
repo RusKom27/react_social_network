@@ -1,11 +1,18 @@
-import {createRef} from "react"
+import {createRef, useState} from "react"
 import styles from "./PostCreationInput.module.scss"
+import {connect} from "react-redux";
+import {addPost} from "../../../redux/actions";
+import {createPost} from "../../../packages/api/rest/post";
 
-function PostCreationInput({addPost, updatePostInput, postInputText}) {
+const PostCreationInput = ({addPost}) => {
+    const [postInputText, setPostInputText] = useState('')
     const text_area = createRef();
     const addPostHandle = event => {
         event.preventDefault()
-        addPost()
+        createPost(postInputText).then(post => {
+            addPost(post.data)
+            setPostInputText('')
+        })
         text_area.current.focus()
     }
 
@@ -13,7 +20,7 @@ function PostCreationInput({addPost, updatePostInput, postInputText}) {
         <div className={styles.post_creating_form}>
             <form>
                 <textarea
-                    onChange={event => updatePostInput(event.target.value)}
+                    onChange={event => setPostInputText(event.target.value)}
                     ref={text_area}
                     name={"post_text"}
                     value={postInputText}
@@ -26,4 +33,6 @@ function PostCreationInput({addPost, updatePostInput, postInputText}) {
     )
 }
 
-export {PostCreationInput}
+const mapStateToProps = (state) => ({})
+
+export default connect(mapStateToProps, {addPost})(PostCreationInput)

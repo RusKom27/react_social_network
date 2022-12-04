@@ -1,22 +1,27 @@
-import React from "react"
+import React, {useEffect} from "react"
 import styles from "./Profile.module.scss"
-import {PostsListContainer} from "./PostsList/PostsListContainer";
-import {PostCreationInputContainer} from "./PostCreationInput/PostCreationInputContainer";
+import PostsList from "./PostsList/PostsList";
+import PostCreationInput from "./PostCreationInput/PostCreationInput";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
-import {loginUser} from "../../redux/actions";
+import {loginUser, setPosts} from "../../redux/actions";
 import {connect} from "react-redux";
 import {getUserByToken} from "../../packages/api/rest/user";
+import {getPosts} from "../../packages/api/rest/post";
 
 
-const Profile = ({loginUser, token}) => {
-    if (token) getUserByToken(token).then(user => {
+const Profile = ({loginUser, setPosts, token}) => {
+    if (token) getUserByToken().then(user => {
         loginUser(user.data)
     })
+    getPosts().then(posts => {
+        setPosts(posts.data)
+    })
+
     return (
         <div className={styles.container}>
             <ProfileInfo/>
-            <PostCreationInputContainer/>
-            <PostsListContainer/>
+            <PostCreationInput/>
+            <PostsList/>
         </div>
     )
 }
@@ -25,4 +30,4 @@ const mapStateToProps = (state) => ({
     token: state.auth.token
 })
 
-export default connect(mapStateToProps, {loginUser})(Profile)
+export default connect(mapStateToProps, {loginUser, setPosts})(Profile)

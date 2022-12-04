@@ -1,0 +1,33 @@
+@import "src/index";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 300px;
+  text-align: center;
+  div {
+    display: flex;
+    flex-direction: column;
+    padding: 8px;
+    justify-content: center;
+  }
+  form > div {
+    justify-content: center;
+  }
+  form > div > input {
+    font-size: 16px;
+    height: 24px;
+  }
+
+  form > div > input[type="submit"] {
+    margin: auto;
+    width: 100px;
+  }
+}
+
+@media screen and (max-width: 900px){
+  .container {
+    width: 100%;
+  }
+}

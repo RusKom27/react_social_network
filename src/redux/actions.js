@@ -10,13 +10,19 @@ export const addMessage = (dialog_id) => ({
     dialog_id
 })
 
-export const updatePostInput = (post_text) => ({
-    type: ACTION.UPDATE_POST_INPUT,
-    post_text
+export const addPost = (post) => ({
+    type: ACTION.ADD_POST,
+    post,
 })
 
-export const addPost = () => ({
-    type: ACTION.ADD_POST,
+export const setPosts = (posts) => ({
+    type: ACTION.SET_POSTS,
+    posts,
+})
+
+export const updatePost = (post) => ({
+    type: ACTION.UPDATE_POST,
+    post
 })
 
 export const toggleMenuTab = (flag=undefined) => ({
@@ -31,11 +37,6 @@ export const setToken = (token) => ({
 
 export const loginUser = (user) => ({
     type: ACTION.LOGIN_USER,
-    user
-})
-
-export const registerUser = (user) => ({
-    type: ACTION.REGISTER_USER,
     user
 })
 

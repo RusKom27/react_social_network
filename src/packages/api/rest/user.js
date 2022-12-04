@@ -1,12 +1,5 @@
 import {makeRequest} from "../makeRequest";
 
-export const getUsers = () => {
-    return makeRequest({
-        url: 'api/user/',
-        headers: {authorization: true},
-        method: 'GET',
-    })
-}
 
 export const getUser = (email, password) => {
     return makeRequest({
@@ -20,10 +13,10 @@ export const getUser = (email, password) => {
     })
 }
 
-export const getUserByToken = (token) => {
+export const getUserByToken = () => {
     return makeRequest({
         url: `api/user`,
-        headers: {authorization: token},
+        headers: {authorization: true},
         method: 'GET',
     })
 }
