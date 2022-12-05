@@ -8,7 +8,7 @@ function Message({username, text}) {
     return (
         <div className={owner_class + " " + styles.message}>
             {username}
-            <img src={image_placeholder} alt=""/>
+            {/*<img src={image_placeholder} alt=""/>*/}
             {text}
         </div>
     )

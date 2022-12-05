@@ -1,11 +1,7 @@
 import {ACTION} from "../actionTypes";
 
 const initialState = {
-    dialogs: [{
-        id: 0,
-        members: [],
-        messages: []
-    }]
+    dialogs: []
 }
 
 const messageReducer = (state = initialState, action) => {
@@ -36,17 +32,15 @@ const messageReducer = (state = initialState, action) => {
                 messageInputValue: ''
             }
         case ACTION.SET_MESSAGES:
-            console.log(action)
             return {
-                dialogs: [
-                    ...action.dialogs.map(dialog => {
+                ...state,
+                dialogs: action.dialogs.map(dialog => {
                         return {
                             id: dialog._id,
                             members: dialog.members,
                             messages: dialog.messages
                         }
                     })
-                ]
             }
         default:
             return state

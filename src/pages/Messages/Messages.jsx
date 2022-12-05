@@ -3,7 +3,7 @@ import {Outlet, useParams} from "react-router-dom";
 import DialogList from "./DialogList/DialogList";
 import {useWindowDimensions} from "../../hooks/useWindowDimensions";
 import {getDialogs} from "../../packages/api/rest/dialog";
-import {connect} from "react-redux";
+import {connect, useSelector} from "react-redux";
 import {addMessage, setMessages} from "../../redux/actions";
 
 function Messages({setMessages}) {
