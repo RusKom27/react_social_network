@@ -12,7 +12,7 @@ function DialogListItem({id, message, member, toggleMenuTab}) {
                     {member}
                 </div>
                 <div className={styles.username}>
-                    {message.username}
+                    {message.name}
                 </div>
                 <div className={styles.message_text}>
                     {message.text}

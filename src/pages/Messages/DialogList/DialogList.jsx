@@ -1,14 +1,16 @@
 import React from "react"
 import styles from "./DialogList.module.scss"
 import {DialogListItem} from "./DialogListItem/DialogListItem";
+import {connect} from "react-redux";
+import {toggleMenuTab} from "../../../redux/actions";
 
-function DialogList({dialogs, toggleMenuTab}) {
-
+const DialogList = ({dialogs, toggleMenuTab}) => {
+    console.log(dialogs[0])
     const dialogsList = dialogs.map(
         dialog => <DialogListItem
             key={dialog.id}
             id={dialog.id}
-            member={dialog.member}
+            member={dialog.members[0]}
             message={dialog.messages.at(-1)}
             toggleMenuTab={toggleMenuTab}
         />
@@ -21,4 +23,9 @@ function DialogList({dialogs, toggleMenuTab}) {
     )
 }
 
-export {DialogList}
+const mapStateToProps = (state) => ({
+    dialogs: state.messages.dialogs,
+    isMenuTabOpened: state.menu.isMenuTabOpened
+})
+
+export default connect(mapStateToProps, {toggleMenuTab})(DialogList)

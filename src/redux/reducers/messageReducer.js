@@ -1,22 +1,10 @@
 import {ACTION} from "../actionTypes";
 
 const initialState = {
-    messageInputValue: '',
     dialogs: [{
         id: 0,
-        member: "User2",
-        messages: [
-            {id: 0, username: "User1", text: "Hi"},
-            {id: 1, username: "User1", text: "World"},
-            {id: 2, username: "User2", text: "hi"},]
-    },
-        {
-        id: 1,
-        member: "User4",
-        messages: [
-            {id: 0, username: "User1", text: "Hi"},
-            {id: 1, username: "User1", text: "World"},
-            {id: 2, username: "User2", text: "hi"},]
+        members: [],
+        messages: []
     }]
 }
 
@@ -46,6 +34,19 @@ const messageReducer = (state = initialState, action) => {
                         ]}
                 }),
                 messageInputValue: ''
+            }
+        case ACTION.SET_MESSAGES:
+            console.log(action)
+            return {
+                dialogs: [
+                    ...action.dialogs.map(dialog => {
+                        return {
+                            id: dialog._id,
+                            members: dialog.members,
+                            messages: dialog.messages
+                        }
+                    })
+                ]
             }
         default:
             return state

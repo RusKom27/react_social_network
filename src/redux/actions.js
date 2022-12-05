@@ -10,6 +10,11 @@ export const addMessage = (dialog_id) => ({
     dialog_id
 })
 
+export const setMessages = (dialogs) => ({
+    type: ACTION.SET_MESSAGES,
+    dialogs
+})
+
 export const addPost = (post) => ({
     type: ACTION.ADD_POST,
     post,
