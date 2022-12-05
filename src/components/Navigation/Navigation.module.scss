@@ -9,6 +9,10 @@
   flex-direction: column;
   overflow: hidden;
   z-index: 20;
+
+  > div {
+    margin-top: 16px;
+  }
 }
 
 .hidden {
@@ -42,6 +46,7 @@ svg {
 
 .active {
   font-weight: 700;
+  color: $color1!important;
   background: $color4!important;
 
   div {
@@ -50,6 +55,7 @@ svg {
 
   svg {
     transform: translateX(6px);
+    fill: $color1;
   }
 }
 

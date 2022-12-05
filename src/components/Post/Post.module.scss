@@ -30,50 +30,6 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-
-  > div > button {
-    display: flex;
-    padding: 0;
-    border: 0;
-    cursor: pointer;
-    justify-content: center;
-    border-radius: 100%;
-    z-index: 30;
-
-    &:hover {
-      background: $color1;
-
-
-      svg {
-        fill: $color2
-      }
-    }
-
-    svg {
-      transform: scale(0.8);
-      fill: $color1
-    }
-  }
-}
-
-.post_dropdown {
-  display: flex;
-  flex-direction: column;
-  position: absolute;
-  margin-left: -200px;
-  margin-top: -30px;
-  width: 200px;
-  background: $color1;
-  color: $color2;
-  z-index: 0;
-
-  > * {
-    padding: 8px 12px;
-    &:hover {
-      background-color: $color4;
-      cursor: pointer;
-    }
-  }
 }
 
 .content_author {

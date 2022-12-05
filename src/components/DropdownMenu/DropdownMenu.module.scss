@@ -1,0 +1,41 @@
+@import "../../index";
+
+.container > button {
+  display: flex;
+  padding: 0;
+  border: 0;
+  cursor: pointer;
+  justify-content: center;
+  border-radius: 100%;
+  background-color: transparent;
+
+  &:hover {
+    background: $color1;
+    svg {
+      fill: $color2
+    }
+  }
+  svg {
+    transform: scale(0.8);
+    fill: $color1
+  }
+}
+
+.post_dropdown {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  margin-left: -200px;
+  margin-top: -30px;
+  width: 200px;
+  background: $color1;
+  color: $color2;
+
+  > * {
+    padding: 8px 12px;
+    &:hover {
+      background-color: $color3;
+      cursor: pointer;
+    }
+  }
+}

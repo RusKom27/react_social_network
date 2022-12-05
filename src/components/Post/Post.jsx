@@ -1,44 +1,28 @@
-import React, {useEffect, useState} from "react"
+import React, {memo, useCallback} from "react"
 import styles from "./Post.module.scss"
 import image_placeholder from "../../images/image-placeholder1.png"
 import user_image from "../../images/user_image.jpg"
 import {ReactComponent as LikeEnabled} from "../../images/heart-fill.svg";
 import {ReactComponent as LikeDisabled} from "../../images/heart.svg";
-import {ReactComponent as ThreeDots} from "../../images/three-dots.svg";
 import {connect, useSelector} from "react-redux";
 import {likePost, removePost} from "../../packages/api/rest/post";
 import {updatePost, deletePost} from "../../redux/actions";
+import {DropdownMenu} from "../DropdownMenu/DropdownMenu";
 
 
-function Post({post, updatePost, deletePost}) {
+const Post = memo(({post, updatePost, deletePost}) => {
     const currentUserId = useSelector(state => state.auth.token)
     const liked = post.likes.indexOf(currentUserId) > -1
-    const [isDropdownOpened, toggleDropdown] = useState(false)
-
-    const like = () => {
+    const like = useCallback(() => {
         likePost(post.id).then(post => {
-            console.log(post.data)
             updatePost(post.data)
         })
-    }
-    const remove = () => {
+    }, [post, updatePost])
+    const remove = useCallback(() => {
         removePost(post.id).then(result => {
             deletePost(result.data._id)
         })
-    }
-    useEffect(() => {
-        const isClickOutOfDropdown = event => {
-            if(!event.target.parentElement.classList.contains(styles.post_dropdown) &&
-                isDropdownOpened &&
-                (event.target.tagName !== "BUTTON" && event.target.tagName !== "svg" && event.target.tagName !== "path"))
-                toggleDropdown(false)
-        }
-        window.addEventListener('click', isClickOutOfDropdown)
-        return () => {
-            window.removeEventListener('click', isClickOutOfDropdown)
-        }
-    })
-
+    }, [post, deletePost])
 
     return (
         <div id={post.id} className={styles.post}>
@@ -50,17 +34,7 @@ function Post({post, updatePost, deletePost}) {
                     <div className={styles.content_author}>
                         {post.user.name}
                     </div>
-                    <div>
-                        <button onClick={() => toggleDropdown(!isDropdownOpened)}>
-                            <ThreeDots/>
-                        </button>
-                        {isDropdownOpened &&
-                            <div className={styles.post_dropdown}>
-                                <div onClick={remove}>Delete</div>
-                            </div>
-                        }
-                    </div>
-
+                    <DropdownMenu options={{"Delete": remove}}/>
                 </div>
 
 
@@ -79,7 +53,7 @@ function Post({post, updatePost, deletePost}) {
             </div>
         </div>
     )
-}
+})
 
 const mapStateToProps = state => ({})
 
