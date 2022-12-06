@@ -4,13 +4,17 @@ import {createRef} from "react";
 import {ReactComponent as SendSVG} from "../../../../images/send.svg";
 import {connect} from "react-redux";
 import {addMessage} from "../../../../redux/actions";
+import {createMessage} from "../../../../packages/api/rest/message";
 
 function MessageInput({addMessage, dialog_id}) {
     const [messageInput, setMessageInput] = useState('')
     const text_area = createRef();
     const addMessageHandle = event => {
         event.preventDefault()
-        addMessage(dialog_id)
+        createMessage(dialog_id, messageInput).then(message => {
+            addMessage(message.data)
+        })
+        setMessageInput("")
         text_area.current.focus()
     }
     return (

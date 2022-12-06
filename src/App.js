@@ -4,7 +4,7 @@ import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import "./App.scss"
 
 import {Feed, Messages, Profile, Settings} from "./pages";
-import {Dialog} from "./pages/Messages/Dialog/Dialog";
+import Dialog from "./pages/Messages/Dialog/Dialog";
 import {Layout} from "./layout/Layout";
 import {useSelector} from "react-redux";
 import {Auth} from "./pages/Auth/Auth";
@@ -13,6 +13,7 @@ import Register from "./pages/Auth/Register/Register";
 
 function App() {
     const token = useSelector(state => state.auth.token)
+
     return (
         <Router>
             <Routes>

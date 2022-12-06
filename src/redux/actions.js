@@ -1,17 +1,17 @@
 import {ACTION} from "./actionTypes";
 
-export const updateMessageInput = (message_text) => ({
-    type: ACTION.UPDATE_MESSAGE_INPUT,
-    message_text
-})
-
-export const addMessage = (dialog_id) => ({
+export const addMessage = (message) => ({
     type: ACTION.ADD_MESSAGE,
-    dialog_id
+    message
 })
 
-export const setMessages = (dialogs) => ({
+export const setMessages = (messages) => ({
     type: ACTION.SET_MESSAGES,
+    messages
+})
+
+export const setDialogs = (dialogs) => ({
+    type: ACTION.SET_DIALOGS,
     dialogs
 })
 
