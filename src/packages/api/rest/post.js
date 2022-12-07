@@ -8,9 +8,9 @@ export const getAllPosts = () => {
     })
 }
 
-export const getPosts = () => {
+export const getPosts = (user_login) => {
     return makeRequest({
-        url: 'api/post',
+        url: `api/post/${user_login}`,
         headers: {authorization: true},
         method: 'GET',
     })

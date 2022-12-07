@@ -1,5 +1,5 @@
 import styles from "./Feed.module.scss"
-import {PostsList} from "../../components/PostsList/PostsList";
+import {PostsList} from "../../components";
 import {connect} from "react-redux";
 import {getAllPosts} from "../../packages/api/rest/post";
 import {setFeedPosts} from "../../redux/actions";

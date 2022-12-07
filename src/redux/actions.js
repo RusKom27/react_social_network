@@ -45,13 +45,13 @@ export const toggleMenuTab = (flag=undefined) => ({
     flag
 })
 
-export const setToken = (token) => ({
-    type: ACTION.SET_TOKEN,
-    token
-})
-
 export const loginUser = (user) => ({
     type: ACTION.LOGIN_USER,
+    user
+})
+
+export const setUser = (user) => ({
+    type: ACTION.SET_USER,
     user
 })
 

@@ -4,7 +4,7 @@ import Post from "../Post/Post";
 
 
 export const PostsList = ({posts}) => {
-    let postComponents = posts.map((post) => <Post key={post.id} post={post}/>)
+    let postComponents = posts.map((post) => <Post key={post._id} post={post}/>)
 
     return (
         <div>

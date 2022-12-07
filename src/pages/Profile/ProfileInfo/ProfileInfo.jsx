@@ -2,18 +2,25 @@ import React from "react"
 import styles from "./ProfileInfo.module.scss"
 import image_placeholder from "../../../images/image-placeholder1.png"
 import user_image from "../../../images/user_image.jpg"
-import {connect} from "react-redux";
+import {connect, useSelector} from "react-redux";
 import {Button} from "../../../components";
-import {useNavigate, useParams} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import {logoutUser} from "../../../redux/actions";
+import {createDialog} from "../../../packages/api/rest/dialog";
 
-function ProfileInfo({current_user, logoutUser}) {
+function ProfileInfo({user, logoutUser}) {
     const navigate = useNavigate()
-    const user_login = useParams().login
+    const current_user = useSelector(state => state.auth.current_user)
 
-    const logout = (event) => {
+    const logout = () => {
         logoutUser()
         navigate("/auth/login")
+    }
+
+    const create_dialog = () => {
+        createDialog(user?._id).then(dialog => {
+            navigate(`../../messages/${dialog.data._id}`)
+        })
     }
 
     return (
@@ -27,16 +34,16 @@ function ProfileInfo({current_user, logoutUser}) {
             <div className={styles.profile}>
                 <div className={styles.profile_info}>
                     <div className={styles.user_name}>
-                        {current_user.name}
+                        {user?.name}
                     </div>
                     <div className={styles.user_description}>
-                        @{current_user.login}
+                        @{user?.login}
                     </div>
                 </div>
                 <div className={styles.profile_buttons}>
-                    {user_login !== current_user.login ?
+                    {current_user?.login !== user?.login ?
                         <>
-                            <Button>Write message</Button>
+                            <Button onClick={create_dialog}>Write message</Button>
                             <Button>Subscribe</Button>
                         </> :
                         <>
@@ -50,7 +57,6 @@ function ProfileInfo({current_user, logoutUser}) {
 }
 
 const mapStateToProps = (state) => ({
-    current_user: state.auth.current_user
 })
 
 

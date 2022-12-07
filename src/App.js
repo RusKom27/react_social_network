@@ -6,13 +6,19 @@ import "./App.scss"
 import {Feed, Messages, Profile, Settings} from "./pages";
 import Dialog from "./pages/Messages/Dialog/Dialog";
 import {Layout} from "./layout/Layout";
-import {useSelector} from "react-redux";
+import {connect, useSelector} from "react-redux";
 import {Auth} from "./pages/Auth/Auth";
 import Login from "./pages/Auth/Login/Login";
 import Register from "./pages/Auth/Register/Register";
+import {getUserByToken} from "./packages/api/rest/user";
+import {loginUser, toggleMenuTab} from "./redux/actions";
 
-function App() {
+function App({loginUser}) {
     const token = useSelector(state => state.auth.token)
+    if (token)
+        getUserByToken().then(user => {
+            loginUser(user.data)
+        })
 
     return (
         <Router>
@@ -34,6 +40,8 @@ function App() {
     );
 }
 
-export default App;
+const mapStateToProps = () => ({})
+
+export default connect(mapStateToProps, {loginUser})(App)
 
 

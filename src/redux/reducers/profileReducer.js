@@ -11,37 +11,21 @@ const profileReducer = (state = initialState, action) => {
                 ...state,
                 posts: [
                     ...state.posts,
-                    {
-                        id: action.post._id,
-                        user: action.post.user,
-                        text: action.post.text,
-                        likes: action.post.likes,
-                    }
+                    action.post
                 ]
             }
         case ACTION.SET_POSTS:
             return {
                 ...state,
-                posts: action.posts.map(post => {
-                    return {
-                        id: post._id,
-                        user: post.user,
-                        text: post.text,
-                        likes: post.likes
-                    }
-                })
+                posts: action.posts
+
             }
         case ACTION.UPDATE_POST:
             return {
                 ...state,
                 posts: state.posts.map(post => {
                     if (action.post._id === post.id)
-                        post = {
-                            id: action.post._id,
-                            user: action.post.user,
-                            text: action.post.text,
-                            likes: action.post.likes
-                        }
+                        post = action.post
                     return post
                 })
             }

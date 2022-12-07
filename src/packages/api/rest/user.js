@@ -21,6 +21,14 @@ export const getUserByToken = () => {
     })
 }
 
+export const getUserByLogin = (login) => {
+    return makeRequest({
+        url: `api/user/${login}`,
+        headers: {authorization: true},
+        method: 'GET',
+    })
+}
+
 
 
 export const createUser = (name, login, email, password) => {

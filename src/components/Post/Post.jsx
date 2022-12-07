@@ -6,15 +6,16 @@ import {ReactComponent as LikeEnabled} from "../../images/heart-fill.svg";
 import {ReactComponent as LikeDisabled} from "../../images/heart.svg";
 import {connect, useSelector} from "react-redux";
 import {likePost, removePost} from "../../packages/api/rest/post";
-import {updatePost, deletePost} from "../../redux/actions";
+import {deletePost, updatePost} from "../../redux/actions";
 import {DropdownMenu} from "../misc/DropdownMenu/DropdownMenu";
+import {Link} from "react-router-dom";
 
 
 const Post = memo(({post, updatePost, deletePost}) => {
     const currentUserId = useSelector(state => state.auth.token)
     const liked = post.likes.indexOf(currentUserId) > -1
     const like = useCallback(() => {
-        likePost(post.id).then(post => {
+        likePost(post._id).then(post => {
             updatePost(post.data)
         })
     }, [post, updatePost])
@@ -25,18 +26,21 @@ const Post = memo(({post, updatePost, deletePost}) => {
     }, [post, deletePost])
 
     return (
-        <div id={post.id} className={styles.post}>
+        <div id={post._id} className={styles.post}>
             <div>
-                <img src={user_image} alt=""/>
+                <Link to={`../../profile/${post.user.login}`}>
+                    <img src={user_image} alt=""/>
+                </Link>
             </div>
             <div>
                 <div className={styles.post_header}>
                     <div className={styles.content_author}>
-                        {post.user.name}
+                        <Link to={`../../profile/${post.user.login}`}>
+                            {post.user.name} <span>@{post.user.login}</span>
+                        </Link>
                     </div>
                     <DropdownMenu options={{"Delete": remove}}/>
                 </div>
-
 
                 {post.image &&
                     <div className={styles.content_image}>
@@ -48,7 +52,7 @@ const Post = memo(({post, updatePost, deletePost}) => {
                 </div>
                 <div className={styles.like_section}>
                     <button onClick={like}>{liked ? <LikeEnabled/> : <LikeDisabled/>}</button>
-                    Likes: {post.likes.length}
+                    <div>Likes: {post.likes.length}</div>
                 </div>
             </div>
         </div>
