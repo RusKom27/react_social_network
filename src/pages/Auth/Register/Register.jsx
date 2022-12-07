@@ -15,10 +15,9 @@ const Register = ({loginUser}) => {
             event.target.email.value,
             event.target.password.value
         ).then(user => {
-            console.log(user)
             if (user) {
                 loginUser(user.data)
-                navigate("/profile")
+                navigate(`/profile/${user.login}`)
             }
         }).catch(err => console.log(err))
     }

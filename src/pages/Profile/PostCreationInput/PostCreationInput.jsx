@@ -3,6 +3,7 @@ import styles from "./PostCreationInput.module.scss"
 import {connect} from "react-redux";
 import {addPost} from "../../../redux/actions";
 import {createPost} from "../../../packages/api/rest/post";
+import {Button} from "../../../components/misc/Button/Button";
 
 const PostCreationInput = ({addPost}) => {
     const [postInputText, setPostInputText] = useState('')
@@ -25,7 +26,7 @@ const PostCreationInput = ({addPost}) => {
                     name={"post_text"}
                     value={postInputText}
                 />
-                <input onClick={addPostHandle} type={"submit"} value={"Send"}/>
+                <Button onClick={addPostHandle} style={styles.submit_button}>Send</Button>
             </form>
 
         </div>

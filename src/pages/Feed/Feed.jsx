@@ -6,9 +6,14 @@ import {setFeedPosts} from "../../redux/actions";
 
 
 function Feed({setFeedPosts}) {
-    getAllPosts().then(posts => {
-        setFeedPosts(posts.data)
-    })
+    const updatePosts = () => {
+        if (window.location.href.split("/").at(-1) !== "") return
+        getAllPosts().then(posts => {
+            setFeedPosts(posts.data)
+        })
+        setTimeout(updatePosts, 1000)
+    }
+    updatePosts()
 
     return (
         <div className={styles.container}>

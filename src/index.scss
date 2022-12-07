@@ -4,7 +4,7 @@ $color1: #2a140c;
 $color2: #ecebe6;
 $color3: dimgray;
 $color4: #ecebe6;
-$color5: rgba(255,255,255, 0);
+$color5: rgba(255,255,255, 0.2);
 
 $header-height: 5vh;
 
@@ -16,6 +16,7 @@ body {
   sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow: auto;
 }
 
 ::-webkit-scrollbar {

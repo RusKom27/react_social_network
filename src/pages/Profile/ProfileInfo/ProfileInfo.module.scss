@@ -1,6 +1,8 @@
 @import "src/index";
 
 .container {
+  display: flex;
+  flex-direction: column;
   background-color: $color4;
   padding-bottom: 16px;
 }
@@ -28,6 +30,18 @@
   width: 100%;
 }
 
+.profile {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.profile_info {
+  flex: 10;
+  display: flex;
+  flex-direction: column;
+}
+
 .user_name {
   font-size: 1.7rem;
   font-weight: 700;
@@ -38,6 +52,17 @@
   font-size: 0.9rem;
   color: $color3;
   padding-inline: 24px;
+}
+.profile_buttons {
+  flex: 5;
+  margin-top: -64px;
+  padding: 8px;
+  display: flex;
+  white-space: nowrap;
+  flex-direction: row-reverse;
+  flex-wrap: wrap;
+  gap: 8px;
+
 }
 
 @media screen and (max-width: 900px){
@@ -55,5 +80,15 @@
     border: $color2 solid 8px;
     border-radius: 100%;
     width: 150%;
+  }
+
+  .profile_info {
+    flex: 12;
+    min-width: 400px;
+  }
+
+  .profile_buttons {
+    margin-top: 0;
+    flex-wrap: wrap;
   }
 }

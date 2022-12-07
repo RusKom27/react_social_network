@@ -11,6 +11,7 @@ import {toggleMenuTab} from "../../redux/actions";
 
 function Navigation({toggleMenuTab}) {
     const isMenuTabOpened = useSelector(state => state.menu.isMenuTabOpened)
+    const user_login = useSelector(state => state.auth.current_user.login)
     const activeClassName = ({isActive}) => isActive ? styles.active : undefined
 
     return (
@@ -20,7 +21,7 @@ function Navigation({toggleMenuTab}) {
                     <FeedSVG/>
                     <div>Feed</div>
                 </NavLink>
-                <NavLink onClick={() => toggleMenuTab(true)} className={activeClassName} to="/profile">
+                <NavLink onClick={() => toggleMenuTab(true)} className={activeClassName} to={`/profile/${user_login}`}>
                     <ProfileSVG/>
                     <div>Profile</div>
                 </NavLink>

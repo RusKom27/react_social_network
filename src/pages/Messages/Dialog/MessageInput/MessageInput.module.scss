@@ -19,42 +19,16 @@
   outline: none;
 }
 
-.input_block button[type="submit"] {
-  background-color: $color1;
-  display: flex;
-  line-height: 32px;
-  flex-direction: row;
-  justify-content: space-evenly;
-  border: none;
-  font-size: 18px;
-  color: $color2;
+.send_button {
   flex: 1;
-
+  align-self: center;
   > svg {
     transform: scale(0.7);
   }
 }
 
-.input_block button[type="submit"]:hover {
-  cursor: pointer;
-  background-color: $color2;
-  color: $color1;
-
-  > svg {
-    fill: $color1;
-  }
-}
-
-.input_block button[type="submit"]:active {
-  background-color: $color4;
-}
-
-.input_block button[type="submit"]:focus {
-  background-color: $color4;
-}
-
 @media screen and (max-width: 900px) {
-  .input_block button[type="submit"] {
+  .send_button {
     font-size: 0;
   }
 }

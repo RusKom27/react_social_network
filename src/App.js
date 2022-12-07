@@ -23,7 +23,7 @@ function App() {
                         <Route path={"register"} element={<Register/>}/>
                     </Route>}
                     {token && <Route path={"/"} element={<Feed/>}/>}
-                    {token && <Route path={"profile"} element={<Profile/>}/>}
+                    {token && <Route path={"profile/:login"} element={<Profile/>}/>}
                     {token && <Route path={"settings"} element={<Settings/>}/>}
                     {token && <Route path={"messages"} element={<Messages/>}>
                         <Route path={":dialog_id"} element={<Dialog/>}/>

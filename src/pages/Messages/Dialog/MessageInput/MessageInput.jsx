@@ -5,6 +5,7 @@ import {ReactComponent as SendSVG} from "../../../../images/send.svg";
 import {connect} from "react-redux";
 import {addMessage} from "../../../../redux/actions";
 import {createMessage} from "../../../../packages/api/rest/message";
+import {Button} from "../../../../components";
 
 function MessageInput({addMessage, dialog_id}) {
     const [messageInput, setMessageInput] = useState('')
@@ -23,9 +24,10 @@ function MessageInput({addMessage, dialog_id}) {
                    type="text"
                    ref={text_area}
                    value={messageInput} />
-            <button onClick={addMessageHandle}
-                   name={"messageInput"}
-                    type="submit">Send<SendSVG/></button>
+            <Button onClick={addMessageHandle} style={styles.send_button}>
+                Send
+                <SendSVG/>
+            </Button>
         </form>
 
     )

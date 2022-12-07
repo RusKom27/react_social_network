@@ -14,30 +14,13 @@
 
 .post_creating_form textarea {
   flex: 10;
-  height: 100px;
   font-size: 18px;
   background: none;
   resize: none;
 }
 
-.post_creating_form input[type="submit"] {
-  background-color: $color1;
-  height: 56px;
-  margin-inline: 20px;
-  font-size: 18px;
-  color: $color2;
-  flex: 1;
-}
-
-.post_creating_form input[type="submit"]:hover {
-  cursor: pointer;
-  background-color: $color2;
-  border: $color1 2px solid;
-  color: $color1;
-}
-
-.post_creating_form input[type="submit"]:active {
-  background-color: $color4;
+.submit_button {
+  max-width: 100px;
 }
 
 @media screen and (max-width: 900px){

@@ -1,0 +1,33 @@
+@import "src/index";
+
+.button {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  padding: 8px;
+  margin: 8px;
+  flex: 6;
+  max-width: 120px;
+  max-height: 24px;
+  background-color: $color1;
+  color: $color2;
+
+  &:hover {
+    background-color: mix($color5, $color1);
+    cursor: pointer;
+
+    svg {
+      fill: $color2;
+    }
+  }
+
+  svg {
+    fill: $color2;
+  }
+}
+
+@media screen and (max-width: 900px){
+  .button {
+    max-width: none;
+  }
+}

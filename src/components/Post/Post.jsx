@@ -7,7 +7,7 @@ import {ReactComponent as LikeDisabled} from "../../images/heart.svg";
 import {connect, useSelector} from "react-redux";
 import {likePost, removePost} from "../../packages/api/rest/post";
 import {updatePost, deletePost} from "../../redux/actions";
-import {DropdownMenu} from "../DropdownMenu/DropdownMenu";
+import {DropdownMenu} from "../misc/DropdownMenu/DropdownMenu";
 
 
 const Post = memo(({post, updatePost, deletePost}) => {

@@ -29,7 +29,6 @@
   padding: 5px;
   margin-inline: 8px;
   margin-block: auto;
-  background: $color5;
   color: $color0;
   text-decoration: none;
 }
@@ -47,7 +46,7 @@ svg {
 .active {
   font-weight: 700;
   color: $color1!important;
-  background: $color4!important;
+  background: $color4;
 
   div {
     transform: translateX(6px);
@@ -64,7 +63,7 @@ svg {
   display: flex;
 }
 
-.navigation a:hover {
+.navigation a:not(.active):hover {
   background: $color5;
 }
 

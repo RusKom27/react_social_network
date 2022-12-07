@@ -10,10 +10,9 @@ const Login = ({loginUser}) => {
     const login = (event) => {
         event.preventDefault()
         getUser(event.target.email.value, event.target.password.value).then(user => {
-            console.log(user)
             if (user) {
                 loginUser(user.data)
-                navigate("/profile")
+                navigate(`/profile/${user.data.login}`)
             }
         }).catch(err => console.log(err))
     }

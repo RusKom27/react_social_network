@@ -1,13 +1,14 @@
 import React from "react"
 import styles from "./DropdownMenu.module.scss"
 import {useEffect, useState} from "react";
-import {ReactComponent as ThreeDots} from "../../images/three-dots.svg";
+import {ReactComponent as ThreeDots} from "../../../images/three-dots.svg";
+import {Button} from "../Button/Button";
 
 function DropdownMenu({options}) {
     const [isDropdownOpened, toggleDropdown] = useState(false)
 
     const optionsButtons = Object.keys(options).map((option, i) => {
-        return <div key={i} onClick={options[option]}>{option}</div>
+        return <Button key={i} onClick={options[option]}>{option}</Button>
     })
 
     useEffect(() => {

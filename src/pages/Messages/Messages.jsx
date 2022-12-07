@@ -15,6 +15,7 @@ function Messages({setDialogs, messages}) {
             setDialogs(dialogs.data)
         })
     }, [messages])
+
     return (
         <div className={styles.container}>
             {(width > 900 || !dialog_id) && <DialogList/>}

@@ -1,4 +1,4 @@
-@import "../../index";
+@import "../../../index";
 
 .container > button {
   display: flex;
@@ -28,14 +28,4 @@
   margin-left: -200px;
   margin-top: -30px;
   width: 200px;
-  background: $color1;
-  color: $color2;
-
-  > * {
-    padding: 8px 12px;
-    &:hover {
-      background-color: $color3;
-      cursor: pointer;
-    }
-  }
 }

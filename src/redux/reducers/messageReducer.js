@@ -1,6 +1,7 @@
 import {ACTION} from "../actionTypes";
 
 const initialState = {
+    current_scroll_progress: 0,
     dialogs: [],
     messages: []
 }
