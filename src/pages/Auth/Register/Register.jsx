@@ -4,6 +4,7 @@ import {Link, useNavigate} from "react-router-dom";
 import {createUser} from "../../../packages/api/rest/user";
 import {loginUser} from "../../../redux/actions";
 import {connect} from "react-redux";
+import {Button} from "../../../components";
 
 const Register = ({loginUser}) => {
     const navigate = useNavigate()
@@ -42,7 +43,7 @@ const Register = ({loginUser}) => {
                     <input id="password" type="password" name="password"/>
                 </div>
                 <div>
-                    <input type="submit"/>
+                    <Button type={"submit"}>Register</Button>
                 </div>
             </form>
 

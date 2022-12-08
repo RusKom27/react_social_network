@@ -8,14 +8,15 @@ import {setMessages} from "../../../redux/actions";
 
 const Dialog = ({setMessages}) => {
     const {dialog_id} = useParams()
-    const updatePosts = () => {
+
+    const updateMessages = () => {
         if (window.location.href.split("/").at(-1) !== dialog_id) return
         getMessages(dialog_id).then(messages => {
             setMessages(messages.data)
         })
-        setTimeout(updatePosts, 1000)
+        setTimeout(updateMessages, 1000)
     }
-    updatePosts()
+    updateMessages()
 
     return (
         <div className={styles.current_dialog}>

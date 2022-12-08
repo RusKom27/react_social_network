@@ -6,23 +6,26 @@
   justify-content: center;
   width: 300px;
   text-align: center;
-  div {
+  form {
     display: flex;
     flex-direction: column;
-    padding: 8px;
     justify-content: center;
-  }
-  form > div {
-    justify-content: center;
-  }
-  form > div > input {
-    font-size: 16px;
-    height: 24px;
-  }
+    gap: 8px;
 
-  form > div > input[type="submit"] {
-    margin: auto;
-    width: 100px;
+    > div {
+      display: flex;
+      justify-content: center;
+
+      label {
+        flex: 2;
+        font-size: 16px;
+      }
+      input {
+        flex: 5;
+        height: 24px;
+        font-size: 16px;
+      }
+    }
   }
 }
 

@@ -1,24 +1,18 @@
 import React from "react"
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
+import {useSelector} from "react-redux";
 
 import "./App.scss"
 
 import {Feed, Messages, Profile, Settings} from "./pages";
 import Dialog from "./pages/Messages/Dialog/Dialog";
-import {Layout} from "./layout/Layout";
-import {connect, useSelector} from "react-redux";
+import Layout from "./layout/Layout";
 import {Auth} from "./pages/Auth/Auth";
 import Login from "./pages/Auth/Login/Login";
 import Register from "./pages/Auth/Register/Register";
-import {getUserByToken} from "./packages/api/rest/user";
-import {loginUser, toggleMenuTab} from "./redux/actions";
 
-function App({loginUser}) {
+export function App() {
     const token = useSelector(state => state.auth.token)
-    if (token)
-        getUserByToken().then(user => {
-            loginUser(user.data)
-        })
 
     return (
         <Router>
@@ -39,9 +33,5 @@ function App({loginUser}) {
         </Router>
     );
 }
-
-const mapStateToProps = () => ({})
-
-export default connect(mapStateToProps, {loginUser})(App)
 
 
