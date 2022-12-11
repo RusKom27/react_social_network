@@ -1,22 +1,13 @@
 import {ACTION} from "../actionTypes";
-import {store} from "../store";
-import {getUserByToken} from "../../packages/api/rest/user";
-
-
 
 let initialState = {
-    current_user: {},
-    other_user: {},
+    current_user: null,
+    other_user: null,
     token: localStorage.getItem("token"),
 }
 
 const authReducer = (state = initialState, action) => {
     switch (action.type) {
-        case ACTION.SET_TOKEN:
-            return {
-                ...state,
-                token: action.token
-            }
         case ACTION.LOGIN_USER:
             localStorage.setItem("token", action.user._id)
             return {

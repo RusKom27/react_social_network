@@ -3,8 +3,10 @@ import styles from "./DialogList.module.scss"
 import {DialogListItem} from "./DialogListItem/DialogListItem";
 import {connect} from "react-redux";
 import {setDialogs, toggleMenuTab} from "../../../redux/actions";
+import {Loader} from "../../../components/Loader/Loader";
 
 const DialogList = ({dialogs, toggleMenuTab}) => {
+    if (!dialogs) return <Loader/>
     const dialogsList = dialogs.map(dialog => {
         if (dialog) return <DialogListItem
                 key={dialog.id}

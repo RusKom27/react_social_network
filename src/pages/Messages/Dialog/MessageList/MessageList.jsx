@@ -1,11 +1,14 @@
 import styles from "./MessageList.module.scss"
 import {connect, useSelector} from "react-redux";
-import {Message} from "../../../../components/Message/Message";
+import {Message} from "../../../../components";
+import {Loader} from "../../../../components/Loader/Loader";
 
 function MessageList() {
     const messages = useSelector(state => {
         return state.messages.messages
     })
+
+    if (!messages) return <Loader/>
 
     const messageComponets = messages.map(message => <Message
             key={message._id}

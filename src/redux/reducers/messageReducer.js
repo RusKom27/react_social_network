@@ -2,8 +2,8 @@ import {ACTION} from "../actionTypes";
 
 const initialState = {
     current_scroll_progress: 0,
-    dialogs: [],
-    messages: []
+    dialogs: null,
+    messages: null
 }
 
 const messageReducer = (state = initialState, action) => {

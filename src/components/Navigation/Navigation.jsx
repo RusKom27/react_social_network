@@ -10,15 +10,9 @@ import {toggleMenuTab} from "../../redux/actions";
 
 
 function Navigation({toggleMenuTab}) {
-    const [userLogin, setUserLogin] = useState('')
-    const current_user_login = useSelector(state => state.auth?.current_user?.login)
+    const current_user_login = useSelector(state => state.auth.current_user?.login)
     const isMenuTabOpened = useSelector(state => state.menu.isMenuTabOpened)
-    const token = useSelector(state => state.auth.token)
     const activeClassName = ({isActive}) => isActive ? styles.active : undefined
-
-    useEffect(() => {
-        setUserLogin(current_user_login)
-    }, [current_user_login])
 
     return (
         <nav className={styles.navigation + " " + (isMenuTabOpened ? styles.hidden : '')}>

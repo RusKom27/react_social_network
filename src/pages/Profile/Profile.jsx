@@ -8,38 +8,43 @@ import {connect, useSelector} from "react-redux";
 import {getUserByLogin} from "../../packages/api/rest/user";
 import {getPosts} from "../../packages/api/rest/post";
 import {useParams} from "react-router-dom";
+import {Loader} from "../../components/Loader/Loader";
 
 
 const Profile = ({setPosts, setUser}) => {
     const user_login = useParams().login
-    const other_user = useSelector(state => state.auth.other_user)
-    const current_user = useSelector(state => state.auth.current_user)
-    window.scrollTo(0, 0);
+    const user = useSelector(state => {
+        if (state.auth.current_user?.login === user_login) return state.auth.current_user
+        else return state.auth.other_user
+    })
     useEffect(() => {
-        if (current_user.login !== user_login) {
-            getUserByLogin(user_login).then(user => {
-                setUser(user.data)
-            })
-        }
+        getUserByLogin(user_login).then(user => {
+            setUser(user.data)
+        })
     }, [user_login])
 
-
+    window.scrollTo(0, 0);
 
     const updatePosts = () => {
         if (window.location.href.split("/").at(-1) !== user_login) return
         getPosts(user_login).then(posts => {
             setPosts(posts.data)
+            setTimeout(updatePosts, 5000)
         })
-        setTimeout(updatePosts, 1000)
     }
 
     updatePosts()
 
     return (
         <div className={styles.container}>
-            <ProfileInfo user={current_user.login !== user_login ? other_user : current_user}/>
-            {current_user.login === user_login && <PostCreationInput/>}
-            <PostsListContainer/>
+            {user ? <>
+                    <ProfileInfo user={user}/>
+                    {user?.login === user_login && <PostCreationInput/>}
+                    <PostsListContainer/>
+                </>
+                :
+                <Loader/>}
+
         </div>
     )
 }

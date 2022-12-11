@@ -1,9 +1,11 @@
 import React from "react"
 import styles from "./PostsList.module.scss"
 import Post from "../Post/Post";
+import {Loader} from "../Loader/Loader";
 
 
 export const PostsList = ({posts}) => {
+    if (!posts) return <Loader/>
     let postComponents = posts.map((post) => <Post key={post._id} post={post}/>)
 
     return (
