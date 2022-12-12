@@ -5,29 +5,32 @@ import PostCreationInput from "./PostCreationInput/PostCreationInput";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import {loginUser, setPosts, setUser} from "../../redux/actions";
 import {connect, useSelector} from "react-redux";
-import {getUserByLogin} from "../../packages/api/rest/user";
-import {getPosts} from "../../packages/api/rest/post";
+import {UserAPI} from "../../packages/api/rest/user";
+import {PostAPI} from "../../packages/api/rest/post";
 import {useParams} from "react-router-dom";
 import {Loader} from "../../components/Loader/Loader";
 
 
 const Profile = ({setPosts, setUser}) => {
     const user_login = useParams().login
-    const user = useSelector(state => {
+    let user = useSelector(state => {
         if (state.auth.current_user?.login === user_login) return state.auth.current_user
         else return state.auth.other_user
     })
     useEffect(() => {
-        getUserByLogin(user_login).then(user => {
+        UserAPI.getUserByLogin(user_login).then(user => {
             setUser(user.data)
-        })
+        }).catch(() => setUser({}))
     }, [user_login])
+
+    if (!user) return <Loader/>
+    else if (!user._id) return <div>User not found</div>
 
     window.scrollTo(0, 0);
 
     const updatePosts = () => {
         if (window.location.href.split("/").at(-1) !== user_login) return
-        getPosts(user_login).then(posts => {
+        PostAPI.getPosts(user_login).then(posts => {
             setPosts(posts.data)
             setTimeout(updatePosts, 5000)
         })
@@ -37,14 +40,9 @@ const Profile = ({setPosts, setUser}) => {
 
     return (
         <div className={styles.container}>
-            {user ? <>
-                    <ProfileInfo user={user}/>
-                    {user?.login === user_login && <PostCreationInput/>}
-                    <PostsListContainer/>
-                </>
-                :
-                <Loader/>}
-
+            <ProfileInfo user={user}/>
+            {user?.login === user_login && <PostCreationInput/>}
+            <PostsListContainer/>
         </div>
     )
 }

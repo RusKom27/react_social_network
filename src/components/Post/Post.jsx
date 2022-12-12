@@ -5,7 +5,7 @@ import user_image from "../../images/user_image.jpg"
 import {ReactComponent as LikeEnabled} from "../../images/heart-fill.svg";
 import {ReactComponent as LikeDisabled} from "../../images/heart.svg";
 import {connect, useSelector} from "react-redux";
-import {likePost, removePost} from "../../packages/api/rest/post";
+import {PostAPI} from "../../packages/api/rest/post";
 import {deletePost, updatePost} from "../../redux/actions";
 import {DropdownMenu} from "../misc/DropdownMenu/DropdownMenu";
 import {Link} from "react-router-dom";
@@ -15,12 +15,12 @@ const Post = memo(({post, updatePost, deletePost}) => {
     const currentUserId = useSelector(state => state.auth.token)
     const liked = post.likes.indexOf(currentUserId) > -1
     const like = useCallback(() => {
-        likePost(post._id).then(post => {
+        PostAPI.likePost(post._id).then(post => {
             updatePost(post.data)
         })
     }, [post, updatePost])
     const remove = useCallback(() => {
-        removePost(post.id).then(result => {
+        PostAPI.removePost(post.id).then(result => {
             deletePost(result.data._id)
         })
     }, [post, deletePost])

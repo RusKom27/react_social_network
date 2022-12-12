@@ -4,7 +4,7 @@ import {Outlet, useNavigate} from "react-router-dom"
 import styles from "./Layout.module.scss"
 import {connect, useSelector} from "react-redux";
 import {config} from "../packages/api/config";
-import {getUserByToken} from "../packages/api/rest/user";
+import {UserAPI} from "../packages/api/rest/user";
 import {loginUser} from "../redux/actions";
 
 const Layout = ({loginUser}) => {
@@ -12,7 +12,7 @@ const Layout = ({loginUser}) => {
     const token = useSelector(state => state.auth.token)
     config.token = token
     useEffect(() => {
-        if (token) getUserByToken().then(user => { loginUser(user.data) })
+        if (token) UserAPI.getUserByToken().then(user => { loginUser(user.data) })
         else navigate("/auth/login")
     }, [token])
 

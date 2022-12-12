@@ -2,15 +2,15 @@ import {createRef, useState} from "react"
 import styles from "./PostCreationInput.module.scss"
 import {connect} from "react-redux";
 import {addPost} from "../../../redux/actions";
-import {createPost} from "../../../packages/api/rest/post";
-import {Button} from "../../../components/misc/Button/Button";
+import {PostAPI} from "../../../packages/api/rest/post";
+import {Button} from "../../../components";
 
 const PostCreationInput = ({addPost}) => {
     const [postInputText, setPostInputText] = useState('')
     const text_area = createRef();
     const addPostHandle = event => {
         event.preventDefault()
-        createPost(postInputText).then(post => {
+        PostAPI.createPost(postInputText).then(post => {
             addPost(post.data)
             setPostInputText('')
         })

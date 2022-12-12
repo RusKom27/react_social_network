@@ -3,7 +3,7 @@ import {useParams} from "react-router-dom";
 import MessageInput from "./MessageInput/MessageInput";
 import MessageList from "./MessageList/MessageList";
 import {connect} from "react-redux";
-import {getMessages} from "../../../packages/api/rest/message";
+import {MessageAPI} from "../../../packages/api/rest/message";
 import {setMessages} from "../../../redux/actions";
 
 const Dialog = ({setMessages}) => {
@@ -11,7 +11,7 @@ const Dialog = ({setMessages}) => {
 
     const updateMessages = () => {
         if (window.location.href.split("/").at(-1) !== dialog_id) return
-        getMessages(dialog_id).then(messages => {
+        MessageAPI.getMessages(dialog_id).then(messages => {
             setMessages(messages.data)
         })
         setTimeout(updateMessages, 1000)

@@ -1,7 +1,7 @@
 import React from "react"
 import styles from "./Register.module.scss"
 import {Link, useNavigate} from "react-router-dom";
-import {createUser} from "../../../packages/api/rest/user";
+import {UserAPI} from "../../../packages/api/rest/user";
 import {loginUser} from "../../../redux/actions";
 import {connect} from "react-redux";
 import {Button} from "../../../components";
@@ -10,7 +10,7 @@ const Register = ({loginUser}) => {
     const navigate = useNavigate()
     const register = (event) => {
         event.preventDefault()
-        createUser(
+        UserAPI.createUser(
             event.target.name.value,
             event.target.login.value,
             event.target.email.value,

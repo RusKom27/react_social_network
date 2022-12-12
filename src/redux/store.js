@@ -1,5 +1,6 @@
-import {combineReducers, legacy_createStore as createStore} from "redux";
+import {applyMiddleware, combineReducers, legacy_createStore as createStore} from "redux";
 import {authReducer, feedReducer, menuReducer, messageReducer, profileReducer} from "./reducers";
+import thunk from "redux-thunk";
 
 const reducers = combineReducers({
     messages: messageReducer,
@@ -9,6 +10,6 @@ const reducers = combineReducers({
     feed: feedReducer,
 })
 
-let store = createStore(reducers)
+let store = createStore(reducers, applyMiddleware(thunk))
 
 export {store}

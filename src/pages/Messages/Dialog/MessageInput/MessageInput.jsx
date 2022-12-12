@@ -4,7 +4,7 @@ import {createRef} from "react";
 import {ReactComponent as SendSVG} from "../../../../images/send.svg";
 import {connect} from "react-redux";
 import {addMessage} from "../../../../redux/actions";
-import {createMessage} from "../../../../packages/api/rest/message";
+import {MessageAPI} from "../../../../packages/api/rest/message";
 import {Button} from "../../../../components";
 
 function MessageInput({addMessage, dialog_id}) {
@@ -12,7 +12,7 @@ function MessageInput({addMessage, dialog_id}) {
     const text_area = createRef();
     const addMessageHandle = event => {
         event.preventDefault()
-        createMessage(dialog_id, messageInput).then(message => {
+        MessageAPI.createMessage(dialog_id, messageInput).then(message => {
             addMessage(message.data)
         })
         setMessageInput("")

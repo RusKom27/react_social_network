@@ -1,7 +1,7 @@
 import React from "react"
 import styles from "./Login.module.scss"
 import {Link, useNavigate} from "react-router-dom";
-import {getUser} from "../../../packages/api/rest/user";
+import {UserAPI} from "../../../packages/api/rest/user";
 import {connect} from "react-redux";
 import {loginUser} from "../../../redux/actions";
 import {Button} from "../../../components";
@@ -10,7 +10,7 @@ const Login = ({loginUser}) => {
     const navigate = useNavigate()
     const login = (event) => {
         event.preventDefault()
-        getUser(event.target.email.value, event.target.password.value).then(user => {
+        UserAPI.getUser(event.target.email.value, event.target.password.value).then(user => {
             if (user) {
                 loginUser(user.data)
                 navigate(`/profile/${user.data.login}`)
