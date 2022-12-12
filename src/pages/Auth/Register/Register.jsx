@@ -1,26 +1,21 @@
 import React from "react"
 import styles from "./Register.module.scss"
 import {Link, useNavigate} from "react-router-dom";
-import {UserAPI} from "../../../packages/api/rest/user";
-import {loginUser} from "../../../redux/actions";
 import {connect} from "react-redux";
 import {Button} from "../../../components";
+import {createUser} from "../../../redux/thunk/user";
 
-const Register = ({loginUser}) => {
+const Register = ({createUser}) => {
     const navigate = useNavigate()
     const register = (event) => {
         event.preventDefault()
-        UserAPI.createUser(
+        createUser(
             event.target.name.value,
             event.target.login.value,
             event.target.email.value,
-            event.target.password.value
-        ).then(user => {
-            if (user) {
-                loginUser(user.data)
-                navigate(`/profile/${user.login}`)
-            }
-        }).catch(err => console.log(err))
+            event.target.password.value,
+            user => navigate(`/profile/${user.login}`)
+        )
     }
     return (
         <div className={styles.container}>
@@ -56,4 +51,4 @@ const Register = ({loginUser}) => {
 
 const mapStateToProps = () => ({})
 
-export default connect(mapStateToProps, {loginUser})(Register)
+export default connect(mapStateToProps, {createUser})(Register)

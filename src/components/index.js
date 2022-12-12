@@ -1,6 +1,6 @@
 import Header from "./Header/Header"
 import Navigation from "./Navigation/Navigation"
-import {PostsList} from "./PostsList/PostsList";
+import PostsList from "./PostsList/PostsList";
 import Post from "./Post/Post";
 import {Message} from "./Message/Message";
 import {Button} from "./misc/Button/Button";

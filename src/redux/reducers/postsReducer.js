@@ -4,23 +4,31 @@ const initialState = {
     posts: null,
 }
 
-const feedReducer = (state = initialState, action) => {
+export const postsReducer = (state = initialState, action) => {
     switch (action.type) {
-        case ACTION.SET_FEED_POSTS:
+        case ACTION.POST.ADD_POST:
+            return {
+                ...state,
+                posts: [
+                    ...state.posts,
+                    action.post
+                ]
+            }
+        case ACTION.POST.SET_POSTS:
             return {
                 ...state,
                 posts: action.posts
             }
-        case ACTION.UPDATE_POST:
+        case ACTION.POST.UPDATE_POST:
             return {
                 ...state,
-                posts: state.posts.map(post => {
+                posts: state.posts?.map(post => {
                     if (action.post._id === post.id)
-                        post = {...action.post}
+                        post = action.post
                     return post
                 })
             }
-        case ACTION.DELETE_POST:
+        case ACTION.POST.DELETE_POST:
             return {
                 ...state,
                 posts: state.posts.filter(post => {
@@ -31,5 +39,3 @@ const feedReducer = (state = initialState, action) => {
             return state
     }
 }
-
-export {feedReducer}

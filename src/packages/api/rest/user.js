@@ -1,7 +1,7 @@
 import {makeRequest} from "../makeRequest";
 
 export const UserAPI = {
-    getUser(email, password) {
+    authUser(email, password) {
         return makeRequest({
             url: 'api/auth/login',
             headers: {authorization: false},
@@ -13,15 +13,7 @@ export const UserAPI = {
         })
     },
 
-    getUserByToken() {
-        return makeRequest({
-            url: `api/user`,
-            headers: {authorization: true},
-            method: 'GET',
-        })
-    },
-
-    getUserByLogin(login) {
+    getUser(login = '') {
         return makeRequest({
             url: `api/user/${login}`,
             headers: {authorization: true},

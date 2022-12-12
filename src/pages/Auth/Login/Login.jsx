@@ -1,21 +1,19 @@
 import React from "react"
 import styles from "./Login.module.scss"
 import {Link, useNavigate} from "react-router-dom";
-import {UserAPI} from "../../../packages/api/rest/user";
 import {connect} from "react-redux";
-import {loginUser} from "../../../redux/actions";
 import {Button} from "../../../components";
+import {authUser} from "../../../redux/thunk/user";
 
-const Login = ({loginUser}) => {
+const Login = ({authUser}) => {
     const navigate = useNavigate()
     const login = (event) => {
         event.preventDefault()
-        UserAPI.getUser(event.target.email.value, event.target.password.value).then(user => {
-            if (user) {
-                loginUser(user.data)
-                navigate(`/profile/${user.data.login}`)
-            }
-        }).catch(err => console.log(err))
+        authUser(
+            event.target.email.value,
+            event.target.password.value,
+            user => navigate(`/profile/${user.data.login}`)
+        )
     }
 
     return (
@@ -44,4 +42,4 @@ const Login = ({loginUser}) => {
 
 const mapStateToProps = () => ({})
 
-export default connect(mapStateToProps, {loginUser})(Login)
+export default connect(mapStateToProps, {authUser})(Login)

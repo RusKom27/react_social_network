@@ -2,9 +2,10 @@ import React from "react"
 import styles from "./PostsList.module.scss"
 import Post from "../Post/Post";
 import {Loader} from "../Loader/Loader";
+import {connect} from "react-redux";
 
 
-export const PostsList = ({posts}) => {
+const PostsList = ({posts}) => {
     if (!posts) return <Loader/>
     let postComponents = posts.map((post) => <Post key={post._id} post={post}/>)
 
@@ -17,3 +18,7 @@ export const PostsList = ({posts}) => {
         </div>
     )
 }
+
+export default connect(
+    state => ({posts: state.posts.posts})
+)(PostsList)

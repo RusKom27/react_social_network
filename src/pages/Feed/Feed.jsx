@@ -1,34 +1,29 @@
 import styles from "./Feed.module.scss"
 import {PostsList} from "../../components";
 import {connect} from "react-redux";
-import {getFeedPosts} from "../../redux/thunk/getPosts";
+import {getPosts} from "../../redux/thunk/post";
 import {useEffect} from "react";
 
-
-function Feed({getFeedPosts}) {
-    let isUpdate = true
+function Feed({getPosts}) {
+    let isUpdatePosts = true
     const updatePosts = () => {
-        if (isUpdate) {
-            getFeedPosts()
+        if (isUpdatePosts) {
+            getPosts()
             setTimeout(updatePosts, 1000)
         }
     }
     useEffect(() => {
         updatePosts()
-        return () => {isUpdate = false}
+        return () => {isUpdatePosts = false}
     })
 
     return (
         <div className={styles.container}>
-            <PostsListContainer/>
+            <PostsList/>
         </div>
     )
 }
 
-const PostsListContainer = connect(
-    state => ({posts: state.feed.posts})
-)(PostsList)
-
 const mapStateToProps = (state) => ({})
 
-export default connect(mapStateToProps, {getFeedPosts})(Feed)
+export default connect(mapStateToProps, {getPosts})(Feed)

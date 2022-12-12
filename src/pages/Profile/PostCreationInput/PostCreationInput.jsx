@@ -1,19 +1,16 @@
 import {createRef, useState} from "react"
 import styles from "./PostCreationInput.module.scss"
 import {connect} from "react-redux";
-import {addPost} from "../../../redux/actions";
-import {PostAPI} from "../../../packages/api/rest/post";
 import {Button} from "../../../components";
+import {createPost} from "../../../redux/thunk/post";
 
-const PostCreationInput = ({addPost}) => {
+const PostCreationInput = ({createPost}) => {
     const [postInputText, setPostInputText] = useState('')
     const text_area = createRef();
     const addPostHandle = event => {
         event.preventDefault()
-        PostAPI.createPost(postInputText).then(post => {
-            addPost(post.data)
-            setPostInputText('')
-        })
+        createPost(postInputText)
+        setPostInputText('')
         text_area.current.focus()
     }
 
@@ -26,9 +23,12 @@ const PostCreationInput = ({addPost}) => {
                     name={"post_text"}
                     value={postInputText}
                 />
-                <Button onClick={addPostHandle} style={styles.submit_button}>Send</Button>
+                <Button
+                    onClick={addPostHandle}
+                    style={styles.submit_button}>
+                    Send
+                </Button>
             </form>
-
         </div>
 
     )
@@ -36,4 +36,4 @@ const PostCreationInput = ({addPost}) => {
 
 const mapStateToProps = (state) => ({})
 
-export default connect(mapStateToProps, {addPost})(PostCreationInput)
+export default connect(mapStateToProps, {createPost})(PostCreationInput)

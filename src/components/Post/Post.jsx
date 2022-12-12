@@ -5,25 +5,23 @@ import user_image from "../../images/user_image.jpg"
 import {ReactComponent as LikeEnabled} from "../../images/heart-fill.svg";
 import {ReactComponent as LikeDisabled} from "../../images/heart.svg";
 import {connect, useSelector} from "react-redux";
-import {PostAPI} from "../../packages/api/rest/post";
-import {deletePost, updatePost} from "../../redux/actions";
+import {deletePost} from "../../redux/actions";
 import {DropdownMenu} from "../misc/DropdownMenu/DropdownMenu";
 import {Link} from "react-router-dom";
+import {likePost, removePost} from "../../redux/thunk/post";
 
 
-const Post = memo(({post, updatePost, deletePost}) => {
+const Post = memo(({post, likePost, removePost}) => {
     const currentUserId = useSelector(state => state.auth.token)
     const liked = post.likes.indexOf(currentUserId) > -1
-    const like = useCallback(() => {
-        PostAPI.likePost(post._id).then(post => {
-            updatePost(post.data)
-        })
-    }, [post, updatePost])
-    const remove = useCallback(() => {
-        PostAPI.removePost(post.id).then(result => {
-            deletePost(result.data._id)
-        })
-    }, [post, deletePost])
+    const like = useCallback(
+        () => likePost(post._id),
+        [post, likePost]
+    )
+    const remove = useCallback(
+        () => removePost(post._id),
+        [post, deletePost]
+    )
 
     return (
         <div id={post._id} className={styles.post}>
@@ -61,4 +59,4 @@ const Post = memo(({post, updatePost, deletePost}) => {
 
 const mapStateToProps = state => ({})
 
-export default connect(mapStateToProps, {updatePost, deletePost})(Post)
+export default connect(mapStateToProps, {likePost, removePost})(Post)

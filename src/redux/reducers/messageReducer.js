@@ -1,14 +1,13 @@
 import {ACTION} from "../actionTypes";
 
 const initialState = {
-    current_scroll_progress: 0,
     dialogs: null,
     messages: null
 }
 
 const messageReducer = (state = initialState, action) => {
     switch (action.type) {
-        case ACTION.ADD_MESSAGE:
+        case ACTION.MESSAGE.ADD_MESSAGE:
             if (!action.message.text && !action.message.image) return state
             return {
                 ...state,
@@ -17,12 +16,12 @@ const messageReducer = (state = initialState, action) => {
                     action.message
                 ]
             }
-        case ACTION.SET_MESSAGES:
+        case ACTION.MESSAGE.SET_MESSAGES:
             return {
                 ...state,
                 messages: action.messages
             }
-        case ACTION.SET_DIALOGS:
+        case ACTION.MESSAGE.SET_DIALOGS:
             return {
                 ...state,
                 dialogs: action.dialogs.map(dialog => {
