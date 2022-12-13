@@ -6,9 +6,9 @@ import {connect, useSelector} from "react-redux";
 import {Button} from "../../../components";
 import {useNavigate} from "react-router-dom";
 import {logoutUser} from "../../../redux/actions";
-import {DialogAPI} from "../../../packages/api/rest/dialog";
+import {createDialog} from "../../../redux/thunk/dialog";
 
-function ProfileInfo({user, logoutUser}) {
+function ProfileInfo({user, logoutUser, createDialog}) {
     const navigate = useNavigate()
     const current_user = useSelector(state => state.auth.current_user)
 
@@ -18,9 +18,7 @@ function ProfileInfo({user, logoutUser}) {
     }
 
     const create_dialog = () => {
-        DialogAPI.createDialog(user?._id).then(dialog => {
-            navigate(`../../messages/${dialog.data._id}`)
-        })
+        createDialog(user?._id, dialog => navigate(`../../messages/${dialog.data._id}`))
     }
 
     return (
@@ -60,4 +58,4 @@ const mapStateToProps = (state) => ({
 })
 
 
-export default connect(mapStateToProps, {logoutUser})(ProfileInfo)
+export default connect(mapStateToProps, {logoutUser, createDialog})(ProfileInfo)

@@ -1,4 +1,4 @@
-const ACTION = {
+export const ACTION = {
     MESSAGE: {
         ADD_MESSAGE: 'ADD_MESSAGE',
         SET_MESSAGES: 'SET_MESSAGES',
@@ -19,5 +19,3 @@ const ACTION = {
         TOGGLE_MENU_TAB: 'TOGGLE_MENU_TAB',
     }
 }
-
-export {ACTION}

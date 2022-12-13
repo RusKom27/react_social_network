@@ -1,9 +1,11 @@
 import React from "react"
-import styles from "./Login.module.scss"
 import {Link, useNavigate} from "react-router-dom";
 import {connect} from "react-redux";
+import {authUser} from "../../../redux/thunk";
+
 import {Button} from "../../../components";
-import {authUser} from "../../../redux/thunk/user";
+
+import styles from "./Login.module.scss"
 
 const Login = ({authUser}) => {
     const navigate = useNavigate()

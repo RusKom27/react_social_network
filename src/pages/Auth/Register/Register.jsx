@@ -1,9 +1,11 @@
 import React from "react"
-import styles from "./Register.module.scss"
 import {Link, useNavigate} from "react-router-dom";
 import {connect} from "react-redux";
+import {createUser} from "../../../redux/thunk";
+
 import {Button} from "../../../components";
-import {createUser} from "../../../redux/thunk/user";
+
+import styles from "./Register.module.scss"
 
 const Register = ({createUser}) => {
     const navigate = useNavigate()

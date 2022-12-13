@@ -1,0 +1,5 @@
+export {authUser, authUserByToken, createUser} from "./auth"
+export {getDialogs, createDialog} from "./dialog"
+export {getMessages, createMessage} from "./message"
+export {getPosts, likePost, removePost, createPost} from "./post"
+export {getUser} from "./user"

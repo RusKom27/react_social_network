@@ -3,18 +3,15 @@ import styles from "./MessageInput.module.scss"
 import {createRef} from "react";
 import {ReactComponent as SendSVG} from "../../../../images/send.svg";
 import {connect} from "react-redux";
-import {addMessage} from "../../../../redux/actions";
-import {MessageAPI} from "../../../../packages/api/rest/message";
 import {Button} from "../../../../components";
+import {createMessage} from "../../../../redux/thunk/message";
 
-function MessageInput({addMessage, dialog_id}) {
+function MessageInput({createMessage, dialog_id}) {
     const [messageInput, setMessageInput] = useState('')
     const text_area = createRef();
     const addMessageHandle = event => {
         event.preventDefault()
-        MessageAPI.createMessage(dialog_id, messageInput).then(message => {
-            addMessage(message.data)
-        })
+        createMessage(dialog_id, messageInput)
         setMessageInput("")
         text_area.current.focus()
     }
@@ -36,4 +33,4 @@ function MessageInput({addMessage, dialog_id}) {
 const mapStateToProps = (state) => ({
 })
 
-export default connect(mapStateToProps, {addMessage})(MessageInput)
+export default connect(mapStateToProps, {createMessage})(MessageInput)

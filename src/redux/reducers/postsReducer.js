@@ -1,7 +1,7 @@
 import {ACTION} from "../actionTypes";
 
 const initialState = {
-    posts: null,
+    posts: null
 }
 
 export const postsReducer = (state = initialState, action) => {

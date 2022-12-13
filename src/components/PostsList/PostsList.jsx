@@ -1,7 +1,7 @@
 import React from "react"
 import styles from "./PostsList.module.scss"
 import Post from "../Post/Post";
-import {Loader} from "../Loader/Loader";
+import {Loader} from "../misc/Loader/Loader";
 import {connect} from "react-redux";
 
 

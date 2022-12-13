@@ -4,7 +4,7 @@ import {Outlet, useNavigate} from "react-router-dom"
 import styles from "./Layout.module.scss"
 import {connect, useSelector} from "react-redux";
 import {config} from "../packages/api/config";
-import {authUserByToken} from "../redux/thunk/user";
+import {authUserByToken} from "../redux/thunk";
 
 const Layout = ({authUserByToken}) => {
     const navigate = useNavigate()
@@ -13,7 +13,7 @@ const Layout = ({authUserByToken}) => {
     useEffect(() => {
         if (token) authUserByToken()
         else navigate("/auth/login")
-    }, [token])
+    })
 
     return (
         <div className={styles.wrapper}>

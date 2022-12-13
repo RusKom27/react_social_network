@@ -10,7 +10,7 @@ import Layout from "./layout/Layout";
 import {Auth} from "./pages/Auth/Auth";
 import Login from "./pages/Auth/Login/Login";
 import Register from "./pages/Auth/Register/Register";
-import {Redirect} from "./components/Redirect/Redirect";
+import {Redirect} from "./components/misc/Redirect/Redirect";
 
 export function App() {
     const token = useSelector(state => state.auth.token)

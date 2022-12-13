@@ -1,7 +1,7 @@
 import styles from "./MessageList.module.scss"
 import {connect, useSelector} from "react-redux";
 import {Message} from "../../../../components";
-import {Loader} from "../../../../components/Loader/Loader";
+import {Loader} from "../../../../components/misc/Loader/Loader";
 
 function MessageList() {
     const messages = useSelector(state => {

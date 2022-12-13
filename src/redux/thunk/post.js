@@ -15,7 +15,7 @@ export const createPost = (postText) => (dispatch) => {
 
 export const likePost = (post_id) => (dispatch) => {
     PostAPI.likePost(post_id).then(post => {
-        dispatch(updatePost(post.data._id))
+        dispatch(updatePost(post.data))
     })
 }
 

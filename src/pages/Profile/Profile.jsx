@@ -1,22 +1,20 @@
 import React, {useEffect} from "react"
-import styles from "./Profile.module.scss"
-import {PostsList} from "../../components";
-import PostCreationInput from "./PostCreationInput/PostCreationInput";
-import ProfileInfo from "./ProfileInfo/ProfileInfo";
+import {useParams} from "react-router-dom";
 import {loginUser} from "../../redux/actions";
 import {connect, useSelector} from "react-redux";
-import {useParams} from "react-router-dom";
-import {Loader} from "../../components/Loader/Loader";
-import {getPosts} from "../../redux/thunk/post";
-import {getUser} from "../../redux/thunk/user";
+import {getPosts, getUser} from "../../redux/thunk";
+
+import ProfileInfo from "./ProfileInfo/ProfileInfo";
+import PostCreationInput from "./PostCreationInput/PostCreationInput";
+import {Loader, PostsList} from "../../components";
+
+import styles from "./Profile.module.scss"
 
 const Profile = ({getPosts, getUser}) => {
     const user_login = useParams().login
     let isUpdatePosts = true
-    let user = useSelector(state => {
-        if (state.auth.current_user?.login === user_login) return state.auth.current_user
-        else return state.auth.other_user
-    })
+    const user = useSelector(state => state.profile.user)
+    const current_user = useSelector(state => state.auth.current_user)
 
     const updatePosts = () => {
         if (isUpdatePosts) {
@@ -34,16 +32,18 @@ const Profile = ({getPosts, getUser}) => {
         return () => {isUpdatePosts = false}
     })
 
-    if (!user) return <Loader/>
-    else if (!user._id) return <div>User not found</div>
-
     window.scrollTo(0, 0);
 
     return (
         <div className={styles.container}>
-            <ProfileInfo user={user}/>
-            {user?.login === user_login && <PostCreationInput/>}
-            <PostsList/>
+            {!user ? <Loader/> :
+                !user._id ? <div>User not found!</div> :
+                    <>
+                        <ProfileInfo user={user}/>
+                        {user?.login === current_user?.login && <PostCreationInput/>}
+                        <PostsList/>
+                    </>
+            }
         </div>
     )
 }

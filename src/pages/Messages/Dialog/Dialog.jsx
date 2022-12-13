@@ -3,20 +3,24 @@ import {useParams} from "react-router-dom";
 import MessageInput from "./MessageInput/MessageInput";
 import MessageList from "./MessageList/MessageList";
 import {connect} from "react-redux";
-import {MessageAPI} from "../../../packages/api/rest/message";
-import {setMessages} from "../../../redux/actions";
+import {getMessages} from "../../../redux/thunk";
+import {useEffect} from "react";
 
-const Dialog = ({setMessages}) => {
+const Dialog = ({getMessages}) => {
     const {dialog_id} = useParams()
+    let isUpdateMessages = true
 
     const updateMessages = () => {
-        if (window.location.href.split("/").at(-1) !== dialog_id) return
-        MessageAPI.getMessages(dialog_id).then(messages => {
-            setMessages(messages.data)
-        })
-        setTimeout(updateMessages, 1000)
+        if (isUpdateMessages) {
+            getMessages(dialog_id)
+            setTimeout(updateMessages, 1000)
+        }
     }
-    updateMessages()
+
+    useEffect(() => {
+        updateMessages()
+        return () => {isUpdateMessages = false}
+    })
 
     return (
         <div className={styles.current_dialog}>
@@ -29,4 +33,4 @@ const Dialog = ({setMessages}) => {
 const mapStateToProps = (state) => ({
 })
 
-export default connect(mapStateToProps, {setMessages})(Dialog)
+export default connect(mapStateToProps, {getMessages})(Dialog)

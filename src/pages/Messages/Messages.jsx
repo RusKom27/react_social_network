@@ -3,17 +3,14 @@ import {Outlet, useParams} from "react-router-dom";
 import DialogList from "./DialogList/DialogList";
 import {useWindowDimensions} from "../../hooks/useWindowDimensions";
 import {connect} from "react-redux";
-import {DialogAPI} from "../../packages/api/rest/dialog";
-import {setDialogs} from "../../redux/actions";
 import {useEffect} from "react";
+import {getDialogs} from "../../redux/thunk/dialog";
 
-function Messages({setDialogs, messages}) {
+function Messages({getDialogs, messages}) {
     const {width} = useWindowDimensions()
     const {dialog_id} = useParams()
     useEffect(() => {
-        DialogAPI.getDialogs().then(dialogs => {
-            setDialogs(dialogs.data)
-        })
+        getDialogs()
     }, [messages])
 
     return (
@@ -28,4 +25,4 @@ const mapStateToProps = (state) => ({
     messages: state.messages.messages
 })
 
-export default connect(mapStateToProps, {setDialogs})(Messages)
+export default connect(mapStateToProps, {getDialogs})(Messages)

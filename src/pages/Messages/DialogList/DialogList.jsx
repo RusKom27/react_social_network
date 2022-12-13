@@ -3,7 +3,7 @@ import styles from "./DialogList.module.scss"
 import {DialogListItem} from "./DialogListItem/DialogListItem";
 import {connect} from "react-redux";
 import {setDialogs, toggleMenuTab} from "../../../redux/actions";
-import {Loader} from "../../../components/Loader/Loader";
+import {Loader} from "../../../components/misc/Loader/Loader";
 
 const DialogList = ({dialogs, toggleMenuTab}) => {
     if (!dialogs) return <Loader/>
