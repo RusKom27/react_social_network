@@ -37,7 +37,8 @@ const Profile = ({getPosts, getUser}) => {
     return (
         <div className={styles.container}>
             {!user ? <Loader/> :
-                !user._id ? <div>User not found!</div> :
+                !user._id ?
+                    <div>User not found!</div> :
                     <>
                         <ProfileInfo user={user}/>
                         {user?.login === current_user?.login && <PostCreationInput/>}

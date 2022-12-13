@@ -8,7 +8,43 @@
   margin: auto!important;
   width: 100%;
   overflow: hidden;
+
+  > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 300px;
+    text-align: center;
+
+    form {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 8px;
+
+      > div {
+        display: flex;
+        justify-content: center;
+
+        label {
+          flex: 2;
+          font-size: 16px;
+        }
+
+        input {
+          flex: 5;
+          height: 24px;
+          font-size: 16px;
+        }
+      }
+    }
+  }
 }
 
 @media screen and (max-width: 900px){
+  .container {
+    > div {
+      width: 100%;
+    }
+  }
 }

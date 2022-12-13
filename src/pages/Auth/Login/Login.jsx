@@ -19,7 +19,7 @@ const Login = ({authUser}) => {
     }
 
     return (
-        <div className={styles.container}>
+        <div>
             <div><h2>Login</h2></div>
             <form onSubmit={login}>
                 <div>

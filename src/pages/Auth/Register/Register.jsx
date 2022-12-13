@@ -19,8 +19,9 @@ const Register = ({createUser}) => {
             user => navigate(`/profile/${user.login}`)
         )
     }
+
     return (
-        <div className={styles.container}>
+        <div>
             <div><h2>Registration</h2></div>
             <form onSubmit={register}>
                 <div>

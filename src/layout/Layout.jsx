@@ -13,7 +13,7 @@ const Layout = ({authUserByToken}) => {
     useEffect(() => {
         if (token) authUserByToken()
         else navigate("/auth/login")
-    })
+    }, [token])
 
     return (
         <div className={styles.wrapper}>

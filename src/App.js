@@ -2,17 +2,14 @@ import React from "react"
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import {useSelector} from "react-redux";
 
+import {Feed, Messages, Dialog, Profile, Settings} from "./pages";
+import Layout from "./layout/Layout";
+import {Auth, Login, Register} from "./pages";
+import {Redirect} from "./components";
+
 import "./App.scss"
 
-import {Feed, Messages, Profile, Settings} from "./pages";
-import Dialog from "./pages/Messages/Dialog/Dialog";
-import Layout from "./layout/Layout";
-import {Auth} from "./pages/Auth/Auth";
-import Login from "./pages/Auth/Login/Login";
-import Register from "./pages/Auth/Register/Register";
-import {Redirect} from "./components/misc/Redirect/Redirect";
-
-export function App() {
+export const App = () => {
     const token = useSelector(state => state.auth.token)
 
     return (
