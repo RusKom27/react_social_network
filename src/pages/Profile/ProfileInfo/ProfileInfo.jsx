@@ -1,16 +1,18 @@
 import React from "react"
-import styles from "./ProfileInfo.module.scss"
-import image_placeholder from "../../../images/image-placeholder1.png"
-import user_image from "../../../images/user_image.jpg"
 import {connect, useSelector} from "react-redux";
-import {Button} from "../../../components";
 import {useNavigate} from "react-router-dom";
-import {logoutUser} from "../../../redux/actions";
-import {createDialog} from "../../../redux/thunk/dialog";
 
-function ProfileInfo({user, logoutUser, createDialog}) {
+import {Button} from "../../../components";
+import {logoutUser} from "../../../redux/actions";
+import {createDialog, subscribeUser} from "../../../redux/thunk";
+
+import styles from "./ProfileInfo.module.scss"
+import {ImageAPI} from "../../../packages/api/rest/image";
+
+function ProfileInfo({user, logoutUser, createDialog, subscribeUser}) {
     const navigate = useNavigate()
     const current_user = useSelector(state => state.auth.current_user)
+    const isSubscribed = user?.subscribers.includes(current_user?._id)
 
     const logout = () => {
         logoutUser()
@@ -21,13 +23,25 @@ function ProfileInfo({user, logoutUser, createDialog}) {
         createDialog(user?._id, dialog => navigate(`../../messages/${dialog.data._id}`))
     }
 
+    const subscribe = () => {
+        subscribeUser(user.login)
+    }
+
+    const send_image = (event) => {
+        event.preventDefault()
+        let formData = new FormData();
+        let imageFile = event.target['image'];
+        formData.append("image", imageFile.files[0]);
+        ImageAPI.sendImage(formData)
+    }
+
     return (
         <div className={styles.container}>
             <div className={styles.profile_image}>
-                <img src={image_placeholder} alt=""/>
+                <img src={'http://localhost:3000/images/rocky.png'} alt=""/>
             </div>
             <div className={styles.user_image}>
-                <img src={user_image} alt=""/>
+                <img src={'http://localhost:3000/images/d3db568933ab6e7d2a7920709236bfb7.png'} alt=""/>
             </div>
             <div className={styles.profile}>
                 <div className={styles.profile_info}>
@@ -37,12 +51,25 @@ function ProfileInfo({user, logoutUser, createDialog}) {
                     <div className={styles.user_description}>
                         @{user?.login}
                     </div>
+                    <div>
+                        subscribers: {user?.subscribers.length}
+                    </div>
+                    <div>
+                        <form onSubmit={send_image}>
+                            <input name={"image"} type="file"/>
+                            <Button type={"submit"}>Send</Button>
+                        </form>
+                    </div>
                 </div>
                 <div className={styles.profile_buttons}>
                     {current_user?.login !== user?.login ?
                         <>
                             <Button onClick={create_dialog}>Write message</Button>
-                            <Button>Subscribe</Button>
+                            <Button
+                                style={isSubscribed && styles.subscribed}
+                                onClick={subscribe}>
+                                {isSubscribed ? 'Unsubscribe' : 'Subscribe'}
+                            </Button>
                         </> :
                         <>
                             <Button onClick={logout}>Logout</Button>
@@ -58,4 +85,4 @@ const mapStateToProps = (state) => ({
 })
 
 
-export default connect(mapStateToProps, {logoutUser, createDialog})(ProfileInfo)
+export default connect(mapStateToProps, {logoutUser, createDialog, subscribeUser})(ProfileInfo)

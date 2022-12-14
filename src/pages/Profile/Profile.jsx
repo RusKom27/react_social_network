@@ -9,28 +9,18 @@ import PostCreationInput from "./PostCreationInput/PostCreationInput";
 import {Loader, PostsList} from "../../components";
 
 import styles from "./Profile.module.scss"
+import {useUpdateWithDelay} from "../../hooks/useUpdateWithDelay";
 
 const Profile = ({getPosts, getUser}) => {
-    const user_login = useParams().login
-    let isUpdatePosts = true
+    const userLogin = useParams().login
+    useUpdateWithDelay(userLogin, getPosts, 1000)
+
     const user = useSelector(state => state.profile.user)
     const current_user = useSelector(state => state.auth.current_user)
 
-    const updatePosts = () => {
-        if (isUpdatePosts) {
-            getPosts(user_login)
-            setTimeout(updatePosts, 1000)
-        }
-    }
-
     useEffect(() => {
-        getUser(user_login)
-    }, [user_login])
-
-    useEffect(() => {
-        updatePosts()
-        return () => {isUpdatePosts = false}
-    })
+        getUser(userLogin)
+    }, [userLogin])
 
     window.scrollTo(0, 0);
 

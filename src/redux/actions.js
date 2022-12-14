@@ -53,3 +53,9 @@ export const setUser = (user) => ({
 export const logoutUser = () => ({
     type: ACTION.USER.LOGOUT_USER
 })
+
+export const subscribeUser = (user_login) => ({
+    type: ACTION.USER.SUBSCRIBE_USER,
+    user_login
+})
+

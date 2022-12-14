@@ -11,6 +11,11 @@ export const profileReducer = (state = initialState, action) => {
                 ...state,
                 user: action.user
             }
+        case ACTION.USER.SUBSCRIBE_USER:
+            return {
+                ...state,
+                user: action.user
+            }
         default:
             return state
     }

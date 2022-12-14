@@ -1,21 +1,11 @@
 import styles from "./Feed.module.scss"
 import {PostsList} from "../../components";
 import {connect} from "react-redux";
-import {getPosts} from "../../redux/thunk/post";
-import {useEffect} from "react";
+import {getPosts} from "../../redux/thunk";
+import {useUpdateWithDelay} from "../../hooks/useUpdateWithDelay";
 
 function Feed({getPosts}) {
-    let isUpdatePosts = true
-    const updatePosts = () => {
-        if (isUpdatePosts) {
-            getPosts()
-            setTimeout(updatePosts, 1000)
-        }
-    }
-    useEffect(() => {
-        updatePosts()
-        return () => {isUpdatePosts = false}
-    })
+    useUpdateWithDelay('', getPosts, 1000)
 
     return (
         <div className={styles.container}>

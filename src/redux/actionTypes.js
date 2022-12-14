@@ -14,6 +14,7 @@ export const ACTION = {
         LOGIN_USER: 'LOGIN_USER',
         SET_USER: 'SET_USER',
         LOGOUT_USER: 'LOGOUT_USER',
+        SUBSCRIBE_USER: 'SUBSCRIBE_USER',
     },
     MENU: {
         TOGGLE_MENU_TAB: 'TOGGLE_MENU_TAB',

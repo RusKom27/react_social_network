@@ -2,7 +2,7 @@ import {createRef, useState} from "react"
 import styles from "./PostCreationInput.module.scss"
 import {connect} from "react-redux";
 import {Button} from "../../../components";
-import {createPost} from "../../../redux/thunk/post";
+import {createPost} from "../../../redux/thunk";
 
 const PostCreationInput = ({createPost}) => {
     const [postInputText, setPostInputText] = useState('')

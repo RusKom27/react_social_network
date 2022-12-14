@@ -10,7 +10,7 @@ const makeRequest = ({
 }) => {
     if (headers.authorization) headers.authorization = config.token
     return axios({
-        url: config.server_url + url,
+        url: config.local_server_url + url,
         method,
         headers,
         params,

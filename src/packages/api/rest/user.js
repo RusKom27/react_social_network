@@ -33,6 +33,14 @@ export const UserAPI = {
                 password
             }
         })
+    },
+
+    subscribeUser(login) {
+        return makeRequest({
+            url: `api/user/subscribe/${login}`,
+            headers: {authorization: true},
+            method: 'PUT',
+        })
     }
 }
 
