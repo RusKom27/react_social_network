@@ -9,7 +9,12 @@ export const getUser = (login) => (dispatch) => {
 
 export const subscribeUser = (login) => (dispatch) => {
     UserAPI.subscribeUser(login).then(user => {
-        console.log(user)
         dispatch(subscribeUserAction(user.data))
+    })
+}
+
+export const updateUser = (user) => (dispatch) => {
+    UserAPI.updateUser(user).then(user => {
+        dispatch(setUser(user.data))
     })
 }

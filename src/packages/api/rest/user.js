@@ -35,6 +35,17 @@ export const UserAPI = {
         })
     },
 
+    updateUser(user) {
+        return makeRequest({
+            url: 'api/user/update',
+            headers: {authorization: true},
+            method: 'POST',
+            data: {
+                ...user
+            }
+        })
+    },
+
     subscribeUser(login) {
         return makeRequest({
             url: `api/user/subscribe/${login}`,

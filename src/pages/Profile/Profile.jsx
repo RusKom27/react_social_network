@@ -13,7 +13,7 @@ import {useUpdateWithDelay} from "../../hooks/useUpdateWithDelay";
 
 const Profile = ({getPosts, getUser}) => {
     const userLogin = useParams().login
-    useUpdateWithDelay(userLogin, getPosts, 1000)
+    // useUpdateWithDelay(userLogin, getPosts, 1000)
 
     const user = useSelector(state => state.profile.user)
     const current_user = useSelector(state => state.auth.current_user)

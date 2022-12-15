@@ -1,15 +1,14 @@
-import React from "react"
+import React, {useEffect} from "react"
 import {connect, useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
 
-import {Button} from "../../../components";
+import {Button, Image, ImageLoader} from "../../../components";
 import {logoutUser} from "../../../redux/actions";
-import {createDialog, subscribeUser} from "../../../redux/thunk";
+import {createDialog, subscribeUser, updateUser} from "../../../redux/thunk";
 
 import styles from "./ProfileInfo.module.scss"
-import {ImageAPI} from "../../../packages/api/rest/image";
 
-function ProfileInfo({user, logoutUser, createDialog, subscribeUser}) {
+function ProfileInfo({user, logoutUser, createDialog, subscribeUser, updateUser}) {
     const navigate = useNavigate()
     const current_user = useSelector(state => state.auth.current_user)
     const isSubscribed = user?.subscribers.includes(current_user?._id)
@@ -26,16 +25,20 @@ function ProfileInfo({user, logoutUser, createDialog, subscribeUser}) {
     const subscribe = () => {
         subscribeUser(user.login)
     }
+    useEffect(() => {
+        console.log("draw")
+    }, [user])
+    const on_load = (image) => {
+        console.log(image.data)
+        updateUser({
+            images: {
+                avatar_image: {
+                    big: image.data.name,
+                    small: image.data.name
+                }
+            }
+        })
 
-    const send_image = (event) => {
-        event.preventDefault()
-        let formData = new FormData();
-        let imageFile = event.target['image'];
-        console.log(imageFile.files[0]);
-        const fileType = imageFile.files[0].name.split('.').at(-1)
-        const fileName = `${current_user.login}_avatar.${fileType}`
-        formData.append("image", imageFile.files[0], fileName);
-        ImageAPI.sendImage(formData)
     }
 
     return (
@@ -44,7 +47,7 @@ function ProfileInfo({user, logoutUser, createDialog, subscribeUser}) {
                 <img src={'http://localhost:3000/images/rocky.png'} alt=""/>
             </div>
             <div className={styles.user_image}>
-                <img src={`https://social-network-server-rho.vercel.app/images/${user.images?.avatar_image.small}`} alt=""/>
+                <Image image_name={user?.images?.avatar_image.small}/>
             </div>
             <div className={styles.profile}>
                 <div className={styles.profile_info}>
@@ -56,12 +59,6 @@ function ProfileInfo({user, logoutUser, createDialog, subscribeUser}) {
                     </div>
                     <div>
                         subscribers: {user?.subscribers.length}
-                    </div>
-                    <div>
-                        <form onSubmit={send_image}>
-                            <input name={"image"} type="file"/>
-                            <Button type={"submit"}>Send</Button>
-                        </form>
                     </div>
                 </div>
                 <div className={styles.profile_buttons}>
@@ -76,6 +73,7 @@ function ProfileInfo({user, logoutUser, createDialog, subscribeUser}) {
                         </> :
                         <>
                             <Button onClick={logout}>Logout</Button>
+                            <ImageLoader onLoad={on_load} user_login={user.login}/>
                         </>
                     }
                 </div>
@@ -84,8 +82,9 @@ function ProfileInfo({user, logoutUser, createDialog, subscribeUser}) {
     )
 }
 
-const mapStateToProps = (state) => ({
-})
+const mapStateToProps = (state) => ({})
 
-
-export default connect(mapStateToProps, {logoutUser, createDialog, subscribeUser})(ProfileInfo)
+export default connect(
+    mapStateToProps,
+    {logoutUser, createDialog, subscribeUser, updateUser}
+)(ProfileInfo)

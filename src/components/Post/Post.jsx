@@ -8,6 +8,7 @@ import {connect, useSelector} from "react-redux";
 import {DropdownMenu} from "../misc/DropdownMenu/DropdownMenu";
 import {Link} from "react-router-dom";
 import {likePost, removePost} from "../../redux/thunk/post";
+import {Image} from "../misc/Image/Image";
 
 
 const Post = memo(({post, likePost, removePost}) => {
@@ -20,7 +21,7 @@ const Post = memo(({post, likePost, removePost}) => {
         <div id={post._id} className={styles.post}>
             <div>
                 <Link to={`../../profile/${post.user.login}`}>
-                    <img src={user_image} alt=""/>
+                    <Image image_name={post.user.images.avatar_image.small}/>
                 </Link>
             </div>
             <div>
