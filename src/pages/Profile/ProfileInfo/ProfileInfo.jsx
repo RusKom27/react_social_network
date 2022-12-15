@@ -31,7 +31,10 @@ function ProfileInfo({user, logoutUser, createDialog, subscribeUser}) {
         event.preventDefault()
         let formData = new FormData();
         let imageFile = event.target['image'];
-        formData.append("image", imageFile.files[0]);
+        console.log(imageFile.files[0]);
+        const fileType = imageFile.files[0].name.split('.').at(-1)
+        const fileName = `${current_user.login}_avatar.${fileType}`
+        formData.append("image", imageFile.files[0], fileName);
         ImageAPI.sendImage(formData)
     }
 
@@ -41,7 +44,7 @@ function ProfileInfo({user, logoutUser, createDialog, subscribeUser}) {
                 <img src={'http://localhost:3000/images/rocky.png'} alt=""/>
             </div>
             <div className={styles.user_image}>
-                <img src={'http://localhost:3000/images/d3db568933ab6e7d2a7920709236bfb7.png'} alt=""/>
+                <img src={`https://social-network-server-rho.vercel.app/images/${user.images?.avatar_image.small}`} alt=""/>
             </div>
             <div className={styles.profile}>
                 <div className={styles.profile_info}>
