@@ -3,9 +3,13 @@ import {PostsList} from "../../components";
 import {connect} from "react-redux";
 import {getPosts} from "../../redux/thunk";
 import {useUpdateWithDelay} from "../../hooks/useUpdateWithDelay";
+import {useEffect} from "react";
 
 function Feed({getPosts}) {
-    useUpdateWithDelay('', getPosts, 1000)
+    useEffect(() => {
+        getPosts()
+    }, [])
+    // useUpdateWithDelay('', getPosts, 1000)
 
     return (
         <div className={styles.container}>

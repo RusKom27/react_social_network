@@ -24,7 +24,7 @@ export const postsReducer = (state = initialState, action) => {
                 ...state,
                 posts: state.posts?.map(post => {
                     if (action.post._id === post.id)
-                        post = action.post
+                        return action.post
                     return post
                 })
             }

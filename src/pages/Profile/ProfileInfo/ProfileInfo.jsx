@@ -25,9 +25,7 @@ function ProfileInfo({user, logoutUser, createDialog, subscribeUser, updateUser}
     const subscribe = () => {
         subscribeUser(user.login)
     }
-    useEffect(() => {
-        console.log("draw")
-    }, [user])
+
     const on_load = (image) => {
         console.log(image.data)
         updateUser({

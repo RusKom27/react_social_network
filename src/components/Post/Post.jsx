@@ -1,17 +1,16 @@
-import React, {memo, useCallback} from "react"
+import React from "react"
 import styles from "./Post.module.scss"
 import image_placeholder from "../../images/image-placeholder1.png"
-import user_image from "../../images/user_image.jpg"
 import {ReactComponent as LikeEnabled} from "../../images/heart-fill.svg";
 import {ReactComponent as LikeDisabled} from "../../images/heart.svg";
 import {connect, useSelector} from "react-redux";
 import {DropdownMenu} from "../misc/DropdownMenu/DropdownMenu";
 import {Link} from "react-router-dom";
-import {likePost, removePost} from "../../redux/thunk/post";
+import {likePost, removePost} from "../../redux/thunk";
 import {Image} from "../misc/Image/Image";
 
 
-const Post = memo(({post, likePost, removePost}) => {
+const Post = ({post, likePost, removePost}) => {
     const currentUserId = useSelector(state => state.auth.token)
     const liked = post.likes.indexOf(currentUserId) > -1
     const like = () => likePost(post._id)
@@ -49,7 +48,7 @@ const Post = memo(({post, likePost, removePost}) => {
             </div>
         </div>
     )
-})
+}
 
 const mapStateToProps = state => ({})
 

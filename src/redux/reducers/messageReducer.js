@@ -1,7 +1,6 @@
 import {ACTION} from "../actionTypes";
 
 const initialState = {
-
     dialogs: null,
     messages: null
 }
