@@ -8,18 +8,9 @@ import {useEffect} from "react";
 
 const Dialog = ({getMessages}) => {
     const {dialog_id} = useParams()
-    let isUpdateMessages = true
-
-    const updateMessages = () => {
-        if (isUpdateMessages) {
-            getMessages(dialog_id)
-            setTimeout(updateMessages, 1000)
-        }
-    }
 
     useEffect(() => {
-        updateMessages()
-        return () => {isUpdateMessages = false}
+        getMessages(dialog_id)
     })
 
     return (

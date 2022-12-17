@@ -4,7 +4,7 @@ import DialogList from "./DialogList/DialogList";
 import {useWindowDimensions} from "../../hooks/useWindowDimensions";
 import {connect} from "react-redux";
 import {useEffect} from "react";
-import {getDialogs} from "../../redux/thunk/dialog";
+import {getDialogs} from "../../redux/thunk";
 
 function Messages({getDialogs, messages}) {
     const {width} = useWindowDimensions()

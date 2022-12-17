@@ -1,9 +1,8 @@
 import styles from "./MessageList.module.scss"
 import {connect, useSelector} from "react-redux";
-import {Message} from "../../../../components";
-import {Loader} from "../../../../components/misc/Loader/Loader";
+import {Message, Loader} from "../../../../components";
 
-function MessageList() {
+function MessageList({dialog_id}) {
     const messages = useSelector(state => {
         return state.messages.messages
     })

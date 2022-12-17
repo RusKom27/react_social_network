@@ -3,6 +3,7 @@ import {ACTION} from "../actionTypes";
 const initialState = {
     dialogs: null,
     messages: null
+
 }
 
 const messageReducer = (state = initialState, action) => {
@@ -17,6 +18,7 @@ const messageReducer = (state = initialState, action) => {
                 ]
             }
         case ACTION.MESSAGE.SET_MESSAGES:
+            console.log(action.messages)
             return {
                 ...state,
                 messages: action.messages

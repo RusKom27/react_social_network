@@ -16,5 +16,13 @@ export const MessageAPI = {
             headers: {authorization: true},
             method: 'GET',
         })
+    },
+
+    newGetMessages() {
+        return makeRequest({
+            url: `api/message`,
+            headers: {authorization: true},
+            method: 'GET',
+        })
     }
 }
