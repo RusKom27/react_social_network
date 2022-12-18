@@ -4,13 +4,12 @@ import DialogList from "./DialogList/DialogList";
 import {useWindowDimensions} from "../../hooks/useWindowDimensions";
 import {connect} from "react-redux";
 import {useEffect} from "react";
-import {getDialogs} from "../../redux/thunk";
 
-function Messages({getDialogs, messages}) {
+function Messages({messages}) {
     const {width} = useWindowDimensions()
     const {dialog_id} = useParams()
     useEffect(() => {
-        getDialogs()
+        // getDialogs()
     }, [messages])
 
     return (
@@ -22,7 +21,7 @@ function Messages({getDialogs, messages}) {
 }
 
 const mapStateToProps = (state) => ({
-    messages: state.messages.messages
+    messages: state.messages.dialogs
 })
 
-export default connect(mapStateToProps, {getDialogs})(Messages)
+export default connect(mapStateToProps)(Messages)

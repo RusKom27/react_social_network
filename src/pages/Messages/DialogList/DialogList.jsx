@@ -3,16 +3,16 @@ import styles from "./DialogList.module.scss"
 import {DialogListItem} from "./DialogListItem/DialogListItem";
 import {connect} from "react-redux";
 import {setDialogs, toggleMenuTab} from "../../../redux/actions";
-import {Loader} from "../../../components/misc/Loader/Loader";
+import {Loader} from "../../../components";
 
 const DialogList = ({dialogs, toggleMenuTab}) => {
     if (!dialogs) return <Loader/>
     const dialogsList = dialogs.map(dialog => {
         if (dialog) return <DialogListItem
-                key={dialog.id}
-                id={dialog.id}
-                member={dialog.members[1]}
-                message={dialog.message}
+                key={dialog._id}
+                id={dialog._id}
+                member={dialog.members[0]}
+                message={dialog.messages.at(-1)}
                 toggleMenuTab={toggleMenuTab}
             />
         }

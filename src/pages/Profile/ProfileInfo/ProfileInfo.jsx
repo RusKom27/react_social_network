@@ -1,4 +1,4 @@
-import React, {useEffect} from "react"
+import React from "react"
 import {connect, useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
 
@@ -27,7 +27,6 @@ function ProfileInfo({user, logoutUser, createDialog, subscribeUser, updateUser}
     }
 
     const on_load = (image) => {
-        console.log(image.data)
         updateUser({
             images: {
                 avatar_image: {
@@ -36,7 +35,6 @@ function ProfileInfo({user, logoutUser, createDialog, subscribeUser, updateUser}
                 }
             }
         })
-
     }
 
     return (

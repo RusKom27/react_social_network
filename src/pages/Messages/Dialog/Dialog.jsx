@@ -9,10 +9,6 @@ import {useEffect} from "react";
 const Dialog = ({getMessages}) => {
     const {dialog_id} = useParams()
 
-    useEffect(() => {
-        getMessages(dialog_id)
-    })
-
     return (
         <div className={styles.current_dialog}>
             <MessageList dialog_id={dialog_id}/>

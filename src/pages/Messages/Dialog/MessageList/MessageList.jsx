@@ -4,7 +4,7 @@ import {Message, Loader} from "../../../../components";
 
 function MessageList({dialog_id}) {
     const messages = useSelector(state => {
-        return state.messages.messages
+        return state.messages.dialogs?.find(dialog => dialog?._id === dialog_id)?.messages
     })
 
     if (!messages) return <Loader/>

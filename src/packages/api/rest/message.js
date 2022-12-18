@@ -10,18 +10,22 @@ export const MessageAPI = {
         })
     },
 
-    getMessages(dialog_id) {
+    createDialog(member_id) {
         return makeRequest({
-            url: `api/message/${dialog_id}`,
+            url: 'api/message/create_dialog',
+            method: 'POST',
             headers: {authorization: true},
-            method: 'GET',
+            data: {members_id: [member_id]}
         })
     },
 
-    newGetMessages() {
+    getMessages(initial) {
         return makeRequest({
             url: `api/message`,
-            headers: {authorization: true},
+            headers: {
+                authorization: true,
+                initial: initial ? "true" : "false"
+            },
             method: 'GET',
         })
     }
