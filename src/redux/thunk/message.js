@@ -1,20 +1,11 @@
 import {MessageAPI} from "../../packages/api/rest/message";
 import {addMessage, setMessages} from "../actions";
-import {messageEventStream} from "../../packages/api";
 
-export const connectMessageEventStream = () => (dispatch) => {
-    const onConnect = (message) => {
-        console.log(`Connected ${message}`)
-        dispatch(setMessages(message))
-    }
-
-    const onMessage = (message) => {
-        console.log(message)
-        dispatch(setMessages(message))
-    }
-
-
-    messageEventStream.connect(onConnect, onMessage)
+export const getMessages = () => (dispatch) => {
+    MessageAPI.getMessages().then(messages => {
+        console.log(messages.data)
+        dispatch(setMessages(messages.data))
+    })
 }
 
 export const createMessage = (dialog_id, messageText) => (dispatch) => {

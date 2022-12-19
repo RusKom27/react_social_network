@@ -19,12 +19,11 @@ export const MessageAPI = {
         })
     },
 
-    getMessages(initial) {
+    getMessages() {
         return makeRequest({
             url: `api/message`,
             headers: {
-                authorization: true,
-                initial: initial ? "true" : "false"
+                authorization: true
             },
             method: 'GET',
         })

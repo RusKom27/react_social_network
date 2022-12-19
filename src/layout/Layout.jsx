@@ -4,16 +4,20 @@ import {Outlet, useNavigate} from "react-router-dom"
 import styles from "./Layout.module.scss"
 import {connect, useSelector} from "react-redux";
 import {config} from "../packages/api/config";
-import {authUserByToken, connectMessageEventStream} from "../redux/thunk";
-import {messageEventStream} from "../packages/api";
+import {authUserByToken, getMessages} from "../redux/thunk";
+import {useChannel} from "@ably-labs/react-hooks";
 
-const Layout = ({authUserByToken, connectMessageEventStream}) => {
+
+const Layout = ({authUserByToken, getMessages}) => {
+    const [channel, ably] = useChannel("messages", (message) => {
+        console.log(message);
+    });
     const navigate = useNavigate()
     const token = useSelector(state => state.auth.token)
 
     config.token = token
     useEffect(() => {
-        connectMessageEventStream()
+        getMessages()
         if (token) authUserByToken()
         else navigate("/auth/login")
     }, [token])
@@ -32,4 +36,4 @@ const Layout = ({authUserByToken, connectMessageEventStream}) => {
 const mapStateToProps = (state) => ({
 })
 
-export default connect(mapStateToProps, {authUserByToken, connectMessageEventStream})(Layout)
+export default connect(mapStateToProps, {authUserByToken, getMessages})(Layout)
