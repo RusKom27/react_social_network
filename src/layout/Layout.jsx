@@ -4,16 +4,16 @@ import {Outlet, useNavigate} from "react-router-dom"
 import styles from "./Layout.module.scss"
 import {connect, useSelector} from "react-redux";
 import {config} from "../packages/api/config";
-import {authUserByToken, getMessages} from "../redux/thunk";
+import {authUserByToken, connectMessageEventStream} from "../redux/thunk";
+import {messageEventStream} from "../packages/api";
 
-const Layout = ({authUserByToken, getMessages}) => {
+const Layout = ({authUserByToken, connectMessageEventStream}) => {
     const navigate = useNavigate()
     const token = useSelector(state => state.auth.token)
 
     config.token = token
     useEffect(() => {
-        getMessages()
-        getMessages(false)
+        connectMessageEventStream()
         if (token) authUserByToken()
         else navigate("/auth/login")
     }, [token])
@@ -32,4 +32,4 @@ const Layout = ({authUserByToken, getMessages}) => {
 const mapStateToProps = (state) => ({
 })
 
-export default connect(mapStateToProps, {authUserByToken, getMessages})(Layout)
+export default connect(mapStateToProps, {authUserByToken, connectMessageEventStream})(Layout)

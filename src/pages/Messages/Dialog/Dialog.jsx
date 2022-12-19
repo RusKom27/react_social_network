@@ -3,10 +3,8 @@ import {useParams} from "react-router-dom";
 import MessageInput from "./MessageInput/MessageInput";
 import MessageList from "./MessageList/MessageList";
 import {connect} from "react-redux";
-import {getMessages} from "../../../redux/thunk";
-import {useEffect} from "react";
 
-const Dialog = ({getMessages}) => {
+const Dialog = () => {
     const {dialog_id} = useParams()
 
     return (
@@ -20,4 +18,4 @@ const Dialog = ({getMessages}) => {
 const mapStateToProps = (state) => ({
 })
 
-export default connect(mapStateToProps, {getMessages})(Dialog)
+export default connect(mapStateToProps)(Dialog)
