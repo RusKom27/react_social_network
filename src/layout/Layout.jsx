@@ -6,11 +6,12 @@ import {connect, useSelector} from "react-redux";
 import {config} from "../packages/api/config";
 import {authUserByToken, getMessages} from "../redux/thunk";
 import {useChannel} from "@ably-labs/react-hooks";
+import {setMessages} from "../redux/actions";
 
 
-const Layout = ({authUserByToken, getMessages}) => {
-    const [channel, ably] = useChannel("messages", (message) => {
-        console.log(message);
+const Layout = ({authUserByToken, getMessages, setMessages}) => {
+    const [channel, ably] = useChannel("messages", (messages) => {
+        setMessages(messages.data)
     });
     const navigate = useNavigate()
     const token = useSelector(state => state.auth.token)
@@ -36,4 +37,4 @@ const Layout = ({authUserByToken, getMessages}) => {
 const mapStateToProps = (state) => ({
 })
 
-export default connect(mapStateToProps, {authUserByToken, getMessages})(Layout)
+export default connect(mapStateToProps, {authUserByToken, getMessages, setMessages})(Layout)

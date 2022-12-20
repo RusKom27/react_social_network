@@ -15,7 +15,7 @@ export const Image = ({image_name}) => {
 
     return (
         <div className={styles.image}>
-            <img src={`data:${image.type};base64,${image.data}`} alt=""/>
+            {image.data && <img src={`data:${image.type};base64,${image.data}`} alt=""/>}
         </div>
     )
 }
