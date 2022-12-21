@@ -1,4 +1,4 @@
-import {PostAPI} from "../../packages/api/rest/post";
+import {PostAPI} from "../../packages/api";
 import {addPost, deletePost, setPosts, updatePost} from "../actions";
 import {CHANNEL, subscribeToChannel} from "../../packages/ably";
 

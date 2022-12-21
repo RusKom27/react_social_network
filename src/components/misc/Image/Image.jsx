@@ -1,21 +1,25 @@
 import styles from "./Image.module.scss"
-import {ImageAPI} from "../../../packages/api/rest/image";
-import {useEffect, useState} from "react";
+import {connect, useSelector} from "react-redux";
+import {getImage} from "../../../redux/thunk/image";
+import {useEffect} from "react";
 
-export const Image = ({image_name}) => {
-    const [image, setImage] = useState({data: '', type: ''})
+const Image = ({image_name, getImage}) => {
+    const image = useSelector(state => state.images.images[image_name])
+
     useEffect(() => {
-        ImageAPI.getImage(image_name).then(image => {
-            setImage({
-                data: image.data.image,
-                type: image.data.contentType
-            })
-        })
-    }, [image_name])
+        if (!image) {
+            getImage(image_name)
+        }
+    })
 
     return (
         <div className={styles.image}>
-            {image.data && <img src={`data:${image.type};base64,${image.data}`} alt=""/>}
+            {image?.image && <img src={`data:${image.contentType};base64,${image.image}`} alt=""/>}
         </div>
     )
 }
+
+export default connect(
+    ()=>({}),
+    {getImage}
+)(Image)

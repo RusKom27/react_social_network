@@ -1,4 +1,4 @@
-import {MessageAPI} from "../../packages/api/rest/message";
+import {MessageAPI} from "../../packages/api";
 import {addDialog, addMessage, setMessages, updateDialog} from "../actions";
 import {CHANNEL, subscribeToChannel} from "../../packages/ably";
 

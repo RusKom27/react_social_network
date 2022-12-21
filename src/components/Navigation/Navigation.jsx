@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react"
+import React from "react"
 import {ReactComponent as MessageSVG} from "../../images/message.svg"
 import {ReactComponent as ProfileSVG} from "../../images/profile.svg"
 import {ReactComponent as SettingsSVG} from "../../images/settings.svg"

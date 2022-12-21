@@ -1,4 +1,4 @@
-import {UserAPI} from "../../packages/api/rest/user";
+import {UserAPI} from "../../packages/api";
 import {loginUser} from "../actions";
 
 export const authUser = (email, password, then) => (dispatch) => {

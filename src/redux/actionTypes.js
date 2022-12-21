@@ -19,5 +19,8 @@ export const ACTION = {
     },
     MENU: {
         TOGGLE_MENU_TAB: 'TOGGLE_MENU_TAB',
+    },
+    IMAGE: {
+        ADD_IMAGE: 'ADD_IMAGE'
     }
 }

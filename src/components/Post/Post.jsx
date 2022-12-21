@@ -7,7 +7,7 @@ import {connect, useSelector} from "react-redux";
 import {DropdownMenu} from "../misc/DropdownMenu/DropdownMenu";
 import {Link} from "react-router-dom";
 import {likePost, removePost} from "../../redux/thunk";
-import {Image} from "../misc/Image/Image";
+import Image from "../misc/Image/Image";
 
 
 const Post = ({post, likePost, removePost}) => {
@@ -43,7 +43,7 @@ const Post = ({post, likePost, removePost}) => {
                 </div>
                 <div className={styles.like_section}>
                     <button onClick={like}>{liked ? <LikeEnabled/> : <LikeDisabled/>}</button>
-                    <div>Likes: {post.likes.length}</div>
+                    <div>{post.likes.length}</div>
                 </div>
             </div>
         </div>

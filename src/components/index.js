@@ -5,7 +5,7 @@ import PostsList from "./PostsList/PostsList";
 import Post from "./Post/Post";
 import {Message} from "./Message/Message";
 import {Button} from "./misc/Button/Button";
-import {Image} from "./misc/Image/Image";
+import Image from "./misc/Image/Image";
 import {ImageLoader} from "./misc/ImageLoader/ImageLoader";
 import {DropdownMenu} from "./misc/DropdownMenu/DropdownMenu";
 import {Redirect} from "./misc/Redirect/Redirect";

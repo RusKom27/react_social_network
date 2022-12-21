@@ -1,4 +1,4 @@
-import {UserAPI} from "../../packages/api/rest/user";
+import {UserAPI} from "../../packages/api";
 import {setUser, subscribeUser as subscribeUserAction} from "../actions";
 
 export const getUser = (login) => (dispatch) => {
