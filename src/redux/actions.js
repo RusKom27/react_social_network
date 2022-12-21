@@ -36,9 +36,9 @@ export const updatePost = (post) => ({
     post
 })
 
-export const deletePost = (post_id) => ({
+export const deletePost = (post) => ({
     type: ACTION.POST.DELETE_POST,
-    post_id
+    post
 })
 
 export const toggleMenuTab = (flag=undefined) => ({

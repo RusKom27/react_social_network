@@ -7,6 +7,7 @@ const initialState = {
 export const postsReducer = (state = initialState, action) => {
     switch (action.type) {
         case ACTION.POST.ADD_POST:
+            console.log(action)
             return {
                 ...state,
                 posts: [
@@ -23,7 +24,7 @@ export const postsReducer = (state = initialState, action) => {
             return {
                 ...state,
                 posts: state.posts?.map(post => {
-                    if (action.post._id === post.id)
+                    if (action.post._id === post._id)
                         return action.post
                     return post
                 })
@@ -31,9 +32,7 @@ export const postsReducer = (state = initialState, action) => {
         case ACTION.POST.DELETE_POST:
             return {
                 ...state,
-                posts: state.posts.filter(post => {
-                    if (action.post_id !== post.id) return post
-                })
+                posts: state.posts.filter(post => action.post._id !== post._id)
             }
         default:
             return state

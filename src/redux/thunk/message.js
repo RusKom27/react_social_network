@@ -1,9 +1,9 @@
 import {MessageAPI} from "../../packages/api/rest/message";
 import {addDialog, addMessage, setMessages, updateDialog} from "../actions";
-import {CHANNEL, getChannel} from "../../packages/ably";
+import {CHANNEL, subscribeToChannel} from "../../packages/ably";
 
 export const getMessages = () => (dispatch) => {
-    getChannel(CHANNEL.MESSAGES).subscribe(message => {
+    subscribeToChannel(CHANNEL.MESSAGES, message => {
         switch (message.name) {
             case 'new_message':
                 dispatch(updateDialog(message.data))

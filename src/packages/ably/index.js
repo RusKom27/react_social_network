@@ -1,2 +1,2 @@
-export {getChannel} from "./getChannel"
+export {subscribeToChannel} from "./subscribeToChannel"
 export {CHANNEL} from "./channelTypes"

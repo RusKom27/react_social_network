@@ -1,3 +1,4 @@
 export const CHANNEL = {
-    MESSAGES: "messages"
+    MESSAGES: "messages",
+    POSTS: "posts",
 }
