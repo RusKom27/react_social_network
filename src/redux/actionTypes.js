@@ -2,7 +2,8 @@ export const ACTION = {
     MESSAGE: {
         ADD_MESSAGE: 'ADD_MESSAGE',
         SET_MESSAGES: 'SET_MESSAGES',
-        SET_DIALOGS: 'SET_DIALOGS',
+        UPDATE_DIALOG: 'UPDATE_DIALOG',
+        ADD_DIALOG: 'ADD_DIALOG',
     },
     POST: {
         ADD_POST: 'ADD_POST',

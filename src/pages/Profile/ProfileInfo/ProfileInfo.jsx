@@ -19,7 +19,7 @@ function ProfileInfo({user, logoutUser, createDialog, subscribeUser, updateUser}
     }
 
     const create_dialog = () => {
-        createDialog(user?._id, dialog => navigate(`../../messages/${dialog.data._id}`))
+        createDialog(user._id, dialog => navigate(`../../messages/${dialog.data._id}`))
     }
 
     const subscribe = () => {

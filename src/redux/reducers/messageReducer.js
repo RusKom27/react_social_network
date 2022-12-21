@@ -26,6 +26,25 @@ const messageReducer = (state = initialState, action) => {
                 ...state,
                 dialogs: action.messages
             }
+        case ACTION.MESSAGE.UPDATE_DIALOG:
+            return {
+                ...state,
+                dialogs: state.dialogs.map(dialog => {
+                    if (dialog._id === action.dialog._id)
+                        return action.dialog
+                    return dialog
+                })
+            }
+        case ACTION.MESSAGE.ADD_DIALOG:
+            console.log(action)
+            return {
+                ...state,
+                dialogs: [
+                    ...state.dialogs,
+                    action.dialog
+                ]
+            }
+
         default:
             return state
     }

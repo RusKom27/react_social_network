@@ -1,9 +1,20 @@
 import {MessageAPI} from "../../packages/api/rest/message";
-import {addMessage, setMessages} from "../actions";
+import {addDialog, addMessage, setMessages, updateDialog} from "../actions";
+import {CHANNEL, getChannel} from "../../packages/ably";
 
 export const getMessages = () => (dispatch) => {
+    getChannel(CHANNEL.MESSAGES).subscribe(message => {
+        switch (message.name) {
+            case 'new_message':
+                dispatch(updateDialog(message.data))
+                break
+            case 'new_dialog':
+                dispatch(addDialog(message.data))
+                break
+        }
+    })
+
     MessageAPI.getMessages().then(messages => {
-        console.log(messages.data)
         dispatch(setMessages(messages.data))
     })
 }

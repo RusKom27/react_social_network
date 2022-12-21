@@ -10,9 +10,15 @@ export const setMessages = (messages) => ({
     messages
 })
 
-export const setDialogs = (dialogs) => ({
-    type: ACTION.MESSAGE.SET_DIALOGS,
-    dialogs
+export const updateDialog = (dialog) => ({
+    type: ACTION.MESSAGE.UPDATE_DIALOG,
+    dialog
+})
+
+
+export const addDialog = (dialog) => ({
+    type: ACTION.MESSAGE.ADD_DIALOG,
+    dialog
 })
 
 export const addPost = (post) => ({

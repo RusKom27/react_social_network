@@ -9,14 +9,11 @@ import PostCreationInput from "./PostCreationInput/PostCreationInput";
 import {Loader, PostsList} from "../../components";
 
 import styles from "./Profile.module.scss"
-import {useUpdateWithDelay} from "../../hooks/useUpdateWithDelay";
-import {PostAPI} from "../../packages/api/rest/post";
 
 const Profile = ({getPosts, getUser}) => {
     const userLogin = useParams().login
     const user = useSelector(state => state.profile.user)
     const current_user = useSelector(state => state.auth.current_user)
-    // useUpdateWithDelay(userLogin, getPosts, 1000)
 
     useEffect(() => {
         getPosts(userLogin)

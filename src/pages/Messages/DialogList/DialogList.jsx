@@ -2,7 +2,7 @@ import React from "react"
 import styles from "./DialogList.module.scss"
 import {DialogListItem} from "./DialogListItem/DialogListItem";
 import {connect} from "react-redux";
-import {setDialogs, toggleMenuTab} from "../../../redux/actions";
+import {toggleMenuTab} from "../../../redux/actions";
 import {Loader} from "../../../components";
 
 const DialogList = ({dialogs, toggleMenuTab}) => {
@@ -32,4 +32,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, {toggleMenuTab, setDialogs})(DialogList)
+export default connect(mapStateToProps, {toggleMenuTab})(DialogList)
