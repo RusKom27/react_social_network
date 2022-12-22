@@ -7,13 +7,17 @@ import {connect} from "react-redux";
 
 const PostsList = ({posts}) => {
     if (!posts) return <Loader/>
-    let postComponents = posts.map((post) => <Post key={post._id} post={post}/>)
+    let postComponents = posts.map((post) => <Post key={post._id} post={post}/>).reverse()
 
     return (
-        <div>
-            <h2>Posts</h2>
+        <div className={styles.container}>
             <div className={styles.posts_list}>
                 {postComponents}
+            </div>
+            <div className={styles.right_bar}>
+                <div className={"sticky"}>
+                    Right Bar
+                </div>
             </div>
         </div>
     )

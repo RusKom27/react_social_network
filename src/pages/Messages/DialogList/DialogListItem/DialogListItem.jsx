@@ -1,6 +1,7 @@
 import React from "react"
-import styles from "./DialogListItem.module.scss"
 import {NavLink} from "react-router-dom";
+
+import styles from "./DialogListItem.module.scss"
 
 function DialogListItem({id, message, member, toggleMenuTab}) {
     const activeClassName = ({isActive}) => isActive ? styles.active : undefined

@@ -1,7 +1,30 @@
 @import "../../index";
 
-.posts_list {
+.container {
   display: flex;
-  flex-direction: column-reverse;
+  top:0;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.posts_list {
+  flex: 11;
+  display: flex;
+  flex-flow: revert;
+  flex-direction: column;
   gap: 16px;
+}
+
+.right_bar {
+  flex: 4;
+  display: flex;
+  overflow: visible;
+
+  > div {
+    flex: 1;
+    position: sticky;
+    top: calc($header-height + 20px);
+    height: 600px;
+    background-color: $color2;
+  }
 }

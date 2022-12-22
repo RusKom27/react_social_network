@@ -1,16 +1,14 @@
-import styles from "./Messages.module.scss"
 import {Outlet, useParams} from "react-router-dom";
+import {connect} from "react-redux";
+
 import DialogList from "./DialogList/DialogList";
 import {useWindowDimensions} from "../../hooks/useWindowDimensions";
-import {connect} from "react-redux";
-import {useEffect} from "react";
 
-function Messages({messages}) {
+import styles from "./Messages.module.scss"
+
+function Messages() {
     const {width} = useWindowDimensions()
     const {dialog_id} = useParams()
-    useEffect(() => {
-        // getDialogs()
-    }, [messages])
 
     return (
         <div className={styles.container}>
