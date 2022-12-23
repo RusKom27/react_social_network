@@ -21,8 +21,8 @@ export const getPosts = (user_login = "") => (dispatch) => {
     })
 }
 
-export const createPost = (postText) => (dispatch) => {
-    PostAPI.createPost(postText).then(post => {})
+export const createPost = (postText) => () => {
+    PostAPI.createPost(postText)
 }
 
 export const likePost = (post_id) => (dispatch) => {

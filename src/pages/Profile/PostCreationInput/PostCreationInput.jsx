@@ -34,6 +34,6 @@ const PostCreationInput = ({createPost}) => {
     )
 }
 
-const mapStateToProps = (state) => ({})
+const mapStateToProps = () => ({})
 
 export default connect(mapStateToProps, {createPost})(PostCreationInput)

@@ -7,14 +7,19 @@ let initialState = {
 
 export const authReducer = (state = initialState, action) => {
     switch (action.type) {
-        case ACTION.USER.LOGIN_USER:
+        case ACTION.AUTH.LOGIN_USER:
             localStorage.setItem("token", action.user._id)
             return {
                 ...state,
                 token: action.user._id,
                 current_user: action.user
             }
-        case ACTION.USER.LOGOUT_USER:
+        case ACTION.AUTH.SET_CURRENT_USER:
+            return {
+                ...state,
+                current_user: action.user
+            }
+        case ACTION.AUTH.LOGOUT_USER:
             localStorage.clear()
             return {
                 current_user: null,

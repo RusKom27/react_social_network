@@ -35,13 +35,13 @@ export const UserAPI = {
         })
     },
 
-    updateUser(user) {
+    updateUser(props) {
         return makeRequest({
             url: 'api/user/update',
             headers: {authorization: true},
             method: 'POST',
             data: {
-                ...user
+                ...props
             }
         })
     },

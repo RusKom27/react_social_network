@@ -37,7 +37,7 @@ const Profile = ({getPosts, getUser}) => {
     )
 }
 
-const mapStateToProps = (state) => ({})
+const mapStateToProps = () => ({})
 
 export default connect(
     mapStateToProps,

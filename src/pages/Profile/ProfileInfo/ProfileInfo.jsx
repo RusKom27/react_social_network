@@ -8,7 +8,7 @@ import {createDialog, subscribeUser, updateUser} from "../../../redux/thunk";
 
 import styles from "./ProfileInfo.module.scss"
 
-function ProfileInfo({user, logoutUser, createDialog, subscribeUser, updateUser}) {
+function ProfileInfo({user, logoutUser, createDialog, subscribeUser}) {
     const navigate = useNavigate()
     const current_user = useSelector(state => state.auth.current_user)
     const isSubscribed = user?.subscribers.includes(current_user?._id)
@@ -26,15 +26,8 @@ function ProfileInfo({user, logoutUser, createDialog, subscribeUser, updateUser}
         subscribeUser(user.login)
     }
 
-    const on_load = (image) => {
-        updateUser({
-            images: {
-                avatar_image: {
-                    big: image.data.name,
-                    small: image.data.name
-                }
-            }
-        })
+    const to_account_settings = () => {
+        navigate("/settings/account")
     }
 
     return (
@@ -69,7 +62,7 @@ function ProfileInfo({user, logoutUser, createDialog, subscribeUser, updateUser}
                         </> :
                         <>
                             <Button onClick={logout}>Logout</Button>
-                            <ImageLoader onLoad={on_load} user_login={user.login}/>
+                            <Button onClick={to_account_settings}>Edit</Button>
                         </>
                     }
                 </div>
@@ -78,7 +71,7 @@ function ProfileInfo({user, logoutUser, createDialog, subscribeUser, updateUser}
     )
 }
 
-const mapStateToProps = (state) => ({})
+const mapStateToProps = () => ({})
 
 export default connect(
     mapStateToProps,

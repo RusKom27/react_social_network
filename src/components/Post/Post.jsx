@@ -50,6 +50,6 @@ const Post = ({post, likePost, removePost}) => {
     )
 }
 
-const mapStateToProps = state => ({})
+const mapStateToProps = () => ({})
 
 export default connect(mapStateToProps, {likePost, removePost})(Post)

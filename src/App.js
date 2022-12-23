@@ -2,7 +2,7 @@ import React from "react"
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import {useSelector} from "react-redux";
 
-import {Feed, Messages, Dialog, Profile, Settings, Account, Security, Auth, Login, Register} from "./pages";
+import {Account, Auth, Dialog, Feed, Login, Messages, Profile, Register, Security, Settings} from "./pages";
 import Layout from "./layout/Layout";
 import {Redirect} from "./components";
 

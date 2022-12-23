@@ -46,23 +46,28 @@ export const toggleMenuTab = (flag=undefined) => ({
     flag
 })
 
-export const loginUser = (user) => ({
-    type: ACTION.USER.LOGIN_USER,
-    user
-})
-
 export const setUser = (user) => ({
     type: ACTION.USER.SET_USER,
     user
 })
 
-export const logoutUser = () => ({
-    type: ACTION.USER.LOGOUT_USER
-})
-
 export const subscribeUser = (user_login) => ({
     type: ACTION.USER.SUBSCRIBE_USER,
     user_login
+})
+
+export const loginUser = (user) => ({
+    type: ACTION.AUTH.LOGIN_USER,
+    user
+})
+
+export const setCurrentUser = (user) => ({
+    type: ACTION.AUTH.SET_CURRENT_USER,
+    user
+})
+
+export const logoutUser = () => ({
+    type: ACTION.AUTH.LOGOUT_USER
 })
 
 export const addImage = (image) => ({

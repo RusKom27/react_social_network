@@ -4,7 +4,7 @@ import {createRef} from "react";
 import {ReactComponent as SendSVG} from "../../../../images/send.svg";
 import {connect} from "react-redux";
 import {Button} from "../../../../components";
-import {createMessage} from "../../../../redux/thunk/message";
+import {createMessage} from "../../../../redux/thunk";
 
 function MessageInput({createMessage, dialog_id}) {
     const [messageInput, setMessageInput] = useState('')
@@ -30,7 +30,7 @@ function MessageInput({createMessage, dialog_id}) {
     )
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = () => ({
 })
 
 export default connect(mapStateToProps, {createMessage})(MessageInput)

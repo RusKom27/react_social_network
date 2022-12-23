@@ -1,9 +1,17 @@
-import {NavLink, Outlet, useParams} from "react-router-dom";
+import {NavLink, Outlet} from "react-router-dom";
+import {useEffect} from "react";
+import {connect} from "react-redux";
+
+import {getUserByToken} from "../../redux/thunk";
 
 import styles from "./Settings.module.scss"
 
-function Settings() {
+const Settings = ({getUserByToken}) => {
     const activeClassName = ({isActive}) => isActive ? styles.active : undefined
+    useEffect(() => {
+        getUserByToken()
+    }, [])
+
     return (
         <div className={styles.container}>
             <div className={styles.navigation}>
@@ -17,4 +25,9 @@ function Settings() {
     )
 }
 
-export {Settings}
+const mapStateToProps = () => ({})
+
+export default connect(
+    mapStateToProps,
+    {getUserByToken}
+)(Settings)

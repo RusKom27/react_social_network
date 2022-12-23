@@ -29,7 +29,7 @@ const Layout = ({authUserByToken, getMessages}) => {
     )
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = () => ({
 })
 
 export default connect(mapStateToProps, {authUserByToken, getMessages})(Layout)

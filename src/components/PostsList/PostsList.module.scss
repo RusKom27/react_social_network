@@ -21,10 +21,16 @@
   overflow: visible;
 
   > div {
-    flex: 1;
+    width: 100%;
     position: sticky;
     top: calc($header-height + 20px);
     height: 600px;
     background-color: $color2;
+  }
+}
+
+@media screen and (max-width: 570px) {
+  .right_bar {
+    display: none;
   }
 }

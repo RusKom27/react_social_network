@@ -11,16 +11,19 @@ export const ACTION = {
         UPDATE_POST: 'UPDATE_POST',
         DELETE_POST: 'DELETE_POST',
     },
-    USER: {
+    AUTH: {
         LOGIN_USER: 'LOGIN_USER',
-        SET_USER: 'SET_USER',
         LOGOUT_USER: 'LOGOUT_USER',
+        SET_CURRENT_USER: 'SET_CURRENT_USER',
+    },
+    USER: {
+        SET_USER: 'SET_USER',
         SUBSCRIBE_USER: 'SUBSCRIBE_USER',
     },
     MENU: {
         TOGGLE_MENU_TAB: 'TOGGLE_MENU_TAB',
     },
     IMAGE: {
-        ADD_IMAGE: 'ADD_IMAGE'
+        ADD_IMAGE: 'ADD_IMAGE',
     }
 }

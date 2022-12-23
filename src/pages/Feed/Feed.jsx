@@ -16,6 +16,6 @@ function Feed({getPosts}) {
     )
 }
 
-const mapStateToProps = (state) => ({})
+const mapStateToProps = () => ({})
 
 export default connect(mapStateToProps, {getPosts})(Feed)

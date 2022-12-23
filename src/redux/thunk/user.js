@@ -13,8 +13,8 @@ export const subscribeUser = (login) => (dispatch) => {
     })
 }
 
-export const updateUser = (user) => (dispatch) => {
-    UserAPI.updateUser(user).then(user => {
+export const updateUser = (new_user) => (dispatch) => {
+    UserAPI.updateUser(new_user).then(user => {
         dispatch(setUser(user.data))
     })
 }
