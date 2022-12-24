@@ -4,7 +4,7 @@ const initialState = {
     dialogs: null
 }
 
-const messageReducer = (state = initialState, action) => {
+const messagesReducer = (state = initialState, action) => {
     switch (action.type) {
         case ACTION.MESSAGE.ADD_MESSAGE:
             return {
@@ -50,4 +50,4 @@ const messageReducer = (state = initialState, action) => {
     }
 }
 
-export {messageReducer}
+export {messagesReducer}

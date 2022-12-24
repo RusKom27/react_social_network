@@ -6,7 +6,6 @@ import {ReactComponent as LikeDisabled} from "../../images/heart.svg";
 import {connect, useSelector} from "react-redux";
 import {DropdownMenu} from "../misc/DropdownMenu/DropdownMenu";
 import {Link} from "react-router-dom";
-import {likePost, removePost} from "../../redux/thunk";
 import Image from "../misc/Image/Image";
 
 
@@ -52,4 +51,4 @@ const Post = ({post, likePost, removePost}) => {
 
 const mapStateToProps = () => ({})
 
-export default connect(mapStateToProps, {likePost, removePost})(Post)
+export default connect(mapStateToProps)(Post)

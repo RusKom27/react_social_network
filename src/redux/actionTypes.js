@@ -5,7 +5,7 @@ export const ACTION = {
         UPDATE_DIALOG: 'UPDATE_DIALOG',
         ADD_DIALOG: 'ADD_DIALOG',
     },
-    POST: {
+    FEED: {
         SET_INITIAL_LOADING: 'SET_INITIAL_LOADING',
         ADD_POST: 'ADD_POST',
         SET_POSTS: 'SET_POSTS',
@@ -17,8 +17,13 @@ export const ACTION = {
         LOGOUT_USER: 'LOGOUT_USER',
         SET_CURRENT_USER: 'SET_CURRENT_USER',
     },
-    USER: {
+    PROFILE: {
+        SET_INITIAL_LOADING: 'SET_INITIAL_LOADING',
         SET_USER: 'SET_USER',
+        ADD_POST: 'ADD_POST',
+        SET_POSTS: 'SET_POSTS',
+        UPDATE_POST: 'UPDATE_POST',
+        DELETE_POST: 'DELETE_POST',
     },
     MENU: {
         TOGGLE_MENU_TAB: 'TOGGLE_MENU_TAB',

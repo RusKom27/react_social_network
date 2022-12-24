@@ -6,7 +6,7 @@ import {ReactComponent as FeedSVG} from "../../images/view-list.svg"
 import styles from "./Navigation.module.scss"
 import {NavLink} from "react-router-dom";
 import {connect, useSelector} from "react-redux";
-import {toggleMenuTab} from "../../redux/actions";
+import {toggleMenuTab} from "../../redux/actionCreators/menu";
 
 
 function Navigation({toggleMenuTab}) {

@@ -3,8 +3,8 @@ import {connect, useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
 
 import {Button, Image} from "../../../components";
-import {logoutUser} from "../../../redux/actions";
 import {createDialog, subscribeUser, updateUser} from "../../../redux/thunk";
+import {logoutUser} from "../../../redux/actionCreators/auth";
 
 import styles from "./ProfileInfo.module.scss"
 
@@ -75,5 +75,10 @@ const mapStateToProps = () => ({})
 
 export default connect(
     mapStateToProps,
-    {logoutUser, createDialog, subscribeUser, updateUser}
+    {
+        logoutUser,
+        createDialog,
+        subscribeUser,
+        updateUser
+    }
 )(ProfileInfo)

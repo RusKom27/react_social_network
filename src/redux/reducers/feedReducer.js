@@ -5,15 +5,14 @@ const initialState = {
     isInitialLoading: true,
 }
 
-export const postsReducer = (state = initialState, action) => {
+export const feedReducer = (state = initialState, action) => {
     switch (action.type) {
-        case ACTION.POST.SET_INITIAL_LOADING:
+        case ACTION.FEED.SET_INITIAL_LOADING:
             return {
                 ...state,
                 isInitialLoading: action.isInitialLoading
             }
-        case ACTION.POST.ADD_POST:
-
+        case ACTION.FEED.ADD_POST:
             return {
                 ...state,
                 posts: [
@@ -21,13 +20,13 @@ export const postsReducer = (state = initialState, action) => {
                     action.post
                 ]
             }
-        case ACTION.POST.SET_POSTS:
+        case ACTION.FEED.SET_POSTS:
             return {
                 ...state,
                 posts: action.posts,
                 isInitialLoading: false,
             }
-        case ACTION.POST.UPDATE_POST:
+        case ACTION.FEED.UPDATE_POST:
             return {
                 ...state,
                 posts: state.posts?.map(post => {
@@ -36,7 +35,7 @@ export const postsReducer = (state = initialState, action) => {
                     return post
                 })
             }
-        case ACTION.POST.DELETE_POST:
+        case ACTION.FEED.DELETE_POST:
             return {
                 ...state,
                 posts: state.posts.filter(post => action.post._id !== post._id)

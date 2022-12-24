@@ -1,12 +1,12 @@
 import {applyMiddleware, combineReducers, legacy_createStore as createStore} from "redux";
-import {authReducer, imagesReducer, menuReducer, messageReducer, postsReducer, profileReducer} from "./reducers";
+import {authReducer, imagesReducer, menuReducer, feedReducer, messagesReducer, profileReducer} from "./reducers";
 import thunk from "redux-thunk";
 
 const reducers = combineReducers({
-    messages: messageReducer,
-    posts: postsReducer,
+    messages: messagesReducer,
     menu: menuReducer,
     auth: authReducer,
+    feed: feedReducer,
     profile: profileReducer,
     images: imagesReducer
 })

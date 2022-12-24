@@ -1,8 +1,26 @@
-import {PostAPI} from "../../packages/api";
-import {addPost, deletePost, setInitialLoading, setPosts, updatePost} from "../actions";
+import {PostAPI, UserAPI} from "../../packages/api";
 import {CHANNEL, subscribeToChannel} from "../../packages/ably";
+import {addPost, deletePost, setInitialLoading, setPosts, setUser, updatePost} from "../actionCreators/profile";
 
-export const getPosts = (user_login = "") => (dispatch) => {
+export const getUser = (login) => (dispatch) => {
+    UserAPI.getUser(login).then(user => {
+        dispatch(setUser(user.data))
+    })
+}
+
+export const subscribeUser = (login) => (dispatch) => {
+    UserAPI.subscribeUser(login).then(user => {
+        dispatch(setUser(user.data))
+    })
+}
+
+export const updateUser = (new_user) => (dispatch) => {
+    UserAPI.updateUser(new_user).then(user => {
+        dispatch(setUser(user.data))
+    })
+}
+
+export const getProfilePosts = (user_login = "") => (dispatch) => {
     subscribeToChannel(CHANNEL.POSTS, message => {
         if (!(user_login === "" || message.data.user.login === user_login)) return
         switch (message.name) {
@@ -22,17 +40,17 @@ export const getPosts = (user_login = "") => (dispatch) => {
     })
 }
 
-export const createPost = (postText) => () => {
+export const createProfilePost = (postText) => () => {
     PostAPI.createPost(postText)
 }
 
-export const likePost = (post_id) => (dispatch) => {
+export const likeProfilePost = (post_id) => (dispatch) => {
     PostAPI.likePost(post_id).then(post => {
         dispatch(updatePost(post.data))
     })
 }
 
-export const removePost = (post_id) => (dispatch) => {
+export const removeProfilePost = (post_id) => (dispatch) => {
     PostAPI.removePost(post_id).then(post => {
         dispatch(deletePost(post.data))
     }).catch(reason => console.log(reason.message))

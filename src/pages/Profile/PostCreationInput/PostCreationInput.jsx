@@ -2,14 +2,14 @@ import {createRef, useState} from "react"
 import styles from "./PostCreationInput.module.scss"
 import {connect} from "react-redux";
 import {Button} from "../../../components";
-import {createPost} from "../../../redux/thunk";
+import {createProfilePost} from "../../../redux/thunk";
 
-const PostCreationInput = ({createPost}) => {
+const PostCreationInput = ({createProfilePost}) => {
     const [postInputText, setPostInputText] = useState('')
     const text_area = createRef();
     const addPostHandle = event => {
         event.preventDefault()
-        createPost(postInputText)
+        createProfilePost(postInputText)
         setPostInputText('')
         text_area.current.focus()
     }
@@ -36,4 +36,4 @@ const PostCreationInput = ({createPost}) => {
 
 const mapStateToProps = () => ({})
 
-export default connect(mapStateToProps, {createPost})(PostCreationInput)
+export default connect(mapStateToProps, {createProfilePost})(PostCreationInput)

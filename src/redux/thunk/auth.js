@@ -1,5 +1,5 @@
 import {UserAPI} from "../../packages/api";
-import {loginUser, setCurrentUser} from "../actions";
+import {loginUser, setCurrentUser} from "../actionCreators/auth";
 
 export const authUser = (email, password, then) => (dispatch) => {
     UserAPI.authUser(email, password).then(user => {
