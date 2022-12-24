@@ -2,11 +2,13 @@ import React from "react"
 import styles from "./PostsList.module.scss"
 import Post from "../Post/Post";
 import {Loader} from "../misc/Loader/Loader";
-import {connect} from "react-redux";
+import {connect, useSelector} from "react-redux";
 
 
-const PostsList = ({posts}) => {
-    if (!posts) return <Loader/>
+const PostsList = () => {
+    const {isInitialLoading, posts} = useSelector(state => state.posts)
+
+    if (isInitialLoading) return <Loader/>
     let postComponents = posts.map((post) => <Post key={post._id} post={post}/>).reverse()
 
     return (
@@ -23,6 +25,4 @@ const PostsList = ({posts}) => {
     )
 }
 
-export default connect(
-    state => ({posts: state.posts.posts})
-)(PostsList)
+export default connect(() => ({}))(PostsList)

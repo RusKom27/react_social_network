@@ -1,10 +1,13 @@
-import styles from "./Feed.module.scss"
-import {PostsList} from "../../components";
-import {connect} from "react-redux";
-import {getPosts} from "../../redux/thunk";
 import {useEffect} from "react";
+import {connect, useSelector} from "react-redux";
+
+import {Loader, PostsList} from "../../components";
+import {getPosts} from "../../redux/thunk";
+
+import styles from "./Feed.module.scss"
 
 function Feed({getPosts}) {
+
     useEffect(() => {
         getPosts()
     }, [])

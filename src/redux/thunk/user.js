@@ -1,5 +1,5 @@
 import {UserAPI} from "../../packages/api";
-import {setUser, subscribeUser as subscribeUserAction} from "../actions";
+import {setUser} from "../actions";
 
 export const getUser = (login) => (dispatch) => {
     UserAPI.getUser(login).then(user => {
@@ -9,7 +9,7 @@ export const getUser = (login) => (dispatch) => {
 
 export const subscribeUser = (login) => (dispatch) => {
     UserAPI.subscribeUser(login).then(user => {
-        dispatch(subscribeUserAction(user.data))
+        dispatch(setUser(user.data))
     })
 }
 

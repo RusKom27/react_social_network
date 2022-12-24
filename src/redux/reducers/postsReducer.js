@@ -1,13 +1,19 @@
 import {ACTION} from "../actionTypes";
 
 const initialState = {
-    posts: null
+    posts: null,
+    isInitialLoading: true,
 }
 
 export const postsReducer = (state = initialState, action) => {
     switch (action.type) {
+        case ACTION.POST.SET_INITIAL_LOADING:
+            return {
+                ...state,
+                isInitialLoading: action.isInitialLoading
+            }
         case ACTION.POST.ADD_POST:
-            console.log(action)
+
             return {
                 ...state,
                 posts: [
@@ -18,7 +24,8 @@ export const postsReducer = (state = initialState, action) => {
         case ACTION.POST.SET_POSTS:
             return {
                 ...state,
-                posts: action.posts
+                posts: action.posts,
+                isInitialLoading: false,
             }
         case ACTION.POST.UPDATE_POST:
             return {

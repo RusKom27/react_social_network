@@ -6,6 +6,7 @@ export const ACTION = {
         ADD_DIALOG: 'ADD_DIALOG',
     },
     POST: {
+        SET_INITIAL_LOADING: 'SET_INITIAL_LOADING',
         ADD_POST: 'ADD_POST',
         SET_POSTS: 'SET_POSTS',
         UPDATE_POST: 'UPDATE_POST',
@@ -18,7 +19,6 @@ export const ACTION = {
     },
     USER: {
         SET_USER: 'SET_USER',
-        SUBSCRIBE_USER: 'SUBSCRIBE_USER',
     },
     MENU: {
         TOGGLE_MENU_TAB: 'TOGGLE_MENU_TAB',

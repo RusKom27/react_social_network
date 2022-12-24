@@ -1,5 +1,5 @@
 import {PostAPI} from "../../packages/api";
-import {addPost, deletePost, setPosts, updatePost} from "../actions";
+import {addPost, deletePost, setInitialLoading, setPosts, updatePost} from "../actions";
 import {CHANNEL, subscribeToChannel} from "../../packages/ably";
 
 export const getPosts = (user_login = "") => (dispatch) => {
@@ -16,6 +16,7 @@ export const getPosts = (user_login = "") => (dispatch) => {
                 dispatch(deletePost(message.data))
         }
     })
+    dispatch(setInitialLoading(true))
     PostAPI.getPosts(user_login).then(posts => {
         dispatch(setPosts(posts.data))
     })

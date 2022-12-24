@@ -3,3 +3,9 @@
 .image {
   width: 100%;
 }
+
+.empty_image {
+  background-color: $color0;
+  min-width: 100px;
+  min-height: 100px;
+}

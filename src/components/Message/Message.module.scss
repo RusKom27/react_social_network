@@ -1,5 +1,20 @@
 @import "../../index";
 
+.container {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+
+}
+
+.user_avatar {
+  img {
+    margin-top: 8px;
+    max-width: 54px;
+    border-radius: 50%;
+  }
+}
+
 .message {
   display: flex;
   flex-direction: column;
@@ -15,12 +30,22 @@
 
 .from_user {
   align-self: end;
-  background-color: $color2;
+  flex-direction: row-reverse;
+
+  .message {
+    background-color: $color2;
+  }
+  .user_name {
+    text-align: end;
+  }
 }
 
 .from_other {
   align-self: start;
-  background-color: $color1;
-  box-shadow: 4px 4px 2px $color3;
-  color: $color0;
+
+  .message {
+    color: $color0;
+    background-color: $color1;
+    box-shadow: 4px 4px 2px $color3;
+  }
 }

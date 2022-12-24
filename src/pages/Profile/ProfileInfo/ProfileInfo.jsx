@@ -2,7 +2,7 @@ import React from "react"
 import {connect, useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
 
-import {Button, Image, ImageLoader} from "../../../components";
+import {Button, Image} from "../../../components";
 import {logoutUser} from "../../../redux/actions";
 import {createDialog, subscribeUser, updateUser} from "../../../redux/thunk";
 
@@ -33,7 +33,7 @@ function ProfileInfo({user, logoutUser, createDialog, subscribeUser}) {
     return (
         <div className={styles.container}>
             <div className={styles.profile_image}>
-                <img src={'http://localhost:3000/images/rocky.png'} alt=""/>
+                <Image image_name={user?.images?.profile_image.small}/>
             </div>
             <div className={styles.user_image}>
                 <Image image_name={user?.images?.avatar_image.small}/>

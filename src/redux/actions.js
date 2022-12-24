@@ -21,6 +21,11 @@ export const addDialog = (dialog) => ({
     dialog
 })
 
+export const setInitialLoading = (isInitialLoading) => ({
+    type: ACTION.POST.SET_INITIAL_LOADING,
+    isInitialLoading,
+})
+
 export const addPost = (post) => ({
     type: ACTION.POST.ADD_POST,
     post,
@@ -49,11 +54,6 @@ export const toggleMenuTab = (flag=undefined) => ({
 export const setUser = (user) => ({
     type: ACTION.USER.SET_USER,
     user
-})
-
-export const subscribeUser = (user_login) => ({
-    type: ACTION.USER.SUBSCRIBE_USER,
-    user_login
 })
 
 export const loginUser = (user) => ({

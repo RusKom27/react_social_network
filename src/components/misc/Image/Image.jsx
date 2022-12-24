@@ -1,9 +1,11 @@
-import styles from "./Image.module.scss"
 import {connect, useSelector} from "react-redux";
-import {getImage} from "../../../redux/thunk/image";
-import {useEffect} from "react";
+import {memo, useEffect} from "react";
 
-const Image = ({image_styles, image_name, getImage}) => {
+import {getImage} from "../../../redux/thunk";
+
+import styles from "./Image.module.scss"
+
+const Image = memo(({image_styles, image_name, getImage}) => {
     const image = useSelector(state => state.images.images[image_name])
 
     useEffect(() => {
@@ -14,10 +16,10 @@ const Image = ({image_styles, image_name, getImage}) => {
 
     return (
         <div className={`${styles.image} ${image_styles}`}>
-            {image?.image && <img src={`data:${image.contentType};base64,${image.image}`} alt=""/>}
+            {image?.image ? <img src={`data:${image.contentType};base64,${image.image}`} alt=""/> : <img className={styles.empty_image} alt=""></img>}
         </div>
     )
-}
+})
 
 export default connect(
     ()=>({}),
