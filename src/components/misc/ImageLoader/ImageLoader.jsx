@@ -1,8 +1,9 @@
 import styles from "./ImageLoader.module.scss"
 import {ImageAPI} from "../../../packages/api";
 import {Button} from "../Button/Button";
+import {Image} from "../../index";
 
-export const ImageLoader = ({file_name, onLoad}) => {
+export const ImageLoader = ({file_name, onLoad, demo_image_name}) => {
     const send_image = (event) => {
         event.preventDefault()
         let formData = new FormData();
@@ -15,9 +16,15 @@ export const ImageLoader = ({file_name, onLoad}) => {
 
     return (
         <div className={styles.container}>
+            <div>
+                <Image image_name={demo_image_name}/>
+            </div>
             <form onSubmit={send_image}>
-                <input name={"image"} accept={"image/*"} type="file"/>
-                <Button type={"submit"}>Set</Button>
+                <label>
+                    <input name={"image"} accept={"image/*"} type="file"/>
+                    Upload image
+                </label>
+                <Button type={"submit"}>Save</Button>
             </form>
         </div>
     )

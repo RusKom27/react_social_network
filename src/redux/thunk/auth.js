@@ -8,8 +8,8 @@ export const authUser = (email, password, then) => (dispatch) => {
     })
 }
 
-export const updateCurrentUser = (props) => (dispatch) => {
-    UserAPI.updateUser(props).then(user => {
+export const updateCurrentUser = (user) => (dispatch) => {
+    UserAPI.updateUser(user).then(user => {
         dispatch(setCurrentUser(user.data))
     })
 }

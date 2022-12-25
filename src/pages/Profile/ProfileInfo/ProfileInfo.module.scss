@@ -15,7 +15,8 @@
 .profile_image img {
   width: 100%;
   min-width: 100%;
-  min-height: 360px;
+  min-height: 660px;
+  margin-top: -20%;
 }
 
 .user_image {
@@ -74,6 +75,7 @@
   }
   .profile_image img {
     margin-top: 0;
+    min-height: 360px;
   }
   .user_image {
     width: 80px;

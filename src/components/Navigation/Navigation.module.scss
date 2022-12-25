@@ -2,6 +2,7 @@
 
 .navigation {
   min-width: 168px;
+  max-width: 168px;
   height: 100vh - $header-height;
   position: fixed;
   display: flex;
@@ -9,6 +10,7 @@
   flex-direction: column;
   overflow: hidden;
   z-index: 20;
+  transition: 0.3s;
 
   > div {
     margin-top: 16px;
@@ -58,7 +60,6 @@ svg {
   }
 }
 
-
 .hidden {
   display: flex;
 }
@@ -69,24 +70,16 @@ svg {
 
 .navigation a:active {
   color: $color2;
-
-  svg {
-    fill: $color2;
-  }
 }
 
 @media screen and (max-width: 900px){
-  .navigation {
-    min-width: 32px;
-  }
-
   .navigation div a {
     height: 32px;
     margin-inline: 0;
-    font-size: 0;
   }
 
   .hidden {
-    display: none;
+    min-width: 0;
+    max-width: 0;
   }
 }

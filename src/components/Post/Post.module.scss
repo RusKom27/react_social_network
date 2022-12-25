@@ -1,5 +1,7 @@
 @import "../../index";
 
+$like-svg-scale: 0.6;
+
 .post {
   display: flex;
   flex-direction: row;
@@ -68,9 +70,25 @@
     cursor: pointer;
   }
 
+  button:focus svg {
+    animation: splash 0.2s normal forwards ease-in-out;
+  }
+
   svg {
     fill: $color1;
     margin-top: 8px;
-    transform: scale(0.7);
+    transform: scale($like-svg-scale);
+  }
+}
+
+@keyframes splash {
+  from {
+    transform: scale($like-svg-scale, $like-svg-scale);
+  }
+  50% {
+    transform: scale(calc($like-svg-scale + 0.2), calc($like-svg-scale + 0.2));
+  }
+  to {
+    transform: scale($like-svg-scale, $like-svg-scale);
   }
 }

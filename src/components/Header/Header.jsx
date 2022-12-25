@@ -1,9 +1,10 @@
 import React from "react"
-import styles from "./Header.module.scss"
-import {ReactComponent as MenuSVG} from "../../images/hamburger-menu.svg"
 import {connect, useSelector} from "react-redux";
+
+import {ReactComponent as MenuSVG} from "../../images/hamburger-menu.svg"
 import {toggleMenuTab} from "../../redux/actionCreators/menu";
 
+import styles from "./Header.module.scss"
 
 function Header({toggleMenuTab}) {
     const token = useSelector(state => state.auth.token)

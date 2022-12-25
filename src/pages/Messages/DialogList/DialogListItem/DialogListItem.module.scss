@@ -30,7 +30,6 @@ a:active {
   font-weight: 700;
 }
 
-
 .username {
   font-size: 14px;
   color: dimgray;
@@ -38,5 +37,8 @@ a:active {
 
 .message_text {
   font-size: 12px;
+  max-height: 55px;
+  overflow: hidden;
+  text-overflow: ellipsis;
   color: dimgray;
 }

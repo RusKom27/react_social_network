@@ -5,6 +5,7 @@
   flex-direction: row;
   gap: 20px;
   width: 100%;
+  overflow: clip;
 }
 
 .page_container {
@@ -35,4 +36,9 @@
   }
 }
 
+@media screen and (max-width: 1000px) {
+  .navigation {
+    min-width: 120px;
+  }
+}
 

@@ -1,13 +1,14 @@
 import React from "react"
+import {NavLink} from "react-router-dom";
+import {connect, useSelector} from "react-redux";
+
 import {ReactComponent as MessageSVG} from "../../images/message.svg"
 import {ReactComponent as ProfileSVG} from "../../images/profile.svg"
 import {ReactComponent as SettingsSVG} from "../../images/settings.svg"
 import {ReactComponent as FeedSVG} from "../../images/view-list.svg"
-import styles from "./Navigation.module.scss"
-import {NavLink} from "react-router-dom";
-import {connect, useSelector} from "react-redux";
 import {toggleMenuTab} from "../../redux/actionCreators/menu";
 
+import styles from "./Navigation.module.scss"
 
 function Navigation({toggleMenuTab}) {
     const current_user_login = useSelector(state => state.auth.current_user?.login)
@@ -15,7 +16,7 @@ function Navigation({toggleMenuTab}) {
     const activeClassName = ({isActive}) => isActive ? styles.active : undefined
 
     return (
-        <nav className={styles.navigation + " " + (isMenuTabOpened ? styles.hidden : '')}>
+        <nav className={`${styles.navigation} ${(isMenuTabOpened ? styles.hidden : '')}`}>
             <div>
                 <NavLink onClick={() => toggleMenuTab(true)} className={activeClassName} to="/">
                     <FeedSVG/>
