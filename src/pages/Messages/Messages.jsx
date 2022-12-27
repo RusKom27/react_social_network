@@ -2,7 +2,7 @@ import {Outlet, useParams} from "react-router-dom";
 import {connect} from "react-redux";
 
 import DialogList from "./DialogList/DialogList";
-import {useWindowDimensions} from "../../hooks/useWindowDimensions";
+import {useWindowDimensions} from "../../hooks";
 
 import styles from "./Messages.module.scss"
 

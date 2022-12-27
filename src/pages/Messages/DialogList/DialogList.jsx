@@ -1,5 +1,5 @@
 import React from "react"
-import {connect} from "react-redux";
+import {connect, useSelector} from "react-redux";
 
 import {Loader} from "../../../components";
 import {toggleMenuTab} from "../../../redux/actionCreators/menu";
@@ -7,14 +7,22 @@ import {DialogListItem} from "./DialogListItem/DialogListItem";
 
 import styles from "./DialogList.module.scss"
 
-const DialogList = ({dialogs, toggleMenuTab}) => {
+const DialogList = ({toggleMenuTab}) => {
+    const current_user = useSelector(state => state.auth.current_user)
+    const dialogs = useSelector(state => state.messages.dialogs)
+
     if (!dialogs) return <Loader/>
     const dialogsList = dialogs.map(dialog => {
+        let unchecked_messages_count = dialog.messages.reduce((acc, message) =>
+            (!message.checked && message.sender._id !== current_user._id) ? acc + 1 : acc, 0
+        )
+
         if (dialog) return <DialogListItem
                 key={dialog._id}
                 id={dialog._id}
-                member={dialog.members[0]}
-                message={dialog.messages.at(-1)}
+                member_names={dialog.members.filter(member => member.login !== current_user.login).map(member => member.name).join(',')}
+                last_message={dialog.messages.at(-1)}
+                unchecked_messages_count={unchecked_messages_count}
                 toggleMenuTab={toggleMenuTab}
             />
         }
@@ -27,12 +35,7 @@ const DialogList = ({dialogs, toggleMenuTab}) => {
     )
 }
 
-const mapStateToProps = (state) => {
-    return {
-        dialogs: state.messages.dialogs,
-        isMenuTabOpened: state.menu.isMenuTabOpened
-    }
-}
+const mapStateToProps = (state) => ({})
 
 export default connect(
     mapStateToProps,

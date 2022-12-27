@@ -11,8 +11,7 @@ function MessageList({dialog_id}) {
 
     const messageComponets = messages.map(message => <Message
             key={message._id}
-            user={message.sender}
-            text={message.text}
+            message={message}
         />
     )
     return (

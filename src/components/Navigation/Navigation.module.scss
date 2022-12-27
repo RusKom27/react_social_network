@@ -35,6 +35,20 @@
   text-decoration: none;
 }
 
+.notification {
+  position: absolute;
+  right: 10px;
+  color: $color1;
+  text-align: center;
+  border-radius: 50%;
+  font-weight: 700;
+  width: 25px;
+  height: 25px;
+  line-height: 25px;
+  background-color: $color2;
+}
+
+
 a div {
   line-height: 30px;
 }
@@ -50,12 +64,7 @@ svg {
   color: $color1!important;
   background: $color4;
 
-  div {
-    transform: translateX(6px);
-  }
-
   svg {
-    transform: translateX(6px);
     fill: $color1;
   }
 }

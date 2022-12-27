@@ -1,6 +1,8 @@
 @import "src/index";
 
-.item {
+.container {
+  display: flex;
+  flex-direction: row;
   padding: 16px 4px;
   border-bottom: $color1 solid 1px;
 }
@@ -14,15 +16,19 @@ a:active {
   color: inherit;
 }
 
-.active .item{
+.active .container{
   border-left: $color3 8px solid;
   background: $color4;
   color: $color1;
 }
 
-.item:hover {
+.container:hover {
   background-color: $color4;
   cursor: pointer;
+}
+
+.dialog_info {
+  flex: 1;
 }
 
 .member {
@@ -41,4 +47,16 @@ a:active {
   overflow: hidden;
   text-overflow: ellipsis;
   color: dimgray;
+}
+
+.unchecked_messages_count {
+  padding: 4px;
+  margin: 4px;
+  color: $color2;
+  text-align: center;
+  width: 20px;
+  height: 20px;
+  line-height: 19px;
+  background-color: $color3;
+  border-radius: 50%;
 }

@@ -1,10 +1,11 @@
-import React, {useState} from "react"
-import styles from "./MessageInput.module.scss"
-import {createRef} from "react";
-import {ReactComponent as SendSVG} from "../../../../images/send.svg";
+import React, {useState, createRef} from "react"
 import {connect} from "react-redux";
+
+import {ReactComponent as SendSVG} from "../../../../images/send.svg";
 import {Button} from "../../../../components";
 import {createMessage} from "../../../../redux/thunk";
+
+import styles from "./MessageInput.module.scss"
 
 function MessageInput({createMessage, dialog_id}) {
     const [messageInput, setMessageInput] = useState('')
@@ -13,6 +14,7 @@ function MessageInput({createMessage, dialog_id}) {
         event.preventDefault()
         createMessage(dialog_id, messageInput)
         setMessageInput("")
+        window.scrollTo(0, 0);
         text_area.current.focus()
     }
     return (
