@@ -1,4 +1,4 @@
-import React, {useRef} from "react"
+import React, {useEffect, useMemo, useRef} from "react"
 import {connect, useSelector} from "react-redux";
 
 import {ReactComponent as Checked} from "../../images/check2-all.svg";
@@ -14,16 +14,23 @@ const Message = ({message, checkMessage}) => {
     const owner_class = message.sender._id === token ? styles.from_user : styles.from_other
     const ref = useRef()
     const isVisible = useOnScreen(ref)
-    if(isVisible && !message.checked && message.sender._id !== token) checkMessage(message._id)
-    const date = new Date(message.creation_date)
-    const date_string = `
-    ${date.getFullYear() !== new Date().getFullYear() ? date.getFullYear() : ''}
-    ${date.getDay() !== new Date().getDay() ? `${date.getDate()}.${date.getMonth()}` : ''}
-    ${date.getHours()}:${date.getMinutes() < 10 ? `0${date.getMinutes()}` : date.getMinutes()}
-    `
+    useEffect(() => {
+        if(isVisible && !message.checked && message.sender._id !== token) {
+            checkMessage(message._id)
+        }
+    }, [checkMessage, isVisible, message, token])
+
+    const date_string = useMemo(() => {
+        const date = new Date(message.creation_date)
+        return `
+        ${date.getFullYear() !== new Date().getFullYear() ? date.getFullYear() : ''}
+        ${date.getDay() !== new Date().getDay() ? `${date.getDate()}.${date.getMonth()}` : ''}
+        ${date.getHours()}:${date.getMinutes() < 10 ? `0${date.getMinutes()}` : date.getMinutes()}
+        `
+    }, [message])
 
     return (
-        <div ref={ref} className={`${styles.container} ${owner_class}`}>
+        <div ref={ref} className={`${styles.container} ${owner_class} ${!message.checked && styles.unchecked}`}>
             <div className={styles.user_avatar}>
                 <Image image_name={message.sender.images.avatar_image.small}/>
             </div>

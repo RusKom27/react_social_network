@@ -36,7 +36,6 @@ const messagesReducer = (state = initialState, action) => {
                 })
             }
         case ACTION.MESSAGE.ADD_DIALOG:
-            console.log(action)
             return {
                 ...state,
                 dialogs: [

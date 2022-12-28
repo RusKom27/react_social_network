@@ -1,22 +1,21 @@
 import {MessageAPI} from "../../packages/api";
 import {CHANNEL, subscribeToChannel} from "../../packages/ably";
 import {addDialog, addMessage, setMessages, updateDialog} from "../actionCreators/messages";
-import {config} from "../../packages/api/config";
 
 export const getMessages = () => (dispatch) => {
     subscribeToChannel(CHANNEL.MESSAGES, message => {
-        const dialog = message.data
-        if (!dialog.members_id.includes(config.token)) return
         switch (message.name) {
             case 'new_message':
-                dispatch(updateDialog(dialog))
+                dispatch(updateDialog(message.data))
                 break
             case 'new_dialog':
-                dispatch(addDialog(dialog))
+                dispatch(addDialog(message.data))
                 break
             case 'check_message':
-                dispatch(updateDialog(dialog))
+                dispatch(updateDialog(message.data))
                 break
+            default:
+                console.log("default")
         }
     })
 
