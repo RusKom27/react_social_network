@@ -1,18 +1,20 @@
 import {MessageAPI} from "../../packages/api";
 import {CHANNEL, subscribeToChannel} from "../../packages/ably";
-import {addDialog, addMessage, setMessages, updateDialog} from "../actionCreators/messages";
+import {addDialog, addMessage, setMessages, updateMessage} from "../actionCreators/messages";
+import {config} from "../../packages/api/config";
 
 export const getMessages = () => (dispatch) => {
     subscribeToChannel(CHANNEL.MESSAGES, message => {
         switch (message.name) {
             case 'new_message':
-                dispatch(updateDialog(message.data))
+                dispatch(addMessage(message.data))
                 break
             case 'new_dialog':
-                dispatch(addDialog(message.data))
+                if(message.data.members_id.includes(config.token))
+                    dispatch(addDialog(message.data))
                 break
             case 'check_message':
-                dispatch(updateDialog(message.data))
+                dispatch(updateMessage(message.data))
                 break
             default:
                 console.log("default")
@@ -25,9 +27,7 @@ export const getMessages = () => (dispatch) => {
 }
 
 export const createMessage = (dialog_id, messageText) => (dispatch) => {
-    MessageAPI.createMessage(dialog_id, messageText).then(message => {
-        dispatch(addMessage(message.data))
-    })
+    MessageAPI.createMessage(dialog_id, messageText)
 }
 
 export const createDialog = (member_id, then) => () => {

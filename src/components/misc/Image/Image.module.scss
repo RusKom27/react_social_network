@@ -5,7 +5,7 @@
 }
 
 .empty_image {
-  background-color: $color0;
-  min-width: 100px;
-  min-height: 100px;
+  background-color: mix($color3, $color2);
+  min-width: 60px;
+  min-height: 60px;
 }

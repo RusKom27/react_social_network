@@ -21,6 +21,22 @@ const messagesReducer = (state = initialState, action) => {
                     return dialog
                 })
             }
+        case ACTION.MESSAGE.UPDATE_MESSAGE:
+            return {
+                ...state,
+                dialogs: state.dialogs?.map(dialog => {
+                    if (dialog._id === action.message.dialog_id)
+                        return {
+                            ...dialog,
+                            messages: dialog.messages.map(message => {
+                                if (message._id === action.message._id)
+                                    return action.message
+                                return message
+                            })
+                        }
+                    return dialog
+                })
+            }
         case ACTION.MESSAGE.SET_MESSAGES:
             return {
                 ...state,

@@ -37,15 +37,18 @@
 
 .notification {
   position: absolute;
-  right: 10px;
+  overflow: clip;
+  left: 35px;
+  margin-top: -3px;
   color: $color1;
   text-align: center;
   border-radius: 50%;
   font-weight: 700;
-  width: 25px;
-  height: 25px;
-  line-height: 25px;
-  background-color: $color2;
+  font-size: 14px;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+  background-color: $color0;
 }
 
 
@@ -66,6 +69,11 @@ svg {
 
   svg {
     fill: $color1;
+  }
+
+  .notification {
+    color: $color2;
+    background-color: $color1;
   }
 }
 

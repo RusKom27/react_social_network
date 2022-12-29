@@ -18,9 +18,10 @@ const Profile = ({getProfilePosts, getUser, likeProfilePost, removeProfilePost})
     useEffect(() => {
         getProfilePosts(userLogin)
         getUser(userLogin)
+        window.scrollTo(0, 0);
     }, [userLogin])
 
-    window.scrollTo(0, 0);
+
 
     return (
         <div className={styles.container}>

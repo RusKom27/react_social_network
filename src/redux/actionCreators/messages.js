@@ -6,6 +6,11 @@ export const addMessage = (message) => ({
     message
 })
 
+export const updateMessage = (message) => ({
+    type: ACTION.MESSAGE.UPDATE_MESSAGE,
+    message
+})
+
 export const setMessages = (messages) => ({
     type: ACTION.MESSAGE.SET_MESSAGES,
     messages

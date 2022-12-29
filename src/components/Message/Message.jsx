@@ -3,11 +3,11 @@ import {connect, useSelector} from "react-redux";
 
 import {ReactComponent as Checked} from "../../images/check2-all.svg";
 import {ReactComponent as Unchecked} from "../../images/check2.svg";
+import {checkMessage} from "../../redux/thunk";
+import {useOnScreen} from "../../hooks";
 import Image from "../misc/Image/Image";
 
 import styles from "./Message.module.scss"
-import {useOnScreen} from "../../hooks";
-import {checkMessage} from "../../redux/thunk";
 
 const Message = ({message, checkMessage}) => {
     const token = useSelector(state => state.auth.token)

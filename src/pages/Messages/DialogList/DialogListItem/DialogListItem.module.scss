@@ -16,10 +16,12 @@ a:active {
   color: inherit;
 }
 
-.active .container{
-  border-left: $color3 8px solid;
-  background: $color4;
-  color: $color1;
+.active {
+  .container {
+    border-left: $color3 8px solid;
+    background: $color4;
+    color: $color1;
+  }
 }
 
 .container:hover {
