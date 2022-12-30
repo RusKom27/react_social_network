@@ -9,14 +9,6 @@ export const PostAPI = {
         })
     },
 
-    checkNewPosts() {
-        return makeRequest({
-            url: `api/post/check_updates`,
-            headers: {authorization: false},
-            method: 'GET',
-        })
-    },
-
     createPost(text) {
         return makeRequest({
             url: 'api/post',
@@ -31,6 +23,14 @@ export const PostAPI = {
     likePost(post_id) {
         return makeRequest({
             url: `api/post/like/${post_id}`,
+            headers: {authorization: true},
+            method: 'PUT',
+        })
+    },
+
+    checkPost(post_id) {
+        return makeRequest({
+            url: `api/post/check/${post_id}`,
             headers: {authorization: true},
             method: 'PUT',
         })

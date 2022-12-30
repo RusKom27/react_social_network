@@ -14,6 +14,12 @@ export const getFeedPosts = (user_login = "") => (dispatch) => {
                 break
             case 'delete_post':
                 dispatch(deletePost(message.data))
+                break
+            case 'check_post':
+                dispatch(updatePost(message.data))
+                break
+            default:
+                console.log(message)
         }
     })
     dispatch(setInitialLoading(true))
@@ -30,6 +36,10 @@ export const likeFeedPost = (post_id) => (dispatch) => {
     PostAPI.likePost(post_id).then(post => {
         dispatch(updatePost(post.data))
     })
+}
+
+export const checkFeedPost = (post_id) => () => {
+    PostAPI.checkPost(post_id)
 }
 
 export const removeFeedPost = (post_id) => (dispatch) => {

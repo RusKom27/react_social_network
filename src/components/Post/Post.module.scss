@@ -57,28 +57,34 @@ $like-svg-scale: 0.6;
   max-width: 100%;
 }
 
-.like_section {
+.post_footer {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
 
-  div {
-    align-self: center;
-  }
+  > div {
+    display: flex;
+    flex-direction: row;
 
-  button {
-    background: none;
-    border: none;
-    cursor: pointer;
-  }
+    div {
+      align-self: center;
+    }
 
-  button:focus svg {
-    animation: splash 0.2s normal forwards ease-in-out;
-  }
+    button {
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
 
-  svg {
-    fill: $color1;
-    margin-top: 8px;
-    transform: scale($like-svg-scale);
+    button:focus svg {
+      animation: splash 0.2s normal forwards ease-in-out;
+    }
+
+    svg {
+      fill: $color1;
+      margin-top: 8px;
+      transform: scale($like-svg-scale);
+    }
   }
 }
 

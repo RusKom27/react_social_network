@@ -17,7 +17,7 @@ export const getMessages = () => (dispatch) => {
                 dispatch(updateMessage(message.data))
                 break
             default:
-                console.log("default")
+                console.log(message)
         }
     })
 

@@ -1,4 +1,4 @@
-import React from "react"
+import React, {useMemo} from "react"
 import {connect, useSelector} from "react-redux";
 
 import {Loader} from "../../../components";
@@ -12,12 +12,13 @@ const DialogList = ({toggleMenuTab}) => {
     const dialogs = useSelector(state => state.messages.dialogs)
 
     if (!dialogs) return <Loader/>
+
     const dialogsList = dialogs.map(dialog => {
         let unchecked_messages_count = dialog.messages.reduce((acc, message) =>
             (!message.checked && message.sender._id !== current_user._id) ? acc + 1 : acc, 0
         )
 
-        if (dialog) return <DialogListItem
+        return <DialogListItem
                 key={dialog._id}
                 id={dialog._id}
                 member_names={dialog.members.filter(member => member.login !== current_user.login).map(member => member.name).join(',')}

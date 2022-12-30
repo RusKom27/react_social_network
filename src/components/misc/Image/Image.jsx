@@ -1,15 +1,20 @@
 import {connect, useSelector} from "react-redux";
-import {useEffect, useState} from "react";
 
 import {getImage} from "../../../redux/thunk";
 
 import styles from "./Image.module.scss"
+import {useEffect} from "react";
 
 const Image = ({image_styles, image_name, getImage}) => {
-    const image = useSelector(state => state.images.images[image_name])
+    const image = useSelector(state => {
+        return state.images.images[image_name]
+    })
     useEffect(() => {
-        if (!image) getImage(image_name)
-    }, [image])
+        if(!image) {
+            console.log(image_name)
+            getImage(image_name)
+        }
+    })
 
     return (
         <div className={`${styles.image} ${image_styles}`}>
