@@ -19,7 +19,7 @@ const Profile = ({getProfilePosts, getUser, likeProfilePost, removeProfilePost, 
         getProfilePosts(userLogin)
         getUser(userLogin)
         window.scrollTo(0, 0);
-    }, [userLogin])
+    }, [userLogin, getProfilePosts, getUser])
 
 
 

@@ -11,7 +11,7 @@ function Feed({getFeedPosts, likeFeedPost, removeFeedPost, checkFeedPost}) {
 
     useEffect(() => {
         getFeedPosts()
-    }, [])
+    },[])
 
     return (
         <div className={styles.container}>

@@ -15,18 +15,18 @@ import styles from "./Post.module.scss"
 const Post = ({post, likePost, removePost, checkPost}) => {
     const currentUserId = useSelector(state => state.auth.current_user?._id)
     const ref = useRef()
-    const viewed = post.views?.includes(currentUserId)
-    const liked = post.likes.includes(currentUserId)
+    const isViewed = post.views?.includes(currentUserId)
+    const isLiked = post.likes.includes(currentUserId)
     const like = () => likePost(post._id)
     const remove = () => removePost(post._id)
 
     const isVisible = useOnScreen(ref)
     useEffect(() => {
-        if(isVisible && !viewed && post.author_id !== currentUserId) {
+        if(isVisible && !isViewed && post.author_id !== currentUserId) {
             console.log(post.views)
             checkPost(post._id)
         }
-    }, [checkPost, isVisible, post, currentUserId])
+    }, [checkPost, isVisible, isViewed, post, currentUserId])
 
     return (
         <div ref={ref} id={post._id} className={styles.post}>
@@ -55,7 +55,7 @@ const Post = ({post, likePost, removePost, checkPost}) => {
                 </div>
                 <div className={styles.post_footer}>
                     <div>
-                        <button onClick={like}>{liked ? <LikeEnabled/> : <LikeDisabled/>}</button>
+                        <button onClick={like}>{isLiked ? <LikeEnabled/> : <LikeDisabled/>}</button>
                         <div>{post.likes.length}</div>
                     </div>
                     <div>

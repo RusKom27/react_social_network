@@ -46,8 +46,10 @@ export const updateUser = (new_user) => (dispatch) => {
     })
 }
 
-export const createProfilePost = (postText) => () => {
-    PostAPI.createPost(postText)
+export const createProfilePost = (postText, then) => () => {
+    PostAPI.createPost(postText).then(post => {
+        then(post)
+    })
 }
 
 export const checkProfilePost = (post_id) => (dispatch) => {

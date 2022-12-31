@@ -12,15 +12,15 @@
   display: flex;
 }
 
-.post_creating_form textarea {
+.post_creating_form div:has(textarea) {
   flex: 10;
   font-size: 18px;
-  background: none;
-  resize: none;
-}
 
-.submit_button {
-  max-width: 100px;
+  textarea {
+    width: 100%;
+    background: none;
+    resize: none;
+  }
 }
 
 @media screen and (max-width: 900px){

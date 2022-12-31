@@ -26,11 +26,13 @@ export const getMessages = () => (dispatch) => {
     })
 }
 
-export const createMessage = (dialog_id, messageText) => (dispatch) => {
-    MessageAPI.createMessage(dialog_id, messageText)
+export const createMessage = (dialog_id, messageText, then=()=>{}) => (dispatch) => {
+    MessageAPI.createMessage(dialog_id, messageText).then(message => {
+        then(message)
+    })
 }
 
-export const createDialog = (member_id, then) => () => {
+export const createDialog = (member_id, then=()=>{}) => () => {
     MessageAPI.createDialog(member_id).then(dialog => {
         then(dialog)
     })

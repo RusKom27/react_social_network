@@ -11,7 +11,6 @@ const Image = ({image_styles, image_name, getImage}) => {
     })
     useEffect(() => {
         if(!image) {
-            console.log(image_name)
             getImage(image_name)
         }
     })

@@ -1,7 +1,7 @@
 import {connect, useSelector} from "react-redux";
 import {useState} from "react";
 
-import {Button, Image, ImageLoader, Loader} from "../../../components";
+import {Button, ImageLoader, Loader} from "../../../components";
 import {updateCurrentUser, getImage} from "../../../redux/thunk";
 
 import styles from "./Account.module.scss"

@@ -10,7 +10,7 @@ const Settings = ({getUserByToken}) => {
     const activeClassName = ({isActive}) => isActive ? styles.active : undefined
     useEffect(() => {
         getUserByToken()
-    }, [])
+    })
 
     return (
         <div className={styles.container}>

@@ -1,4 +1,4 @@
-import React, {useMemo} from "react"
+import React from "react"
 import {connect, useSelector} from "react-redux";
 
 import {Loader} from "../../../components";

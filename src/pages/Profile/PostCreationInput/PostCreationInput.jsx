@@ -1,36 +1,15 @@
-import {createRef, useState} from "react"
-import styles from "./PostCreationInput.module.scss"
 import {connect} from "react-redux";
-import {Button} from "../../../components";
+
 import {createProfilePost} from "../../../redux/thunk";
+import {PostCreationForm} from "../../../forms/PostCreationForm";
+
+import styles from "./PostCreationInput.module.scss"
 
 const PostCreationInput = ({createProfilePost}) => {
-    const [postInputText, setPostInputText] = useState('')
-    const text_area = createRef();
-    const addPostHandle = event => {
-        event.preventDefault()
-        createProfilePost(postInputText)
-        setPostInputText('')
-        text_area.current.focus()
-    }
-
     return (
         <div className={styles.post_creating_form}>
-            <form>
-                <textarea
-                    onChange={event => setPostInputText(event.target.value)}
-                    ref={text_area}
-                    name={"post_text"}
-                    value={postInputText}
-                />
-                <Button
-                    onClick={addPostHandle}
-                    style={styles.submit_button}>
-                    Send
-                </Button>
-            </form>
+            <PostCreationForm createProfilePost={createProfilePost}/>
         </div>
-
     )
 }
 
