@@ -7,14 +7,16 @@ import {ReactComponent as LikeEnabled} from "../../images/heart-fill.svg";
 import {ReactComponent as LikeDisabled} from "../../images/heart.svg";
 import {ReactComponent as ViewsIcon} from "../../images/eye-fill.svg";
 import {DropdownMenu} from "../misc/DropdownMenu/DropdownMenu";
-import Image from "../misc/Image/Image";
-import {useOnScreen} from "../../hooks";
+import {getImage} from "../../redux/thunk";
+import {useImage, useOnScreen} from "../../hooks";
 
 import styles from "./Post.module.scss"
 
-const Post = ({post, likePost, removePost, checkPost}) => {
+const Post = ({post, likePost, removePost, checkPost, getImage}) => {
     const currentUserId = useSelector(state => state.auth.current_user?._id)
     const ref = useRef()
+    const image = useImage(post.user.images.avatar_image.small, getImage)
+
     const isViewed = post.views?.includes(currentUserId)
     const isLiked = post.likes.includes(currentUserId)
     const like = () => likePost(post._id)
@@ -32,7 +34,7 @@ const Post = ({post, likePost, removePost, checkPost}) => {
         <div ref={ref} id={post._id} className={styles.post}>
             <div>
                 <Link to={`../../profile/${post.user.login}`}>
-                    <Image image_name={post.user.images.avatar_image.small}/>
+                    {image.src && <img src={image.src} alt=""/>}
                 </Link>
             </div>
             <div>
@@ -71,4 +73,4 @@ const Post = ({post, likePost, removePost, checkPost}) => {
 
 const mapStateToProps = () => ({})
 
-export default connect(mapStateToProps)(Post)
+export default connect(mapStateToProps, {getImage})(Post)

@@ -9,8 +9,12 @@
 
 .user_avatar {
   img {
+    background-color: mix($color3, $color2);
     margin-top: 8px;
     max-width: 54px;
+    min-width: 54px;
+    max-height: 54px;
+    min-height: 54px;
     border-radius: 50%;
   }
 }

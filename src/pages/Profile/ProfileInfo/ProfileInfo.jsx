@@ -2,15 +2,19 @@ import React from "react"
 import {connect, useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
 
-import {Button, Image} from "../../../components";
-import {createDialog, subscribeUser, updateUser} from "../../../redux/thunk";
+import {Button} from "../../../components";
+import {createDialog, getImage, subscribeUser, updateUser} from "../../../redux/thunk";
 import {logoutUser} from "../../../redux/actionCreators/auth";
+import {useImage} from "../../../hooks";
 
 import styles from "./ProfileInfo.module.scss"
 
-function ProfileInfo({user, logoutUser, createDialog, subscribeUser}) {
+function ProfileInfo({user, logoutUser, createDialog, subscribeUser, getImage}) {
     const navigate = useNavigate()
     const current_user = useSelector(state => state.auth.current_user)
+    const avatar_image = useImage(user.images.avatar_image.small, getImage)
+    const profile_image = useImage(user.images.profile_image.small, getImage)
+
     const isSubscribed = user?.subscribers.includes(current_user?._id)
 
     const logout = () => {
@@ -33,10 +37,10 @@ function ProfileInfo({user, logoutUser, createDialog, subscribeUser}) {
     return (
         <div className={styles.container}>
             <div className={styles.profile_image}>
-                <Image image_name={user?.images?.profile_image.small}/>
+                {profile_image.src && <img src={profile_image.src} alt=""/>}
             </div>
             <div className={styles.user_image}>
-                <Image image_name={user?.images?.avatar_image.small}/>
+                {avatar_image.src && <img src={avatar_image.src} alt=""/>}
             </div>
             <div className={styles.profile}>
                 <div className={styles.profile_info}>
@@ -79,6 +83,7 @@ export default connect(
         logoutUser,
         createDialog,
         subscribeUser,
-        updateUser
+        updateUser,
+        getImage
     }
 )(ProfileInfo)

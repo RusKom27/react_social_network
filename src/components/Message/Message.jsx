@@ -3,17 +3,19 @@ import {connect, useSelector} from "react-redux";
 
 import {ReactComponent as Checked} from "../../images/check2-all.svg";
 import {ReactComponent as Unchecked} from "../../images/check2.svg";
-import {checkMessage} from "../../redux/thunk";
+import {checkMessage, getImage} from "../../redux/thunk";
 import {useOnScreen} from "../../hooks";
-import Image from "../misc/Image/Image";
+import {useImage} from "../../hooks";
 
 import styles from "./Message.module.scss"
 
-const Message = ({message, checkMessage}) => {
+const Message = ({message, checkMessage, getImage}) => {
     const token = useSelector(state => state.auth.token)
     const owner_class = message.sender._id === token ? styles.from_user : styles.from_other
     const ref = useRef()
     const isVisible = useOnScreen(ref)
+    const image = useImage(message.sender.images.avatar_image.small, getImage)
+
     useEffect(() => {
         if(isVisible && !message.checked && message.sender._id !== token) {
             checkMessage(message._id)
@@ -32,7 +34,7 @@ const Message = ({message, checkMessage}) => {
     return (
         <div ref={ref} className={`${styles.container} ${owner_class} ${!message.checked && styles.unchecked}`}>
             <div className={styles.user_avatar}>
-                <Image image_name={message.sender.images.avatar_image.small}/>
+                {image.src && <img src={image.src} alt=""/>}
             </div>
             <div className={styles.message}>
                 <div className={styles.user_name}>{message.sender.name}</div>
@@ -54,4 +56,4 @@ const Message = ({message, checkMessage}) => {
 
 const mapStateToProps = (state) => ({})
 
-export default connect(mapStateToProps, {checkMessage})(Message)
+export default connect(mapStateToProps, {checkMessage, getImage})(Message)
