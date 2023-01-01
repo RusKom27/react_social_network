@@ -7,3 +7,9 @@ export const getImage = (image_name) => (dispatch) => {
         dispatch(addImage(image.data))
     })
 }
+
+export const sendImage = (imageData, then) => (dispatch) => {
+    ImageAPI.sendImage(imageData).then(image => {
+        then(image)
+    })
+}

@@ -1,42 +1,50 @@
 import { Formik, Field, Form, ErrorMessage } from 'formik';
-import {useNavigate} from "react-router-dom";
 import * as Yup from 'yup';
 
 import {Button} from "../components";
+import {useState} from "react";
 
-export const ImageLoadForm = ({authUser}) => {
-    const navigate = useNavigate()
+const FILE_SIZE = 1048576
+const SUPPORTED_FORMATS = ["image/png", "image/jpeg"]
 
+export const ImageLoadForm = ({sendImage}) => {
     return (
         <Formik
-            initialValues={{ name: '', login: '', account_image: '' }}
+            initialValues={{ image: '' }}
             validationSchema={Yup.object({
-                email: Yup.string().email('Invalid email address').required('Required'),
-                password: Yup.string()
-                    .max(20, 'Must be 20 characters or less')
-                    .required('Required'),
+                image: Yup.mixed()
+                    .nullable()
+                    .notRequired()
+                    .test("FILE_SIZE", "Uploaded file is too big.",
+                        value => !value || (value && value.size <= FILE_SIZE))
+                    .test("FILE_FORMAT", "Uploaded file has unsupported format.",
+                        value => !value || (value && SUPPORTED_FORMATS.includes(value.type))),
             })}
             onSubmit={(values, { setSubmitting }) => {
-                authUser(
-                    values.email,
-                    values.password,
-                    user => {
-                        setSubmitting(false);
-                        navigate(`/profile/${user.data.login}`)
-                    }
-                )
+                // sendImage(
+                //     values.email,
+                //     values.password,
+                //     user => {
+                //         setSubmitting(false);
+                //     }
+                // )
             }}
-        >
-            <Form>
 
-                <div>
-                    <Field name="email" type="email" />
-                    <ErrorMessage name="email" />
-                </div>
-                <div>
-                    <Button type="submit">Login</Button>
-                </div>
-            </Form>
+        >
+            {({values, errors, setFieldValue}) => (
+                <Form onChange={event => {
+                    setFieldValue("image", event.currentTarget.image.files[0])
+                }}>
+                    {values.image ? <img src={URL.createObjectURL(values.image)} alt=""/> : <img alt=""/>}
+                    <div>
+                        <input name="image" type="file" accept="image/*"/>
+                        <ErrorMessage name="image" />
+                    </div>
+                    <div>
+                        <Button type="submit">Save</Button>
+                    </div>
+                </Form>
+            )}
         </Formik>
     );
 };

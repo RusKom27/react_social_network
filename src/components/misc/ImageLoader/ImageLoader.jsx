@@ -1,11 +1,12 @@
-import styles from "./ImageLoader.module.scss"
-import {ImageAPI} from "../../../packages/api";
+import {connect, useSelector} from "react-redux";
+
 import {Button} from "../Button/Button";
 import {useImage} from "../../../hooks";
-import {connect, useSelector} from "react-redux";
-import {getImage} from "../../../redux/thunk";
+import {getImage, sendImage} from "../../../redux/thunk";
 
-const ImageLoader = ({file_name, onLoad, getImage}) => {
+import styles from "./ImageLoader.module.scss"
+
+const ImageLoader = ({file_name, onLoad, getImage, sendImage}) => {
     const user = useSelector(state => state.auth.current_user)
     const image = useImage(file_name, getImage)
 
@@ -17,7 +18,7 @@ const ImageLoader = ({file_name, onLoad, getImage}) => {
         const fileName = `${file_name}.${fileType}`
         console.log(URL.createObjectURL(imageFile.files[0]))
         formData.append("image", imageFile.files[0], fileName);
-        ImageAPI.sendImage(formData).then(image => onLoad(image))
+        sendImage(formData, image => onLoad(image))
     }
 
     return (
@@ -38,4 +39,4 @@ const ImageLoader = ({file_name, onLoad, getImage}) => {
 
 const mapStateToProps = (state) => ({})
 
-export default connect(mapStateToProps, {getImage})(ImageLoader)
+export default connect(mapStateToProps, {getImage, sendImage})(ImageLoader)

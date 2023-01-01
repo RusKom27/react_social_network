@@ -2,12 +2,13 @@ import {connect, useSelector} from "react-redux";
 import {useState} from "react";
 
 import {Button, ImageLoader, Loader} from "../../../components";
-import {updateCurrentUser, getImage} from "../../../redux/thunk";
+import {updateCurrentUser, getImage, sendImage} from "../../../redux/thunk";
+import {AccountChangeForm} from "../../../forms/AccountChangeForm";
+import {ImageLoadForm} from "../../../forms/ImageLoadForm";
 
 import styles from "./Account.module.scss"
-import {AccountChangeForm} from "../../../forms/AccountChangeForm";
 
-const Account = ({updateCurrentUser, getImage}) => {
+const Account = ({updateCurrentUser, getImage, sendImage}) => {
     const current_user = useSelector(state => state.auth.current_user)
 
     // const on_avatar_load = (image) => {
@@ -50,6 +51,7 @@ const Account = ({updateCurrentUser, getImage}) => {
             <div>
                 <div>
                     <h3>Avatar</h3>
+                    <ImageLoadForm sendImage={sendImage}/>
                     {/*<ImageLoader*/}
                     {/*    onLoad={on_avatar_load}*/}
                     {/*    file_name={`${current_user.login}_avatar`}*/}
@@ -75,5 +77,5 @@ const mapStateToProps = () => ({})
 
 export default connect(
     mapStateToProps,
-    {updateCurrentUser, getImage}
+    {updateCurrentUser, getImage, sendImage}
 )(Account)
