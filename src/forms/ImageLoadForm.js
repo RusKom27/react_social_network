@@ -1,13 +1,14 @@
-import { Formik, Field, Form, ErrorMessage } from 'formik';
+import { Formik, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 
 import {Button} from "../components";
-import {useState} from "react";
+import {connect} from "react-redux";
+import {sendImage} from "../redux/thunk";
 
 const FILE_SIZE = 1048576
 const SUPPORTED_FORMATS = ["image/png", "image/jpeg"]
 
-export const ImageLoadForm = ({sendImage}) => {
+const ImageLoadForm = ({sendImage, fileName, onImageLoad=()=>{}}) => {
     return (
         <Formik
             initialValues={{ image: '' }}
@@ -21,13 +22,17 @@ export const ImageLoadForm = ({sendImage}) => {
                         value => !value || (value && SUPPORTED_FORMATS.includes(value.type))),
             })}
             onSubmit={(values, { setSubmitting }) => {
-                // sendImage(
-                //     values.email,
-                //     values.password,
-                //     user => {
-                //         setSubmitting(false);
-                //     }
-                // )
+                let formData = new FormData();
+                const file_type = values.image.name.split('.').at(-1)
+                const file_name = `${fileName}.${file_type}`
+                formData.append("image", values.image, file_name);
+                sendImage(
+                    formData,
+                    () => {
+                        setSubmitting(false);
+                        onImageLoad(file_name)
+                    }
+                )
             }}
 
         >
@@ -48,3 +53,10 @@ export const ImageLoadForm = ({sendImage}) => {
         </Formik>
     );
 };
+
+const mapStateToProps = () => ({})
+
+export default connect(
+    mapStateToProps,
+    {sendImage}
+)(ImageLoadForm)

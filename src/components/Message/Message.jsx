@@ -1,20 +1,20 @@
-import React, {useEffect, useMemo, useRef} from "react"
+import React, {memo, useEffect, useMemo, useRef} from "react"
 import {connect, useSelector} from "react-redux";
 
 import {ReactComponent as Checked} from "../../images/check2-all.svg";
 import {ReactComponent as Unchecked} from "../../images/check2.svg";
 import {checkMessage, getImage} from "../../redux/thunk";
-import {useOnScreen} from "../../hooks";
-import {useImage} from "../../hooks";
+import {useOnScreen, useImage} from "../../hooks";
 
 import styles from "./Message.module.scss"
 
-const Message = ({message, checkMessage, getImage}) => {
+const Message = memo(({message, checkMessage, getImage}) => {
     const token = useSelector(state => state.auth.token)
     const owner_class = message.sender._id === token ? styles.from_user : styles.from_other
     const ref = useRef()
     const isVisible = useOnScreen(ref)
     const image = useImage(message.sender.images.avatar_image.small, getImage)
+
 
     useEffect(() => {
         if(isVisible && !message.checked && message.sender._id !== token) {
@@ -52,7 +52,7 @@ const Message = ({message, checkMessage, getImage}) => {
         </div>
 
     )
-}
+})
 
 const mapStateToProps = (state) => ({})
 

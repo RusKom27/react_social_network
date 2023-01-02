@@ -15,16 +15,18 @@
   }
 
   img {
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height: 150px;
     background-color: mix($color3, $color2);
   }
 }
 
 .account_change_form {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
 
   input {
     min-width: 200px;
@@ -38,6 +40,44 @@
     gap: 20px;
   }
 }
+
+.images_container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.avatar_image {
+  border-radius: 50%;
+}
+
+.change_image_button {
+  &:hover {
+    cursor: pointer;
+    img {
+      filter: brightness(0.7);
+    }
+    > span {
+      opacity: 100%;
+    }
+  }
+
+  div:has(img) {
+    width: 150px;
+    height: 150px;
+    overflow: clip;
+  }
+
+  > span {
+    transition: 0.1s;
+    opacity: 0;
+    margin-top: -85px;
+    margin-left: 45px;
+    color: $color4;
+    position: absolute;
+  }
+}
+
 
 @media screen and (max-width: 1000px) {
   .account_change_form {

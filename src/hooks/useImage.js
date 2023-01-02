@@ -8,7 +8,6 @@ export const useImage = (image_name, getImage) => {
 
     useEffect(() => {
         if(!image) {
-            console.log(image_name)
             getImage(image_name)
         }
     })

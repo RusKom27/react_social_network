@@ -14,6 +14,39 @@ export const updateCurrentUser = (user) => (dispatch) => {
     })
 }
 
+export const updateUserAvatarImage = (current_user, image_name) => (dispatch) => {
+    const user = {
+        ...current_user,
+        images: {
+            ...current_user.images,
+            avatar_image: {
+                big: image_name,
+                small: image_name
+            }
+        }
+    }
+    UserAPI.updateUser(user).then(user => {
+        dispatch(setCurrentUser(user.data))
+    })
+}
+
+export const updateUserProfileImage = (current_user, image_name) => (dispatch) => {
+    const user = {
+        ...current_user,
+        images: {
+            ...current_user.images,
+            profile_image: {
+                big: image_name,
+                small: image_name
+            }
+        }
+    }
+
+    UserAPI.updateUser(user).then(user => {
+        dispatch(setCurrentUser(user.data))
+    })
+}
+
 export const getUserByToken = () => (dispatch) => {
     UserAPI.getUser().then(user => {
         dispatch(setCurrentUser(user.data))
