@@ -5,21 +5,15 @@ import styles from "./Layout.module.scss"
 import {connect, useSelector} from "react-redux";
 import {config} from "../packages/api/config";
 import {authUserByToken, getMessages} from "../redux/thunk";
+import AppInitialization from "../AppInitialization";
 
 
 const Layout = ({authUserByToken, getMessages}) => {
-    const navigate = useNavigate()
     const token = useSelector(state => state.auth.token)
-
-    config.token = token
-    useEffect(() => {
-        getMessages()
-        if (token) authUserByToken()
-        else navigate("/auth/login")
-    }, [token])
 
     return (
         <div className={styles.wrapper}>
+            <AppInitialization token={token}/>
             <Header/>
             <main>
                 {token && <Navigation/>}
@@ -29,7 +23,4 @@ const Layout = ({authUserByToken, getMessages}) => {
     )
 }
 
-const mapStateToProps = () => ({
-})
-
-export default connect(mapStateToProps, {authUserByToken, getMessages})(Layout)
+export default connect(null, {authUserByToken, getMessages})(Layout)

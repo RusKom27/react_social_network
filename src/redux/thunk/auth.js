@@ -54,7 +54,7 @@ export const getUserByToken = () => (dispatch) => {
 }
 
 export const authUserByToken = () => (dispatch) => {
-    UserAPI.getUser().then(user => {
+    return UserAPI.getUser().then(user => {
         dispatch(loginUser(user.data))
     })
 }

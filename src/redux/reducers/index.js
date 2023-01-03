@@ -1,5 +1,5 @@
 export {messagesReducer} from "./messagesReducer"
-export {menuReducer} from "./menuReducer"
+export {appReducer} from "./appReducer"
 export {authReducer} from "./authReducer"
 export {feedReducer} from "./feedReducer"
 export {profileReducer} from "./profileReducer"

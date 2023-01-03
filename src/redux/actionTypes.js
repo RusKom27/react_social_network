@@ -26,8 +26,9 @@ export const ACTION = {
         UPDATE_POST: 'UPDATE_POST',
         DELETE_POST: 'DELETE_POST',
     },
-    MENU: {
+    APP: {
         TOGGLE_MENU_TAB: 'TOGGLE_MENU_TAB',
+        INITIALIZE: 'INITIALIZE'
     },
     IMAGE: {
         ADD_IMAGE: 'ADD_IMAGE',

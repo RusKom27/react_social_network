@@ -2,7 +2,7 @@ import React from "react"
 import {connect, useSelector} from "react-redux";
 
 import {Loader} from "../../../components";
-import {toggleMenuTab} from "../../../redux/actionCreators/menu";
+import {toggleMenuTab} from "../../../redux/actionCreators/app";
 import {DialogListItem} from "./DialogListItem/DialogListItem";
 
 import styles from "./DialogList.module.scss"

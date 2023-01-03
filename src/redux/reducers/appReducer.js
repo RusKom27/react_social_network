@@ -2,17 +2,23 @@ import {ACTION} from "../actionTypes";
 
 const initialState = {
     isMenuTabOpened: true,
+    isInitialized: false,
 }
 
-const menuReducer = (state = initialState, action) => {
+const appReducer = (state = initialState, action) => {
     switch (action.type) {
-        case ACTION.MENU.TOGGLE_MENU_TAB:
+        case ACTION.APP.TOGGLE_MENU_TAB:
             return {
                 ...state, isMenuTabOpened: action.flag === undefined ? !state.isMenuTabOpened : action.flag
+            }
+        case ACTION.APP.INITIALIZE:
+            return {
+                ...state,
+                isInitialized: true
             }
         default:
             return state
     }
 }
 
-export {menuReducer}
+export {appReducer}

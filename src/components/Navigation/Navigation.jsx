@@ -6,13 +6,13 @@ import {ReactComponent as MessageSVG} from "../../images/message.svg"
 import {ReactComponent as ProfileSVG} from "../../images/profile.svg"
 import {ReactComponent as SettingsSVG} from "../../images/settings.svg"
 import {ReactComponent as FeedSVG} from "../../images/view-list.svg"
-import {toggleMenuTab} from "../../redux/actionCreators/menu";
+import {toggleMenuTab} from "../../redux/actionCreators/app";
 
 import styles from "./Navigation.module.scss"
 
 function Navigation({toggleMenuTab}) {
     const current_user = useSelector(state => state.auth.current_user)
-    const isMenuTabOpened = useSelector(state => state.menu.isMenuTabOpened)
+    const isMenuTabOpened = useSelector(state => state.app.isMenuTabOpened)
     const dialogs = useSelector(state => state.messages.dialogs)
 
     const unchecked_messages_count = dialogs?.reduce((dialogs_acc, dialog) => {
