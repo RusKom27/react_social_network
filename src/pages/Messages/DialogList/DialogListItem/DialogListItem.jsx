@@ -4,7 +4,7 @@ import {NavLink} from "react-router-dom";
 import styles from "./DialogListItem.module.scss"
 
 function DialogListItem({id, last_message, member_names, toggleMenuTab, unchecked_messages_count}) {
-    const activeClassName = ({isActive}) => isActive ? styles.active : undefined
+    const activeClassName = ({isActive}) => isActive ? styles.active : ''
     return (
         <NavLink className={activeClassName} to={`${id}`}>
             <div onClick={() => toggleMenuTab(true)} className={styles.container}>

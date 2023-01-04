@@ -1,0 +1,40 @@
+@import "../../../index";
+
+.container {
+  animation: 0.4s ease-in 0s 1 slideInFromLeft;
+  padding: 20px;
+  max-width: 250px;
+  margin-inline: 8px;
+  background-color: transparentize($color2, 0.3);
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.error {
+  color: $color2;
+  background-color: transparentize(#af2b2b, 0.3);
+}
+
+.info {
+  color: $color4;
+  background-color: transparentize($color3, 0.3);
+}
+
+@keyframes slideInFromLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  80% {
+    transform: translateX(0);
+  }
+  100% {
+    opacity: 100%;
+  }
+}
+
+@media screen and (max-width: 800px) {
+
+}

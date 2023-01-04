@@ -1,5 +1,5 @@
-import {connect, useSelector} from "react-redux";
-import {initializeApp} from "./redux/thunk";
+import {connect} from "react-redux";
+import {initializeApp} from "../redux/thunk";
 import {useNavigate} from "react-router-dom";
 import {useEffect} from "react";
 

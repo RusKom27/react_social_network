@@ -1,0 +1,14 @@
+@import "src/index";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  gap: 8px;
+  margin-block: 8px;
+  bottom: 0;
+}
+
+@media screen and (max-width: 900px){
+
+}

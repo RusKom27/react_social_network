@@ -1,4 +1,4 @@
-import {ACTION} from "../actionTypes";
+import {ACTION} from "../../types/actionTypes";
 
 const initialState = {
     dialogs: null
@@ -10,12 +10,12 @@ const messagesReducer = (state = initialState, action) => {
             return {
                 ...state,
                 dialogs: state.dialogs?.map(dialog => {
-                    if (dialog._id === action.message.dialog_id)
+                    if (dialog._id === action.payload.dialog_id)
                         return {
                             ...dialog,
                             messages: [
                                 ...dialog.messages,
-                                action.message
+                                action.payload
                             ]
                         }
                     return dialog
@@ -25,12 +25,12 @@ const messagesReducer = (state = initialState, action) => {
             return {
                 ...state,
                 dialogs: state.dialogs?.map(dialog => {
-                    if (dialog._id === action.message.dialog_id)
+                    if (dialog._id === action.payload.dialog_id)
                         return {
                             ...dialog,
                             messages: dialog.messages.map(message => {
-                                if (message._id === action.message._id)
-                                    return action.message
+                                if (message._id === action.payload._id)
+                                    return action.payload
                                 return message
                             })
                         }
@@ -40,14 +40,14 @@ const messagesReducer = (state = initialState, action) => {
         case ACTION.MESSAGE.SET_MESSAGES:
             return {
                 ...state,
-                dialogs: action.messages
+                dialogs: action.payload
             }
         case ACTION.MESSAGE.UPDATE_DIALOG:
             return {
                 ...state,
                 dialogs: state.dialogs.map(dialog => {
-                    if (dialog._id === action.dialog._id)
-                        return action.dialog
+                    if (dialog._id === action.payload._id)
+                        return action.payload
                     return dialog
                 })
             }
@@ -56,7 +56,7 @@ const messagesReducer = (state = initialState, action) => {
                 ...state,
                 dialogs: [
                     ...state.dialogs,
-                    action.dialog
+                    action.payload
                 ]
             }
 

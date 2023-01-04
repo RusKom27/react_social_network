@@ -1,27 +1,27 @@
-import {ACTION} from "../actionTypes";
+import {ACTION} from "../../types/actionTypes";
 
 
 export const addMessage = (message) => ({
     type: ACTION.MESSAGE.ADD_MESSAGE,
-    message
+    payload: message
 })
 
 export const updateMessage = (message) => ({
     type: ACTION.MESSAGE.UPDATE_MESSAGE,
-    message
+    payload: message
 })
 
 export const setMessages = (messages) => ({
     type: ACTION.MESSAGE.SET_MESSAGES,
-    messages
+    payload: messages
 })
 
 export const updateDialog = (dialog) => ({
     type: ACTION.MESSAGE.UPDATE_DIALOG,
-    dialog
+    payload: dialog
 })
 
 export const addDialog = (dialog) => ({
     type: ACTION.MESSAGE.ADD_DIALOG,
-    dialog
+    payload: dialog
 })

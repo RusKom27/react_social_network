@@ -1,14 +1,14 @@
-import {ACTION} from "../actionTypes";
+import {ACTION} from "../../types/actionTypes";
 
 
 export const loginUser = (user) => ({
     type: ACTION.AUTH.LOGIN_USER,
-    user
+    payload: user
 })
 
 export const setCurrentUser = (user) => ({
     type: ACTION.AUTH.SET_CURRENT_USER,
-    user
+    payload: user
 })
 
 export const logoutUser = () => ({

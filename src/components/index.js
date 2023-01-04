@@ -8,6 +8,8 @@ import {Button} from "./misc/Button/Button";
 import {DropdownMenu} from "./misc/DropdownMenu/DropdownMenu";
 import {Redirect} from "./misc/Redirect/Redirect";
 import {ModalWindow} from "./misc/ModalWindow/ModalWindow";
+import AppInitialization from "./AppInitialization";
+import AppNotificationsContainer from "./AppNotificationsContainer/AppNotificationsContainer";
 
 export {
     Header,
@@ -19,5 +21,7 @@ export {
     Button,
     DropdownMenu,
     Redirect,
-    ModalWindow
+    ModalWindow,
+    AppInitialization,
+    AppNotificationsContainer
 }

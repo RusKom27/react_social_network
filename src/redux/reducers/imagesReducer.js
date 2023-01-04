@@ -1,4 +1,4 @@
-import {ACTION} from "../actionTypes";
+import {ACTION} from "../../types/actionTypes";
 
 let initialState = {
     images: {}
@@ -11,7 +11,7 @@ export const imagesReducer = (state = initialState, action) => {
                 ...state,
                 images: {
                     ...state.images,
-                    [action.image.name]: action.image
+                    [action.payload.name]: action.payload
                 }
             }
         default:

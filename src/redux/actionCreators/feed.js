@@ -1,26 +1,26 @@
-import {ACTION} from "../actionTypes";
+import {ACTION} from "../../types/actionTypes";
 
 export const setInitialLoading = (isInitialLoading) => ({
     type: ACTION.FEED.SET_INITIAL_LOADING,
-    isInitialLoading,
+    payload: isInitialLoading,
 })
 
 export const addPost = (post) => ({
     type: ACTION.FEED.ADD_POST,
-    post,
+    payload: post,
 })
 
 export const setPosts = (posts) => ({
     type: ACTION.FEED.SET_POSTS,
-    posts,
+    payload: posts,
 })
 
 export const updatePost = (post) => ({
     type: ACTION.FEED.UPDATE_POST,
-    post
+    payload: post
 })
 
 export const deletePost = (post) => ({
     type: ACTION.FEED.DELETE_POST,
-    post
+    payload: post
 })

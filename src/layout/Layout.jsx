@@ -1,26 +1,26 @@
-import React, {useEffect} from "react"
-import {Header, Navigation} from "../components";
-import {Outlet, useNavigate} from "react-router-dom"
-import styles from "./Layout.module.scss"
+import {Outlet} from "react-router-dom"
 import {connect, useSelector} from "react-redux";
-import {config} from "../packages/api/config";
-import {authUserByToken, getMessages} from "../redux/thunk";
-import AppInitialization from "../AppInitialization";
 
+import {Header, Navigation, AppInitialization, AppNotificationsContainer} from "../components";
 
-const Layout = ({authUserByToken, getMessages}) => {
+import styles from "./Layout.module.scss"
+
+const Layout = () => {
     const token = useSelector(state => state.auth.token)
 
     return (
-        <div className={styles.wrapper}>
-            <AppInitialization token={token}/>
-            <Header/>
-            <main>
-                {token && <Navigation/>}
-                <Outlet/>
-            </main>
-        </div>
-    )
+        <>
+            <div className={styles.wrapper}>
+                <AppInitialization token={token}/>
+                <Header/>
+                <main>
+                    {token && <Navigation/>}
+                    <Outlet/>
+                </main>
+            </div>
+            <AppNotificationsContainer/>
+        </>
+)
 }
 
-export default connect(null, {authUserByToken, getMessages})(Layout)
+export default connect(null, {})(Layout)

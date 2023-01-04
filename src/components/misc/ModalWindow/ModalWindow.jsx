@@ -4,7 +4,6 @@ export const ModalWindow = ({children, closeWindow}) => {
 
     const onClickHandler = (event) => {
         if (event.target.classList[0] === styles.container) closeWindow()
-        console.log(event.target.classList)
     }
 
     return (

@@ -1,9 +1,8 @@
-import React, {useEffect} from "react"
-import {BrowserRouter as Router, Route, Routes, useNavigate} from "react-router-dom";
-import {connect, useSelector} from "react-redux";
+import React from "react"
+import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
+import {useSelector} from "react-redux";
 
 import {Account, Auth, Dialog, Feed, Login, Messages, Profile, Register, Security, Settings} from "./pages";
-import {authUserByToken, getMessages, initializeApp} from "./redux/thunk";
 import Layout from "./layout/Layout";
 import {Redirect} from "./components";
 

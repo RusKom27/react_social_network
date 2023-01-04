@@ -11,7 +11,7 @@ const reducers = combineReducers({
     auth: authReducer,
     feed: feedReducer,
     profile: profileReducer,
-    images: imagesReducer
+    images: imagesReducer,
 })
 
 let store = createStore(reducers, applyMiddleware(thunk, /*logger*/))
