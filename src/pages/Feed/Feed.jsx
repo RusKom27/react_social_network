@@ -6,8 +6,9 @@ import {checkFeedPost, getFeedPosts, likeFeedPost, removeFeedPost} from "../../r
 
 import styles from "./Feed.module.scss"
 
-function Feed({getFeedPosts, likeFeedPost, removeFeedPost, checkFeedPost}) {
+const Feed = ({getFeedPosts, likeFeedPost, removeFeedPost, checkFeedPost}) => {
     const {isInitialLoading, posts} = useSelector(state => state.feed)
+
 
     useEffect(() => {
         getFeedPosts()

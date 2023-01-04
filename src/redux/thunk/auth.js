@@ -6,7 +6,6 @@ import {addErrorNotification, addInfoNotification} from "../actionCreators/app";
 export const authUser = (email, password, then) => (dispatch) => {
     UserAPI.authUser(email, password).then(user => {
         dispatch(loginUser(user.data))
-        dispatch(addInfoNotification(`${user.data.name} logged in`))
         then(user)
     }).catch(reason => {
         dispatch(addErrorNotification(reason.response.data.message))
@@ -16,6 +15,7 @@ export const authUser = (email, password, then) => (dispatch) => {
 export const updateCurrentUser = (user) => (dispatch) => {
     UserAPI.updateUser(user).then(user => {
         dispatch(setCurrentUser(user.data))
+        dispatch(addInfoNotification("Account was changed!"))
     })
 }
 
@@ -31,6 +31,7 @@ export const updateUserAvatarImage = (current_user, image_name) => (dispatch) =>
         }
     }
     UserAPI.updateUser(user).then(user => {
+        dispatch(addInfoNotification("Avatar image was changed!"))
         dispatch(setCurrentUser(user.data))
     })
 }
@@ -48,6 +49,7 @@ export const updateUserProfileImage = (current_user, image_name) => (dispatch) =
     }
 
     UserAPI.updateUser(user).then(user => {
+        dispatch(addInfoNotification("Profile image was changed!"))
         dispatch(setCurrentUser(user.data))
     })
 }
@@ -66,6 +68,7 @@ export const authUserByToken = () => (dispatch) => {
 
 export const createUser = (name, login, email, password, then) => (dispatch) => {
     UserAPI.createUser(name, login, email, password).then(user => {
+        dispatch(addInfoNotification("Account was created!"))
         dispatch(loginUser(user.data))
         then(user)
     }).catch(reason => {

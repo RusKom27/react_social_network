@@ -1,4 +1,4 @@
-import React, {useEffect, useRef} from "react"
+import React, {useState, useEffect, useRef} from "react"
 import {connect, useSelector} from "react-redux";
 import {Link} from "react-router-dom";
 
@@ -8,14 +8,17 @@ import {ReactComponent as LikeDisabled} from "../../images/heart.svg";
 import {ReactComponent as ViewsIcon} from "../../images/eye-fill.svg";
 import {DropdownMenu} from "../misc/DropdownMenu/DropdownMenu";
 import {getImage} from "../../redux/thunk";
+import {ModalWindow} from "../misc/ModalWindow/ModalWindow";
 import {useImage, useOnScreen} from "../../hooks";
 
 import styles from "./Post.module.scss"
+import {Button} from "../misc/Button/Button";
 
 const Post = ({post, likePost, removePost, checkPost, getImage}) => {
     const currentUserId = useSelector(state => state.auth.current_user?._id)
     const ref = useRef()
     const image = useImage(post.user.images.avatar_image.small, getImage)
+    const [isRemovePostWindowOpened, toggleRemovePostWindow] = useState(false)
 
     const isViewed = post.views?.includes(currentUserId)
     const isLiked = post.likes.includes(currentUserId)
@@ -31,6 +34,7 @@ const Post = ({post, likePost, removePost, checkPost, getImage}) => {
     }, [checkPost, isVisible, isViewed, post, currentUserId])
 
     return (
+
         <div ref={ref} id={post._id} className={styles.post}>
             <div>
                 <Link to={`../../profile/${post.user.login}`}>
@@ -44,7 +48,7 @@ const Post = ({post, likePost, removePost, checkPost, getImage}) => {
                             {post.user.name} <span>@{post.user.login}</span>
                         </Link>
                     </div>
-                    <DropdownMenu options={{"Delete": remove}}/>
+                    <DropdownMenu options={{"Delete": () => toggleRemovePostWindow(true)}}/>
                 </div>
 
                 {post.image &&
@@ -52,7 +56,7 @@ const Post = ({post, likePost, removePost, checkPost, getImage}) => {
                         <img src={image_placeholder} alt=""/>
                     </div>
                 }
-                <div>
+                <div className={styles.post_main}>
                     {post.text}
                 </div>
                 <div className={styles.post_footer}>
@@ -67,6 +71,18 @@ const Post = ({post, likePost, removePost, checkPost, getImage}) => {
 
                 </div>
             </div>
+            {isRemovePostWindowOpened &&
+                <ModalWindow title={"Are you sure?"} closeWindow={() => toggleRemovePostWindow(false)}>
+                    <div>
+                        <Button onClick={remove}>
+                            Yes
+                        </Button>
+                        <Button onClick={() => toggleRemovePostWindow(false)}>
+                            Cancel
+                        </Button>
+                    </div>
+                </ModalWindow>
+            }
         </div>
     )
 }

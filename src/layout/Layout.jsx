@@ -10,15 +10,18 @@ const Layout = () => {
 
     return (
         <>
+
             <div className={styles.wrapper}>
+                <AppNotificationsContainer/>
                 <AppInitialization token={token}/>
+
                 <Header/>
                 <main>
                     {token && <Navigation/>}
                     <Outlet/>
                 </main>
             </div>
-            <AppNotificationsContainer/>
+
         </>
 )
 }
