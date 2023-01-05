@@ -39,6 +39,19 @@ $like-svg-scale: 0.6;
 
 .post_main {
   word-break: break-all;
+
+  button {
+    color: #0064b9;
+    border: none;
+    background: none;
+    padding: 0;
+    font-size: 16px;
+    text-decoration: underline;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
 }
 
 .content_author {

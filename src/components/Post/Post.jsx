@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useRef} from "react"
+import React, {useState, useEffect, useRef, memo} from "react"
 import {connect, useSelector} from "react-redux";
 import {Link} from "react-router-dom";
 
@@ -13,6 +13,7 @@ import {useImage, useOnScreen} from "../../hooks";
 
 import styles from "./Post.module.scss"
 import {Button} from "../misc/Button/Button";
+import {useTags} from "../../hooks/useTags";
 
 const Post = ({post, likePost, removePost, checkPost, getImage}) => {
     const currentUserId = useSelector(state => state.auth.current_user?._id)
@@ -20,18 +21,20 @@ const Post = ({post, likePost, removePost, checkPost, getImage}) => {
     const image = useImage(post.user.images.avatar_image.small, getImage)
     const [isRemovePostWindowOpened, toggleRemovePostWindow] = useState(false)
 
+    const textWithTags = useTags(post.text, post.tags ? post.tags : [])
+
     const isViewed = post.views?.includes(currentUserId)
     const isLiked = post.likes.includes(currentUserId)
     const like = () => likePost(post._id)
     const remove = () => removePost(post._id)
 
     const isVisible = useOnScreen(ref)
+
     useEffect(() => {
         if(isVisible && !isViewed && post.author_id !== currentUserId) {
-            console.log(post.views)
             checkPost(post._id)
         }
-    }, [checkPost, isVisible, isViewed, post, currentUserId])
+    }, [isVisible, post, currentUserId])
 
     return (
 
@@ -57,7 +60,7 @@ const Post = ({post, likePost, removePost, checkPost, getImage}) => {
                     </div>
                 }
                 <div className={styles.post_main}>
-                    {post.text}
+                    {textWithTags}
                 </div>
                 <div className={styles.post_footer}>
                     <div>

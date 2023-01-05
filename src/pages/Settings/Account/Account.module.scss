@@ -10,7 +10,6 @@
   > div {
     display: flex;
     gap: 20px;
-    flex-direction: row;
     align-items: center;
   }
 
@@ -80,6 +79,10 @@
 
 
 @media screen and (max-width: 1000px) {
+  .images_container {
+    flex-direction: column;
+  }
+
   .account_change_form {
     div {
       flex-direction: column;

@@ -5,6 +5,7 @@ export const useImage = (image_name, getImage) => {
     const image = useSelector(state => {
         return state.images.images[image_name]
     })
+    
 
     useEffect(() => {
         if(!image) {
