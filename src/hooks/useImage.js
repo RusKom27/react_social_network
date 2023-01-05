@@ -1,17 +1,24 @@
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 import {useSelector} from "react-redux";
+import {ImageAPI} from "../packages/api";
+import {addImage} from "../redux/actionCreators/images";
 
 export const useImage = (image_name, getImage) => {
-    const image = useSelector(state => {
-        return state.images.images[image_name]
-    })
+    const [image, setImage] = useState(null)
+
+    // const image = useSelector(state => {
+    //     return state.images.images[image_name]
+    // })
     
 
     useEffect(() => {
-        if(!image) {
-            getImage(image_name)
-        }
-    })
+        ImageAPI.getImage(image_name).then(image => {
+            setImage(image.data)
+        })
+        // if(!image) {
+        //     getImage(image_name)
+        // }
+    }, [image_name])
 
     return {
         ...image,

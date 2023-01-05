@@ -22,7 +22,6 @@ const Post = ({post, likePost, removePost, checkPost, getImage}) => {
     const [isRemovePostWindowOpened, toggleRemovePostWindow] = useState(false)
 
     const textWithTags = useTags(post.text, post.tags ? post.tags : [])
-
     const isViewed = post.views?.includes(currentUserId)
     const isLiked = post.likes.includes(currentUserId)
     const like = () => likePost(post._id)
