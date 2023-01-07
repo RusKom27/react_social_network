@@ -1,4 +1,4 @@
-import {ACTION} from "../../types/actionTypes";
+import {ACTION} from "../../types";
 
 export const setInitialLoading = (isInitialLoading) => ({
     type: ACTION.FEED.SET_INITIAL_LOADING,
@@ -23,4 +23,9 @@ export const updatePost = (post) => ({
 export const deletePost = (post) => ({
     type: ACTION.FEED.DELETE_POST,
     payload: post
+})
+
+export const setPopularTags = (tags) => ({
+    type: ACTION.FEED.SET_POPULAR_TAGS,
+    payload: tags
 })

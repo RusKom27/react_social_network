@@ -1,7 +1,7 @@
 import React from "react"
 import {connect, useSelector} from "react-redux";
 
-import {ReactComponent as MenuSVG} from "../../images/hamburger-menu.svg"
+import {ReactComponent as MenuSVG} from "../../static/images/svg/hamburger-menu.svg"
 import {toggleMenuTab} from "../../redux/actionCreators/app";
 
 import styles from "./Header.module.scss"

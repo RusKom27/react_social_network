@@ -12,6 +12,7 @@ export const ACTION = {
         SET_POSTS: 'SET_POSTS',
         UPDATE_POST: 'UPDATE_POST',
         DELETE_POST: 'DELETE_POST',
+        SET_POPULAR_TAGS: 'SET_POPULAR_TAGS',
     },
     AUTH: {
         LOGIN_USER: 'LOGIN_USER',

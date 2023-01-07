@@ -1,4 +1,4 @@
-import {ACTION} from "../../types/actionTypes";
+import {ACTION} from "../../types";
 
 let initialState = {
     images: {}

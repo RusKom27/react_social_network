@@ -1,7 +1,8 @@
-import {ACTION} from "../../types/actionTypes";
+import {ACTION} from "../../types";
 
 const initialState = {
     posts: null,
+    popular_tags: null,
     isInitialLoading: true,
 }
 
@@ -39,6 +40,11 @@ export const feedReducer = (state = initialState, action) => {
             return {
                 ...state,
                 posts: state.posts.filter(post => action.payload._id !== post._id)
+            }
+        case ACTION.FEED.SET_POPULAR_TAGS:
+            return {
+                ...state,
+                popular_tags: action.payload
             }
         default:
             return state

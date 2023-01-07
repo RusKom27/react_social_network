@@ -1,4 +1,4 @@
-import {ACTION} from "../../types/actionTypes";
+import {ACTION} from "../../types";
 
 export const addImage = (image) => ({
     type: ACTION.IMAGE.ADD_IMAGE,

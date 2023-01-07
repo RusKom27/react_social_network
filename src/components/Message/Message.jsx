@@ -1,8 +1,8 @@
 import React, {memo, useEffect, useMemo, useRef} from "react"
 import {connect, useSelector} from "react-redux";
 
-import {ReactComponent as Checked} from "../../images/check2-all.svg";
-import {ReactComponent as Unchecked} from "../../images/check2.svg";
+import {ReactComponent as Checked} from "../../static/images/svg/check2-all.svg";
+import {ReactComponent as Unchecked} from "../../static/images/svg/check2.svg";
 import {checkMessage, getImage} from "../../redux/thunk";
 import {useOnScreen, useImage} from "../../hooks";
 

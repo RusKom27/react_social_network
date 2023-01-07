@@ -1,5 +1,3 @@
-import {useEffect} from "react";
-import {useSelector} from "react-redux";
 
 const insertTag = (elems, tag) => {
     for (let i = 0; i < elems.length; i++) {
@@ -16,7 +14,6 @@ const insertTag = (elems, tag) => {
         }
     }
 }
-
 
 export const useTags = (text, tags) => {
     text = <div>{[text]}</div>

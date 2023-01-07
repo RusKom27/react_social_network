@@ -1,7 +1,7 @@
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 
-import {ReactComponent as SendSVG} from "../images/send.svg";
+import {ReactComponent as SendSVG} from "../static/images/svg/send.svg";
 import {Button} from "../components";
 
 export const MessageCreationForm = ({createMessage, dialog_id}) => {

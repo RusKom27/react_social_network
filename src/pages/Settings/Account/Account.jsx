@@ -55,7 +55,7 @@ const Account = ({updateCurrentUser, getImage, sendImage, updateUserAvatarImage,
                             <h3>Avatar</h3>
                             <ImageLoadForm
                                 sendImage={sendImage}
-                                fileName={current_user.login}
+                                fileName={`${current_user.login}_avatar`}
                                 onImageLoad={onAvatarImageLoad}
                             />
                         </ModalWindow>
@@ -77,7 +77,7 @@ const Account = ({updateCurrentUser, getImage, sendImage, updateUserAvatarImage,
                             <h3>Profile image</h3>
                             <ImageLoadForm
                                 sendImage={sendImage}
-                                fileName={current_user.login}
+                                fileName={`${current_user.login}_profile`}
                                 onImageLoad={onProfileImageLoad}
                             />
                         </ModalWindow>

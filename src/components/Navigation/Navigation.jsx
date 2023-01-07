@@ -2,10 +2,10 @@ import React from "react"
 import {NavLink} from "react-router-dom";
 import {connect, useSelector} from "react-redux";
 
-import {ReactComponent as MessageSVG} from "../../images/message.svg"
-import {ReactComponent as ProfileSVG} from "../../images/profile.svg"
-import {ReactComponent as SettingsSVG} from "../../images/settings.svg"
-import {ReactComponent as FeedSVG} from "../../images/view-list.svg"
+import {ReactComponent as MessageSVG} from "../../static/images/svg/message.svg"
+import {ReactComponent as ProfileSVG} from "../../static/images/svg/profile.svg"
+import {ReactComponent as SettingsSVG} from "../../static/images/svg/settings.svg"
+import {ReactComponent as FeedSVG} from "../../static/images/svg/view-list.svg"
 import {toggleMenuTab} from "../../redux/actionCreators/app";
 
 import styles from "./Navigation.module.scss"

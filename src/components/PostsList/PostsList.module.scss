@@ -1,13 +1,6 @@
 @import "../../index";
 
 .container {
-  display: flex;
-  top:0;
-  flex-direction: row;
-  gap: 20px;
-}
-
-.posts_list {
   flex: 11;
   display: flex;
   flex-flow: revert;
@@ -15,22 +8,8 @@
   gap: 16px;
 }
 
-.right_bar {
-  flex: 4;
-  display: flex;
-  overflow: visible;
 
-  > div {
-    width: 100%;
-    position: sticky;
-    top: calc($header-height + 20px);
-    height: 600px;
-    background-color: $color2;
-  }
-}
 
 @media screen and (max-width: 570px) {
-  .right_bar {
-    display: none;
-  }
+
 }

@@ -21,14 +21,7 @@ const PostsList = ({posts, isInitialLoading, likePost, removePost, checkPost}) =
 
     return (
         <div className={styles.container}>
-            <div className={styles.posts_list}>
-                {postComponents}
-            </div>
-            <div className={styles.right_bar}>
-                <div className={"sticky"}>
-                    Right Bar
-                </div>
-            </div>
+            {postComponents}
         </div>
     )
 }

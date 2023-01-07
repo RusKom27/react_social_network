@@ -5,7 +5,7 @@ import {connect, useSelector} from "react-redux";
 import {checkProfilePost, getProfilePosts, getUser, likeProfilePost, removeProfilePost} from "../../redux/thunk";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import PostCreationInput from "./PostCreationInput/PostCreationInput";
-import {Loader, PostsList} from "../../components";
+import {Loader, PostsList, SideBar} from "../../components";
 
 import styles from "./Profile.module.scss"
 
@@ -21,8 +21,6 @@ const Profile = ({getProfilePosts, getUser, likeProfilePost, removeProfilePost, 
         window.scrollTo(0, 0);
     }, [userLogin, getProfilePosts, getUser])
 
-
-
     return (
         <div className={styles.container}>
             {!user ? <Loader/> :
@@ -31,13 +29,19 @@ const Profile = ({getProfilePosts, getUser, likeProfilePost, removeProfilePost, 
                     <>
                         <ProfileInfo user={user}/>
                         {user?.login === current_user?.login && <PostCreationInput/>}
-                        <PostsList
-                            posts={posts}
-                            isInitialLoading={isInitialLoading}
-                            likePost={likeProfilePost}
-                            removePost={removeProfilePost}
-                            checkPost={checkProfilePost}
-                        />
+                        <div className={styles.posts_container}>
+                            <PostsList
+                                posts={posts}
+                                isInitialLoading={isInitialLoading}
+                                likePost={likeProfilePost}
+                                removePost={removeProfilePost}
+                                checkPost={checkProfilePost}
+                            />
+                            <SideBar>
+
+                            </SideBar>
+                        </div>
+
                     </>
             }
         </div>

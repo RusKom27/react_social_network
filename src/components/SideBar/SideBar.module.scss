@@ -1,0 +1,23 @@
+@import "src/index";
+
+.container {
+  flex: 4;
+  display: flex;
+  flex-direction: column;
+  min-width: 200px;
+  max-width: 300px;
+  gap: 20px;
+  overflow: visible;
+
+  > div {
+    position: sticky;
+    top: calc($header-height + 20px);
+    background-color: $color2;
+  }
+}
+
+@media screen and (max-width: 570px) {
+  .container {
+    display: none;
+  }
+}

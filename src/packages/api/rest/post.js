@@ -42,6 +42,14 @@ export const PostAPI = {
             headers: {authorization: true},
             method: 'DELETE',
         })
+    },
+
+    getPopularTags() {
+        return makeRequest({
+            url: `api/post/popular_tags`,
+            headers: {authorization: true},
+            method: 'GET',
+        })
     }
 }
 

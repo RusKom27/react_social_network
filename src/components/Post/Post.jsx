@@ -2,10 +2,10 @@ import React, {useState, useEffect, useRef, memo} from "react"
 import {connect, useSelector} from "react-redux";
 import {Link} from "react-router-dom";
 
-import image_placeholder from "../../images/image-placeholder1.png"
-import {ReactComponent as LikeEnabled} from "../../images/heart-fill.svg";
-import {ReactComponent as LikeDisabled} from "../../images/heart.svg";
-import {ReactComponent as ViewsIcon} from "../../images/eye-fill.svg";
+import image_placeholder from "../../static/images/image-placeholder1.png"
+import {ReactComponent as LikeEnabled} from "../../static/images/svg/heart-fill.svg";
+import {ReactComponent as LikeDisabled} from "../../static/images/svg/heart.svg";
+import {ReactComponent as ViewsIcon} from "../../static/images/svg/eye-fill.svg";
 import {DropdownMenu} from "../misc/DropdownMenu/DropdownMenu";
 import {getImage} from "../../redux/thunk";
 import {ModalWindow} from "../misc/ModalWindow/ModalWindow";

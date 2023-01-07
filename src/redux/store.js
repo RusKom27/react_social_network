@@ -2,9 +2,6 @@ import {applyMiddleware, combineReducers, legacy_createStore as createStore} fro
 import {authReducer, imagesReducer, appReducer, feedReducer, messagesReducer, profileReducer} from "./reducers";
 import thunk from "redux-thunk";
 import { composeWithDevTools } from 'redux-devtools-extension';
-import {createLogger} from "redux-logger";
-
-const logger = createLogger()
 
 const reducers = combineReducers({
     messages: messagesReducer,
@@ -15,6 +12,9 @@ const reducers = combineReducers({
     images: imagesReducer,
 })
 
-let store = createStore(reducers, composeWithDevTools(applyMiddleware(thunk, /*logger*/)))
+let store = createStore(
+    reducers,
+    composeWithDevTools(applyMiddleware(thunk))
+)
 
 export {store}

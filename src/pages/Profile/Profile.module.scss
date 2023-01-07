@@ -10,6 +10,13 @@
   overflow: visible;
 }
 
+.posts_container {
+  display: flex;
+  top:0;
+  flex-direction: row;
+  gap: 20px;
+}
+
 @media screen and (max-width: 900px){
   .container {
     padding: 0;

@@ -1,0 +1,28 @@
+@import "src/index";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  background-color: $color2;
+  padding: 8px;
+  gap: 8px;
+  min-height: 100px;
+
+  > h3 {
+    margin: 0;
+  }
+
+  > div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 8px;
+    background-color: $color3;
+    color: $color2;
+  }
+}
+
+@media screen and (max-width: 570px) {
+
+}
