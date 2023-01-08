@@ -4,8 +4,8 @@ import {addNotification} from "../slices/app";
 import {NOTIFICATION} from "../../types";
 
 
-export const authUser = (email, password, then) => (dispatch) => {
-    UserAPI.authUser(email, password).then(user => {
+export const authUser = (email, password, then) => async (dispatch) => {
+    await UserAPI.authUser(email, password).then(user => {
         dispatch(loginUser(user.data))
         then(user)
     }).catch(reason => {
@@ -13,14 +13,14 @@ export const authUser = (email, password, then) => (dispatch) => {
     })
 }
 
-export const updateCurrentUser = (user) => (dispatch) => {
+export const updateCurrentUser = (user) => async (dispatch) => {
     UserAPI.updateUser(user).then(user => {
         dispatch(setCurrentUser(user.data))
         dispatch(addNotification("Account was changed!", NOTIFICATION.INFO))
     })
 }
 
-export const updateUserAvatarImage = (current_user, image_name) => (dispatch) => {
+export const updateUserAvatarImage = (current_user, image_name) => async (dispatch) => {
     const user = {
         ...current_user,
         images: {
@@ -37,7 +37,7 @@ export const updateUserAvatarImage = (current_user, image_name) => (dispatch) =>
     })
 }
 
-export const updateUserProfileImage = (current_user, image_name) => (dispatch) => {
+export const updateUserProfileImage = (current_user, image_name) => async (dispatch) => {
     const user = {
         ...current_user,
         images: {
@@ -55,19 +55,19 @@ export const updateUserProfileImage = (current_user, image_name) => (dispatch) =
     })
 }
 
-export const getUserByToken = () => (dispatch) => {
+export const getUserByToken = () => async (dispatch) => {
     UserAPI.getUser().then(user => {
         dispatch(setCurrentUser(user.data))
     })
 }
 
-export const authUserByToken = () => (dispatch) => {
+export const authUserByToken = () => async (dispatch) => {
     return UserAPI.getUser().then(user => {
         dispatch(loginUser(user.data))
     })
 }
 
-export const createUser = (name, login, email, password, then) => (dispatch) => {
+export const createUser = (name, login, email, password, then) => async (dispatch) => {
     UserAPI.createUser(name, login, email, password).then(user => {
         dispatch(addNotification("Account was created!", NOTIFICATION.INFO))
         dispatch(loginUser(user.data))

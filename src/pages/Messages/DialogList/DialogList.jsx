@@ -10,7 +10,7 @@ export const DialogList = () => {
     const current_user = useSelector(state => state.auth.current_user)
     const dialogs = useSelector(state => state.messages.dialogs)
 
-    if (!dialogs) return <Loader/>
+    if (!dialogs || !current_user) return <Loader/>
 
     const dialogsList = dialogs.map(dialog => {
         const unchecked_messages_count = dialog.messages

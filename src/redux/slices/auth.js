@@ -13,7 +13,7 @@ const authSlice = createSlice({
             state.current_user = action.payload
         },
         setCurrentUser(state, action) {
-            state.current_user = action.current_user
+            state.current_user = action.payload
         },
         logoutUser(state, action) {
             localStorage.clear()

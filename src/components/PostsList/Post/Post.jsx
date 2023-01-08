@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useRef, memo} from "react"
+import React, {useState, useEffect, useRef, memo, useMemo} from "react"
 import {useDispatch, useSelector} from "react-redux";
 import {Link} from "react-router-dom";
 
@@ -18,6 +18,8 @@ export const Post = memo(({post, likePost, removePost, checkPost}) => {
     const currentUserId = useSelector(state => state.auth.current_user?._id)
     const dispatch = useDispatch()
     const ref = useRef()
+    const isVisible = useOnScreen(ref)
+
     const image = useImage(post.user.images.avatar_image.small)
     const [isRemovePostWindowOpened, toggleRemovePostWindow] = useState(false)
     const textWithTags = useTags(post.text, post.tags ? post.tags : [])
@@ -26,8 +28,6 @@ export const Post = memo(({post, likePost, removePost, checkPost}) => {
     const isLiked = post.likes.includes(currentUserId)
     const like = () => dispatch(likePost(post._id))
     const remove = () => dispatch(removePost(post._id))
-
-    const isVisible = useOnScreen(ref)
 
     useEffect(() => {
         if(isVisible && !isViewed && post.author_id !== currentUserId) {

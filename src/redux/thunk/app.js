@@ -5,9 +5,9 @@ import {subscribeToFeedPostsChannel, subscribeToMessageChannel} from "./socket_s
 import {getMessages} from "./messages";
 import {initialize} from "../slices/app";
 
-export const initializeApp = (token) => (dispatch) => {
+export const initializeApp = (token) => async (dispatch) => {
     config.token = token
-    return UserAPI.getUser().then(user => {
+    return await UserAPI.getUser().then(user => {
         dispatch(loginUser(user.data))
         dispatch(getMessages())
         subscribeToMessageChannel(dispatch)

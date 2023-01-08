@@ -65,7 +65,7 @@ svg {
 .active {
   font-weight: 700;
   color: $color1!important;
-  background: $color4;
+  background-color: $color0;
 
   svg {
     fill: $color1;
@@ -82,7 +82,7 @@ svg {
 }
 
 .navigation a:not(.active):hover {
-  background: $color5;
+  background-color: $color1;
 }
 
 .navigation a:active {
