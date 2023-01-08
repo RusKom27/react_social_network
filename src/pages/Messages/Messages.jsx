@@ -1,12 +1,11 @@
 import {Outlet, useParams} from "react-router-dom";
-import {connect} from "react-redux";
 
-import DialogList from "./DialogList/DialogList";
+import {DialogList} from "./DialogList/DialogList";
 import {useWindowDimensions} from "../../hooks";
 
 import styles from "./Messages.module.scss"
 
-function Messages() {
+export const Messages = () => {
     const {width} = useWindowDimensions()
     const {dialog_id} = useParams()
 
@@ -17,9 +16,3 @@ function Messages() {
         </div>
     )
 }
-
-const mapStateToProps = (state) => ({
-    messages: state.messages.dialogs
-})
-
-export default connect(mapStateToProps)(Messages)

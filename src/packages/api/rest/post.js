@@ -50,6 +50,14 @@ export const PostAPI = {
             headers: {authorization: true},
             method: 'GET',
         })
+    },
+
+    getActualTopics() {
+        return makeRequest({
+            url: `api/post/actual_topics`,
+            headers: {authorization: true},
+            method: 'GET',
+        })
     }
 }
 

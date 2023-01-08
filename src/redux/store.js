@@ -1,20 +1,16 @@
-import {applyMiddleware, combineReducers, legacy_createStore as createStore} from "redux";
-import {authReducer, imagesReducer, appReducer, feedReducer, messagesReducer, profileReducer} from "./reducers";
-import thunk from "redux-thunk";
-import { composeWithDevTools } from 'redux-devtools-extension';
+import {combineReducers, configureStore} from "@reduxjs/toolkit";
+import {appSlice, authSlice, profileSlice, imagesSlice, feedSlice, messagesSlice} from "./slices"
 
-const reducers = combineReducers({
-    messages: messagesReducer,
-    app: appReducer,
-    auth: authReducer,
-    feed: feedReducer,
-    profile: profileReducer,
-    images: imagesReducer,
+const rootReducer = combineReducers({
+    app: appSlice,
+    auth: authSlice,
+    profile: profileSlice,
+    images: imagesSlice,
+    feed: feedSlice,
+    messages: messagesSlice
 })
 
-let store = createStore(
-    reducers,
-    composeWithDevTools(applyMiddleware(thunk))
-)
+export const store = configureStore({
+    reducer: rootReducer
+})
 
-export {store}

@@ -1,5 +1,1 @@
-import PopularTags from "./PopularTags/PopularTags";
-
-export {
-    PopularTags
-}
+export {PopularTags} from "./PopularTags/PopularTags";

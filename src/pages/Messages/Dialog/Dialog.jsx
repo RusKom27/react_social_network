@@ -1,10 +1,11 @@
-import styles from "./Dialog.module.scss"
 import {useParams} from "react-router-dom";
-import MessageInput from "./MessageInput/MessageInput";
-import MessageList from "./MessageList/MessageList";
-import {connect} from "react-redux";
 
-const Dialog = () => {
+import {MessageInput} from "./MessageInput/MessageInput";
+import {MessageList} from "./MessageList/MessageList";
+
+import styles from "./Dialog.module.scss"
+
+export const Dialog = () => {
     const {dialog_id} = useParams()
 
     return (
@@ -14,8 +15,3 @@ const Dialog = () => {
         </div>
     )
 }
-
-const mapStateToProps = () => ({
-})
-
-export default connect(mapStateToProps)(Dialog)

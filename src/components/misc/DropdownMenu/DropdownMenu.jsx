@@ -1,10 +1,12 @@
 import React from "react"
-import styles from "./DropdownMenu.module.scss"
 import {useEffect, useState} from "react";
+
 import {ReactComponent as ThreeDots} from "../../../static/images/svg/three-dots.svg";
 import {Button} from "../Button/Button";
 
-function DropdownMenu({options}) {
+import styles from "./DropdownMenu.module.scss"
+
+export const DropdownMenu = ({options}) => {
     const [isDropdownOpened, toggleDropdown] = useState(false)
 
     const optionsButtons = Object.keys(options).map((option, i) => {
@@ -37,5 +39,3 @@ function DropdownMenu({options}) {
         </div>
     )
 }
-
-export {DropdownMenu}

@@ -1,6 +1,0 @@
-export {messagesReducer} from "./messagesReducer"
-export {appReducer} from "./appReducer"
-export {authReducer} from "./authReducer"
-export {feedReducer} from "./feedReducer"
-export {profileReducer} from "./profileReducer"
-export {imagesReducer} from "./imagesReducer"

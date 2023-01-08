@@ -1,18 +1,11 @@
-import {connect} from "react-redux";
-
-import {createProfilePost} from "../../../redux/thunk";
-import {PostCreationForm} from "../../../forms/PostCreationForm";
+import {PostCreationForm} from "../../../forms";
 
 import styles from "./PostCreationInput.module.scss"
 
-const PostCreationInput = ({createProfilePost}) => {
+export const PostCreationInput = () => {
     return (
         <div className={styles.post_creating_form}>
-            <PostCreationForm createProfilePost={createProfilePost}/>
+            <PostCreationForm/>
         </div>
     )
 }
-
-const mapStateToProps = () => ({})
-
-export default connect(mapStateToProps, {createProfilePost})(PostCreationInput)

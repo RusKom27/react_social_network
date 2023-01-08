@@ -1,13 +1,11 @@
 import React from "react"
-import {connect} from "react-redux";
 
-import Post from "../Post/Post";
+import {Post} from "./Post/Post";
 import {Loader} from "../misc/Loader/Loader";
 
 import styles from "./PostsList.module.scss"
 
-const PostsList = ({posts, isInitialLoading, likePost, removePost, checkPost}) => {
-
+export const PostsList = ({posts, isInitialLoading, likePost, removePost, checkPost}) => {
     if (isInitialLoading) return <Loader/>
     let postComponents = posts.map(
         (post) => <Post
@@ -25,5 +23,3 @@ const PostsList = ({posts, isInitialLoading, likePost, removePost, checkPost}) =
         </div>
     )
 }
-
-export default connect(null)(PostsList)

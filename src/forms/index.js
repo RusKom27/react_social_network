@@ -1,15 +1,6 @@
-import ImageLoadForm from "./ImageLoadForm"
-import {AccountChangeForm} from "./AccountChangeForm"
-import {LoginForm} from "./LoginForm"
-import {RegisterForm} from "./RegisterForm"
-import {MessageCreationForm} from "./MessageCreationForm"
-import {PostCreationForm} from "./PostCreationForm"
-
-export {
-    ImageLoadForm,
-    AccountChangeForm,
-    LoginForm,
-    RegisterForm,
-    MessageCreationForm,
-    PostCreationForm
-}
+export {ImageLoadForm} from "./ImageLoadForm"
+export {AccountChangeForm} from "./AccountChangeForm"
+export {LoginForm} from "./LoginForm"
+export {RegisterForm} from "./RegisterForm"
+export {MessageCreationForm} from "./MessageCreationForm"
+export {PostCreationForm} from "./PostCreationForm"

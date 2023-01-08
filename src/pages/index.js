@@ -1,23 +1,10 @@
-import Profile from "./Profile/Profile"
-import Feed from "./Feed/Feed"
-import Messages from "./Messages/Messages"
-import Settings from "./Settings/Settings"
-import {Security} from "./Settings/Security/Security"
-import Account from "./Settings/Account/Account"
-import {Auth} from "./Auth/Auth";
-import Login from "./Auth/Login/Login"
-import Register from "./Auth/Register/Register"
-import Dialog from "./Messages/Dialog/Dialog";
-
-export {
-    Messages,
-    Dialog,
-    Profile,
-    Settings,
-    Security,
-    Account,
-    Feed,
-    Auth,
-    Login,
-    Register
-}
+export {Profile} from "./Profile/Profile"
+export {Feed} from "./Feed/Feed"
+export {Messages} from "./Messages/Messages"
+export {Settings} from "./Settings/Settings"
+export {Security} from "./Settings/Security/Security"
+export {Account} from "./Settings/Account/Account"
+export {Auth} from "./Auth/Auth";
+export {Login} from "./Auth/Login/Login"
+export {Register} from "./Auth/Register/Register"
+export {Dialog} from "./Messages/Dialog/Dialog";

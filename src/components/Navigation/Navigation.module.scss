@@ -13,6 +13,7 @@
   transition: 0.3s;
 
   > div {
+    overflow: clip;
     margin-top: 16px;
   }
 }
@@ -29,7 +30,6 @@
   justify-items: center;
   gap: 16px;
   padding: 5px;
-  margin-inline: 8px;
   margin-block: auto;
   color: $color0;
   text-decoration: none;
@@ -90,9 +90,11 @@ svg {
 }
 
 @media screen and (max-width: 1000px){
-  .navigation div a {
-    height: 32px;
-    margin-inline: 0;
+  .navigation div {
+    a {
+      height: 32px;
+    }
+
   }
 
   .hidden {

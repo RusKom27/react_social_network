@@ -1,18 +1,28 @@
 import {useEffect} from "react";
-import {connect, useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 
 import {PostsList, SideBar} from "../../components";
-import {checkFeedPost, getFeedPosts, getPopularTags, likeFeedPost, removeFeedPost} from "../../redux/thunk";
+import {
+    checkFeedPost,
+    getActualTopics,
+    getFeedPosts,
+    getPopularTags,
+    likeFeedPost,
+    removeFeedPost
+} from "../../redux/thunk";
 
 import styles from "./Feed.module.scss"
 import {PopularTags} from "../../components/SideBar/SideBarComponents";
+import {ActualTopics} from "../../components/SideBar/SideBarComponents/ActualTopics/ActualTopics";
 
-const Feed = ({getFeedPosts, getPopularTags, likeFeedPost, removeFeedPost, checkFeedPost}) => {
-    const {isInitialLoading, posts, popular_tags} = useSelector(state => state.feed)
+export const Feed = () => {
+    const {isInitialLoading, posts, popular_tags, actual_topics} = useSelector(state => state.feed)
+    const dispatch = useDispatch()
 
     useEffect(() => {
-        getPopularTags()
-        getFeedPosts()
+        dispatch(getPopularTags())
+        dispatch(getActualTopics())
+        dispatch(getFeedPosts())
     },[])
 
     return (
@@ -26,23 +36,15 @@ const Feed = ({getFeedPosts, getPopularTags, likeFeedPost, removeFeedPost, check
                     checkPost={checkFeedPost}
                 />
                 <SideBar>
-                    <PopularTags tags={popular_tags}/>
+                    <div>
+                        <PopularTags tags={popular_tags}/>
+                    </div>
+                    <div>
+                        <ActualTopics topics={actual_topics}/>
+                    </div>
                 </SideBar>
             </div>
 
         </div>
     )
 }
-
-const mapStateToProps = () => ({})
-
-export default connect(
-    mapStateToProps,
-    {
-        getFeedPosts,
-        likeFeedPost,
-        removeFeedPost,
-        checkFeedPost,
-        getPopularTags
-    }
-)(Feed)

@@ -1,5 +1,5 @@
 import {CHANNEL, subscribeToChannel} from "../../../packages/ably";
-import {addPost, deletePost, updatePost} from "../../actionCreators/feed";
+import {addPost, deletePost, updatePost} from "../../slices/feed";
 
 export const subscribeToFeedPostsChannel = (dispatch, user_login) => {
     subscribeToChannel(CHANNEL.POSTS, message => {

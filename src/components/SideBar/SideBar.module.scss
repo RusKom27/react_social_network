@@ -6,13 +6,23 @@
   flex-direction: column;
   min-width: 200px;
   max-width: 300px;
-  gap: 20px;
+  gap: 16px;
   overflow: visible;
 
   > div {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    > div {
+      border: solid 1px transparentize($color3, 0.6);
+      border-radius: 8px;
+    }
+  }
+
+  > div:last-child {
     position: sticky;
     top: calc($header-height + 20px);
-    background-color: $color2;
+    //bottom: 500px;
   }
 }
 

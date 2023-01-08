@@ -1,24 +1,19 @@
 import { Formik, Field, Form, ErrorMessage } from 'formik';
-import {connect, useSelector} from "react-redux";
-import {useNavigate} from "react-router-dom";
-import {useState} from "react";
 import * as Yup from 'yup';
 
 import {Button} from "../components";
-import {useImage} from "../hooks";
-import {getImage} from "../redux/thunk";
+import {useDispatch} from "react-redux";
+import {updateCurrentUser} from "../redux/thunk";
 
-const FILE_SIZE = 1_048_576
-const SUPPORTED_FORMATS = ["image/png", "image/jpg"]
 
-export const AccountChangeForm = ({updateCurrentUser, current_user, getImage}) => {
+export const AccountChangeForm = ({current_user}) => {
+    const dispatch = useDispatch()
+
     return (
         <Formik
             initialValues={{
                 name: current_user.name,
                 login: current_user.login,
-                // avatar_image: useImage(current_user.images.avatar_image.small, getImage),
-                // profile_image: useImage(current_user.images.profile_image.small, getImage)
             }}
             validationSchema={Yup.object({
                 name: Yup.string()
@@ -27,30 +22,16 @@ export const AccountChangeForm = ({updateCurrentUser, current_user, getImage}) =
                 login: Yup.string()
                     .max(20, 'Must be 20 characters or less')
                     .required('Required'),
-                // avatar_image: Yup.mixed()
-                //     .nullable()
-                //     .notRequired()
-                //     .test("FILE_SIZE", "Uploaded file is too big.",
-                //         value => !value || (value && value.size <= FILE_SIZE))
-                //     .test("FILE_FORMAT", "Uploaded file has unsupported format.",
-                //         value => !value || (value && SUPPORTED_FORMATS.includes(value.type))),
-                // profile_image: Yup.mixed()
-                //     .nullable()
-                //     .notRequired()
-                //     .test("FILE_SIZE", "Uploaded file is too big.",
-                //         value => !value || (value && value.size <= FILE_SIZE))
-                //     .test("FILE_FORMAT", "Uploaded file has unsupported format.",
-                //         value => !value || (value && SUPPORTED_FORMATS.includes(value.type)))
             })}
             onSubmit={(values, { setSubmitting }) => {
-                updateCurrentUser({
+                dispatch(updateCurrentUser({
                         name: values.name,
                         login: values.login,
                     },
                     user => {
                         setSubmitting(false);
                     }
-                )
+                ))
             }}
         >
             <Form>

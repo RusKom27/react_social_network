@@ -1,12 +1,15 @@
 import React from 'react';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
-import * as Yup from 'yup';
 import {useNavigate} from "react-router-dom";
+import {useDispatch} from "react-redux";
+import * as Yup from 'yup';
 
 import {Button} from "../components";
+import {createUser} from "../redux/thunk";
 
-export const RegisterForm = ({createUser}) => {
+export const RegisterForm = () => {
     const navigate = useNavigate()
+    const dispatch = useDispatch()
 
     return (
         <Formik
@@ -26,7 +29,7 @@ export const RegisterForm = ({createUser}) => {
                     .required('Required'),
             })}
             onSubmit={(values, { setSubmitting }) => {
-                createUser(
+                dispatch(createUser(
                     values.name,
                     values.login,
                     values.email,
@@ -35,7 +38,7 @@ export const RegisterForm = ({createUser}) => {
                         setSubmitting(false)
                         navigate(`/profile/${user.login}`)
                     }
-                )
+                ))
             }}
         >
             <Form>

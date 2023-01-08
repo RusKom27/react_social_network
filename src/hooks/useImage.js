@@ -1,14 +1,16 @@
-import {useEffect, useState} from "react";
-import {useSelector} from "react-redux";
+import {useEffect} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {getImage} from "../redux/thunk";
 
-export const useImage = (image_name, getImage) => {
+export const useImage = (image_name) => {
+    const dispatch = useDispatch()
     const image = useSelector(state => {
         return state.images.images[image_name]
     })
 
     useEffect(() => {
         if (!image) {
-            getImage(image_name)
+            dispatch(getImage(image_name))
         }
     }, [image])
 

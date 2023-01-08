@@ -1,29 +1,14 @@
-import Header from "./Header/Header"
-import {Loader} from "./misc/Loader/Loader";
-import Navigation from "./Navigation/Navigation"
-import PostsList from "./PostsList/PostsList";
-import Post from "./Post/Post";
-import Message from "./Message/Message";
-import {Button} from "./misc/Button/Button";
-import {DropdownMenu} from "./misc/DropdownMenu/DropdownMenu";
-import {Redirect} from "./misc/Redirect/Redirect";
-import {ModalWindow} from "./misc/ModalWindow/ModalWindow";
-import AppInitialization from "./AppInitialization";
-import AppNotificationsContainer from "./AppNotificationsContainer/AppNotificationsContainer";
-import SideBar from "./SideBar/SideBar";
+export {Header} from "./Header/Header"
+export {Loader} from "./misc/Loader/Loader";
+export {Navigation} from "./Navigation/Navigation"
+export {PostsList} from "./PostsList/PostsList";
+export {Post} from "./PostsList/Post/Post";
+export {Message} from "./Message/Message";
+export {Button} from "./misc/Button/Button";
+export {DropdownMenu} from "./misc/DropdownMenu/DropdownMenu";
+export {Redirect} from "./misc/Redirect/Redirect";
+export {ModalWindow} from "./misc/ModalWindow/ModalWindow";
+export {AppInitialization} from "./AppInitialization";
+export {AppNotificationsContainer} from "./AppNotificationsContainer/AppNotificationsContainer";
+export {SideBar} from "./SideBar/SideBar";
 
-export {
-    Header,
-    Loader,
-    Message,
-    Navigation,
-    PostsList,
-    Post,
-    Button,
-    DropdownMenu,
-    Redirect,
-    ModalWindow,
-    AppInitialization,
-    AppNotificationsContainer,
-    SideBar,
-}

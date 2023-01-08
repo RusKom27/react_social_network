@@ -1,5 +1,12 @@
 import {PostAPI} from "../../packages/api";
-import {deletePost, setInitialLoading, setPopularTags, setPosts, updatePost} from "../actionCreators/feed";
+import {
+    deletePost,
+    setActualTopics,
+    setInitialLoading,
+    setPopularTags,
+    setPosts,
+    updatePost
+} from "../slices/feed";
 
 export const getFeedPosts = (user_login = "") => (dispatch) => {
     dispatch(setInitialLoading(true))
@@ -18,10 +25,15 @@ export const checkFeedPost = (post_id) => () => {
     PostAPI.checkPost(post_id)
 }
 
-
 export const getPopularTags = () => (dispatch) => {
     PostAPI.getPopularTags().then(tags => {
         dispatch(setPopularTags(tags.data))
+    })
+}
+
+export const getActualTopics = () => (dispatch) => {
+    PostAPI.getActualTopics().then(topics => {
+        dispatch(setActualTopics(topics.data))
     })
 }
 

@@ -1,8 +1,12 @@
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import {Button} from "../components";
+import {createProfilePost} from "../redux/thunk";
+import {useDispatch} from "react-redux";
 
-export const PostCreationForm = ({createProfilePost}) => {
+export const PostCreationForm = () => {
+    const dispatch = useDispatch()
+
     return (
         <Formik
             initialValues={{ post_text: '' }}
@@ -11,10 +15,10 @@ export const PostCreationForm = ({createProfilePost}) => {
                     .max(300, 'Must be 300 characters or less'),
             })}
             onSubmit={(values, { setSubmitting, resetForm }) => {
-                createProfilePost(values.post_text, () => {
+                dispatch(createProfilePost(values.post_text, () => {
                     setSubmitting(false)
                     resetForm({post_text: ''})
-                })
+                }))
             }}
         >
             <Form>

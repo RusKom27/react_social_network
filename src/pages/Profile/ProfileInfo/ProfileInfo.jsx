@@ -1,36 +1,35 @@
-import React from "react"
-import {connect, useSelector} from "react-redux";
+import {useState} from "react"
+import {useDispatch, useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
 
 import {Button, ModalWindow} from "../../../components";
-import {createDialog, getImage, subscribeUser, updateUser} from "../../../redux/thunk";
-import {logoutUser} from "../../../redux/actionCreators/auth";
+import {createDialog, subscribeUser} from "../../../redux/thunk";
+import {logoutUser} from "../../../redux/slices/auth";
 import {useImage} from "../../../hooks";
 
 import styles from "./ProfileInfo.module.scss"
-import {useState} from "react";
 
-function ProfileInfo({user, logoutUser, createDialog, subscribeUser, getImage}) {
+export const ProfileInfo = ({user}) => {
     const navigate = useNavigate()
     const current_user = useSelector(state => state.auth.current_user)
-    const avatar_image = useImage(user.images.avatar_image.small, getImage)
-    const profile_image = useImage(user.images.profile_image.small, getImage)
+    const dispatch = useDispatch()
+    const avatar_image = useImage(user.images.avatar_image.small)
+    const profile_image = useImage(user.images.profile_image.small)
     const [isLogoutWindowOpened, toggleLogoutWindow] = useState(false)
-
 
     const isSubscribed = user?.subscribers.includes(current_user?._id)
 
     const logout = () => {
-        logoutUser()
+        dispatch(logoutUser())
         navigate("/auth/login")
     }
 
     const create_dialog = () => {
-        createDialog(user._id, dialog => navigate(`../../messages/${dialog.data._id}`))
+        dispatch(createDialog(user._id, dialog => navigate(`../../messages/${dialog.data._id}`)))
     }
 
     const subscribe = () => {
-        subscribeUser(user.login)
+        dispatch(subscribeUser(user.login))
     }
 
     const to_account_settings = () => {
@@ -89,16 +88,3 @@ function ProfileInfo({user, logoutUser, createDialog, subscribeUser, getImage}) 
         </div>
     )
 }
-
-const mapStateToProps = () => ({})
-
-export default connect(
-    mapStateToProps,
-    {
-        logoutUser,
-        createDialog,
-        subscribeUser,
-        updateUser,
-        getImage
-    }
-)(ProfileInfo)

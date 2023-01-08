@@ -1,26 +1,27 @@
 import React, {memo, useEffect, useMemo, useRef} from "react"
-import {connect, useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 
 import {ReactComponent as Checked} from "../../static/images/svg/check2-all.svg";
 import {ReactComponent as Unchecked} from "../../static/images/svg/check2.svg";
-import {checkMessage, getImage} from "../../redux/thunk";
+import {checkMessage} from "../../redux/thunk";
 import {useOnScreen, useImage} from "../../hooks";
 
 import styles from "./Message.module.scss"
 
-const Message = memo(({message, checkMessage, getImage}) => {
+export const Message = memo(({message}) => {
     const token = useSelector(state => state.auth.token)
+    const dispatch = useDispatch()
     const owner_class = message.sender._id === token ? styles.from_user : styles.from_other
     const ref = useRef()
     const isVisible = useOnScreen(ref)
-    const image = useImage(message.sender.images.avatar_image.small, getImage)
+    const image = useImage(message.sender.images.avatar_image.small)
 
 
     useEffect(() => {
         if(isVisible && !message.checked && message.sender._id !== token) {
-            checkMessage(message._id)
+            dispatch(checkMessage(message._id))
         }
-    }, [checkMessage, isVisible, message, token])
+    }, [isVisible, message, token])
 
     const date_string = useMemo(() => {
         const date = new Date(message.creation_date)
@@ -50,10 +51,5 @@ const Message = memo(({message, checkMessage, getImage}) => {
                 </div>
             </div>
         </div>
-
     )
 })
-
-const mapStateToProps = (state) => ({})
-
-export default connect(mapStateToProps, {checkMessage, getImage})(Message)

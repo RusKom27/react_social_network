@@ -13,6 +13,7 @@ export const ACTION = {
         UPDATE_POST: 'UPDATE_POST',
         DELETE_POST: 'DELETE_POST',
         SET_POPULAR_TAGS: 'SET_POPULAR_TAGS',
+        SET_ACTUAL_TOPICS: 'SET_ACTUAL_TOPICS',
     },
     AUTH: {
         LOGIN_USER: 'LOGIN_USER',

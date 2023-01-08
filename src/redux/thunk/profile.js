@@ -1,5 +1,5 @@
 import {PostAPI, UserAPI} from "../../packages/api";
-import {deletePost, setInitialLoading, setPosts, setUser, updatePost} from "../actionCreators/profile";
+import {deletePost, setInitialLoading, setPosts, setUser, updatePost} from "../slices/profile";
 import {subscribeToProfilePostsChannel} from "./socket_subscriptions";
 
 export const getProfilePosts = (user_login = "") => (dispatch) => {

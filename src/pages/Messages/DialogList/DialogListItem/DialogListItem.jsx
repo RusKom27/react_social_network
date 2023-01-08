@@ -1,13 +1,18 @@
 import React from "react"
+import {useDispatch} from "react-redux";
 import {NavLink} from "react-router-dom";
+
+import {toggleMenuTab} from "../../../../redux/slices/app";
 
 import styles from "./DialogListItem.module.scss"
 
-function DialogListItem({id, last_message, member_names, toggleMenuTab, unchecked_messages_count}) {
+export const DialogListItem = ({id, last_message, member_names, unchecked_messages_count}) => {
+    const dispatch = useDispatch()
     const activeClassName = ({isActive}) => isActive ? styles.active : ''
+
     return (
         <NavLink className={activeClassName} to={`${id}`}>
-            <div onClick={() => toggleMenuTab(true)} className={styles.container}>
+            <div onClick={() => dispatch(toggleMenuTab(true))} className={styles.container}>
                 <div className={styles.dialog_info}>
                     <div className={styles.member}>
                         {member_names}
@@ -29,5 +34,3 @@ function DialogListItem({id, last_message, member_names, toggleMenuTab, unchecke
         </NavLink>
     )
 }
-
-export {DialogListItem}

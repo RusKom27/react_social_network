@@ -1,19 +1,20 @@
-import {connect, useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {useEffect} from "react";
-import {removeNotification} from "../../redux/actionCreators/app";
+import {removeNotification} from "../../redux/slices/app";
 
 import styles from "./AppNotificationContainer.module.scss"
 import {PopupBox} from "../misc/PopupBox/PopupBox";
 
-const AppNotificationsContainer = ({removeNotification}) => {
+export const AppNotificationsContainer = () => {
     const notifications = useSelector(state => state.app.notifications)
+    const dispatch = useDispatch()
 
     useEffect(() => {
         if (notifications[0]) {
-            if (notifications.length > 6) removeNotification(notifications[0]?.id)
+            if (notifications.length > 6) dispatch(removeNotification(notifications[0]?.id))
             else {
                 setTimeout(() => {
-                    removeNotification(notifications[0]?.id)
+                    dispatch(removeNotification(notifications[0]?.id))
                 }, 2000)
             }
 
@@ -26,7 +27,7 @@ const AppNotificationsContainer = ({removeNotification}) => {
                 return (
                     <PopupBox
                         type={notification.type}
-                        closeBox={() => removeNotification(notification.id)}
+                        closeBox={() => dispatch(removeNotification(notification.id))}
                         key={notification.id}
                     >
                         {notification.message}
@@ -37,5 +38,3 @@ const AppNotificationsContainer = ({removeNotification}) => {
         </div>
     )
 }
-
-export default connect(null, {removeNotification})(AppNotificationsContainer)

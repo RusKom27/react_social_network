@@ -1,25 +1,26 @@
 import React, {useEffect} from "react"
 import {useParams} from "react-router-dom";
-import {connect, useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 
 import {checkProfilePost, getProfilePosts, getUser, likeProfilePost, removeProfilePost} from "../../redux/thunk";
-import ProfileInfo from "./ProfileInfo/ProfileInfo";
-import PostCreationInput from "./PostCreationInput/PostCreationInput";
+import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
+import {PostCreationInput} from "./PostCreationInput/PostCreationInput";
 import {Loader, PostsList, SideBar} from "../../components";
 
 import styles from "./Profile.module.scss"
 
-const Profile = ({getProfilePosts, getUser, likeProfilePost, removeProfilePost, checkProfilePost}) => {
+export const Profile = () => {
     const userLogin = useParams().login
     const user = useSelector(state => state.profile.user)
     const {isInitialLoading, posts} = useSelector(state => state.profile)
     const current_user = useSelector(state => state.auth.current_user)
+    const dispatch = useDispatch()
 
     useEffect(() => {
-        getProfilePosts(userLogin)
-        getUser(userLogin)
+        dispatch(getProfilePosts(userLogin))
+        dispatch(getUser(userLogin))
         window.scrollTo(0, 0);
-    }, [userLogin, getProfilePosts, getUser])
+    }, [userLogin])
 
     return (
         <div className={styles.container}>
@@ -38,19 +39,11 @@ const Profile = ({getProfilePosts, getUser, likeProfilePost, removeProfilePost, 
                                 checkPost={checkProfilePost}
                             />
                             <SideBar>
-
                             </SideBar>
                         </div>
-
                     </>
             }
         </div>
     )
 }
 
-const mapStateToProps = () => ({})
-
-export default connect(
-    mapStateToProps,
-    {getUser, getProfilePosts, likeProfilePost, removeProfilePost, checkProfilePost}
-)(Profile)

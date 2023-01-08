@@ -1,9 +1,9 @@
 import {UserAPI} from "../../packages/api";
-import {loginUser} from "../actionCreators/auth";
+import {loginUser} from "../slices/auth";
 import {config} from "../../packages/api/config";
 import {subscribeToFeedPostsChannel, subscribeToMessageChannel} from "./socket_subscriptions";
 import {getMessages} from "./messages";
-import {initialize} from "../actionCreators/app";
+import {initialize} from "../slices/app";
 
 export const initializeApp = (token) => (dispatch) => {
     config.token = token

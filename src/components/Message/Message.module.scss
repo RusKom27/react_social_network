@@ -26,7 +26,8 @@
   min-width: 60px;
   max-width: 60%;
   margin-block: 8px;
-  box-shadow: 4px 4px 2px $color3;
+  border: solid 1px transparentize($color3, 0.6);
+  border-radius: 8px;
 }
 
 .message img {
@@ -91,7 +92,7 @@
   .message {
     color: $color0;
     background-color: $color1;
-    box-shadow: 4px 4px 2px $color3;
+    border: solid 1px transparentize($color2, 0.6);
   }
 
   .message_time {

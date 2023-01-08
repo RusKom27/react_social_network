@@ -1,14 +1,16 @@
 import { Formik, Form, ErrorMessage } from 'formik';
+import {useDispatch} from "react-redux";
 import * as Yup from 'yup';
 
 import {Button} from "../components";
-import {connect} from "react-redux";
 import {sendImage} from "../redux/thunk";
 
 const FILE_SIZE = 1048576
 const SUPPORTED_FORMATS = ["image/png", "image/jpeg"]
 
-const ImageLoadForm = ({sendImage, fileName, onImageLoad=()=>{}}) => {
+export const ImageLoadForm = ({fileName, onImageLoad=()=>{}}) => {
+    const dispatch = useDispatch()
+
     return (
         <Formik
             initialValues={{ image: '' }}
@@ -26,13 +28,13 @@ const ImageLoadForm = ({sendImage, fileName, onImageLoad=()=>{}}) => {
                 const file_type = values.image.name.split('.').at(-1)
                 const file_name = `${fileName}.${file_type}`
                 formData.append("image", values.image, file_name);
-                sendImage(
+                dispatch(sendImage(
                     formData,
                     () => {
                         setSubmitting(false);
                         onImageLoad(file_name)
                     }
-                )
+                ))
             }}
 
         >
@@ -53,10 +55,3 @@ const ImageLoadForm = ({sendImage, fileName, onImageLoad=()=>{}}) => {
         </Formik>
     );
 };
-
-const mapStateToProps = () => ({})
-
-export default connect(
-    mapStateToProps,
-    {sendImage}
-)(ImageLoadForm)
