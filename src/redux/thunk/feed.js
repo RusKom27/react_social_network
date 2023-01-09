@@ -6,7 +6,7 @@ import {
     setPopularTags,
     setPosts,
     updatePost
-} from "../slices/feed";
+} from "../reducers/feed";
 
 export const getFeedPosts = (user_login = "") => (dispatch) => {
     dispatch(setInitialLoading(true))

@@ -14,7 +14,8 @@ export const MessageCreationForm = ({dialog_id}) => {
             initialValues={{ message_text: '' }}
             validationSchema={Yup.object({
                 message_text: Yup.string()
-                    .max(300, 'Must be 300 characters or less'),
+                    .max(300, 'Must be 300 characters or less')
+                    .required(''),
             })}
             onSubmit={(values, { setSubmitting, resetForm }) => {
                 dispatch(createMessage(dialog_id, values.message_text, () => {

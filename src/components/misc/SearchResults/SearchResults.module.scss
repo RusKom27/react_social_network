@@ -1,0 +1,21 @@
+@import "../../../index";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: calc($header-height + 4px);
+  right: 15%;
+  min-width: 500px;
+  min-height: 100px;
+  color: $color1!important;
+  background-color: $color4;
+  padding: 8px 8px;
+  border: solid 1px transparentize($color3, 0.6);
+  box-shadow: 2px 2px 0 transparentize($color3, 0.6);
+  border-radius: 8px;
+
+  h3 {
+    margin-block: 5px;
+  }
+}

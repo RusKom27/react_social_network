@@ -1,5 +1,5 @@
 import {CHANNEL, subscribeToChannel} from "../../../packages/ably";
-import {addDialog, addMessage, updateMessage} from "../../slices/messages";
+import {addDialog, addMessage, updateMessage} from "../../reducers/messages";
 import {config} from "../../../packages/api/config";
 
 export const subscribeToMessageChannel = (dispatch) => {

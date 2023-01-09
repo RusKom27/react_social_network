@@ -4,6 +4,7 @@ import feedSlice from "./feed"
 import imagesSlice from "./images"
 import messagesSlice from "./messages"
 import profileSlice from "./profile"
+import searchSlice from "./search"
 
 export {
     appSlice,
@@ -11,5 +12,6 @@ export {
     feedSlice,
     imagesSlice,
     messagesSlice,
-    profileSlice
+    profileSlice,
+    searchSlice,
 }

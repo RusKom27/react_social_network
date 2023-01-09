@@ -38,7 +38,7 @@
 .notification {
   position: absolute;
   overflow: clip;
-  left: 35px;
+  left: 30px;
   margin-top: -3px;
   color: $color1;
   text-align: center;
@@ -82,7 +82,7 @@ svg {
 }
 
 .navigation a:not(.active):hover {
-  background-color: $color1;
+  background-color: $color5;
 }
 
 .navigation a:active {

@@ -15,6 +15,7 @@
     gap: 16px;
     > div {
       border: solid 1px transparentize($color3, 0.6);
+      box-shadow: 2px 2px 0 transparentize($color3, 0.6);
       border-radius: 8px;
     }
   }

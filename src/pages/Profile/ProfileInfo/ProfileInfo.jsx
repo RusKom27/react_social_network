@@ -4,7 +4,7 @@ import {useNavigate} from "react-router-dom";
 
 import {Button, ModalWindow} from "../../../components";
 import {createDialog, subscribeUser} from "../../../redux/thunk";
-import {logoutUser} from "../../../redux/slices/auth";
+import {logoutUser} from "../../../redux/reducers/auth";
 import {useImage} from "../../../hooks";
 
 import styles from "./ProfileInfo.module.scss"

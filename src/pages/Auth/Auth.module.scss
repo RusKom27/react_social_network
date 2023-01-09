@@ -24,7 +24,20 @@
 
       > div {
         display: flex;
+        flex-direction: row;
         justify-content: center;
+        gap: 16px;
+
+        > div {
+          display: flex;
+          flex-direction: column;
+          gap: 16px;
+
+          > div {
+            flex: 2;
+
+          }
+        }
 
         label {
           flex: 2;
@@ -35,6 +48,15 @@
           flex: 5;
           height: 24px;
           font-size: 16px;
+          padding: 8px;
+          border: solid 1px transparentize($color3, 0.6);
+          box-shadow: 2px 2px 0 transparentize($color3, 0.6);
+          border-radius: 8px;
+
+          &:focus {
+            outline: none;
+            border-color: #0064b9;
+          }
         }
       }
     }

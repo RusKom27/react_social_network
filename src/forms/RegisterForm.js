@@ -43,24 +43,26 @@ export const RegisterForm = () => {
         >
             <Form>
                 <div>
-                    <label htmlFor="name">Name</label>
-                    <Field name="name" type="text" />
-                    <ErrorMessage name="name" />
-                </div>
-                <div>
-                    <label htmlFor="login">Login</label>
-                    <Field name="login" type="text" />
-                    <ErrorMessage name="login" />
-                </div>
-                <div>
-                    <label htmlFor="email">Email</label>
-                    <Field name="email" type="email" />
-                    <ErrorMessage name="email" />
-                </div>
-                <div>
-                    <label htmlFor="password">Password</label>
-                    <Field name="password" type="password" />
-                    <ErrorMessage name="password" />
+                    <div>
+                        <label htmlFor="name">Name</label>
+                        <label htmlFor="login">Login</label>
+                        <label htmlFor="email">Email</label>
+                        <label htmlFor="password">Password</label>
+
+                    </div>
+                    <div>
+                        <Field name="name" type="text" />
+                        <Field name="login" type="text" />
+                        <Field name="email" type="email" />
+                        <Field name="password" type="password" />
+
+                    </div>
+                    <div>
+                        <div><ErrorMessage name="name" /></div>
+                        <div><ErrorMessage name="login" /></div>
+                        <div><ErrorMessage name="email" /></div>
+                        <div><ErrorMessage name="password" /></div>
+                    </div>
                 </div>
                 <div>
                     <Button type="submit">Registration</Button>

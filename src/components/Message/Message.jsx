@@ -1,4 +1,4 @@
-import React, {memo, useEffect, useMemo, useRef} from "react"
+import React, {memo, useEffect, useMemo} from "react"
 import {useDispatch, useSelector} from "react-redux";
 
 import {ReactComponent as Checked} from "../../static/images/svg/check2-all.svg";
@@ -12,10 +12,8 @@ export const Message = memo(({message}) => {
     const token = useSelector(state => state.auth.token)
     const dispatch = useDispatch()
     const owner_class = message.sender._id === token ? styles.from_user : styles.from_other
-    const ref = useRef()
-    const isVisible = useOnScreen(ref)
+    const [isVisible, ref] = useOnScreen()
     const image = useImage(message.sender.images.avatar_image.small)
-
 
     useEffect(() => {
         if(isVisible && !message.checked && message.sender._id !== token) {

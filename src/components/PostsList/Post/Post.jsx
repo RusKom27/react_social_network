@@ -17,9 +17,7 @@ import styles from "./Post.module.scss"
 export const Post = memo(({post, likePost, removePost, checkPost}) => {
     const currentUserId = useSelector(state => state.auth.current_user?._id)
     const dispatch = useDispatch()
-    const ref = useRef()
-    const isVisible = useOnScreen(ref)
-
+    const [isVisible, ref] = useOnScreen()
     const image = useImage(post.user.images.avatar_image.small)
     const [isRemovePostWindowOpened, toggleRemovePostWindow] = useState(false)
     const textWithTags = useTags(post.text, post.tags ? post.tags : [])
@@ -36,7 +34,6 @@ export const Post = memo(({post, likePost, removePost, checkPost}) => {
     }, [isVisible, post, currentUserId])
 
     return (
-
         <div ref={ref} id={post._id} className={styles.post}>
             <div>
                 <Link to={`../../profile/${post.user.login}`}>

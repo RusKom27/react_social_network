@@ -1,8 +1,10 @@
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import {Button} from "../components";
-import {createProfilePost} from "../redux/thunk";
+import {Button} from "../../components";
+import {createProfilePost} from "../../redux/thunk";
 import {useDispatch} from "react-redux";
+
+import styles from "./PostCreationForm.module.scss"
 
 export const PostCreationForm = () => {
     const dispatch = useDispatch()

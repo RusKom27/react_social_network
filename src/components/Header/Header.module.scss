@@ -5,16 +5,16 @@
   display: flex;
   position: fixed;
   margin-top: -$header-height;
-  width: 72.4%;
+  width: 75%;
   justify-content: space-between;
   background: $color1;
-  padding: 0 20px;
   z-index: 90;
   text-wrap: normal;
+  overflow: hidden;
 }
 
-.header div {
-  padding: 5px;
+.header > div {
+  padding: 5px 20px;
   color: $color0;
 }
 
@@ -24,13 +24,25 @@
   font-weight: bold;
 }
 
+.search {
+  width: 30%;
+  input {
+    width: 100%;
+    transform: translateX(0);
+    transition: 0.4s;
+  }
+}
+
 .hamburger_button {
-  display: none;
+  display: none!important;
+  max-width: 34px!important;
+  padding: 12px!important;
+  border: none!important;
+  box-shadow: none!important;
+  margin: 4px!important;
   fill: $color0;
-  margin-left: -20px;
   svg {
-    height: 32px;
-    width: 32px;
+    margin-top: -2px!important;
   }
   &:hover {
     cursor: pointer;
@@ -44,6 +56,12 @@
 
   .header {
     width: 100%;
-    font-size: 0;
+  }
+
+  .search {
+    input {
+      width: 0;
+      transform: translateX(1000px);
+    }
   }
 }

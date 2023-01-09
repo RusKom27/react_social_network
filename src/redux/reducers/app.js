@@ -1,4 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit";
+import {NOTIFICATION} from "../../types";
 
 const appSlice = createSlice({
     name: "app",
@@ -14,11 +15,18 @@ const appSlice = createSlice({
         toggleMenuTab(state, action) {
             state.isMenuTabOpened = action.payload === undefined ? !state.isMenuTabOpened : action.payload
         },
-        addNotification(state, action) {
+        addInfoNotification(state, action) {
             state.notifications.push({
                 id: Date.now(),
-                type: action.payload.type,
-                message: action.payload.message
+                type: NOTIFICATION.INFO,
+                message: action.payload
+            })
+        },
+        addErrorNotification(state, action) {
+            state.notifications.push({
+                id: Date.now(),
+                type: NOTIFICATION.ERROR,
+                message: action.payload
             })
         },
         removeNotification(state, action) {
@@ -32,6 +40,7 @@ export default appSlice.reducer
 export const {
     initialize,
     toggleMenuTab,
-    addNotification,
+    addInfoNotification,
+    addErrorNotification,
     removeNotification
 } = appSlice.actions

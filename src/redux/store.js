@@ -1,5 +1,5 @@
 import {combineReducers, configureStore} from "@reduxjs/toolkit";
-import {appSlice, authSlice, profileSlice, imagesSlice, feedSlice, messagesSlice} from "./slices"
+import {appSlice, authSlice, profileSlice, imagesSlice, feedSlice, messagesSlice, searchSlice} from "./reducers"
 
 const rootReducer = combineReducers({
     app: appSlice,
@@ -7,7 +7,8 @@ const rootReducer = combineReducers({
     profile: profileSlice,
     images: imagesSlice,
     feed: feedSlice,
-    messages: messagesSlice
+    messages: messagesSlice,
+    search: searchSlice,
 })
 
 export const store = configureStore({

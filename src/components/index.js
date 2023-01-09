@@ -11,4 +11,5 @@ export {ModalWindow} from "./misc/ModalWindow/ModalWindow";
 export {AppInitialization} from "./AppInitialization";
 export {AppNotificationsContainer} from "./AppNotificationsContainer/AppNotificationsContainer";
 export {SideBar} from "./SideBar/SideBar";
+export {SearchResults} from "./misc/SearchResults/SearchResults";
 

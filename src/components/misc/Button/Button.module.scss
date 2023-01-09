@@ -4,16 +4,19 @@
   display: flex;
   justify-content: center;
   text-align: center;
-  padding: 8px;
+  padding: 16px;
+  align-items: center;
   margin: 8px;
   flex: 6;
   font-size: 16px;
   font-weight: 300;
-  border: none;
   max-width: 120px;
   max-height: 32px;
   background-color: $color1;
   color: $color2;
+  border: solid 1px transparentize($color3, 0.6);
+  box-shadow: 2px 2px 0 transparentize($color3, 0.6);
+  border-radius: 8px;
 
   svg {
     margin-top: -8px;

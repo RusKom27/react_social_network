@@ -2,7 +2,7 @@ import React from "react"
 import {useDispatch} from "react-redux";
 import {NavLink} from "react-router-dom";
 
-import {toggleMenuTab} from "../../../../redux/slices/app";
+import {toggleMenuTab} from "../../../../redux/reducers/app";
 
 import styles from "./DialogListItem.module.scss"
 

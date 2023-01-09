@@ -13,7 +13,9 @@
   z-index: 999;
 
   > div {
-    box-shadow: 0 0 100px rgba(0,0,0,0.3);
+    border: solid 1px transparentize($color3, 0.6);
+    box-shadow: 2px 2px 0 transparentize($color3, 0.6);
+    border-radius: 8px;
     padding: 20px;
     background-color: $color2;
     > span {

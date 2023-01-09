@@ -6,7 +6,7 @@ import {ReactComponent as MessageSVG} from "../../static/images/svg/message.svg"
 import {ReactComponent as ProfileSVG} from "../../static/images/svg/profile.svg"
 import {ReactComponent as SettingsSVG} from "../../static/images/svg/settings.svg"
 import {ReactComponent as FeedSVG} from "../../static/images/svg/view-list.svg"
-import {toggleMenuTab} from "../../redux/slices/app";
+import {toggleMenuTab} from "../../redux/reducers/app";
 
 import styles from "./Navigation.module.scss"
 

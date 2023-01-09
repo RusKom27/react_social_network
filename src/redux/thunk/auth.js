@@ -1,7 +1,6 @@
 import {UserAPI} from "../../packages/api";
-import {loginUser, setCurrentUser} from "../slices/auth";
-import {addNotification} from "../slices/app";
-import {NOTIFICATION} from "../../types";
+import {loginUser, setCurrentUser} from "../reducers/auth";
+import {addInfoNotification, addErrorNotification} from "../reducers/app";
 
 
 export const authUser = (email, password, then) => async (dispatch) => {
@@ -9,14 +8,14 @@ export const authUser = (email, password, then) => async (dispatch) => {
         dispatch(loginUser(user.data))
         then(user)
     }).catch(reason => {
-        dispatch(addNotification(reason.response.data.message, NOTIFICATION.ERROR))
+        dispatch(addErrorNotification(reason.response.data.message))
     })
 }
 
 export const updateCurrentUser = (user) => async (dispatch) => {
     UserAPI.updateUser(user).then(user => {
         dispatch(setCurrentUser(user.data))
-        dispatch(addNotification("Account was changed!", NOTIFICATION.INFO))
+        dispatch(addInfoNotification("Account was changed!"))
     })
 }
 
@@ -32,7 +31,7 @@ export const updateUserAvatarImage = (current_user, image_name) => async (dispat
         }
     }
     UserAPI.updateUser(user).then(user => {
-        dispatch(addNotification("Avatar image was changed!", NOTIFICATION.INFO))
+        dispatch(addInfoNotification("Avatar image was changed!"))
         dispatch(setCurrentUser(user.data))
     })
 }
@@ -50,7 +49,7 @@ export const updateUserProfileImage = (current_user, image_name) => async (dispa
     }
 
     UserAPI.updateUser(user).then(user => {
-        dispatch(addNotification("Profile image was changed!", NOTIFICATION.INFO))
+        dispatch(addInfoNotification("Profile image was changed!"))
         dispatch(setCurrentUser(user.data))
     })
 }
@@ -69,10 +68,10 @@ export const authUserByToken = () => async (dispatch) => {
 
 export const createUser = (name, login, email, password, then) => async (dispatch) => {
     UserAPI.createUser(name, login, email, password).then(user => {
-        dispatch(addNotification("Account was created!", NOTIFICATION.INFO))
+        dispatch(addInfoNotification("Account was created!"))
         dispatch(loginUser(user.data))
         then(user)
     }).catch(reason => {
-        dispatch(addNotification(reason.response.data.message, NOTIFICATION.ERROR))
+        dispatch(addErrorNotification(reason.response.data.message))
     })
 }

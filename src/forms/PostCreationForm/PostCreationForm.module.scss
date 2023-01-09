@@ -1,0 +1,43 @@
+@import "src/index";
+
+form {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  width: 100%;
+
+  > div {
+    display: flex;
+    justify-content: center;
+  }
+
+  div:has(textarea) {
+    flex: 10;
+    font-size: 18px;
+  }
+
+  textarea {
+    padding: 4px;
+    font-size: 16px;
+    border: solid 1px transparentize($color3, 0.6);
+    box-shadow: 2px 2px 0 transparentize($color3, 0.6);
+    border-radius: 8px;
+    background: none;
+    resize: none;
+    width: 100%;
+
+    &:focus {
+      outline: none;
+      border-color: #0064b9;
+    }
+  }
+
+  button {
+    padding: 20px!important;
+    align-items: center;
+  }
+}
+
+@media screen and (max-width: 670px) {
+
+}

@@ -32,14 +32,18 @@ export const LoginForm = () => {
         >
             <Form>
                 <div>
-                    <label htmlFor="email">Email</label>
-                    <Field name="email" type="email" />
-                    <ErrorMessage name="email" />
-                </div>
-                <div>
-                    <label htmlFor="password">Password</label>
-                    <Field name="password" type="password" />
-                    <ErrorMessage name="password" />
+                    <div>
+                        <label htmlFor="email">Email</label>
+                        <label htmlFor="password">Password</label>
+                    </div>
+                    <div>
+                        <Field name="email" type="email" />
+                        <Field name="password" type="password" />
+                    </div>
+                    <div>
+                        <div><ErrorMessage name="email" /></div>
+                        <div><ErrorMessage name="password" /></div>
+                    </div>
                 </div>
                 <div>
                     <Button type="submit">Login</Button>

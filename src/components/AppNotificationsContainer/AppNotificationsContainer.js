@@ -1,6 +1,6 @@
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect} from "react";
-import {removeNotification} from "../../redux/slices/app";
+import {removeNotification} from "../../redux/reducers/app";
 
 import styles from "./AppNotificationContainer.module.scss"
 import {PopupBox} from "../misc/PopupBox/PopupBox";
