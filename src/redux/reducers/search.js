@@ -4,19 +4,27 @@ const searchSlice = createSlice({
     name: "search",
     initialState: {
         isLoading: true,
+        isResultDisplaying: false,
         results: {
             tags: null,
-            users: null,
+            topics: null,
         }
     },
     reducers: {
         setSearchResults(state, action) {
-            state.images[action.payload.name] = action.payload
+            state.results.topics = action.payload.topics
+            state.results.users = action.payload.users
+            state.isResultDisplaying = state.results.users.length > 0 || state.results.topics.length > 0
         },
+
+        toggleSearchResults(state, action) {
+            state.isResultDisplaying = action.payload
+        }
     }
 })
 
 export default searchSlice.reducer
 export const {
-    setSearchResults
+    setSearchResults,
+    toggleSearchResults
 } = searchSlice.actions

@@ -6,33 +6,43 @@ import {ReactComponent as SearchSVG} from "../../static/images/svg/search.svg"
 import {Button, SearchResults} from "../../components";
 
 import styles from "./SearchForm.module.scss"
+import {searchByUserInput} from "../../redux/thunk/search";
+import {useDebounce} from "../../hooks";
+
 
 export const SearchForm = () => {
     const dispatch = useDispatch()
+    const debouncedSearch = useDebounce((search_text) => {
+        dispatch(searchByUserInput(search_text))
+    }, 500, true)
 
     return (
         <Formik
             initialValues={{ search_text: '' }}
             validationSchema={Yup.object({
                 search_text: Yup.string()
-                    .max(300, 'Must be 300 characters or less'),
+                    .max(300, 'Must be 300 characters or less')
+                    .required("")
             })}
             onSubmit={(values, { setSubmitting, resetForm }) => {
-                setSubmitting(false)
-                resetForm({search_text: ''})
+                dispatch(searchByUserInput(values.search_text)).then(() => {
+                    setSubmitting(false)
+                })
             }}
         >
-            <Form onChange={event => {
-
-            }}>
-                <div>
-                    <Field name="search_text" type="text"/>
-                    <ErrorMessage name="search_text" />
-                </div>
-                <div>
-                    <Button type="submit"><SearchSVG/></Button>
-                </div>
-            </Form>
+            {({values, errors, setFieldValue}) => (
+                <Form>
+                    <div>
+                        <input name="search_text" type="text" onChange={event => {
+                             dispatch(searchByUserInput(event.target.value))
+                        }}/>
+                        <ErrorMessage name="search_text" />
+                    </div>
+                    <div>
+                        <Button type="submit"><SearchSVG/></Button>
+                    </div>
+                </Form>
+            )}
         </Formik>
-    );
+    )
 };

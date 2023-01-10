@@ -19,5 +19,4 @@ export const ImageAPI = {
             data: formData,
         })
     }
-
 }

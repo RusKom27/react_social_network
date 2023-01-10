@@ -1,14 +1,10 @@
-import {ImageAPI} from "../../packages/api";
-import {addImage} from "../reducers/images";
+import {setSearchResults, toggleSearchResults} from "../reducers/search";
+import {SearchAPI} from "../../packages/api/rest/search";
 
-export const getImage = (image_name) => (dispatch) => {
-    ImageAPI.getImage(image_name).then(image => {
-        dispatch(addImage(image.data))
-    })
-}
-
-export const sendImage = (imageData, then) => (dispatch) => {
-    ImageAPI.sendImage(imageData).then(image => {
-        then(image)
+export const searchByUserInput = (user_input) => (dispatch) => {
+    return SearchAPI.searchByUserInput(user_input).then(results => {
+        dispatch(setSearchResults(results.data))
+    }).catch(reason => {
+        dispatch(toggleSearchResults(false))
     })
 }

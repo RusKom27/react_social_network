@@ -15,7 +15,7 @@ export const Layout = () => {
             <Header/>
             <main>
                 {token && <Navigation/>}
-                <Outlet/>
+                <Outlet />
             </main>
         </div>
     )

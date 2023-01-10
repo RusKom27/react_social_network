@@ -1,6 +1,7 @@
-import React, {useState, useEffect, useRef, memo, useMemo} from "react"
+import React, {useState, useEffect, memo} from "react"
 import {useDispatch, useSelector} from "react-redux";
 import {Link} from "react-router-dom";
+import {gsap} from "gsap"
 
 import image_placeholder from "../../../static/images/image-placeholder1.png"
 import {ReactComponent as LikeEnabled} from "../../../static/images/svg/heart-fill.svg";
@@ -32,6 +33,17 @@ export const Post = memo(({post, likePost, removePost, checkPost}) => {
             dispatch(checkPost(post._id))
         }
     }, [isVisible, post, currentUserId])
+
+    useEffect(() => {
+        gsap.to(
+            ref.current,
+            {
+                opacity: 1,
+                duration: 0.5,
+                y: 0
+            }
+        )
+    })
 
     return (
         <div ref={ref} id={post._id} className={styles.post}>

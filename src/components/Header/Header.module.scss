@@ -42,7 +42,8 @@
   margin: 4px!important;
   fill: $color0;
   svg {
-    margin-top: -2px!important;
+    margin-top: -12px!important;
+    margin-left: -12px;
   }
   &:hover {
     cursor: pointer;
@@ -51,7 +52,7 @@
 
 @media screen and (max-width: 1000px){
   .hamburger_button {
-    display: block;
+    display: block!important;
   }
 
   .header {
