@@ -7,6 +7,7 @@ import {checkMessage} from "../../redux/thunk";
 import {useOnScreen, useImage} from "../../hooks";
 
 import styles from "./Message.module.scss"
+import {useDate} from "../../hooks/useDate";
 
 export const Message = memo(({message}) => {
     const token = useSelector(state => state.auth.token)
@@ -21,14 +22,7 @@ export const Message = memo(({message}) => {
         }
     }, [isVisible, message, token])
 
-    const date_string = useMemo(() => {
-        const date = new Date(message.creation_date)
-        return `
-        ${date.getFullYear() !== new Date().getFullYear() ? date.getFullYear() : ''}
-        ${date.getDay() !== new Date().getDay() ? `${date.getDate()}.${date.getMonth()}` : ''}
-        ${date.getHours()}:${date.getMinutes() < 10 ? `0${date.getMinutes()}` : date.getMinutes()}
-        `
-    }, [message])
+    const date_string = useDate(message.creation_date)
 
     return (
         <div ref={ref} className={`${styles.container} ${owner_class} ${!message.checked && styles.unchecked}`}>

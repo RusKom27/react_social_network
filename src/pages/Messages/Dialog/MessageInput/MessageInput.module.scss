@@ -1,11 +1,11 @@
 @import "src/index";
 
 .input_section {
-  max-width: calc(100% - 32px);
   form {
     display: flex;
     background-color: $color1;
     padding: 16px;
+    gap: 16px;
     height: 32px;
     color: $color0;
 

@@ -32,14 +32,16 @@ export const SearchForm = () => {
         >
             {({values, errors, setFieldValue}) => (
                 <Form>
-                    <div>
-                        <input name="search_text" type="text" onChange={event => {
-                             dispatch(searchByUserInput(event.target.value))
-                        }}/>
-                        <ErrorMessage name="search_text" />
-                    </div>
-                    <div>
-                        <Button type="submit"><SearchSVG/></Button>
+                    <div className={styles.container}>
+                        <div>
+                            <input name="search_text" type="text" onChange={event => {
+                                dispatch(searchByUserInput(event.target.value))
+                            }}/>
+                            <ErrorMessage name="search_text" />
+                        </div>
+                        <div>
+                            <Button type="submit"><SearchSVG/></Button>
+                        </div>
                     </div>
                 </Form>
             )}

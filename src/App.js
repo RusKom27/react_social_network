@@ -4,7 +4,7 @@ import {useSelector} from "react-redux";
 
 import {Account, Auth, Dialog, Feed, Login, Messages, Profile, Register, Security, Settings} from "./pages";
 import {Layout} from "./layout/Layout";
-import {Redirect} from "./components";
+import {AccountsSearchResults, Redirect, TopicSearchResults} from "./components";
 
 import "./App.scss"
 
@@ -28,6 +28,8 @@ export const App = () => {
                     {token && <Route path={"messages"} element={<Messages/>}>
                         <Route path={":dialog_id"} element={<Dialog/>}/>
                     </Route>}
+                    {token && <Route path={"search_results/topics"} element={<TopicSearchResults/>}/>}
+                    {token && <Route path={"search_results/accounts"} element={<AccountsSearchResults/>}/>}
                 </Route>
                 <Route path={"*"} element={<Redirect/>}/>
             </Routes>

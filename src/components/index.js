@@ -12,4 +12,6 @@ export {AppInitialization} from "./AppInitialization";
 export {AppNotificationsContainer} from "./AppNotificationsContainer/AppNotificationsContainer";
 export {SideBar} from "./SideBar/SideBar";
 export {SearchResults} from "./misc/SearchResults/SearchResults";
+export {TopicSearchResults} from "./misc/SearchResults/TopicSearchResults/TopicSearchResults";
+export {AccountsSearchResults} from "./misc/SearchResults/AccountsSearchResults/AccountsSearchResults";
 

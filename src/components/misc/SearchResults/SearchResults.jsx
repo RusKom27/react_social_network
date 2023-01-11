@@ -2,9 +2,10 @@ import {useDispatch, useSelector} from "react-redux";
 import {toggleSearchResults} from "../../../redux/reducers/search";
 
 import styles from "./SearchResults.module.scss"
+import {AccountsSearchResults} from "./AccountsSearchResults/AccountsSearchResults";
+import {TopicSearchResults} from "./TopicSearchResults/TopicSearchResults";
 
 export const SearchResults = () => {
-    const {users, topics} = useSelector(state => state.search.results)
     const {isResultDisplaying} = useSelector(state => state.search)
     const dispatch = useDispatch()
 
@@ -18,14 +19,9 @@ export const SearchResults = () => {
         <div onClick={onClickHandler} className={styles.container}>
             <div className={styles.results}>
                 <h3>Topics</h3>
-                {topics ? topics.slice(0,5).map(topic =>
-                    <div>{topic}</div>
-                ) : ''}
-                {topics.length > 5 && <div>Show more...</div>}
+                <TopicSearchResults limit={5}/>
                 <h3>Accounts</h3>
-                {users ? users.slice(0,5).map(user =>
-                    <div>{user.name}</div>
-                ) : ''}
+                <AccountsSearchResults limit={5}/>
             </div>
         </div>
 

@@ -11,6 +11,10 @@
   z-index: 90;
   text-wrap: normal;
   overflow: hidden;
+
+  > div:has(.hamburger_button) {
+    display: none;
+  }
 }
 
 .header > div {
@@ -34,16 +38,14 @@
 }
 
 .hamburger_button {
-  display: none!important;
-  max-width: 34px!important;
-  padding: 12px!important;
-  border: none!important;
-  box-shadow: none!important;
-  margin: 4px!important;
+  max-width: 34px;
+  padding: 12px;
+  border: none;
+  box-shadow: none;
+  margin: 0;
   fill: $color0;
   svg {
-    margin-top: -12px!important;
-    margin-left: -12px;
+    margin-top: -2px;
   }
   &:hover {
     cursor: pointer;
@@ -51,8 +53,10 @@
 }
 
 @media screen and (max-width: 1000px){
-  .hamburger_button {
-    display: block!important;
+  header {
+    > div:has(.hamburger_button)  {
+      display: block!important;
+    }
   }
 
   .header {

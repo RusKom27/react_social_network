@@ -1,6 +1,6 @@
 @import "src/index";
 
-form {
+.container {
   display: flex;
   gap: 8px;
   align-items: center;
@@ -17,7 +17,7 @@ form {
   }
 
   svg {
-    margin-top: -2px!important;
+    margin-top: -2px;
     transform: scale(0.6);
   }
 
@@ -36,10 +36,10 @@ form {
   }
 
   button {
-    border: none!important;
-    box-shadow: none!important;
-    padding: 4px!important;
-    margin: 0!important;
+    border: none;
+    box-shadow: none;
+    padding: 4px;
+    margin: 0;
     align-items: center;
   }
 }

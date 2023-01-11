@@ -15,10 +15,12 @@ export const Header = () => {
 
     return (
         <header className={styles.header}>
-            {token && <Button onClick={() => dispatch(toggleMenuTab())} style={styles.hamburger_button}><MenuSVG/></Button>}
+            {token && <div>
+                <Button onClick={() => dispatch(toggleMenuTab())} style={styles.hamburger_button}><MenuSVG/></Button>
+            </div>}
             <div className={styles.logo}>ReactSocialNetwork</div>
-            <div className={styles.search}><SearchForm/></div>
-            <SearchResults/>
+            {token && <div className={styles.search}><SearchForm/></div>}
+            {token && <SearchResults/>}
         </header>
     )
 }

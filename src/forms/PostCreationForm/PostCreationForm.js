@@ -24,13 +24,16 @@ export const PostCreationForm = () => {
             }}
         >
             <Form>
-                <div>
-                    <Field name="post_text" type="text" component={"textarea"}/>
-                    <ErrorMessage name="post_text" />
+                <div className={styles.container}>
+                    <div>
+                        <Field name="post_text" type="text" component={"textarea"}/>
+                        <ErrorMessage name="post_text" />
+                    </div>
+                    <div>
+                        <Button type="submit">Create</Button>
+                    </div>
                 </div>
-                <div>
-                    <Button type="submit">Create</Button>
-                </div>
+
             </Form>
         </Formik>
     );
