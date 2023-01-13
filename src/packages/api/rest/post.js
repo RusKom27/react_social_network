@@ -1,7 +1,7 @@
 import {makeRequest} from "../makeRequest";
 
 export const PostAPI = {
-    getPosts(user_login = '') {
+    getPosts(user_login) {
         return makeRequest({
             url: `api/post/${user_login}`,
             headers: {authorization: false},
