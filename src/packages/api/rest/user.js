@@ -52,6 +52,14 @@ export const UserAPI = {
             headers: {authorization: true},
             method: 'PUT',
         })
+    },
+
+    closeConnection() {
+        return makeRequest({
+            url: `api/user/close_connection`,
+            headers: {authorization: true},
+            method: 'DELETE',
+        })
     }
 }
 

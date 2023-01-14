@@ -1,15 +1,17 @@
 import {UserAPI} from "../../packages/api";
-import {loginUser} from "../reducers/auth";
+import {loginUser, logoutUser} from "../reducers/auth";
 import {config} from "../../packages/api/config";
-import {subscribeToFeedPostsChannel, subscribeToMessageChannel} from "./socket_subscriptions";
 import {getMessages} from "./messages";
 import {initialize} from "../reducers/app";
 import {subscribeToChannel} from "../../packages/ably";
 import {addPost, updatePost} from "../reducers/feed";
 import {addDialog, addMessage, updateMessage} from "../reducers/messages";
 
+const onCloseConnection = () => UserAPI.closeConnection()
+
 export const initializeApp = (token) => async (dispatch) => {
     config.token = token
+
     return await UserAPI.getUser().then(user => {
         subscribeToChannel(user.data._id, (message) => {
             switch (message.name) {
@@ -32,8 +34,10 @@ export const initializeApp = (token) => async (dispatch) => {
         })
         dispatch(loginUser(user.data))
         dispatch(getMessages())
-        // subscribeToMessageChannel(dispatch)
-        // subscribeToFeedPostsChannel(dispatch, user.data.login)
+        window.removeEventListener('unload', onCloseConnection)
+        window.addEventListener('unload', onCloseConnection)
         dispatch(initialize())
+    }).catch(reason => {
+        dispatch(logoutUser())
     })
 }

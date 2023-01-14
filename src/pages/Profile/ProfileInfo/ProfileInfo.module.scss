@@ -8,17 +8,16 @@
   box-shadow: 2px 2px 0 transparentize($color3, 0.6);
   border-radius: 8px;
   padding-bottom: 16px;
-}
-
-.profile_image {
-  height: 300px;
   overflow: clip;
 }
 
+.profile_image {
+  overflow: clip;
+  height: 300px;
+}
+
 .profile_image img {
-  width: 100%;
   min-width: 100%;
-  min-height: 660px;
   margin-top: -20%;
 }
 
@@ -73,6 +72,11 @@
 }
 
 @media screen and (max-width: 900px){
+  .container {
+    border: none;
+    border-radius: 0;
+  }
+
   .profile_image {
     height: 250px;
   }
