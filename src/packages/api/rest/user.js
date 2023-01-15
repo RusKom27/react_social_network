@@ -15,7 +15,15 @@ export const UserAPI = {
 
     getUser(login = '') {
         return makeRequest({
-            url: `api/user/${login}`,
+            url: `api/user/login/${login}`,
+            headers: {authorization: true},
+            method: 'GET',
+        })
+    },
+
+    getUserById(id) {
+        return makeRequest({
+            url: `api/user/id/${id}`,
             headers: {authorization: true},
             method: 'GET',
         })

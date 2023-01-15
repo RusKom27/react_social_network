@@ -15,12 +15,15 @@ import {useDate} from "../../../hooks/useDate";
 import {useTags} from "../../../hooks/useTags";
 
 import styles from "./Post.module.scss"
+import {Image} from "../../misc/Image/Image";
+import {Loader} from "../../misc/Loader/Loader";
+import {UserAvatarImage} from "./components/UserAvatarImage/UserAvatarImage";
+import {UserPostInfo} from "./components/UserPostInfo/UserPostInfo";
 
 export const Post = memo(({post, likePost, removePost, checkPost}) => {
     const currentUserId = useSelector(state => state.auth.current_user?._id)
     const dispatch = useDispatch()
     const [isVisible, ref] = useOnScreen()
-    const image = useImage(post.user.images.avatar_image.small)
     const [isRemovePostWindowOpened, toggleRemovePostWindow] = useState(false)
     const textWithTags = useTags(post.text, post.tags ? post.tags : [])
     const creation_date = useDate(post.creation_date, true)
@@ -47,45 +50,43 @@ export const Post = memo(({post, likePost, removePost, checkPost}) => {
         )
     })
 
-
+    if (!author_user) return <div className={styles.post} ref={ref}>Loading</div>
 
     return (
         <>
             <div ref={ref} id={post._id} className={styles.post}>
-                <div>
-                    <Link to={`../../profile/${post.user.login}`}>
-                        {image.src && <img src={image.src} alt=""/>}
-                    </Link>
-                </div>
+                <UserAvatarImage user_id={post.author_id}/>
                 <div>
                     <div className={styles.post_header}>
-                        <div className={styles.content_author}>
-                            <Link to={`../../profile/${post.user.login}`}>
-                                {post.user.name} <span>@{post.user.login}</span>
-                            </Link>
+                        <UserPostInfo user_id={post.author_id}/>
+                        <div>
                             <span> | {creation_date}</span>
                         </div>
+                    </div>
+                    <div>
+                        {post.image &&
+                            <div className={styles.content_image}>
+                                <img src={image_placeholder} alt=""/>
+                            </div>
+                        }
+                        <div className={styles.post_main}>
+                            {textWithTags}
+                        </div>
+                        <div className={styles.post_footer}>
+                            <div>
+                                <button onClick={like}>{isLiked ? <LikeEnabled/> : <LikeDisabled/>}</button>
+                                <div>{post.likes.length}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div>
                         <DropdownMenu options={{"Delete": () => toggleRemovePostWindow(true)}}/>
                     </div>
-
-                    {post.image &&
-                        <div className={styles.content_image}>
-                            <img src={image_placeholder} alt=""/>
-                        </div>
-                    }
-                    <div className={styles.post_main}>
-                        {textWithTags}
-                    </div>
-                    <div className={styles.post_footer}>
-                        <div>
-                            <button onClick={like}>{isLiked ? <LikeEnabled/> : <LikeDisabled/>}</button>
-                            <div>{post.likes.length}</div>
-                        </div>
-                        <div>
-                            <div><ViewsIcon/></div>
-                            <div>{post.views ? post.views.length : 0}</div>
-                        </div>
-
+                    <div>
+                        <div><ViewsIcon/></div>
+                        <div>{post.views ? post.views.length : 0}</div>
                     </div>
                 </div>
             </div>

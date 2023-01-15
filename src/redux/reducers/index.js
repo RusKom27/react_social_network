@@ -5,6 +5,7 @@ import imagesSlice from "./images"
 import messagesSlice from "./messages"
 import profileSlice from "./profile"
 import searchSlice from "./search"
+import usersSlice from "./users"
 
 export {
     appSlice,
@@ -14,4 +15,5 @@ export {
     messagesSlice,
     profileSlice,
     searchSlice,
+    usersSlice,
 }

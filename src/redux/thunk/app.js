@@ -12,7 +12,7 @@ const onCloseConnection = () => UserAPI.closeConnection()
 export const initializeApp = (token) => async (dispatch) => {
     config.token = token
 
-    return await UserAPI.getUser().then(user => {
+    return await UserAPI.getUserById(token).then(user => {
         subscribeToChannel(user.data._id, (message) => {
             switch (message.name) {
                 case 'post_like':

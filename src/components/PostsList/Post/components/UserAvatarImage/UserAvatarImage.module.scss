@@ -1,0 +1,13 @@
+@import "../../../../../index";
+
+.container {
+  padding: 8px;
+  flex: 1;
+
+  img {
+    background-color: mix($color3, $color2);
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+  }
+}

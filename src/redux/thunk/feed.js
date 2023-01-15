@@ -7,12 +7,18 @@ import {
     setPosts,
     updatePost
 } from "../reducers/feed";
+import {getUsersById} from "./users";
 
-export const getFeedPosts = (user_login = "") => (dispatch) => {
-    dispatch(setInitialLoading(true))
-    PostAPI.getPosts(user_login).then(posts => {
+export const getFeedPosts = (user_login = "") => async (dispatch, getState) => {
+    try {
+        dispatch(setInitialLoading(true))
+        const posts = await PostAPI.getPosts(user_login)
+        dispatch(await getUsersById(posts.data.map(post => post.author_id)))
         dispatch(setPosts(posts.data))
-    })
+    } catch (err) {
+
+    }
+
 }
 
 export const likeFeedPost = (post_id) => (dispatch) => {

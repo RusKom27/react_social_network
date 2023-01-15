@@ -4,7 +4,7 @@ const usersSlice = createSlice({
     name: "users",
     initialState: {
         isInitialLoading: true,
-        user: [],
+        users: [],
     },
     reducers: {
         setUsers(state, action) {
