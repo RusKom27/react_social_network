@@ -1,7 +1,5 @@
 import React, {memo, useEffect, useState} from "react"
 import {useDispatch, useSelector} from "react-redux";
-import {useQuery} from "@tanstack/react-query";
-import {Link} from "react-router-dom";
 import {gsap} from "gsap"
 
 import image_placeholder from "../../../static/images/image-placeholder1.png"
@@ -10,7 +8,7 @@ import {ReactComponent as LikeDisabled} from "../../../static/images/svg/heart.s
 import {ReactComponent as ViewsIcon} from "../../../static/images/svg/eye-fill.svg";
 import {DropdownMenu} from "../../misc/DropdownMenu/DropdownMenu";
 import {ModalWindow} from "../../misc/ModalWindow/ModalWindow";
-import {useImage, useOnScreen} from "../../../hooks";
+import {useOnScreen} from "../../../hooks";
 import {Button} from "../../misc/Button/Button";
 import {useDate} from "../../../hooks/useDate";
 import {useTags} from "../../../hooks/useTags";
@@ -18,24 +16,25 @@ import {useTags} from "../../../hooks/useTags";
 import styles from "./Post.module.scss"
 import {UserAvatarImage} from "./components/UserAvatarImage/UserAvatarImage";
 import {UserPostInfo} from "./components/UserPostInfo/UserPostInfo";
-import {UserAPI} from "../../../packages/api";
 
-export const Post = memo(({post, likePost, removePost, checkPost}) => {
-    const currentUserId = useSelector(state => state.auth.current_user?._id)
+import {postApi} from "../../../services";
 
-    const dispatch = useDispatch()
-
+export const Post = memo(({post}) => {
     const [isRemovePostWindowOpened, toggleRemovePostWindow] = useState(false)
+    const currentUserId = useSelector(state => state.auth.current_user?._id)
+    const [likePost] = postApi.useLikePostMutation()
+    const [removePost] = postApi.useRemovePostMutation()
+    const [checkPost] = postApi.useCheckPostMutation()
 
-    const isViewed = post.views?.includes(currentUserId)
+    const isViewed = post.views.includes(currentUserId)
     const isLiked = post.likes.includes(currentUserId)
-    const like = () => dispatch(likePost(post._id))
-    const remove = () => dispatch(removePost(post._id))
+    const like = () => likePost(post._id)
+    const remove = () => removePost(post._id)
 
     const [isVisible, ref] = useOnScreen()
     useEffect(() => {
-        if (isVisible && !isViewed && post.author_id !== currentUserId) {
-            dispatch(checkPost(post._id))
+        if (post && isVisible && !isViewed && post.author_id !== currentUserId) {
+            checkPost(post._id)
         }
     }, [isVisible, post, currentUserId])
 
@@ -50,8 +49,8 @@ export const Post = memo(({post, likePost, removePost, checkPost}) => {
         )
     })
 
-    const creation_date = useDate(post.creation_date, true)
-    const textWithTags = useTags(post.text, post.tags ? post.tags : [])
+    const creation_date = useDate(post?.creation_date, true)
+    const textWithTags = useTags(post?.text, post?.tags ? post?.tags : [])
     return (
         <>
             <div ref={ref} id={post._id} className={styles.post}>

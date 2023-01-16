@@ -14,15 +14,17 @@ import {
 import styles from "./Feed.module.scss"
 import {PopularTags} from "../../components/SideBar/SideBarComponents";
 import {ActualTopics} from "../../components/SideBar/SideBarComponents/ActualTopics/ActualTopics";
+import {postApi} from "../../services";
 
 export const Feed = () => {
-    const {isInitialLoading, posts, popular_tags, actual_topics} = useSelector(state => state.feed)
+    // const {isInitialLoading, posts, popular_tags, actual_topics} = useSelector(state => state.feed)
+    const {data: posts, isLoading} = postApi.useFetchAllPostListQuery()
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(getPopularTags())
-        dispatch(getActualTopics())
-        dispatch(getFeedPosts())
+        // dispatch(getPopularTags())
+        // dispatch(getActualTopics())
+        // dispatch(getFeedPosts())
     },[])
 
     return (
@@ -30,17 +32,14 @@ export const Feed = () => {
             <div className={styles.posts_container}>
                 <PostsList
                     posts={posts}
-                    isInitialLoading={isInitialLoading}
-                    likePost={likeFeedPost}
-                    removePost={removeFeedPost}
-                    checkPost={checkFeedPost}
+                    isLoading={isLoading}
                 />
                 <SideBar>
                     <div>
-                        <PopularTags tags={popular_tags}/>
+                        {/*<PopularTags tags={popular_tags}/>*/}
                     </div>
                     <div>
-                        <ActualTopics topics={actual_topics}/>
+                        {/*<ActualTopics topics={actual_topics}/>*/}
                     </div>
                 </SideBar>
             </div>

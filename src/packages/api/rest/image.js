@@ -3,14 +3,14 @@ import {makeRequest} from "../makeRequest";
 export const ImageAPI = {
     getImage(image_name) {
         return makeRequest({
-            url: `api/image/${image_name}`,
+            url: `image/${image_name}`,
             headers: {authorization: false},
             method: 'GET'
         })
     },
     sendImage(formData) {
         return makeRequest({
-            url: `api/image/upload`,
+            url: `image/upload`,
             headers: {
                 authorization: true,
                 'Content-Type': 'multipart/form-data'

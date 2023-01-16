@@ -3,7 +3,7 @@ import {makeRequest} from "../makeRequest";
 export const PostAPI = {
     getPosts(user_login) {
         return makeRequest({
-            url: `api/post/${user_login}`,
+            url: `post/${user_login}`,
             headers: {authorization: false},
             method: 'GET',
         })
@@ -11,7 +11,7 @@ export const PostAPI = {
 
     createPost(text) {
         return makeRequest({
-            url: 'api/post',
+            url: 'post',
             headers: {authorization: true},
             method: 'POST',
             data: {
@@ -22,7 +22,7 @@ export const PostAPI = {
 
     likePost(post_id) {
         return makeRequest({
-            url: `api/post/like/${post_id}`,
+            url: `post/like/${post_id}`,
             headers: {authorization: true},
             method: 'PUT',
         })
@@ -30,7 +30,7 @@ export const PostAPI = {
 
     checkPost(post_id) {
         return makeRequest({
-            url: `api/post/check/${post_id}`,
+            url: `check/${post_id}`,
             headers: {authorization: true},
             method: 'PUT',
         })
@@ -38,7 +38,7 @@ export const PostAPI = {
 
     removePost(post_id) {
         return makeRequest({
-            url: `api/post/${post_id}`,
+            url: `post/${post_id}`,
             headers: {authorization: true},
             method: 'DELETE',
         })
@@ -46,7 +46,7 @@ export const PostAPI = {
 
     getPopularTags() {
         return makeRequest({
-            url: `api/post/popular_tags`,
+            url: `post/popular_tags`,
             headers: {authorization: true},
             method: 'GET',
         })
@@ -54,7 +54,7 @@ export const PostAPI = {
 
     getActualTopics() {
         return makeRequest({
-            url: `api/post/actual_topics`,
+            url: `post/actual_topics`,
             headers: {authorization: true},
             method: 'GET',
         })

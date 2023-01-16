@@ -1,21 +1,16 @@
-import React, {useEffect, useState} from "react"
-
 import {Post} from "./Post/Post";
 import {Loader} from "../misc/Loader/Loader";
 
 import styles from "./PostsList.module.scss"
 
-export const PostsList = ({posts, isInitialLoading, likePost, removePost, checkPost}) => {
-    if (isInitialLoading) return <Loader/>
+export const PostsList = ({posts, isLoading}) => {
+    if (isLoading) return <Loader/>
     let postComponents = posts.map(
         (post) => {
             return (
                 <Post
                     key={post._id}
                     post={post}
-                    likePost={likePost}
-                    removePost={removePost}
-                    checkPost={checkPost}
                 />
             )
         }

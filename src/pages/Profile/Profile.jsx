@@ -8,16 +8,18 @@ import {PostCreationInput} from "./PostCreationInput/PostCreationInput";
 import {Loader, PostsList, SideBar} from "../../components";
 
 import styles from "./Profile.module.scss"
+import {postApi} from "../../services";
 
 export const Profile = () => {
     const userLogin = useParams().login
     const user = useSelector(state => state.profile.user)
-    const {isInitialLoading, posts} = useSelector(state => state.profile)
+    // const {isInitialLoading, posts} = useSelector(state => state.profile)
     const current_user = useSelector(state => state.auth.current_user)
+    const {data: posts, isLoading} = postApi.useFetchPostListByUserLoginQuery(userLogin)
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(getProfilePosts(userLogin))
+        // dispatch(getProfilePosts(userLogin))
         dispatch(getUser(userLogin))
         window.scrollTo(0, 0);
     }, [userLogin])
@@ -33,10 +35,7 @@ export const Profile = () => {
                         <div className={styles.posts_container}>
                             <PostsList
                                 posts={posts}
-                                isInitialLoading={isInitialLoading}
-                                likePost={likeProfilePost}
-                                removePost={removeProfilePost}
-                                checkPost={checkProfilePost}
+                                isLoading={isLoading}
                             />
                             <SideBar>
                             </SideBar>
