@@ -13,7 +13,6 @@ export const getFeedPosts = (user_login = "") => async (dispatch, getState) => {
     try {
         dispatch(setInitialLoading(true))
         const posts = await PostAPI.getPosts(user_login)
-        dispatch(await getUsersById(posts.data.map(post => post.author_id)))
         dispatch(setPosts(posts.data))
     } catch (err) {
 

@@ -1,5 +1,6 @@
 import React, {memo, useEffect, useState} from "react"
 import {useDispatch, useSelector} from "react-redux";
+import {useQuery} from "@tanstack/react-query";
 import {Link} from "react-router-dom";
 import {gsap} from "gsap"
 
@@ -15,24 +16,23 @@ import {useDate} from "../../../hooks/useDate";
 import {useTags} from "../../../hooks/useTags";
 
 import styles from "./Post.module.scss"
-import {Image} from "../../misc/Image/Image";
-import {Loader} from "../../misc/Loader/Loader";
 import {UserAvatarImage} from "./components/UserAvatarImage/UserAvatarImage";
 import {UserPostInfo} from "./components/UserPostInfo/UserPostInfo";
+import {UserAPI} from "../../../packages/api";
 
 export const Post = memo(({post, likePost, removePost, checkPost}) => {
     const currentUserId = useSelector(state => state.auth.current_user?._id)
+
     const dispatch = useDispatch()
-    const [isVisible, ref] = useOnScreen()
+
     const [isRemovePostWindowOpened, toggleRemovePostWindow] = useState(false)
-    const textWithTags = useTags(post.text, post.tags ? post.tags : [])
-    const creation_date = useDate(post.creation_date, true)
 
     const isViewed = post.views?.includes(currentUserId)
     const isLiked = post.likes.includes(currentUserId)
     const like = () => dispatch(likePost(post._id))
     const remove = () => dispatch(removePost(post._id))
 
+    const [isVisible, ref] = useOnScreen()
     useEffect(() => {
         if (isVisible && !isViewed && post.author_id !== currentUserId) {
             dispatch(checkPost(post._id))
@@ -50,8 +50,8 @@ export const Post = memo(({post, likePost, removePost, checkPost}) => {
         )
     })
 
-    if (!author_user) return <div className={styles.post} ref={ref}>Loading</div>
-
+    const creation_date = useDate(post.creation_date, true)
+    const textWithTags = useTags(post.text, post.tags ? post.tags : [])
     return (
         <>
             <div ref={ref} id={post._id} className={styles.post}>
