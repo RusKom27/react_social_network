@@ -74,15 +74,3 @@ export const postApi = createApi({
         }),
     })
 })
-
-export const {
-    useFetchAllPostListQuery,
-    useFetchPostByIdQuery,
-    useFetchPostListByUserLoginQuery,
-    useFetchPopularTagListQuery,
-    useFetchActualTopicListQuery,
-    useCheckPostMutation,
-    useLikePostMutation,
-    useCreatePostMutation,
-    useRemovePostMutation,
-} = postApi

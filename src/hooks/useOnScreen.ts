@@ -1,9 +1,9 @@
-import {useEffect, useRef, useState} from "react";
+import React, {createRef, useEffect, useState} from "react";
 
 export const useOnScreen = () => {
 
     const [isIntersecting, setIntersecting] = useState(false)
-    const ref = useRef()
+    const ref = createRef()
     const observer = new IntersectionObserver(
         ([entry]) => {
             setIntersecting(entry.isIntersecting)
@@ -11,7 +11,7 @@ export const useOnScreen = () => {
     )
 
     useEffect(() => {
-        observer.observe(ref.current)
+        observer.observe(<Element>ref.current)
         return () => { observer.disconnect() }
     }, [isIntersecting])
 

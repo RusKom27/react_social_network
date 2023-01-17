@@ -13,10 +13,10 @@ import {UserPostInfo} from "./components/UserPostInfo/UserPostInfo";
 import {postApi} from "../../../services";
 import {UserCheckObserver} from "./components/UserCheckObserver/UserCheckObserver";
 import {Button} from "../../misc/Button/Button";
-import {useDate} from "../../../hooks/useDate";
-import {useTags} from "../../../hooks/useTags";
+import {useDate} from "../../../hooks";
 
 import styles from "./Post.module.scss"
+import {SelectedTags} from "../../misc/SelectedTags/SelectedTags";
 
 export const Post = memo(({post}) => {
     const [isRemovePostWindowOpened, toggleRemovePostWindow] = useState(false)
@@ -41,7 +41,6 @@ export const Post = memo(({post}) => {
     })
 
     const creation_date = useDate(post?.creation_date, true)
-    const textWithTags = useTags(post?.text, post?.tags ? post?.tags : [])
     return (
         <>
             <div ref={ref} id={post._id} className={styles.post}>
@@ -60,7 +59,7 @@ export const Post = memo(({post}) => {
                             </div>
                         }
                         <div className={styles.post_main}>
-                            {textWithTags}
+                            <SelectedTags text={post.text} tags={ post.tags ? post.tags : []}/>
                         </div>
                         <div className={styles.post_footer}>
                             <div>

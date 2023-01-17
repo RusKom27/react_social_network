@@ -1,18 +1,32 @@
 import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/dist/query/react";
 import {config} from "../packages/api/config";
 import IUser from "../models/IUser";
+import {setCurrentUser} from "../redux/reducers/auth";
 
 export const userApi = createApi({
     reducerPath: "userAPI",
     baseQuery: fetchBaseQuery({baseUrl: `${config.server_url}user`}),
     tagTypes: ['AuthUser','User'],
     endpoints: (build) => ({
-        authUserByToken: build.query<IUser, any>({
+        authUserByToken: build.query<IUser, string>({
             query: () => ({
                 url: `/`,
                 headers: {'authorization':  config.token || ""}
             }),
-            providesTags: (result) => ['AuthUser']
+            providesTags: (result) => ['AuthUser'],
+            async onCacheEntryAdded(arg, {dispatch, getCacheEntry}) {
+                dispatch(setCurrentUser(getCacheEntry().data))
+            }
+        }),
+        authUserByLoginEmail: build.query<IUser, {login: string, email: string}>({
+            query: () => ({
+                url: `/`,
+                headers: {'authorization':  config.token || ""}
+            }),
+            providesTags: (result) => ['AuthUser'],
+            async onCacheEntryAdded(arg, {dispatch, getCacheEntry}) {
+                dispatch(setCurrentUser(getCacheEntry().data))
+            }
         }),
         fetchUserById: build.query<IUser, string>({
             query: (user_id) => ({
@@ -35,7 +49,18 @@ export const userApi = createApi({
                 },
                 headers: {'authorization':  config.token || ""}
             }),
-            invalidatesTags: ['User']
+            invalidatesTags: ['AuthUser']
+        }),
+        updateUser: build.mutation<IUser, any>({
+            query: (props) => ({
+                url: `/update`,
+                method: 'POST',
+                body: {
+                    ...props
+                },
+                headers: {'authorization':  config.token || ""}
+            }),
+            invalidatesTags: ['AuthUser']
         }),
         logoutUser: build.mutation({
             query: () => ({
@@ -43,15 +68,7 @@ export const userApi = createApi({
                 method: 'POST',
                 headers: {'authorization':  config.token || ""}
             }),
-            invalidatesTags: ['User']
+            invalidatesTags: ['AuthUser']
         }),
     })
 })
-
-export const {
-    useAuthUserByTokenQuery,
-    useFetchUserByIdQuery,
-    useFetchUserByLoginQuery,
-    useCreateUserMutation,
-    useLogoutUserMutation,
-} = userApi

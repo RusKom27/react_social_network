@@ -1,6 +1,6 @@
 import {useMemo} from "react";
 
-export const useDate = (date_string, show_date = false) => {
+export const useDate = (date_string: string, show_date = false) => {
     return useMemo(() => {
         const date = new Date(date_string)
         if (show_date) return date.toLocaleDateString()

@@ -1,6 +1,5 @@
 export * from "./auth"
 export * from "./messages"
-export * from "./feed"
 export * from "./profile"
 export * from "./image"
 export * from "./app"

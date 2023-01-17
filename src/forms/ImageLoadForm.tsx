@@ -1,19 +1,26 @@
+import React, {FC} from "react";
 import { Formik, Form, ErrorMessage } from 'formik';
 import {useDispatch} from "react-redux";
 import * as Yup from 'yup';
 
 import {Button} from "../components";
 import {sendImage} from "../redux/thunk";
+import {imageApi} from "../services/imageApi";
 
 const FILE_SIZE = 1048576
 const SUPPORTED_FORMATS = ["image/png", "image/jpeg"]
 
-export const ImageLoadForm = ({fileName, onImageLoad=()=>{}}) => {
-    const dispatch = useDispatch()
+type PropsType = {
+    fileName: string,
+    onImageLoad: (image: any)=>void
+}
+
+export const ImageLoadForm: FC<PropsType> = ({fileName, onImageLoad}) => {
+    const [loadImage] = imageApi.useLoadImageMutation()
 
     return (
         <Formik
-            initialValues={{ image: '' }}
+            initialValues={{ image: new Blob() }}
             validationSchema={Yup.object({
                 image: Yup.mixed()
                     .nullable()
@@ -28,13 +35,10 @@ export const ImageLoadForm = ({fileName, onImageLoad=()=>{}}) => {
                 const file_type = values.image.name.split('.').at(-1)
                 const file_name = `${fileName}.${file_type}`
                 formData.append("image", values.image, file_name);
-                dispatch(sendImage(
-                    formData,
-                    () => {
-                        setSubmitting(false);
-                        onImageLoad(file_name)
-                    }
-                ))
+                loadImage(formData).then(() => {
+                    setSubmitting(false);
+                    onImageLoad(file_name)
+                })
             }}
 
         >

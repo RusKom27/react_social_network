@@ -1,13 +1,17 @@
+import React, {FC} from "react";
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 
 import {Button} from "../components";
-import {useDispatch} from "react-redux";
-import {updateCurrentUser} from "../redux/thunk";
+import IUser from "../models/IUser";
+import {userApi} from "../services";
 
+type PropsType = {
+    current_user: IUser
+}
 
-export const AccountChangeForm = ({current_user}) => {
-    const dispatch = useDispatch()
+export const AccountChangeForm: FC<PropsType> = ({current_user}) => {
+    const [updateUser] = userApi.useUpdateUserMutation()
 
     return (
         <Formik
@@ -24,14 +28,10 @@ export const AccountChangeForm = ({current_user}) => {
                     .required('Required'),
             })}
             onSubmit={(values, { setSubmitting }) => {
-                dispatch(updateCurrentUser({
-                        name: values.name,
-                        login: values.login,
-                    },
-                    user => {
-                        setSubmitting(false);
-                    }
-                ))
+                updateUser({
+                    name: values.name,
+                    login: values.login,
+                }).then(value => setSubmitting(false))
             }}
         >
             <Form>
