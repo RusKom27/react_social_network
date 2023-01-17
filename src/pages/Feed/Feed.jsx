@@ -1,31 +1,12 @@
-import {useEffect} from "react";
-import {useDispatch, useSelector} from "react-redux";
-
 import {PostsList, SideBar} from "../../components";
-import {
-    checkFeedPost,
-    getActualTopics,
-    getFeedPosts,
-    getPopularTags,
-    likeFeedPost,
-    removeFeedPost
-} from "../../redux/thunk";
-
-import styles from "./Feed.module.scss"
 import {PopularTags} from "../../components/SideBar/SideBarComponents";
 import {ActualTopics} from "../../components/SideBar/SideBarComponents/ActualTopics/ActualTopics";
 import {postApi} from "../../services";
 
-export const Feed = () => {
-    // const {isInitialLoading, posts, popular_tags, actual_topics} = useSelector(state => state.feed)
-    const {data: posts, isLoading} = postApi.useFetchAllPostListQuery()
-    const dispatch = useDispatch()
+import styles from "./Feed.module.scss"
 
-    useEffect(() => {
-        // dispatch(getPopularTags())
-        // dispatch(getActualTopics())
-        // dispatch(getFeedPosts())
-    },[])
+export const Feed = () => {
+    const {data: posts, isLoading} = postApi.useFetchAllPostListQuery()
 
     return (
         <div className={styles.container}>
@@ -36,10 +17,10 @@ export const Feed = () => {
                 />
                 <SideBar>
                     <div>
-                        {/*<PopularTags tags={popular_tags}/>*/}
+                        <PopularTags/>
                     </div>
                     <div>
-                        {/*<ActualTopics topics={actual_topics}/>*/}
+                        <ActualTopics/>
                     </div>
                 </SideBar>
             </div>

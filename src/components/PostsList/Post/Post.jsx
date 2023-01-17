@@ -1,5 +1,5 @@
-import React, {memo, useEffect, useState} from "react"
-import {useDispatch, useSelector} from "react-redux";
+import React, {memo, useEffect, useRef, useState} from "react"
+import {useSelector} from "react-redux";
 import {gsap} from "gsap"
 
 import image_placeholder from "../../../static/images/image-placeholder1.png"
@@ -8,36 +8,27 @@ import {ReactComponent as LikeDisabled} from "../../../static/images/svg/heart.s
 import {ReactComponent as ViewsIcon} from "../../../static/images/svg/eye-fill.svg";
 import {DropdownMenu} from "../../misc/DropdownMenu/DropdownMenu";
 import {ModalWindow} from "../../misc/ModalWindow/ModalWindow";
-import {useOnScreen} from "../../../hooks";
+import {UserAvatarImage} from "./components/UserAvatarImage/UserAvatarImage";
+import {UserPostInfo} from "./components/UserPostInfo/UserPostInfo";
+import {postApi} from "../../../services";
+import {UserCheckObserver} from "./components/UserCheckObserver/UserCheckObserver";
 import {Button} from "../../misc/Button/Button";
 import {useDate} from "../../../hooks/useDate";
 import {useTags} from "../../../hooks/useTags";
 
 import styles from "./Post.module.scss"
-import {UserAvatarImage} from "./components/UserAvatarImage/UserAvatarImage";
-import {UserPostInfo} from "./components/UserPostInfo/UserPostInfo";
-
-import {postApi} from "../../../services";
 
 export const Post = memo(({post}) => {
     const [isRemovePostWindowOpened, toggleRemovePostWindow] = useState(false)
-    const currentUserId = useSelector(state => state.auth.current_user?._id)
+    const current_user = useSelector(state => state.auth.current_user)
     const [likePost] = postApi.useLikePostMutation()
     const [removePost] = postApi.useRemovePostMutation()
-    const [checkPost] = postApi.useCheckPostMutation()
 
-    const isViewed = post.views.includes(currentUserId)
-    const isLiked = post.likes.includes(currentUserId)
+    const isLiked = post.likes.includes(current_user._id)
     const like = () => likePost(post._id)
     const remove = () => removePost(post._id)
 
-    const [isVisible, ref] = useOnScreen()
-    useEffect(() => {
-        if (post && isVisible && !isViewed && post.author_id !== currentUserId) {
-            checkPost(post._id)
-        }
-    }, [isVisible, post, currentUserId])
-
+    const ref = useRef(null)
     useEffect(() => {
         gsap.to(
             ref.current,
@@ -88,6 +79,7 @@ export const Post = memo(({post}) => {
                         <div>{post.views ? post.views.length : 0}</div>
                     </div>
                 </div>
+                <UserCheckObserver post={post} current_user={current_user}/>
             </div>
             {isRemovePostWindowOpened &&
                 <ModalWindow title={"Are you sure?"} closeWindow={() => toggleRemovePostWindow(false)}>

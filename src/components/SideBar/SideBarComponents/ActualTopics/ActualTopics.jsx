@@ -3,9 +3,11 @@ import React from "react"
 import {Loader} from "../../../misc/Loader/Loader";
 
 import styles from "./ActualTopics.module.scss"
+import {postApi} from "../../../../services";
 
-export const ActualTopics = ({topics}) => {
-    if (!topics) return <Loader/>
+export const ActualTopics = () => {
+    const {data: topics, isLoading} = postApi.useFetchActualTopicListQuery()
+    if (isLoading) return <Loader/>
     const topics_components = topics.map((topic) => {
         return <div key={Object.entries(topic)[0][0]}>
             <span>{Object.entries(topic)[0][0]}</span>

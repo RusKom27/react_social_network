@@ -4,7 +4,7 @@ import {Loader} from "../misc/Loader/Loader";
 import styles from "./PostsList.module.scss"
 
 export const PostsList = ({posts, isLoading}) => {
-    if (isLoading) return <Loader/>
+    if (isLoading || !posts) return <Loader/>
     let postComponents = posts.map(
         (post) => {
             return (

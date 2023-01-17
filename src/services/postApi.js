@@ -3,30 +3,53 @@ import {config} from "../packages/api/config";
 
 export const postApi = createApi({
     reducerPath: "postAPI",
-    baseQuery: fetchBaseQuery({baseUrl: config.server_url}),
-    tagTypes: ['Post', 'PostList'],
+    baseQuery: fetchBaseQuery({baseUrl: `${config.server_url}post`}),
+    tagTypes: ['Post', 'PostList', 'ActualTopicList', 'PopularTagList'],
     endpoints: (build) => ({
         fetchPostById: build.query({
             query: (post_id) => ({
-                url: `post/id/${post_id}`
+                url: `/id/${post_id}`
             }),
             providesTags: (result) => ['Post']
         }),
         fetchAllPostList: build.query({
             query: () => ({
-                url: `post/all`
+                url: `/all`
             }),
             providesTags: (result) => ['PostList']
         }),
         fetchPostListByUserLogin: build.query({
             query: (user_login) => ({
-                url: `post/user_login/${user_login}`
+                url: `/user_login/${user_login}`
             }),
             providesTags: (result) => ['PostList']
         }),
+        fetchActualTopicList: build.query({
+            query: (user_login) => ({
+                url: `/actual_topics`
+            }),
+            providesTags: (result) => ['ActualTopicList']
+        }),
+        fetchPopularTagList: build.query({
+            query: (user_login) => ({
+                url: `/popular_tags`
+            }),
+            providesTags: (result) => ['PopularTagList']
+        }),
+        createPost: build.mutation({
+            query: (post_text) => ({
+                url: `/create`,
+                method: 'POST',
+                body: {
+                    text: post_text
+                },
+                headers: {'authorization': config.token}
+            }),
+            invalidatesTags: ['Post', 'PostList']
+        }),
         likePost: build.mutation({
             query: (post_id) => ({
-                url: `post/like/${post_id}`,
+                url: `/like/${post_id}`,
                 method: 'PUT',
                 headers: {'authorization': config.token}
             }),
@@ -34,7 +57,7 @@ export const postApi = createApi({
         }),
         removePost: build.mutation({
             query: (post_id) => ({
-                url: `post/delete/${post_id}`,
+                url: `/delete/${post_id}`,
                 method: 'DELETE',
                 headers: {'authorization': config.token}
             }),
@@ -42,7 +65,7 @@ export const postApi = createApi({
         }),
         checkPost: build.mutation({
             query: (post_id) => ({
-                url: `post/check/${post_id}`,
+                url: `/check/${post_id}`,
                 method: 'PUT',
                 headers: {'authorization': config.token}
             }),

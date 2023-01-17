@@ -2,9 +2,11 @@ import React from "react"
 import {Loader} from "../../../misc/Loader/Loader";
 
 import styles from "./PopularTags.module.scss"
+import {postApi} from "../../../../services";
 
-export const PopularTags = ({tags}) => {
-    if (!tags) return <Loader/>
+export const PopularTags = () => {
+    const {data: tags, isLoading} = postApi.useFetchPopularTagListQuery()
+    if (isLoading) return <Loader/>
     const tags_components = tags.map((tag) => {
         return <div key={Object.entries(tag)[0][0]}>
             <span>#{Object.entries(tag)[0][0]}</span>
