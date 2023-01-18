@@ -7,12 +7,11 @@ import {AccountChangeForm, ImageLoadForm} from "../../../forms";
 import {useImage} from "../../../hooks";
 
 import styles from "./Account.module.scss"
+import {Image} from "../../../components/misc/Image/Image";
 
 export const Account = () => {
     const current_user = useSelector(state => state.auth.current_user)
     const dispatch = useDispatch()
-    const avatar_image = useImage(current_user?.images.avatar_image.small)
-    const profile_image = useImage(current_user?.images.profile_image.small)
 
     const [isAvatarChangingWindowOpened, toggleAvatarChangingWindow] = useState(false)
     const [isProfileChangingWindowOpened, toggleProfileChangingWindow] = useState(false)
@@ -42,7 +41,7 @@ export const Account = () => {
                         onClick={()=>toggleAvatarChangingWindow(true)}
                     >
                         <div className={styles.avatar_image}>
-                            <img src={avatar_image?.src} alt=""/>
+                            <Image image_name={current_user.images.avatar_image.small}/>
                         </div>
                         <span>Change</span>
                     </div>
@@ -63,7 +62,7 @@ export const Account = () => {
                         onClick={()=>toggleProfileChangingWindow(true)}
                     >
                         <div>
-                            <img src={profile_image?.src} alt=""/>
+                            <Image image_name={current_user.images.profile_image.small}/>
                         </div>
                         <span>Change</span>
                     </div>

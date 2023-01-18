@@ -5,8 +5,8 @@ import {AppDispatch} from "../store";
 import IUser from "../../models/IUser";
 
 
-export const authUser = (email: string, password: string, then: (user: any) => void) => async (dispatch: AppDispatch) => {
-    await UserAPI.authUser(email, password).then(user => {
+export const authUser = (email: string, password: string, then: (user: any) => void) => (dispatch: AppDispatch) => {
+    UserAPI.authUser(email, password).then(user => {
         dispatch(loginUser(user.data))
         then(user)
     }).catch(reason => {
@@ -14,7 +14,7 @@ export const authUser = (email: string, password: string, then: (user: any) => v
     })
 }
 
-export const updateCurrentUser = (user: any, then: (user: any) => void) => async (dispatch: AppDispatch) => {
+export const updateCurrentUser = (user: any, then: (user: any) => void) => (dispatch: AppDispatch) => {
     UserAPI.updateUser(user).then(user => {
         dispatch(setCurrentUser(user.data))
         dispatch(addInfoNotification("Account was changed!"))
@@ -22,7 +22,7 @@ export const updateCurrentUser = (user: any, then: (user: any) => void) => async
     })
 }
 
-export const updateUserAvatarImage = (current_user: IUser, image_name: string) => async (dispatch: AppDispatch) => {
+export const updateUserAvatarImage = (current_user: IUser, image_name: string) => (dispatch: AppDispatch) => {
     const user = {
         ...current_user,
         images: {
@@ -39,7 +39,7 @@ export const updateUserAvatarImage = (current_user: IUser, image_name: string) =
     })
 }
 
-export const updateUserProfileImage = (current_user: IUser, image_name: string) => async (dispatch: AppDispatch) => {
+export const updateUserProfileImage = (current_user: IUser, image_name: string) => (dispatch: AppDispatch) => {
     const user = {
         ...current_user,
         images: {
@@ -57,7 +57,7 @@ export const updateUserProfileImage = (current_user: IUser, image_name: string) 
     })
 }
 
-export const getUserByToken = () => async (dispatch: AppDispatch) => {
+export const getUserByToken = () => (dispatch: AppDispatch) => {
     UserAPI.getUser().then(user => {
         dispatch(setCurrentUser(user.data))
     })
@@ -69,7 +69,7 @@ export const createUser = (
     email: string,
     password: string,
     then: (user: any) => void
-) => async (dispatch: AppDispatch) => {
+) => (dispatch: AppDispatch) => {
     UserAPI.createUser(name, login, email, password).then(user => {
         dispatch(addInfoNotification("Account was created!"))
         dispatch(loginUser(user.data))

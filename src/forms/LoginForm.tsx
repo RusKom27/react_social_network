@@ -1,17 +1,15 @@
 import React from 'react';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import {useNavigate} from "react-router-dom";
-import {useDispatch} from "react-redux";
 import * as Yup from 'yup';
 
 import {Button} from "../components";
 import {authUser} from "../redux/thunk";
-import {userApi} from "../services";
+import {useAppDispatch} from "../hooks/redux";
 
 export const LoginForm = () => {
-    const {data: current_user} = userApi.use
     const navigate = useNavigate()
-    const dispatch = useDispatch()
+    const dispatch = useAppDispatch()
 
     return (
         <Formik

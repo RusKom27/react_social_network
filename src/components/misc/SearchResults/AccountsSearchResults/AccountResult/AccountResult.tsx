@@ -1,13 +1,17 @@
-import {useEffect, useRef} from "react";
+import React, {FC, useEffect, useRef} from "react";
 import {gsap} from "gsap";
 import {Link} from "react-router-dom";
 
-import {useImage} from "../../../../../hooks";
+import {IUser} from "../../../../../models";
+import {Image} from "../../../Image/Image";
 
 import styles from "./AccountResult.module.scss"
 
-export const AccountResult = ({account}) => {
-    const image = useImage(account.images.avatar_image.small)
+type PropsType = {
+    account: IUser,
+}
+
+export const AccountResult: FC<PropsType> = ({account}) => {
     const ref = useRef(null)
 
     useEffect(() => {
@@ -25,7 +29,7 @@ export const AccountResult = ({account}) => {
         <div ref={ref} className={styles.container}>
             <Link to={`../../profile/${account.login}`}>
                 <div>
-                    {image.src && <img src={image.src} alt=""/>}
+                    <Image image_name={account.images.avatar_image.small}/>
                 </div>
                 <div>
                     <div>
@@ -36,8 +40,6 @@ export const AccountResult = ({account}) => {
                         <span className={styles.subscribers_count}>subscribers: {account.subscribers.length}</span>
                     </div>
                 </div>
-
-
             </Link>
         </div>
 

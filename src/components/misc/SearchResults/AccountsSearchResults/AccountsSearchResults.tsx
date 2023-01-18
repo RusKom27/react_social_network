@@ -1,13 +1,17 @@
-import React from "react";
-import {useSelector} from "react-redux";
+import React, {FC} from "react";
 import {Link} from "react-router-dom";
 
 import {AccountResult} from "./AccountResult/AccountResult";
+import {useAppSelector} from "../../../../hooks/redux";
 
 import styles from "./AccountsSearchResults.module.scss"
 
-export const AccountsSearchResults = ({limit}) => {
-    const {users} = useSelector(state => state.search.results)
+type PropsType = {
+    limit: number,
+}
+
+export const AccountsSearchResults: FC<PropsType> = ({limit}) => {
+    const {users} = useAppSelector(state => state.search.results)
     const accounts_components = users.slice(0, limit).map((account, i) =>
         <AccountResult key={i} account={account}/>
     )

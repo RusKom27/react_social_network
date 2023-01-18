@@ -1,13 +1,18 @@
 import { Formik, Field, Form, ErrorMessage } from 'formik';
-import {useDispatch} from "react-redux";
+import React, {FC} from 'react';
 import * as Yup from 'yup';
 
 import {ReactComponent as SendSVG} from "../static/images/svg/send.svg";
 import {Button} from "../components";
 import {createMessage} from "../redux/thunk";
+import {useAppDispatch} from "../hooks/redux";
 
-export const MessageCreationForm = ({dialog_id}) => {
-    const dispatch = useDispatch()
+type PropsType = {
+    dialog_id: string
+}
+
+export const MessageCreationForm: FC<PropsType> = ({dialog_id}) => {
+    const dispatch = useAppDispatch()
 
     return (
         <Formik
@@ -21,7 +26,7 @@ export const MessageCreationForm = ({dialog_id}) => {
                 dispatch(createMessage(dialog_id, values.message_text, () => {
                     setSubmitting(false)
                     window.scrollTo(0, 0)
-                    resetForm({message_text: ''})
+                    resetForm()
                 }))
             }}
         >

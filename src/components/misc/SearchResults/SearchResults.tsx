@@ -1,17 +1,19 @@
-import {useDispatch, useSelector} from "react-redux";
+import React, {FC, MouseEventHandler} from "react";
 import {toggleSearchResults} from "../../../redux/reducers/search";
-
-import styles from "./SearchResults.module.scss"
 import {AccountsSearchResults} from "./AccountsSearchResults/AccountsSearchResults";
 import {TopicSearchResults} from "./TopicSearchResults/TopicSearchResults";
+import {useAppDispatch, useAppSelector} from "../../../hooks/redux";
 
-export const SearchResults = () => {
-    const {isResultDisplaying} = useSelector(state => state.search)
-    const dispatch = useDispatch()
+import styles from "./SearchResults.module.scss"
+
+export const SearchResults: FC = () => {
+    const {isResultDisplaying} = useAppSelector(state => state.search)
+    const dispatch = useAppDispatch()
 
     if (!isResultDisplaying) return null
 
-    const onClickHandler = (event) => {
+    const onClickHandler: MouseEventHandler<HTMLDivElement> = (event ) => {
+        if (!(event.target instanceof Element)) return
         if (event.target.classList[0] === styles.container) dispatch(toggleSearchResults(false))
     }
 

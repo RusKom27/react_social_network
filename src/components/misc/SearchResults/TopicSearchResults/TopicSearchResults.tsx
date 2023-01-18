@@ -1,13 +1,17 @@
-import React from "react";
-import {useSelector} from "react-redux";
+import React, {FC} from "react";
 import {Link} from "react-router-dom";
 
 import {TopicResult} from "./TopicResult/TopicResult";
+import {useAppSelector} from "../../../../hooks/redux";
 
 import styles from "./TopicSearchResults.module.scss"
 
-export const TopicSearchResults = ({limit}) => {
-    const {topics} = useSelector(state => state.search.results)
+type PropsType = {
+    limit: number,
+}
+
+export const TopicSearchResults: FC<PropsType> = ({limit}) => {
+    const {topics} = useAppSelector(state => state.search.results)
     const topics_components = topics.slice(0, limit).map((topic, i) =>
         <TopicResult key={i} topic={topic}/>
     )

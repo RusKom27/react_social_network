@@ -1,4 +1,4 @@
-import React from "react"
+import React, {FC, MouseEventHandler} from "react"
 import {useEffect, useState} from "react";
 
 import {ReactComponent as ThreeDots} from "../../../static/images/svg/three-dots.svg";
@@ -6,7 +6,11 @@ import {Button} from "../Button/Button";
 
 import styles from "./DropdownMenu.module.scss"
 
-export const DropdownMenu = ({options}) => {
+type PropsType = {
+    options: any,
+}
+
+export const DropdownMenu: FC<PropsType> = ({options}) => {
     const [isDropdownOpened, toggleDropdown] = useState(false)
 
     const optionsButtons = Object.keys(options).map((option, i) => {
@@ -14,7 +18,7 @@ export const DropdownMenu = ({options}) => {
     })
 
     useEffect(() => {
-        const isClickOutOfDropdown = event => {
+        const isClickOutOfDropdown: MouseEventHandler<HTMLDivElement> = event => {
             if(!event.target.parentElement.classList.contains(styles.post_dropdown) &&
                 isDropdownOpened &&
                 (event.target.tagName !== "BUTTON" && event.target.tagName !== "svg" && event.target.tagName !== "path"))

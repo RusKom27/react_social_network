@@ -1,10 +1,15 @@
+import React, {FC} from "react";
 import {useEffect, useRef} from "react";
 import {gsap} from "gsap";
 import {Link} from "react-router-dom";
 
 import styles from "./TopicResult.module.scss"
 
-export const TopicResult = ({topic}) => {
+type PropsType = {
+    topic: string
+}
+
+export const TopicResult: FC<PropsType> = ({topic}) => {
     const ref = useRef(null)
 
     useEffect(() => {

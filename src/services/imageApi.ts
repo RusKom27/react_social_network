@@ -4,7 +4,13 @@ import {IImage} from "../models";
 
 export const imageApi = createApi({
     reducerPath: "imageAPI",
-    baseQuery: fetchBaseQuery({baseUrl: `${config.server_url}image`}),
+    baseQuery: fetchBaseQuery({
+        baseUrl: `${config.server_url}image`,
+        prepareHeaders: headers => {
+            headers.set('authorization', config.token || "")
+            return headers
+        }
+    }),
     tagTypes: ['Image'],
     endpoints: (build) => ({
         fetchImage: build.query<IImage, string>({
@@ -13,19 +19,18 @@ export const imageApi = createApi({
             }),
             providesTags: (result) => ['Image']
         }),
-        loadImage: build.mutation<IImage, FormData>({
-            query: (imageFormData) => ({
-                url: `/create`,
-                method: 'POST',
-                body: {
-                    formData: imageFormData
-                },
-                headers: {
-                    'authorization':  config.token || "",
-                    'Content-Type': 'multipart/form-data'
-                }
-            }),
-            invalidatesTags: ['Image']
-        }),
+        // loadImage: build.mutation<{}, FormData>({
+        //     query: (imageFormData) => ({
+        //         url: `/upload`,
+        //         method: 'POST',
+        //         body: {
+        //             formData: imageFormData
+        //         },
+        //         headers: {
+        //             'Content-Type': "multipart/form-data"
+        //         }
+        //     }),
+        //     invalidatesTags: ['Image']
+        // }),
     })
 })

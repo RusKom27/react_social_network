@@ -1,13 +1,14 @@
-import {useDispatch, useSelector} from "react-redux";
-import {useEffect} from "react";
+import React, {useEffect} from "react";
+
 import {removeNotification} from "../../redux/reducers/app";
+import {PopupBox} from "../misc/PopupBox/PopupBox";
+import {useAppDispatch, useAppSelector} from "../../hooks/redux";
 
 import styles from "./AppNotificationContainer.module.scss"
-import {PopupBox} from "../misc/PopupBox/PopupBox";
 
 export const AppNotificationsContainer = () => {
-    const notifications = useSelector(state => state.app.notifications)
-    const dispatch = useDispatch()
+    const notifications = useAppSelector(state => state.app.notifications)
+    const dispatch = useAppDispatch()
 
     useEffect(() => {
         if (notifications[0]) {
@@ -30,7 +31,7 @@ export const AppNotificationsContainer = () => {
                         closeBox={() => dispatch(removeNotification(notification.id))}
                         key={notification.id}
                     >
-                        {notification.message}
+                        <span>{notification.message}</span>
                     </PopupBox>
                 )
             }

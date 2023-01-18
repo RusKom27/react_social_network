@@ -1,15 +1,15 @@
 import React from 'react';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import {useNavigate} from "react-router-dom";
-import {useDispatch} from "react-redux";
 import * as Yup from 'yup';
 
 import {Button} from "../components";
 import {createUser} from "../redux/thunk";
+import {useAppDispatch} from "../hooks/redux";
 
 export const RegisterForm = () => {
     const navigate = useNavigate()
-    const dispatch = useDispatch()
+    const dispatch = useAppDispatch()
 
     return (
         <Formik

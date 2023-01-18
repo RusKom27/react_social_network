@@ -5,23 +5,28 @@ import {setCurrentUser} from "../redux/reducers/auth";
 
 export const userApi = createApi({
     reducerPath: "userAPI",
-    baseQuery: fetchBaseQuery({baseUrl: `${config.server_url}user`}),
+    baseQuery: fetchBaseQuery({
+        baseUrl: `${config.server_url}user`,
+        prepareHeaders: async headers => {
+            headers.set('authorization', config.token || "")
+            return headers
+        }
+    }),
     tagTypes: ['AuthUser','User'],
     endpoints: (build) => ({
         authUserByToken: build.query<IUser, string>({
             query: () => ({
-                url: `/`,
-                headers: {'authorization':  config.token || ""}
+                url: `/`
             }),
             providesTags: (result) => ['AuthUser'],
-            async onCacheEntryAdded(arg, {dispatch, getCacheEntry}) {
-                dispatch(setCurrentUser(getCacheEntry().data))
+            async onCacheEntryAdded(arg, {dispatch, cacheDataLoaded}) {
+                const current_user = await cacheDataLoaded
+                dispatch(setCurrentUser(current_user.data))
             }
         }),
         authUserByLoginEmail: build.query<IUser, {login: string, email: string}>({
             query: () => ({
-                url: `/`,
-                headers: {'authorization':  config.token || ""}
+                url: `/`
             }),
             providesTags: (result) => ['AuthUser'],
             async onCacheEntryAdded(arg, {dispatch, getCacheEntry}) {
@@ -46,8 +51,7 @@ export const userApi = createApi({
                 method: 'POST',
                 body: {
                     text: post_text
-                },
-                headers: {'authorization':  config.token || ""}
+                }
             }),
             invalidatesTags: ['AuthUser']
         }),
@@ -57,16 +61,14 @@ export const userApi = createApi({
                 method: 'POST',
                 body: {
                     ...props
-                },
-                headers: {'authorization':  config.token || ""}
+                }
             }),
             invalidatesTags: ['AuthUser']
         }),
         logoutUser: build.mutation({
             query: () => ({
                 url: `/close_connection`,
-                method: 'POST',
-                headers: {'authorization':  config.token || ""}
+                method: 'POST'
             }),
             invalidatesTags: ['AuthUser']
         }),
