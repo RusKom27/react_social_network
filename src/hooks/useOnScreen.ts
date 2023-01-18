@@ -1,19 +1,19 @@
-import React, {createRef, useEffect, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 
 export const useOnScreen = () => {
 
-    const [isIntersecting, setIntersecting] = useState(false)
-    const ref = createRef()
+    const [isVisible, setVisible] = useState(false)
+    const ref = useRef<HTMLDivElement>(null);
     const observer = new IntersectionObserver(
         ([entry]) => {
-            setIntersecting(entry.isIntersecting)
+            setVisible(entry.isIntersecting)
         }
     )
 
     useEffect(() => {
         observer.observe(<Element>ref.current)
         return () => { observer.disconnect() }
-    }, [isIntersecting])
+    }, [isVisible])
 
-    return [isIntersecting, ref]
+    return {isVisible, ref}
 }

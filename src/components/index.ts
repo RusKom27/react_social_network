@@ -5,7 +5,7 @@ export {PostsList} from "./PostsList/PostsList";
 export {Post} from "./PostsList/Post/Post";
 export {Message} from "./Message/Message";
 export {Button} from "./misc/Button/Button";
-export {DropdownMenu} from "./misc/DropdownMenu/DropdownMenu";
+export {DropdownButton} from "./misc/DropdownButton/DropdownButton";
 export {Redirect} from "./misc/Redirect/Redirect";
 export {ModalWindow} from "./misc/ModalWindow/ModalWindow";
 export {AppInitialization} from "./AppInitialization";

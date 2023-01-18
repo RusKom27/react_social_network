@@ -1,0 +1,37 @@
+@import "../../../index";
+
+.container {
+
+  .button {
+
+  }
+
+  .button_container {
+    display: flex;
+    overflow: clip;
+    flex-direction: column;
+    border-radius: 16px;
+    height: 100px;
+    width: 200px;
+
+    button {
+      display: flex;
+      padding: 0;
+      border: 0;
+      cursor: pointer;
+      justify-content: center;
+
+
+      &:hover {
+        background: $color1;
+        svg {
+          fill: $color2
+        }
+      }
+      svg {
+        transform: scale(0.8);
+        fill: $color1
+      }
+    }
+  }
+}

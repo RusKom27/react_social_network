@@ -6,7 +6,7 @@ import image_placeholder from "../../../static/images/image-placeholder1.png"
 import {ReactComponent as LikeEnabled} from "../../../static/images/svg/heart-fill.svg";
 import {ReactComponent as LikeDisabled} from "../../../static/images/svg/heart.svg";
 import {ReactComponent as ViewsIcon} from "../../../static/images/svg/eye-fill.svg";
-import {DropdownMenu} from "../../misc/DropdownMenu/DropdownMenu";
+import {DropdownButton} from "../../misc/DropdownButton/DropdownButton";
 import {ModalWindow} from "../../misc/ModalWindow/ModalWindow";
 import {UserAvatarImage} from "./components/UserAvatarImage/UserAvatarImage";
 import {UserPostInfo} from "./components/UserPostInfo/UserPostInfo";
@@ -14,12 +14,14 @@ import {postApi} from "../../../services";
 import {UserCheckObserver} from "./components/UserCheckObserver/UserCheckObserver";
 import {Button} from "../../misc/Button/Button";
 import {useDate} from "../../../hooks";
+import {SelectedTags} from "../../misc/SelectedTags/SelectedTags";
+import {ReactComponent as ThreeDots} from "../../../static/images/svg/three-dots.svg";
 
 import styles from "./Post.module.scss"
-import {SelectedTags} from "../../misc/SelectedTags/SelectedTags";
 
 export const Post = memo(({post}) => {
     const [isRemovePostWindowOpened, toggleRemovePostWindow] = useState(false)
+    const [isDropdownOpened, toggleDropdown] = useState(false)
     const current_user = useSelector(state => state.auth.current_user)
     const [likePost] = postApi.useLikePostMutation()
     const [removePost] = postApi.useRemovePostMutation()
@@ -71,14 +73,16 @@ export const Post = memo(({post}) => {
                 </div>
                 <div>
                     <div>
-                        <DropdownMenu options={{"Delete": () => toggleRemovePostWindow(true)}}/>
+                        <DropdownButton key={post._id} options={
+                            {"Delete": () => toggleRemovePostWindow(true)}
+                        }/>
                     </div>
                     <div>
                         <div><ViewsIcon/></div>
                         <div>{post.views ? post.views.length : 0}</div>
                     </div>
                 </div>
-                <UserCheckObserver post={post} current_user={current_user}/>
+                <UserCheckObserver post={post}/>
             </div>
             {isRemovePostWindowOpened &&
                 <ModalWindow title={"Are you sure?"} closeWindow={() => toggleRemovePostWindow(false)}>
