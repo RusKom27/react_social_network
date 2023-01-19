@@ -1,23 +1,24 @@
+import {useCallback, useEffect, useRef} from "react";
 
-export function useDebounce(callback: any, timeoutMs: number, immediate: boolean) {
-    let timeout: number | undefined;
+type Timer = ReturnType<typeof setTimeout>
+type SomeFunction = (...args: any[]) => void
 
-    return function(): any {
-        // @ts-ignore
-        const context: any = this;
-        const args = arguments;
+export function useDebounce<Func extends SomeFunction>(callback: Func, timeoutMs = 1000) {
+    let timer = useRef<Timer>();
 
-        const later = function() {
-            timeout = undefined;
-            if (!immediate) callback.apply(context, args);
+    useEffect(() => {
+        return () => {
+            if (!timer.current) return;
+            clearTimeout(timer.current);
         };
+    }, []);
 
-        const callNow = immediate && !timeout;
-
-        clearTimeout(timeout);
-
-        timeout = setTimeout(later, timeoutMs)[Symbol.toPrimitive]();
-
-        if (callNow) callback.apply(context, args);
-    };
+    return useCallback(((...args) => {
+        if (timer.current) {
+            clearTimeout(timer.current)
+        }
+        timer.current = setTimeout(() => {
+            callback(...args)
+        }, timeoutMs)
+    }) as Func, [callback, timeoutMs])
 }
