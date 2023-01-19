@@ -16,6 +16,12 @@
     overflow: clip;
     margin-top: 16px;
   }
+
+  svg {
+    fill: $color0;
+    min-width: 32px;
+    min-height: 32px;
+  }
 }
 
 .hidden {
@@ -56,11 +62,7 @@ a div {
   line-height: 30px;
 }
 
-svg {
-  fill: $color0;
-  min-width: 32px;
-  min-height: 32px;
-}
+
 
 .active {
   font-weight: 700;

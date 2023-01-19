@@ -1,9 +1,17 @@
+import React, {FC} from "react";
+
 import {Post} from "./Post/Post";
 import {Loader} from "../misc/Loader/Loader";
+import {IPost} from "../../models";
 
 import styles from "./PostsList.module.scss"
 
-export const PostsList = ({posts, isLoading}) => {
+type PropsType = {
+    posts: IPost[]
+    isLoading: boolean
+}
+
+export const PostsList: FC<PropsType> = ({posts, isLoading}) => {
     if (isLoading) return <Loader/>
     let postComponents = posts.map(
         (post) => {

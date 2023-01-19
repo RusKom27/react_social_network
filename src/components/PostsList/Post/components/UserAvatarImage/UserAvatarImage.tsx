@@ -1,11 +1,17 @@
-import React, {memo} from "react"
+import React, {FC, memo} from "react"
 import {Link} from "react-router-dom";
 
-import styles from "./UserPostInfo.module.scss"
 import {useQuery} from "@tanstack/react-query";
+import {Image} from "../../../../misc/Image/Image"
 import {UserAPI} from "../../../../../packages/api";
 
-export const UserPostInfo = memo(({user_id}) => {
+import styles from "./UserAvatarImage.module.scss"
+
+type PropsType = {
+    user_id: string
+}
+
+export const UserAvatarImage: FC<PropsType> = memo(({user_id}) => {
     const { isLoading, error, data: user } = useQuery({
         queryKey: ['users', user_id],
         queryFn: () =>
@@ -18,7 +24,7 @@ export const UserPostInfo = memo(({user_id}) => {
     return (
         <div className={styles.container}>
             <Link to={`../../profile/${user.login}`}>
-                {user.name} <span>@{user.login}</span>
+                <Image image_name={user.images.avatar_image.small}/>
             </Link>
         </div>
     )

@@ -1,28 +1,29 @@
 import React from "react"
 import {NavLink} from "react-router-dom";
-import {useDispatch, useSelector} from "react-redux";
 
 import {ReactComponent as MessageSVG} from "../../static/images/svg/message.svg"
 import {ReactComponent as ProfileSVG} from "../../static/images/svg/profile.svg"
 import {ReactComponent as SettingsSVG} from "../../static/images/svg/settings.svg"
 import {ReactComponent as FeedSVG} from "../../static/images/svg/view-list.svg"
+import {useAppDispatch, useAppSelector} from "../../hooks/redux";
 import {toggleMenuTab} from "../../redux/reducers/app";
+import {IMessage} from "../../models";
 
 import styles from "./Navigation.module.scss"
 
 export const Navigation = () => {
-    const current_user = useSelector(state => state.auth.current_user)
-    const isMenuTabOpened = useSelector(state => state.app.isMenuTabOpened)
-    const dialogs = useSelector(state => state.messages.dialogs)
-    const dispatch = useDispatch()
+    const current_user = useAppSelector(state => state.auth.current_user)
+    const isMenuTabOpened = useAppSelector(state => state.app.isMenuTabOpened)
+    const dialogs = useAppSelector(state => state.messages.dialogs)
+    const dispatch = useAppDispatch()
 
     const unchecked_messages_count = dialogs?.reduce((dialogs_acc, dialog) => {
-        return dialogs_acc + dialog.messages.reduce((acc, message) =>
-            (!message.checked && message.sender._id !== current_user._id) ? acc + 1 : acc, 0
+        return dialogs_acc + dialog.messages.reduce((acc: number, message: IMessage) =>
+            (!message.checked && message.sender_id !== current_user?._id) ? acc + 1 : acc, 0
         )
     }, 0)
 
-    const activeClassName = ({isActive}) => isActive ? styles.active : undefined
+    const activeClassName = (({isActive}) => isActive ? styles.active : undefined) as (isActive: any) => any
 
     return (
         <nav className={`${styles.navigation} ${(isMenuTabOpened ? styles.hidden : '')}`}>

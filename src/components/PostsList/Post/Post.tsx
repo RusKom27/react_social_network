@@ -1,5 +1,4 @@
-import React, {memo, useEffect, useRef, useState} from "react"
-import {useSelector} from "react-redux";
+import React, {FC, memo, useEffect, useRef, useState} from "react"
 import {gsap} from "gsap"
 
 import image_placeholder from "../../../static/images/image-placeholder1.png"
@@ -15,18 +14,22 @@ import {UserCheckObserver} from "./components/UserCheckObserver/UserCheckObserve
 import {Button} from "../../misc/Button/Button";
 import {useDate} from "../../../hooks";
 import {SelectedTags} from "../../misc/SelectedTags/SelectedTags";
-import {ReactComponent as ThreeDots} from "../../../static/images/svg/three-dots.svg";
+import {IPost} from "../../../models";
+import {useAppSelector} from "../../../hooks/redux";
 
 import styles from "./Post.module.scss"
 
-export const Post = memo(({post}) => {
+type PropsType = {
+    post: IPost
+}
+
+export const Post: FC<PropsType> = memo(({post}) => {
     const [isRemovePostWindowOpened, toggleRemovePostWindow] = useState(false)
-    const [isDropdownOpened, toggleDropdown] = useState(false)
-    const current_user = useSelector(state => state.auth.current_user)
+    const current_user = useAppSelector(state => state.auth.current_user)
     const [likePost] = postApi.useLikePostMutation()
     const [removePost] = postApi.useRemovePostMutation()
 
-    const isLiked = post.likes.includes(current_user._id)
+    const isLiked = current_user && post.likes.includes(current_user._id)
     const like = () => likePost(post._id)
     const remove = () => removePost(post._id)
 
@@ -54,36 +57,38 @@ export const Post = memo(({post}) => {
                             <span> | {creation_date}</span>
                         </div>
                     </div>
-                    <div>
-                        {post.image &&
-                            <div className={styles.content_image}>
-                                <img src={image_placeholder} alt=""/>
-                            </div>
-                        }
-                        <div className={styles.post_main}>
-                            <SelectedTags text={post.text} tags={ post.tags ? post.tags : []}/>
+                    {post.image &&
+                        <div className={styles.content_image}>
+                            <img src={image_placeholder} alt=""/>
                         </div>
-                        <div className={styles.post_footer}>
-                            <div>
-                                <button onClick={like}>{isLiked ? <LikeEnabled/> : <LikeDisabled/>}</button>
-                                <div>{post.likes.length}</div>
-                            </div>
+                    }
+                    <div className={styles.post_main}>
+                        <SelectedTags text={post.text} tags={ post.tags ? post.tags : []}/>
+                    </div>
+                    <div className={styles.post_footer}>
+                        <div>
+                            <button onClick={like}>{isLiked ? <LikeEnabled/> : <LikeDisabled/>}</button>
+                            <div>{post.likes.length}</div>
                         </div>
                     </div>
                 </div>
-                <div>
-                    <div>
-                        <DropdownButton key={post._id} options={
-                            {"Delete": () => toggleRemovePostWindow(true)}
-                        }/>
+                <div className={styles.right_side}>
+                    <div className={styles.dropdown_section}>
+                        <DropdownButton key={post._id} options={{
+                            "Delete": () => toggleRemovePostWindow(true),
+                            "Example": () => console.log("1"),
+                            "Example1": () => console.log("2")
+                        }}/>
                     </div>
-                    <div>
+                    <div className={styles.views_count}>
                         <div><ViewsIcon/></div>
                         <div>{post.views ? post.views.length : 0}</div>
                     </div>
                 </div>
                 <UserCheckObserver post={post}/>
             </div>
+
+
             {isRemovePostWindowOpened &&
                 <ModalWindow title={"Are you sure?"} closeWindow={() => toggleRemovePostWindow(false)}>
                     <div>

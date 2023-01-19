@@ -18,7 +18,7 @@ export const Profile: FC = () => {
         window.scrollTo(0, 0);
     }, [userLogin])
 
-    if (isLoading) return <div className={styles.container}><Loader/></div>
+    if (isLoading || postListIsLoading || !posts) return <div className={styles.container}><Loader/></div>
 
     return (
         <div className={styles.container}>
@@ -30,6 +30,7 @@ export const Profile: FC = () => {
                     isLoading={postListIsLoading}
                 />
                 <SideBar>
+                    <div></div>
                 </SideBar>
             </div>
         </div>

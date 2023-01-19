@@ -22,6 +22,7 @@
 .message {
   display: flex;
   flex-direction: column;
+  background-color: $color2;
   padding: 8px 8px;
   min-width: 100px;
   max-width: 60%;
@@ -33,6 +34,23 @@
 
 .message img {
   width: 100%;
+}
+
+.message_header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  > div:last-child {
+    margin-top: -5px;
+
+    svg {
+      min-height: 35px;
+      min-width: 35px;
+      transform: scale(0.6);
+    }
+  }
+
 }
 
 .message_data {
@@ -62,10 +80,6 @@
 .from_user {
   align-self: flex-end;
   flex-direction: row-reverse;
-
-  .message {
-    background-color: $color2;
-  }
   .user_name {
     text-align: end;
   }
@@ -86,19 +100,10 @@
 
   &.unchecked {
     background-color: mix($color0,$color4);
-    .message {
-      background-color: mix($color1, $color3);
-    }
   }
 
   .message {
-    color: $color0;
-    background-color: $color1;
     border: solid 1px transparentize($color2, 0.6);
-  }
-
-  .message_time {
-    color: mix($color2, $color3);
   }
 
   .message_text {

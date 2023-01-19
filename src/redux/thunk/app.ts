@@ -11,10 +11,10 @@ import Ably from "ably/callbacks";
 
 const onCloseConnection = () => UserAPI.closeConnection()
 
-export const initializeApp = (token: string) => async (dispatch: AppDispatch) => {
+export const initializeApp = (token: string) => (dispatch: AppDispatch) => {
     config.token = token
 
-    return await UserAPI.getUserById(token).then(user => {
+    UserAPI.getUserById(token).then(user => {
         subscribeToChannel(user.data._id, (message: Ably.Types.Message) => {
             switch (message.name) {
                 case 'post_like':

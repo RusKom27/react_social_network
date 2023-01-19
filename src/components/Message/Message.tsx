@@ -10,6 +10,7 @@ import {Image} from "../misc/Image/Image";
 import {UserCheckMessageObserver} from "./UserCheckMessageObserver/UserCheckMessageObserver";
 
 import styles from "./Message.module.scss"
+import {DropdownButton} from "../misc/DropdownButton/DropdownButton";
 
 type PropsType = {
     message: IMessage,
@@ -31,7 +32,14 @@ export const Message = memo<PropsType>(({message}) => {
                 <Image image_name={sender.images.avatar_image.small}/>
             </div>
             <div className={styles.message}>
-                <div className={styles.user_name}>{sender.name}</div>
+                <div className={styles.message_header}>
+                    <div className={styles.user_name}>{sender.name}</div>
+                    <DropdownButton key={message._id} options={{
+                        "Example": () => console.log("1"),
+                        "Example1": () => console.log("2")
+                    }}/>
+                </div>
+
                 <div className={styles.message_data}>
                     <div className={styles.message_text}>{message.text}</div>
                     <div className={styles.message_description}>

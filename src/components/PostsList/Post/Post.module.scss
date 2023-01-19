@@ -40,7 +40,14 @@ $like-svg-scale: 0.6;
 .post_header {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  white-space: nowrap;
+
+  span {
+    padding-inline: 8px;
+    color: $color3;
+    font-size: 16px;
+    font-weight: 300;
+  }
 }
 
 .post_main {
@@ -63,7 +70,7 @@ $like-svg-scale: 0.6;
 .content_author {
   font-size: 18px;
   font-weight: 700;
-  span {
+  > span {
     color: $color3;
     font-size: 16px;
     font-weight: 300;
@@ -106,9 +113,39 @@ $like-svg-scale: 0.6;
 
     svg {
       fill: $color1;
+      min-width: 32px;
+      min-height: 32px;
       margin-top: 8px;
       transform: scale($like-svg-scale);
     }
+  }
+}
+
+.right_side {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  .dropdown_section {
+    margin-right: -10px!important;
+  }
+
+  .views_count {
+    display: flex;
+    flex-direction: row;
+    color: $color3;
+    align-items: center;
+    line-height: 10px;
+
+    svg {
+      transform: scale(0.6);
+      fill: $color3;
+    }
+  }
+
+  svg {
+    min-width: 32px;
+    min-height: 32px;
   }
 }
 

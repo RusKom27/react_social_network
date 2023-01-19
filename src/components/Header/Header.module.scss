@@ -15,6 +15,12 @@
   > div:has(.hamburger_button) {
     display: none;
   }
+
+  svg {
+    min-width: 35px;
+    min-height: 35px;
+    transform: scale(0.5);
+  }
 }
 
 .header > div {
@@ -46,6 +52,7 @@
   fill: $color0;
   svg {
     margin-top: -2px;
+    transform: scale(0.9);
   }
   &:hover {
     cursor: pointer;

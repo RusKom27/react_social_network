@@ -1,8 +1,33 @@
 @import "../../../index";
 
 .container {
+  min-width: 35px;
+  transform: translateX(10px);
 
-  .button {
+  .three_dots_button {
+    border-radius: 50%;
+    background-color: transparent;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+
+    border: none;
+    height: 30px;
+    width: 30px;
+    padding: 0;
+
+    svg {
+      transform: scale(0.7);
+      fill: $color1;
+    }
+
+    &:hover {
+      cursor: pointer;
+      background: transparentize($color1, 0.2);
+      svg {
+        fill: $color2;
+      }
+    }
 
   }
 
@@ -10,16 +35,25 @@
     display: flex;
     overflow: clip;
     flex-direction: column;
-    border-radius: 16px;
-    height: 100px;
-    width: 200px;
+    position: absolute;
+    transform: translateX(-85px) scale(1, 1);
+    border-radius: 8px 17px 8px 8px;
+    height: auto;
+    width: 120px;
+    z-index: 900;
+    transition: 0.3s;
+    transform-origin: 120px 0;
 
     button {
       display: flex;
-      padding: 0;
+      flex: 1;
+      max-width: 100%;
+      border-radius: 0;
       border: 0;
+      margin: 0;
       cursor: pointer;
       justify-content: center;
+      background-color: transparentize($color1, 0.2);
 
 
       &:hover {
@@ -34,4 +68,24 @@
       }
     }
   }
+
+  &[data-is-expanded="true"] {
+    .three_dots_button {
+      display: none;
+    }
+    .button_container {
+      display: flex;
+    }
+  }
+
+  &[data-is-expanded="false"] {
+    .three_dots_button {
+      display: flex;
+    }
+    .button_container {
+      display: none;
+    }
+  }
+
+
 }

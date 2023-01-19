@@ -1,11 +1,15 @@
-import {useDispatch} from "react-redux";
 import {initializeApp} from "../redux/thunk";
 import {useNavigate} from "react-router-dom";
-import {useEffect} from "react";
+import {FC, useEffect} from "react";
+import {useAppDispatch} from "../hooks/redux";
 
-export const AppInitialization = ({token}) => {
+type PropsType = {
+    token: string
+}
+
+export const AppInitialization: FC<PropsType> = ({token}) => {
     const navigate = useNavigate()
-    const dispatch = useDispatch()
+    const dispatch = useAppDispatch()
 
     useEffect(() => {
         if (token) dispatch(initializeApp(token))
