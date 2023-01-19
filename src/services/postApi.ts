@@ -13,7 +13,7 @@ export const postApi = createApi({
             }),
             providesTags: (result) => ['Post']
         }),
-        fetchAllPostList: build.query<IPost[], undefined>({
+        fetchAllPostList: build.query<IPost[], string>({
             query: () => ({
                 url: `/all`
             }),

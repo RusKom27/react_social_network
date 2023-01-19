@@ -12,7 +12,7 @@ export const userApi = createApi({
             return headers
         }
     }),
-    tagTypes: ['AuthUser','User'],
+    tagTypes: ['AuthUser','User', 'UserList'],
     endpoints: (build) => ({
         authUserByToken: build.query<IUser, string>({
             query: () => ({
@@ -38,6 +38,12 @@ export const userApi = createApi({
                 url: `/id/${user_id}`
             }),
             providesTags: (result) => ['User']
+        }),
+        fetchUserListById: build.query<IUser[], string[]>({
+            query: (users_id) => ({
+                url: `/id_array?users_id=${users_id.join('&users_id=')}`
+            }),
+            providesTags: (result) => ['UserList']
         }),
         fetchUserByLogin: build.query<IUser, string>({
             query: (user_login) => ({

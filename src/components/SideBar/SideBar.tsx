@@ -3,7 +3,7 @@ import React, {FC, ReactElement} from "react"
 import styles from "./SideBar.module.scss"
 
 type PropsType = {
-    children: ReactElement
+    children: ReactElement[] | ReactElement | undefined
 }
 
 export const SideBar: FC<PropsType> = ({children}) => {

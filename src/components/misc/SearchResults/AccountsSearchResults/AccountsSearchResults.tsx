@@ -7,7 +7,7 @@ import {useAppSelector} from "../../../../hooks/redux";
 import styles from "./AccountsSearchResults.module.scss"
 
 type PropsType = {
-    limit: number,
+    limit?: number,
 }
 
 export const AccountsSearchResults: FC<PropsType> = ({limit}) => {
@@ -19,7 +19,7 @@ export const AccountsSearchResults: FC<PropsType> = ({limit}) => {
     return (
         <div className={styles.container}>
             {accounts_components}
-            {users.length > limit && <div><Link to={'/search_results/accounts'}>Show more...</Link></div>}
+            {limit && users.length > limit && <div><Link to={'/search_results/accounts'}>Show more...</Link></div>}
             {users.length < 1 && <div>Not found</div>}
         </div>
 

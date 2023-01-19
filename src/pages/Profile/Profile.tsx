@@ -30,7 +30,6 @@ export const Profile: FC = () => {
                     isLoading={postListIsLoading}
                 />
                 <SideBar>
-                    <div></div>
                 </SideBar>
             </div>
         </div>

@@ -1,46 +1,7 @@
 @import "src/index";
 
 .input_section {
-  form {
-    display: flex;
-    background-color: $color1;
-    padding: 16px;
-    gap: 16px;
-    height: 32px;
-    color: $color0;
 
-    div:has(input[type="text"]) {
-      margin-right: 8px;
-
-      flex: 10;
-
-      input[type="text"] {
-        font-size: 16px;
-        width: 100%;
-        padding: 8px;
-        border: solid 1px transparentize($color3, 0.6);
-        box-shadow: 2px 2px 0 transparentize($color3, 0.6);
-        border-radius: 8px;
-        background-color: $color0;
-        color: $color1;
-      }
-
-      input[type="text"]:focus {
-        outline: none;
-      }
-    }
-
-    svg {
-      margin-top: 2px;
-      transform: scale(0.7);
-    }
-
-    div:has(button) {
-      flex: 1;
-      align-self: center;
-    }
-
-  }
 }
 
 @media screen and (max-width: 900px) {

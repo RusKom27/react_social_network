@@ -9,4 +9,5 @@ export const Redirect = () => {
         if (token) return navigate("/")
         else return  navigate("/auth/login")
     })
+    return null
 }

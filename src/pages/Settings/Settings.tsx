@@ -1,14 +1,14 @@
+import React, {useEffect} from "react";
 import {NavLink, Outlet} from "react-router-dom";
-import {useEffect} from "react";
-import {useDispatch} from "react-redux";
 
 import {getUserByToken} from "../../redux/thunk";
+import {useAppDispatch} from "../../hooks/redux";
 
 import styles from "./Settings.module.scss"
 
 export const Settings = () => {
-    const dispatch = useDispatch()
-    const activeClassName = ({isActive}) => isActive ? styles.active : undefined
+    const dispatch = useAppDispatch()
+    const activeClassName: (isActive: any) => any = ({isActive}) => isActive ? styles.active : undefined
     useEffect(() => {
         dispatch(getUserByToken())
     })

@@ -1,15 +1,15 @@
 import React from "react"
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
-import {useSelector} from "react-redux";
 
 import {Account, Auth, Dialog, Feed, Login, Messages, Profile, Register, Security, Settings} from "./pages";
 import {Layout} from "./layout/Layout";
 import {AccountsSearchResults, Redirect, TopicSearchResults} from "./components";
 
 import "./App.scss"
+import {useAppSelector} from "./hooks/redux";
 
 export const App = () => {
-    const token = useSelector(state => state.auth.token)
+    const token = useAppSelector(state => state.auth.token)
 
     return (
         <Router>

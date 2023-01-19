@@ -2,7 +2,7 @@ import React, {FC, MouseEventHandler, ReactElement} from "react";
 import styles from "./ModalWindow.module.scss"
 
 type PropsType = {
-    children: ReactElement,
+    children: ReactElement | ReactElement[],
     closeWindow: () => void,
     title: string
 }
@@ -16,7 +16,7 @@ export const ModalWindow: FC<PropsType> = ({children, closeWindow, title = ''}) 
     return (
         <div onClick={onClickHandler} className={styles.container}>
             <div>
-                <span>{title}</span>
+                <h3>{title}</h3>
                 {children}
             </div>
         </div>

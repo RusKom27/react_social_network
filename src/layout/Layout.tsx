@@ -1,12 +1,13 @@
+import React from "react";
 import {Outlet} from "react-router-dom"
-import {useSelector} from "react-redux";
 
 import {Header, Navigation, AppInitialization, AppNotificationsContainer} from "../components";
+import {useAppSelector} from "../hooks/redux";
 
 import styles from "./Layout.module.scss"
 
 export const Layout = () => {
-    const token = useSelector(state => state.auth.token)
+    const token = useAppSelector(state => state.auth.token)
 
     return (
         <div className={styles.wrapper}>

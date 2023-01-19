@@ -1,17 +1,23 @@
-import {useSelector} from "react-redux";
+import React, {FC} from "react";
 
+import {useAppSelector} from "../../../../hooks/redux";
 import {Message, Loader} from "../../../../components";
 
 import styles from "./MessageList.module.scss"
+import {IMessage} from "../../../../models";
 
-export const MessageList = ({dialog_id}) => {
-    const messages = useSelector(
+type PropsType = {
+    dialog_id: string | undefined
+}
+
+export const MessageList: FC<PropsType> = ({dialog_id}) => {
+    const messages = useAppSelector(
         state => state.messages.dialogs?.find(dialog => dialog?._id === dialog_id)?.messages
     )
 
     if (!messages) return <Loader/>
 
-    const messageComponents = messages.map(message => <Message
+    const messageComponents = messages.map((message: IMessage) => <Message
             key={message._id}
             message={message}
         />

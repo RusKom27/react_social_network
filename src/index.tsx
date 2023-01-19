@@ -15,7 +15,7 @@ import {Provider} from "react-redux";
 
 const store = setupStore()
 const queryClient = new QueryClient()
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById('root') as HTMLDivElement);
 
 root.render(
     <QueryClientProvider client={queryClient}>

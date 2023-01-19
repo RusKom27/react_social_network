@@ -4,7 +4,7 @@ import {FC, useEffect} from "react";
 import {useAppDispatch} from "../hooks/redux";
 
 type PropsType = {
-    token: string
+    token: string | null
 }
 
 export const AppInitialization: FC<PropsType> = ({token}) => {

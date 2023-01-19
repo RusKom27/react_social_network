@@ -1,31 +1,32 @@
+import React from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {useState} from "react";
 
 import {Loader, ModalWindow} from "../../../components";
 import {getImage, updateUserProfileImage, updateUserAvatarImage} from "../../../redux/thunk";
 import {AccountChangeForm, ImageLoadForm} from "../../../forms";
-import {useImage} from "../../../hooks";
 
 import styles from "./Account.module.scss"
 import {Image} from "../../../components/misc/Image/Image";
+import {useAppDispatch, useAppSelector} from "../../../hooks/redux";
 
 export const Account = () => {
-    const current_user = useSelector(state => state.auth.current_user)
-    const dispatch = useDispatch()
+    const current_user = useAppSelector(state => state.auth.current_user)
+    const dispatch = useAppDispatch()
 
     const [isAvatarChangingWindowOpened, toggleAvatarChangingWindow] = useState(false)
     const [isProfileChangingWindowOpened, toggleProfileChangingWindow] = useState(false)
 
-    const onAvatarImageLoad = (image_name) => {
+    if(!current_user) return <Loader/>
+
+    const onAvatarImageLoad = (image_name: string) => {
         dispatch(updateUserAvatarImage(current_user, image_name))
         dispatch(getImage(image_name))
     }
-    const onProfileImageLoad = (image_name) => {
+    const onProfileImageLoad = (image_name: string) => {
         dispatch(updateUserProfileImage(current_user, image_name))
         dispatch(getImage(image_name))
     }
-
-    if(!current_user) return <Loader/>
 
     return (
         <div className={styles.container}>
@@ -46,8 +47,7 @@ export const Account = () => {
                         <span>Change</span>
                     </div>
                     {isAvatarChangingWindowOpened &&
-                        <ModalWindow closeWindow={()=>toggleAvatarChangingWindow(false)}>
-                            <h3>Avatar</h3>
+                        <ModalWindow closeWindow={()=>toggleAvatarChangingWindow(false)} title={"Avatar image uploading"}>
                             <ImageLoadForm
                                 fileName={`${current_user.login}_avatar`}
                                 onImageLoad={onAvatarImageLoad}
@@ -67,8 +67,7 @@ export const Account = () => {
                         <span>Change</span>
                     </div>
                     {isProfileChangingWindowOpened &&
-                        <ModalWindow closeWindow={()=>toggleProfileChangingWindow(false)}>
-                            <h3>Profile image</h3>
+                        <ModalWindow closeWindow={()=>toggleProfileChangingWindow(false)} title={"Profile image uploading"}>
                             <ImageLoadForm
                                 fileName={`${current_user.login}_profile`}
                                 onImageLoad={onProfileImageLoad}

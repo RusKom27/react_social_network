@@ -2,10 +2,12 @@ import { Formik, Field, Form, ErrorMessage } from 'formik';
 import React, {FC} from 'react';
 import * as Yup from 'yup';
 
-import {ReactComponent as SendSVG} from "../static/images/svg/send.svg";
-import {Button} from "../components";
-import {createMessage} from "../redux/thunk";
-import {useAppDispatch} from "../hooks/redux";
+import {ReactComponent as SendSVG} from "../../static/images/svg/send.svg";
+import {Button} from "../../components";
+import {createMessage} from "../../redux/thunk";
+import {useAppDispatch} from "../../hooks/redux";
+
+import styles from "./MessageCreationForm.module.scss"
 
 type PropsType = {
     dialog_id: string
@@ -31,12 +33,14 @@ export const MessageCreationForm: FC<PropsType> = ({dialog_id}) => {
             }}
         >
             <Form>
-                <div>
-                    <Field name="message_text" type="text"/>
-                    <ErrorMessage name="message_text" />
-                </div>
-                <div>
-                    <Button type="submit"><SendSVG/> Send</Button>
+                <div className={styles.container}>
+                    <div>
+                        <Field name="message_text" type="text"/>
+                        <ErrorMessage name="message_text" />
+                    </div>
+                    <div>
+                        <Button type="submit"><SendSVG/> Send</Button>
+                    </div>
                 </div>
             </Form>
         </Formik>
