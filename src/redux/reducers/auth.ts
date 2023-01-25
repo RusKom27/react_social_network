@@ -26,6 +26,7 @@ const authSlice = createSlice({
         },
         logoutUser(state, action) {
             UserAPI.closeConnection()
+            UserAPI.logout()
             localStorage.clear()
             state.token = null
             state.current_user = null

@@ -21,9 +21,9 @@ export const DialogListItem: FC<PropsType> = ({id, last_message, members_id, unc
     const dispatch = useDispatch()
     const current_user = useAppSelector(state => state.auth.current_user)
     const activeClassName: (isActive: any) => any = ({isActive}) => isActive ? styles.active : ''
-    const {data: last_message_sender, isLoading: userIsLoading} = userApi.useFetchUserByIdQuery(last_message.sender_id)
+    // const {data: last_message_sender, isLoading: userIsLoading} = userApi.useFetchUserByIdQuery(last_message?.sender_id)
     const {data: members} = userApi.useFetchUserListByIdQuery(members_id)
-    if (userIsLoading || !last_message_sender || !members) return <Loader/>
+    if (!members) return <Loader/>
     const member_names = members
         .filter((member: IUser) => member.login !== current_user?.login).map(member => member.name).join(',')
 
@@ -35,7 +35,7 @@ export const DialogListItem: FC<PropsType> = ({id, last_message, members_id, unc
                         {member_names}
                     </div>
                     <div className={styles.username}>
-                        {last_message && last_message_sender.name}
+                        {/*{last_message && last_message_sender.name}*/}
                     </div>
                     <div className={styles.message_text}>
                         {last_message && last_message.text}

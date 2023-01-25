@@ -11,6 +11,7 @@
   overflow: hidden;
   z-index: 20;
   transition: 0.3s;
+  text-transform: capitalize;
 
   > div {
     overflow: clip;

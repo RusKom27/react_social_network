@@ -42,7 +42,7 @@ export const Account = () => {
                         onClick={()=>toggleAvatarChangingWindow(true)}
                     >
                         <div className={styles.avatar_image}>
-                            <Image image_name={current_user.images.avatar_image.small}/>
+                            <Image type={"avatar"} image_name={current_user.images.avatar_image.small}/>
                         </div>
                         <span>Change</span>
                     </div>

@@ -10,6 +10,7 @@ import styles from "./ProfileInfo.module.scss"
 import IUser from "../../../models/IUser";
 import {useAppDispatch, useAppSelector} from "../../../hooks/redux";
 import {userApi} from "../../../services";
+import {Image} from "../../../components/misc/Image/Image";
 
 type propsType = {
     user: IUser
@@ -19,8 +20,6 @@ export const ProfileInfo: FC<propsType> = ({user}) => {
     const navigate = useNavigate()
     const {data: current_user, isLoading} = userApi.useAuthUserByTokenQuery("")
     const dispatch = useAppDispatch()
-    const avatar_image = useImage(user.images.avatar_image.small)
-    const profile_image = useImage(user.images.profile_image.small)
     const [isLogoutWindowOpened, toggleLogoutWindow] = useState(false)
 
     if (isLoading) return <Loader />
@@ -47,10 +46,10 @@ export const ProfileInfo: FC<propsType> = ({user}) => {
     return (
         <div className={styles.container}>
             <div className={styles.profile_image}>
-                {profile_image.src && <img src={profile_image.src} alt=""/>}
+                <Image image_name={user.images.profile_image.small} />
             </div>
             <div className={styles.user_image}>
-                {avatar_image.src && <img src={avatar_image.src} alt=""/>}
+                <Image type={"avatar"} image_name={user.images.avatar_image.small} />
             </div>
             <div className={styles.profile}>
                 <div className={styles.profile_info}>

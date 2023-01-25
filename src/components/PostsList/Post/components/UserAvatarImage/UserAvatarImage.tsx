@@ -24,7 +24,7 @@ export const UserAvatarImage: FC<PropsType> = memo(({user_id}) => {
     return (
         <div className={styles.container}>
             <Link to={`../../profile/${user.login}`}>
-                <Image image_name={user.images.avatar_image.small}/>
+                <Image type={"avatar"} image_name={user.images.avatar_image.small}/>
             </Link>
         </div>
     )

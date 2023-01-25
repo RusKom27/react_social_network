@@ -29,7 +29,7 @@ export const Message = memo<PropsType>(({message}) => {
     return (
         <div className={`${[styles.container, owner_class, !message.checked && styles.unchecked].join(' ')}`}>
             <div className={styles.user_avatar}>
-                <Image image_name={sender.images.avatar_image.small}/>
+                <Image type={"avatar"} image_name={sender.images.avatar_image.small}/>
             </div>
             <div className={styles.message}>
                 <div className={styles.message_header}>

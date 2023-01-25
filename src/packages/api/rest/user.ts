@@ -1,4 +1,6 @@
 import {makeRequest} from "../makeRequest";
+import {Axios, AxiosResponse} from "axios";
+import {AuthResponse} from "../../../models/AuthResponse";
 
 export const UserAPI = {
     authUser(email: string, password: string) {
@@ -10,6 +12,40 @@ export const UserAPI = {
                 email,
                 password
             }
+        })
+    },
+
+    createUser(name: string, login: string, email: string, password: string) {
+        return makeRequest({
+            url: 'auth/register',
+            headers: {authorization: false},
+            method: 'POST',
+            data: {
+                name,
+                login,
+                email,
+                password
+            }
+        })
+    },
+
+    login(email: string, password: string): Promise<AxiosResponse<AuthResponse>> {
+        return makeRequest<AuthResponse>({
+            url: 'auth/login',
+            headers: {},
+            method: 'POST',
+            data: {
+                email,
+                password
+            }
+        })
+    },
+
+    logout(): Promise<any> {
+        return makeRequest({
+            url: 'auth/logout',
+            headers: {},
+            method: 'POST'
         })
     },
 
@@ -26,20 +62,6 @@ export const UserAPI = {
             url: `user/id/${id}`,
             headers: {authorization: true},
             method: 'GET',
-        })
-    },
-
-    createUser(name: string, login: string, email: string, password: string) {
-        return makeRequest({
-            url: 'auth/register',
-            headers: {authorization: false},
-            method: 'POST',
-            data: {
-                name,
-                login,
-                email,
-                password
-            }
         })
     },
 

@@ -160,3 +160,9 @@ $like-svg-scale: 0.6;
     transform: scale($like-svg-scale, $like-svg-scale);
   }
 }
+
+@media screen and (max-width: 900px) {
+  .post {
+    border-inline: none;
+  }
+}
