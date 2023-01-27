@@ -2,7 +2,7 @@ import axios, {AxiosHeaders} from "axios";
 import {config} from "./config";
 
 interface CustomAxiosHeaders extends AxiosHeaders {
-    Authorization?: string
+    authorization?: string
 }
 
 interface RequestType {
@@ -19,26 +19,27 @@ const api = axios.create({
 
 api.interceptors.request.use((config) => {
     if (!config.headers) return config
+    console.log(config)
     config.headers = {
-        Authorization: `Bearer ${localStorage.getItem("token")}`
+        authorization: `Bearer ${localStorage.getItem("token")}`
     } as CustomAxiosHeaders
     return config
 })
 
-function makeRequest<T> ({
+function makeRequest ({
     url= '/',
     method= 'GET',
     params= {},
     data= {},
     headers = {
-        authorization: "",
+        // authorization: "",
         withCredentials: true,
         // 'Access-Control-Allow-Credentials': 'true',
         // 'Access-Control-Allow-Origin': 'http://localhost:3000'
     }
 }: RequestType) {
-    if (headers.authorization) headers.authorization = config.token
-    return api<T>({
+    // if (headers.authorization) headers.authorization = config.token
+    return api({
         url: config.server_url + url,
         method,
         headers,

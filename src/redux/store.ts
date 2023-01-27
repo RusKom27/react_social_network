@@ -1,31 +1,17 @@
 import {combineReducers, configureStore} from "@reduxjs/toolkit";
-import {appSlice, authSlice, profileSlice, imagesSlice,
-    feedSlice, messagesSlice, searchSlice, usersSlice} from "./reducers"
-import {imageApi, postApi, userApi} from "../services";
+import reducers from "./reducers"
+import {serviceReducers, serviceMiddlewares} from "./services";
 
 const rootReducer = combineReducers({
-    app: appSlice,
-    auth: authSlice,
-    users: usersSlice,
-    profile: profileSlice,
-    images: imagesSlice,
-    feed: feedSlice,
-    messages: messagesSlice,
-    search: searchSlice,
-    [postApi.reducerPath]: postApi.reducer,
-    [userApi.reducerPath]: userApi.reducer,
-    [imageApi.reducerPath]: imageApi.reducer,
+    ...reducers,
+    ...serviceReducers
 })
 
 export const setupStore = () => {
     return configureStore({
         reducer: rootReducer,
         middleware: (getDefaultMiddleware) =>
-            getDefaultMiddleware().concat(
-                postApi.middleware,
-                userApi.middleware,
-                imageApi.middleware,
-            )
+            getDefaultMiddleware().concat(...serviceMiddlewares)
     })
 }
 

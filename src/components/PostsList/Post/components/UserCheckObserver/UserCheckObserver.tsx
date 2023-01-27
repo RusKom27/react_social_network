@@ -1,7 +1,7 @@
 import React, {memo, useEffect} from "react"
 
 import {useOnScreen} from "../../../../../hooks";
-import {postApi} from "../../../../../services";
+import {postApi} from "../../../../../redux/services";
 import {IPost} from "../../../../../models";
 import {useAppSelector} from "../../../../../hooks/redux";
 

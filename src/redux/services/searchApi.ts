@@ -1,6 +1,6 @@
 import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/dist/query/react";
-import {config} from "../packages/api/config";
-import {ISearchResult} from "../models";
+import {config} from "../../packages/api/config";
+import {ISearchResult} from "../../models";
 
 export const searchApi = createApi({
     reducerPath: "searchAPI",

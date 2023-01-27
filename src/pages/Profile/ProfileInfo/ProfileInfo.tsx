@@ -9,7 +9,7 @@ import {useImage} from "../../../hooks";
 import styles from "./ProfileInfo.module.scss"
 import IUser from "../../../models/IUser";
 import {useAppDispatch, useAppSelector} from "../../../hooks/redux";
-import {userApi} from "../../../services";
+import {userApi} from "../../../redux/services";
 import {Image} from "../../../components/misc/Image/Image";
 
 type propsType = {

@@ -8,7 +8,7 @@ import {searchByUserInput} from "../../redux/thunk/search";
 import {useDebounce} from "../../hooks";
 
 import styles from "./SearchForm.module.scss"
-import {postApi, searchApi} from "../../services";
+import {postApi, searchApi} from "../../redux/services";
 import {setSearchResults} from "../../redux/reducers/search";
 import {useAppDispatch} from "../../hooks/redux";
 

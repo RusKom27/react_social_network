@@ -1,5 +1,5 @@
 import React, {memo} from "react";
-import {imageApi} from "../../../services";
+import {imageApi} from "../../../redux/services";
 import default_image_placeholder from "./../../../static/images/image-placeholder1.png"
 import avatar_image_placeholder from "./../../../static/images/Profile_avatar_placeholder_large.png"
 

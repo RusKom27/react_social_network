@@ -1,6 +1,6 @@
 import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/dist/query/react";
-import {config} from "../packages/api/config";
-import {IImage} from "../models";
+import {config} from "../../packages/api/config";
+import {IImage} from "../../models";
 
 export const imageApi = createApi({
     reducerPath: "imageAPI",

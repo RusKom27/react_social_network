@@ -6,10 +6,11 @@ import * as Yup from 'yup';
 import {Button} from "../components";
 import {authUser} from "../redux/thunk";
 import {useAppDispatch} from "../hooks/redux";
+import {authApi} from "../redux/services";
 
 export const LoginForm = () => {
     const navigate = useNavigate()
-    const dispatch = useAppDispatch()
+    const [login, {isSuccess}] = authApi.useLoginMutation()
 
     return (
         <Formik
@@ -21,14 +22,14 @@ export const LoginForm = () => {
                     .required('Required'),
             })}
             onSubmit={(values, { setSubmitting }) => {
-                dispatch(authUser(
-                    values.email,
-                    values.password,
-                    user => {
-                        setSubmitting(false);
-                        navigate(`/profile/${user.data.login}`)
-                    }
-                ))
+                login(
+                    {email: values.email,
+                    password: values.password}
+                )
+                if (isSuccess) {
+                    setSubmitting(false);
+                    navigate(`/`)
+                }
             }}
         >
             <Form>

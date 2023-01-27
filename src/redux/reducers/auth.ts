@@ -1,42 +1,34 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {UserAPI} from "../../packages/api";
-import IUser from "../../models/IUser";
 
 interface State {
-    current_user: IUser | null,
     token: string | null,
 }
 
 const initialState: State = {
-    current_user: null,
-    token: localStorage.getItem("token"),
+    token: null,
 }
 
 const authSlice = createSlice({
     name: "auth",
     initialState,
     reducers: {
-        loginUser(state, action) {
-            localStorage.setItem("token", action.payload._id)
-            state.token = action.payload._id
-            state.current_user = action.payload
+        setToken(state, action) {
+            if (action.payload.access_token) {
+                localStorage.setItem("token", `Bearer ${action.payload.access_token}`)
+                state.token = action.payload.access_token
+            }
         },
-        setCurrentUser(state, action) {
-            state.current_user = action.payload
-        },
-        logoutUser(state, action) {
-            UserAPI.closeConnection()
-            UserAPI.logout()
+        removeToken(state) {
+            // UserAPI.closeConnection()
             localStorage.clear()
+            console.log(localStorage)
             state.token = null
-            state.current_user = null
         },
     }
 })
 
 export default authSlice.reducer
 export const {
-    loginUser,
-    setCurrentUser,
-    logoutUser,
+    setToken,
+    removeToken
 } = authSlice.actions

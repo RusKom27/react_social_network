@@ -1,6 +1,4 @@
 import {UserAPI} from "../../packages/api";
-import {loginUser, logoutUser} from "../reducers/auth";
-import {config} from "../../packages/api/config";
 import {getMessages} from "./messages";
 import {initialize} from "../reducers/app";
 import {subscribeToChannel} from "../../packages/ably";
@@ -12,8 +10,6 @@ import Ably from "ably/callbacks";
 const onCloseConnection = () => UserAPI.closeConnection()
 
 export const initializeApp = (token: string) => (dispatch: AppDispatch) => {
-    config.token = token
-
     UserAPI.getUserById(token).then(user => {
         subscribeToChannel(user.data._id, (message: Ably.Types.Message) => {
             switch (message.name) {
@@ -34,12 +30,9 @@ export const initializeApp = (token: string) => (dispatch: AppDispatch) => {
                     break
             }
         })
-        dispatch(loginUser(user.data))
         dispatch(getMessages())
         window.removeEventListener('unload', onCloseConnection)
         window.addEventListener('unload', onCloseConnection)
         dispatch(initialize(""))
-    }).catch(reason => {
-        dispatch(logoutUser(""))
     })
 }

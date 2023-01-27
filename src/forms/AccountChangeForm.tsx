@@ -4,7 +4,7 @@ import * as Yup from 'yup';
 
 import {Button} from "../components";
 import IUser from "../models/IUser";
-import {userApi} from "../services";
+import {userApi} from "../redux/services";
 
 type PropsType = {
     current_user: IUser

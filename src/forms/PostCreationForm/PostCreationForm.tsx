@@ -2,7 +2,7 @@ import { Formik, Field, Form, ErrorMessage } from 'formik';
 import React from 'react';
 import * as Yup from 'yup';
 import {Button} from "../../components";
-import {postApi} from "../../services";
+import {postApi} from "../../redux/services";
 
 import styles from "./PostCreationForm.module.scss"
 

@@ -7,13 +7,13 @@ import profileSlice from "./profile"
 import searchSlice from "./search"
 import usersSlice from "./users"
 
-export {
-    appSlice,
-    authSlice,
-    feedSlice,
-    imagesSlice,
-    messagesSlice,
-    profileSlice,
-    searchSlice,
-    usersSlice,
+export default {
+    app: appSlice,
+    auth: authSlice,
+    users: usersSlice,
+    profile: profileSlice,
+    images: imagesSlice,
+    feed: feedSlice,
+    messages: messagesSlice,
+    search: searchSlice,
 }

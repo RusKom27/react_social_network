@@ -5,7 +5,7 @@ import {ReactComponent as Unchecked} from "../../static/images/svg/check2.svg";
 import {useDate} from "../../hooks";
 import {IMessage} from "../../models";
 import {useAppSelector} from "../../hooks/redux";
-import {userApi} from "../../services";
+import {userApi} from "../../redux/services";
 import {Image} from "../misc/Image/Image";
 import {UserCheckMessageObserver} from "./UserCheckMessageObserver/UserCheckMessageObserver";
 

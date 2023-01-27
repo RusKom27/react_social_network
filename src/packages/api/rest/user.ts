@@ -30,7 +30,7 @@ export const UserAPI = {
     },
 
     login(email: string, password: string): Promise<AxiosResponse<AuthResponse>> {
-        return makeRequest<AuthResponse>({
+        return makeRequest({
             url: 'auth/login',
             headers: {},
             method: 'POST',

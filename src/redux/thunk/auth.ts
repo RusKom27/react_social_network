@@ -6,9 +6,9 @@ import IUser from "../../models/IUser";
 
 
 export const authUser = (email: string, password: string, then: (user: any) => void) => (dispatch: AppDispatch) => {
-    UserAPI.authUser(email, password).then(user => {
-        dispatch(loginUser(user.data))
-        then(user)
+    UserAPI.authUser(email, password).then(userData => {
+        dispatch(loginUser(userData.data))
+        then(userData.data.user)
     }).catch(reason => {
         dispatch(addErrorNotification(reason.response.data.message))
     })

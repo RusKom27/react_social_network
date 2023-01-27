@@ -4,7 +4,7 @@ import {NavLink} from "react-router-dom";
 
 import {toggleMenuTab} from "../../../../redux/reducers/app";
 import {IMessage, IUser} from "../../../../models";
-import {userApi} from "../../../../services";
+import {userApi} from "../../../../redux/services";
 import {Loader} from "../../../../components";
 import {useAppSelector} from "../../../../hooks/redux";
 

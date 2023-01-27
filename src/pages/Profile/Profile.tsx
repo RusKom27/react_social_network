@@ -6,7 +6,7 @@ import {PostCreationInput} from "./PostCreationInput/PostCreationInput";
 import {Loader, PostsList, SideBar} from "../../components";
 
 import styles from "./Profile.module.scss"
-import {postApi, userApi} from "../../services";
+import {postApi, userApi} from "../../redux/services";
 
 export const Profile: FC = () => {
     const userLogin = useParams().login || ""

@@ -3,7 +3,7 @@ import React from "react"
 import {Loader} from "../../../misc/Loader/Loader";
 
 import styles from "./ActualTopics.module.scss"
-import {postApi} from "../../../../services";
+import {postApi} from "../../../../redux/services";
 
 export const ActualTopics = () => {
     const {data: topics, isLoading} = postApi.useFetchActualTopicListQuery("")

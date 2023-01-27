@@ -2,7 +2,7 @@ import React from "react"
 import {Loader} from "../../../misc/Loader/Loader";
 
 import styles from "./PopularTags.module.scss"
-import {postApi} from "../../../../services";
+import {postApi} from "../../../../redux/services";
 
 export const PopularTags = () => {
     const {data: tags, isLoading} = postApi.useFetchPopularTagListQuery("")

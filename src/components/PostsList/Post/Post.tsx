@@ -9,7 +9,7 @@ import {DropdownButton} from "../../misc/DropdownButton/DropdownButton";
 import {ModalWindow} from "../../misc/ModalWindow/ModalWindow";
 import {UserAvatarImage} from "./components/UserAvatarImage/UserAvatarImage";
 import {UserPostInfo} from "./components/UserPostInfo/UserPostInfo";
-import {postApi} from "../../../services";
+import {postApi} from "../../../redux/services";
 import {UserCheckObserver} from "./components/UserCheckObserver/UserCheckObserver";
 import {Button} from "../../misc/Button/Button";
 import {useDate} from "../../../hooks";

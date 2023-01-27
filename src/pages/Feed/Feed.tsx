@@ -1,7 +1,7 @@
 import React from "react";
 import {Loader, PostsList, SideBar} from "../../components";
 import {PopularTags, ActualTopics} from "../../components/SideBar/SideBarComponents";
-import {postApi} from "../../services";
+import {postApi} from "../../redux/services";
 
 import styles from "./Feed.module.scss"
 
